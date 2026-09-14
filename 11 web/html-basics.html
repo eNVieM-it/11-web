@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 2: Мова гіпертекстової розмітки HTML. Структура документа, текст та гіперпосилання (10-11 кл)</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css?v=4">
+  <link rel="stylesheet" href="styles/hero.css?v=4">
+  <link rel="stylesheet" href="styles/modules.css?v=4">
+  <link rel="stylesheet" href="styles/responsive.css?v=4">
+  <link rel="stylesheet" href="styles/html-lesson.css?v=2">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Live Stats Ticker -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        WWW СТАНДАРТ: понад <strong>1 900 000 000</strong> веб-сайтів побудовані мовою HTML (W3C / WHATWG)
+      </div>
+      <div>
+        ІНФОРМАТИКА 10–11 КЛАСИ • РОЗДІЛ 2: ПРОЕКТУВАННЯ ТА ВЕРСТКА ВЕБСТОРІНОК
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+        <span class="logo-badge">&lt;/&gt;</span>
+        <span>ВЕБТЕХНОЛОГІЇ</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link" style="color: var(--accent-blue);">← Урок 1</a></li>
+          <li><a href="#topic1" class="nav-link">1. Гіпертекст</a></li>
+          <li><a href="#topic2" class="nav-link">2. Структура</a></li>
+          <li><a href="#topic3" class="nav-link">3. Текст</a></li>
+          <li><a href="#topic4" class="nav-link">4. Списки</a></li>
+          <li><a href="#topic5" class="nav-link">5. Посилання</a></li>
+          <li><a href="#practical-work" class="nav-link" style="color: var(--accent-green);">Практикум ⚙️</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================================================================
+         HERO SECTION
+         ==================================================================== -->
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="section-badge">🎯 ІНТЕРАКТИВНИЙ ОНЛАЙН-КУРС • УРОК 2</div>
+            <h1 class="hero-title">МОВА ГІПЕРТЕКСТОВОЇ <span class="text-gradient">РОЗМІРКИ HTML</span></h1>
+            <p class="hero-description">
+              Повний інтерактивний курс з основ сучасної веб-розробки та семантичної верстки. 
+              Опануйте будову сучасного HTML5-документа, правила розмітки тексту, організацію списків і навігацію гіперпосиланнями за допомогою 5 живих симуляторів та онлайн-пісочниці коду.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#topic1" class="btn btn-primary">РОЗПОЧАТИ УРОК 🚀</a>
+              <a href="#practical-work" class="btn btn-secondary">ПРАКТИЧНА РОБОТА ⚙️</a>
+            </div>
+
+            <div class="hero-highlight-boxes">
+              <div class="highlight-box">
+                <span class="box-value">1991</span>
+                <span class="box-label">РІК СТВОРЕННЯ HTML</span>
+              </div>
+              <div class="highlight-box">
+                <span class="box-value">UTF-8</span>
+                <span class="box-label">КОДУВАННЯ КИРИЛИЦІ</span>
+              </div>
+              <div class="highlight-box">
+                <span class="box-value">140+</span>
+                <span class="box-label">СЕМАНТИЧНИХ ТЕГІВ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Teaser Card: Raw text vs HTML -->
+          <div class="hero-interactive-card">
+            <div class="interactive-card-header">
+              <span class="card-badge">🧪 ЕКСПЕРИМЕНТ №1</span>
+              <h3>СИРИЙ ТЕКСТ ПРОТИ HTML-РОЗМІРКИ</h3>
+            </div>
+            <div class="interactive-card-body">
+              <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                Як браузер сприймає сторінку без HTML-тегів? Перемкніть режим та відчуйте різницю:
+              </p>
+
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-secondary" id="heroToggleRawBtn" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">Без тегів (Сирий текст)</button>
+                <button class="btn btn-primary" id="heroToggleHtmlBtn" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">З тегами HTML5</button>
+              </div>
+
+              <div id="heroPreviewBox" style="background: #ffffff; color: #0f172a; border: 2px solid var(--border-color); padding: 1.25rem; min-height: 180px; font-size: 0.95rem; box-shadow: var(--shadow-sm); overflow-y: auto;">
+                <h2 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.25rem;">Основи сучасної веб-розробки</h2>
+                <p style="margin-bottom: 0.5rem;"><strong>Курс:</strong> Вебтехнології та основи інтерфейсів (10–11 класи).</p>
+                <ul style="padding-left: 1.2rem; margin-bottom: 0.5rem;">
+                  <li>Структура документа <code>&lt;!DOCTYPE html&gt;</code></li>
+                  <li>Форматування тексту та ієрархія заголовків</li>
+                  <li>Гіперпосилання як основа Всесвітньої павутини</li>
+                </ul>
+                <p style="font-size: 0.85rem; color: #64748b;">Результат: чітка структура, візуальна ієрархія та зручність сприйняття!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 1: ЩО ТАКЕ ГІПЕРТЕКСТ ТА HTML. ІСТОРІЯ, W3C ТА БРАУЗЕРИ
+         ==================================================================== -->
+    <section id="topic1" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 1 • ТЕОРЕТИЧНИЙ ФУНДАМЕНТ</div>
+          <h2 class="section-title">1. ЩО ТАКЕ <span class="text-gradient">ГІПЕРТЕКСТ ТА HTML</span></h2>
+          <p class="section-subtitle">
+            Історія створення мови, заснування консорціуму W3C, розподіл браузерного ринку та фундаментальне поняття розмічальних тегів.
+          </p>
+        </div>
+
+        <!-- Theoretical Foundations Card -->
+        <div class="info-card" style="margin-bottom: 2.5rem;">
+          <div class="info-card-header">
+            <h3>📖 КЛЮЧОВІ ПОНЯТТЯ ТА СТАНДАРТИ ІНДУСТРІЇ</h3>
+          </div>
+          <div class="info-card-body">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+              <div>
+                <h4 style="color: var(--accent-vermilion); margin-bottom: 0.5rem;">Що таке HTML?</h4>
+                <p style="font-size: 0.95rem;">
+                  <strong>HTML (HyperText Markup Language)</strong> — це стандартизована мова розмітки документів у Всесвітній павутині. 
+                  Файли веб-сторінок мають розширення <code>.html</code> або <code>.htm</code> і опрацьовуються браузерами.
+                </p>
+              </div>
+              <div>
+                <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Концепція гіпертексту</h4>
+                <p style="font-size: 0.95rem;">
+                  <strong>Гіпертекст</strong> — це текст, який містить зв'язки (гіперпосилання) з іншими документами чи ресурсами. 
+                  Творцем концепції WWW та мови розмітки став <strong>Тім Бернерс-Лі</strong> у 1989–1991 роках (лабораторія CERN). У 1994 році засновано <strong>Консорціум Всесвітньої павутини (W3C)</strong>.
+                </p>
+              </div>
+              <div>
+                <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;">Як працює браузер?</h4>
+                <p style="font-size: 0.95rem;">
+                  Браузер (вебпереглядач) зчитує команди розмітки, будує <strong>DOM-дерево</strong> (Document Object Model) та рендерить графічну сторінку на екрані. 
+                  Лідер глобального трафіку — <strong>Google Chrome (~63%)</strong>, далі йдуть Safari, Firefox та Edge.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 1: АНАТОМІЯ ТЕГА ТА АТРИБУТІВ -->
+        <div class="interactive-container">
+          <div class="interactive-header">
+            <span class="interactive-badge">🔬 ІНТЕРАКТИВНИЙ СИМУЛЯТОР №1</span>
+            <h3 class="interactive-title">АНАТОМІЯ ТЕГА, АТРИБУТІВ ТА ЗНАЧЕНЬ</h3>
+            <p class="interactive-desc">
+              Клацніть або наведіть курсор миші на будь-яку складову команду розмітки, щоб дізнатися її призначення та суворі правила синтаксису стандарту HTML5:
+            </p>
+          </div>
+
+          <div class="anatomy-container">
+            <div class="anatomy-modes">
+              <button class="anatomy-mode-btn active" data-mode="paired">1. Парний тег: &lt;a&gt; (Посилання)</button>
+              <button class="anatomy-mode-btn" data-mode="single">2. Одинарний тег: &lt;img&gt; (Зображення)</button>
+              <button class="anatomy-mode-btn" data-mode="break">3. Службовий тег: &lt;meta&gt; (Кодування)</button>
+            </div>
+
+            <!-- Display Box with interactive tokens -->
+            <div class="anatomy-display-box" id="anatomyDisplayBox">
+              <!-- Заповнюється скриптом JS -->
+            </div>
+
+            <!-- Dynamic explanation card -->
+            <div class="anatomy-explanation-card">
+              <div class="anatomy-icon-box" id="anatomyInfoIcon">🏷️</div>
+              <div style="flex: 1;">
+                <h4 class="anatomy-info-title" id="anatomyInfoTitle">Ім’я тега (Tag Name)</h4>
+                <p class="anatomy-info-desc" id="anatomyInfoDesc">Визначає тип елемента розмітки веб-сторінки.</p>
+                <div>
+                  <span class="anatomy-rule-pill" id="anatomyInfoRule">Згідно з HTML5 теги пишуться тільки малими літерами!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 2: СТРУКТУРА HTML5-ДОКУМЕНТА ТА СЕМАНТИЧНІ БЛОКИ
+         ==================================================================== -->
+    <section id="topic2" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 2 • СКЕЛЕТ ВЕБ-СТОРІНКИ</div>
+          <h2 class="section-title">2. СТРУКТУРА СТАНДАРТНОГО <span class="text-gradient">HTML-ДОКУМЕНТА</span></h2>
+          <p class="section-subtitle">
+            Декларація DOCTYPE, поділ на секції &lt;head&gt; та &lt;body&gt;, захист від «ієрогліфів» за допомогою UTF-8 та сучасні семантичні контейнери.
+          </p>
+        </div>
+
+        <!-- Accordions with Detailed Breakdown -->
+        <div class="accordion-group" style="margin-bottom: 2.5rem;">
+          <div class="accordion-item active">
+            <button class="accordion-header">
+              <span>1. Чому &lt;!DOCTYPE html&gt; — це не тег, а інструкція?</span>
+              <span class="accordion-icon">−</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Документ завжди розпочинається з елемента <code>&lt;!DOCTYPE html&gt;</code>. Він записується великими літерами, 
+                оскільки це не звичайний HTML-тег, а директива браузеру, яка повідомляє, що верстка написана за сучасним стандартом <strong>HTML5</strong>. 
+                Це запобігає переходу браузера в застарілий режим "Quirks Mode" і гарантує коректне відображення сторінки в усіх переглядачах.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>2. Секція &lt;head&gt; проти &lt;body&gt;: що бачить користувач?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                HTML-документ ділиться на два ключові блоки:
+              </p>
+              <ul>
+                <li><strong>&lt;head&gt;</strong> (Голова) — містить службову інформацію (метатеги, кодування <code>&lt;meta charset="UTF-8"&gt;</code>, назву вкладки <code>&lt;title&gt;</code>, підключення стилів CSS). Відвідувачеві цей вміст не видно безпосередньо у вікні перегляду!</li>
+                <li><strong>&lt;body&gt;</strong> (Тіло) — містить <em>увесь контент</em>, який користувач бачить і з яким взаємодіє (текст, картинки, кнопки, таблиці, відео, посилання).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>3. Чому без &lt;meta charset="UTF-8"&gt; з'являються ієрогліфи?</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>
+                Українська абетка містить літери («і», «ї», «є», «ґ»). Якщо браузер не знає кодової таблиці або помилково використає застаріле кодування замість UTF-8, на екрані замість тексту з'являться нечитабельні «кракозябри». 
+                Метатег <code>&lt;meta charset="UTF-8"&gt;</code> гарантує підтримку всіх мов планети та емодзі.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 2: РЕНТГЕН DOM-СТРУКТУРИ -->
+        <div class="interactive-container">
+          <div class="interactive-header">
+            <span class="interactive-badge">🩻 ІНТЕРАКТИВНИЙ СИМУЛЯТОР №2</span>
+            <h3 class="interactive-title">РЕНТГЕН ДОКУМЕНТА (HTML DOCUMENT X-RAY)</h3>
+            <p class="interactive-desc">
+              Клікайте на блоки HTML-коду зліва — симулятор миттєво підсвітить відповідну частину на віртуальному макеті браузера справа та надасть пояснення:
+            </p>
+          </div>
+
+          <div class="xray-grid">
+            <!-- Code Panel -->
+            <div class="xray-code-panel">
+              <div class="xray-panel-header">
+                <span>📄 index.html (Код сторінки)</span>
+                <span>Клікніть рядок для аналізу 👆</span>
+              </div>
+              <div class="xray-code-body">
+                <div class="xray-node" data-target="doctype">&lt;!DOCTYPE html&gt;</div>
+                <div class="xray-node" data-target="html">&lt;html lang="uk"&gt;</div>
+                <div class="xray-node" data-target="head" style="padding-left: 1.5rem;">&lt;head&gt;</div>
+                <div class="xray-node" data-target="meta" style="padding-left: 2.5rem;">&lt;meta charset="UTF-8"&gt;</div>
+                <div class="xray-node" data-target="title" style="padding-left: 2.5rem;">&lt;title&gt;Мій сайт - Урок HTML&lt;/title&gt;</div>
+                <div class="xray-node" data-target="head" style="padding-left: 1.5rem;">&lt;/head&gt;</div>
+                <div class="xray-node" data-target="body" style="padding-left: 1.5rem;">&lt;body&gt;</div>
+                <div class="xray-node active" data-target="header" style="padding-left: 2.5rem;">&lt;header&gt; ...Логотип & Назва... &lt;/header&gt;</div>
+                <div class="xray-node" data-target="nav" style="padding-left: 2.5rem;">&lt;nav&gt; ...Меню посилань... &lt;/nav&gt;</div>
+                <div class="xray-node" data-target="main" style="padding-left: 2.5rem;">&lt;main&gt; ...Головні статті та контент... &lt;/main&gt;</div>
+                <div class="xray-node" data-target="footer" style="padding-left: 2.5rem;">&lt;footer&gt; ...Копірайт © 2026... &lt;/footer&gt;</div>
+                <div class="xray-node" data-target="body" style="padding-left: 1.5rem;">&lt;/body&gt;</div>
+                <div class="xray-node" data-target="html">&lt;/html&gt;</div>
+              </div>
+            </div>
+
+            <!-- Visual Browser Preview Mockup -->
+            <div class="xray-preview-panel">
+              <div class="browser-mockup-bar">
+                <div class="browser-dots">
+                  <span class="browser-dot dot-red"></span>
+                  <span class="browser-dot dot-yellow"></span>
+                  <span class="browser-dot dot-green"></span>
+                </div>
+                <div class="browser-tab-title" id="xrayBrowserTab">Мій сайт - Урок HTML</div>
+                <div class="browser-url-bar">https://school11.edu.ua/lesson2</div>
+              </div>
+
+              <div class="browser-viewport">
+                <!-- Mock Header -->
+                <div class="mock-block active" id="mock-header">
+                  <span class="mock-label">&lt;header&gt;</span>
+                  <div style="font-weight: 800; font-size: 1.1rem; color: #1e3a8a;">ГОЛОВНИЙ ЗАГОЛОВОК САЙТУ</div>
+                  <div style="font-size: 0.85rem; color: #64748b;">Слоган: Все про веб-розробку для учнів</div>
+                </div>
+
+                <!-- Mock Nav -->
+                <div class="mock-block" id="mock-nav">
+                  <span class="mock-label">&lt;nav&gt;</span>
+                  <div style="display: flex; gap: 10px; font-size: 0.85rem; flex-wrap: wrap;">
+                    <span style="background: #e2e8f0; padding: 3px 8px; border: 1px solid #cbd5e1; font-weight: 600;">Головна</span>
+                    <span style="background: #e2e8f0; padding: 3px 8px; border: 1px solid #cbd5e1; font-weight: 600;">Теорія</span>
+                    <span style="background: #e2e8f0; padding: 3px 8px; border: 1px solid #cbd5e1; font-weight: 600;">Практика</span>
+                    <span style="background: #e2e8f0; padding: 3px 8px; border: 1px solid #cbd5e1; font-weight: 600;">Контакти</span>
+                  </div>
+                </div>
+
+                <!-- Mock Main -->
+                <div class="mock-block" id="mock-main" style="flex: 1;">
+                  <span class="mock-label">&lt;main&gt;</span>
+                  <h3 style="font-size: 1.05rem; margin-bottom: 0.3rem; color: #0f172a;">Унікальний зміст сторінки</h3>
+                  <p style="font-size: 0.85rem; color: #334155; margin-bottom: 0.5rem; line-height: 1.5;">
+                    Тут публікується основна навчальна інформація, статті, мультимедійні елементи або інтерактивні вправи.
+                  </p>
+                </div>
+
+                <!-- Mock Footer -->
+                <div class="mock-block" id="mock-footer">
+                  <span class="mock-label">&lt;footer&gt;</span>
+                  <div style="text-align: center; font-size: 0.8rem; color: #64748b;">
+                    &copy; 2026 Навчальний курс «Вебтехнології» 10–11 класи.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explanation text card -->
+          <div class="xray-detail-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+              <h4 id="xrayDescTitle" style="font-size: 1.25rem; color: var(--accent-vermilion); margin: 0;">&lt;header&gt; — Шапка сторінки</h4>
+              <span id="xrayDescRole" class="anatomy-rule-pill">Семантичний контейнер верхівки</span>
+            </div>
+            <p id="xrayDescText" style="font-size: 0.95rem; color: var(--text-secondary); margin: 0;">
+              Традиційно містить логотип сайту, слоган, назву або головний заголовок h1 та меню головної навігації сайту.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 3: РОЗМІТКА ТЕКСТУ (ЗАГОЛОВКИ, АБЗАЦИ, ФОРМАТУВАННЯ)
+         ==================================================================== -->
+    <section id="topic3" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 3 • РОЗМІТКА ТЕКСТУ</div>
+          <h2 class="section-title">3. ЗАГОЛОВКИ, АБЗАЦИ ТА <span class="text-gradient">ФОРМАТУВАННЯ</span></h2>
+          <p class="section-subtitle">
+            Шість рівнів заголовків &lt;h1&gt;...&lt;h6&gt;, атрибут вирівнювання align (left, center, right, justify), абзаци &lt;p&gt; та семантичне виділення слів.
+          </p>
+        </div>
+
+        <!-- Comparison Table of Formatting Tags in Responsive Wrapper -->
+        <div class="table-responsive-wrapper">
+          <table class="tag-cheat-table">
+            <thead>
+              <tr>
+                <th>Тег HTML</th>
+                <th>Призначення елемента</th>
+                <th>Семантична роль та приклад</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>&lt;h1&gt;...&lt;h6&gt;</code></td>
+                <td>Заголовки 1–6 рівнів. Атрибут <code>align="center|right|left|justify"</code></td>
+                <td>Ієрархія тексту. <code>&lt;h1&gt;</code> — головна тема (лише один на сторінці).</td>
+              </tr>
+              <tr>
+                <td><code>&lt;p&gt;</code></td>
+                <td>Абзац тексту (Paragraph)</td>
+                <td>Створює стандартний текстовий блок з автоматичним відступом знизу.</td>
+              </tr>
+              <tr>
+                <td><code>&lt;br&gt;</code></td>
+                <td>Одинарний тег примусового перенесення рядка</td>
+                <td>Переносить текст на новий рядок без створення нового абзацу.</td>
+              </tr>
+              <tr>
+                <td><code>&lt;hr&gt;</code></td>
+                <td>Горизонтальна лінія (Horizontal Rule)</td>
+                <td>Тематичний роздільник між різними смисловими блоками тексту.</td>
+              </tr>
+              <tr>
+                <td><code>&lt;strong&gt;</code> / <code>&lt;b&gt;</code></td>
+                <td>Виділення важливого тексту (напівжирне)</td>
+                <td><code>&lt;strong&gt;</code> — семантична важливість; <code>&lt;b&gt;</code> — суто візуальна жирність.</td>
+              </tr>
+              <tr>
+                <td><code>&lt;em&gt;</code> / <code>&lt;i&gt;</code></td>
+                <td>Виділення акцентованого тексту (курсив)</td>
+                <td><code>&lt;em&gt;</code> — змістовий наголос для диктора; <code>&lt;i&gt;</code> — курсивний шрифт.</td>
+              </tr>
+              <tr>
+                <td><code>&lt;mark&gt;</code></td>
+                <td>Виділення тексту "маркером"</td>
+                <td>Підсвічує релевантні фрагменти або ключові терміни.</td>
+              </tr>
+              <tr>
+                <td><code>&lt;sub&gt;</code> / <code>&lt;sup&gt;</code></td>
+                <td>Нижні та верхні індекси</td>
+                <td>Для хімічних і математичних формул: H<sub>2</sub>O, E = mc<sup>2</sup>.</td>
+              </tr>
+              <tr>
+                <td><code>&lt;blockquote&gt;</code></td>
+                <td>Блочна цитата</td>
+                <td>Виділяє розлогу цитату автора з відступами з обох боків.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 3: ТЕКСТОВА ЛАБОРАТОРІЯ -->
+        <div class="interactive-container">
+          <div class="interactive-header">
+            <span class="interactive-badge">✍️ ІНТЕРАКТИВНИЙ СИМУЛЯТОР №3</span>
+            <h3 class="interactive-title">ЖИВА ТЕКСТОВА ЛАБОРАТОРІЯ (TEXT PLAYGROUND)</h3>
+            <p class="interactive-desc">
+              Виділяйте слова у редакторі та натискайте кнопки тегів на панелі зверху, або оберіть готовий приклад коду — результат оновлюється в реальному часі!
+            </p>
+          </div>
+
+          <div class="text-lab-wrapper">
+            <!-- Toolbar -->
+            <div class="lab-toolbar">
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">ВСТАВИТИ ТЕГ:</span>
+              <button class="lab-tool-btn" data-tag="h1">&lt;h1&gt;</button>
+              <button class="lab-tool-btn" data-tag="h2">&lt;h2&gt;</button>
+              <button class="lab-tool-btn" data-tag="h3">&lt;h3&gt;</button>
+              <button class="lab-tool-btn" data-tag="p">&lt;p&gt;</button>
+              <button class="lab-tool-btn" data-tag="align-center">align="center"</button>
+              <button class="lab-tool-btn" data-tag="strong">&lt;strong&gt;</button>
+              <button class="lab-tool-btn" data-tag="em">&lt;em&gt;</button>
+              <button class="lab-tool-btn" data-tag="mark">&lt;mark&gt;</button>
+              <button class="lab-tool-btn" data-tag="code">&lt;code&gt;</button>
+              <button class="lab-tool-btn" data-tag="blockquote">&lt;quote&gt;</button>
+              <button class="lab-tool-btn" data-tag="sub">&lt;sub&gt;</button>
+              <button class="lab-tool-btn" data-tag="sup">&lt;sup&gt;</button>
+              <button class="lab-tool-btn" data-tag="br">&lt;br&gt;</button>
+              <button class="lab-tool-btn" data-tag="hr">&lt;hr&gt;</button>
+            </div>
+
+            <!-- Workspace Grid -->
+            <div class="lab-grid">
+              <!-- Textarea -->
+              <div class="lab-editor-col">
+                <textarea class="lab-textarea" id="labTextarea" spellcheck="false"></textarea>
+              </div>
+
+              <!-- Live Preview -->
+              <div class="lab-preview-col">
+                <div class="lab-preview-header">
+                  <span>🌐 ПОПЕРЕДНІЙ ПЕРЕГЛЯД БРАУЗЕРА</span>
+                  <span style="color: var(--accent-green);">● ЖИВИЙ РЕНДЕР</span>
+                </div>
+                <div class="lab-preview-body" id="labPreviewBody">
+                  <!-- Рендериться динамічно -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Presets -->
+            <div class="lab-presets">
+              <span style="font-weight: 700;">Готові зразки коду:</span>
+              <span class="preset-chip" data-preset="headings">📐 Ієрархія заголовків (h1–h3)</span>
+              <span class="preset-chip" data-preset="quote">📜 Цитата з виділенням mark</span>
+              <span class="preset-chip" data-preset="science">🔬 Хімічні формули (H₂O) та E=mc²</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 4: СПИСКИ НА ВЕБ-СТОРІНКАХ
+         ==================================================================== -->
+    <section id="topic4" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 4 • СТРУКТУРУВАННЯ ДАНИХ</div>
+          <h2 class="section-title">4. СПИСКИ НА <span class="text-gradient">ВЕБ-СТОРІНКАХ</span></h2>
+          <p class="section-subtitle">
+            Марковані списки &lt;ul&gt;, нумеровані списки &lt;ol&gt;, елементи &lt;li&gt;, налаштування типів маркерів та перетворення списку на меню сайту.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+          <div class="info-card">
+            <div class="info-card-header" style="background: var(--accent-blue); color: #fff;">
+              <h3 style="font-size: 1.1rem;">МАРКОВАНИЙ СПИСОК &lt;ul&gt;</h3>
+            </div>
+            <div class="info-card-body">
+              <p style="font-size: 0.95rem;">
+                <strong>&lt;ul&gt; (Unordered List)</strong> — невпорядкований перелік, де кожен пункт <code>&lt;li&gt;</code> позначається маркером.
+              </p>
+              <p style="font-size: 0.9rem; margin-bottom: 0;">
+                Значення атрибута <code>type</code>:
+                <br>• <code>disc</code> — зафарбований кружечок (за замовчуванням);
+                <br>• <code>circle</code> — порожнє коло;
+                <br>• <code>square</code> — зафарбований квадратик.
+              </p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header" style="background: var(--accent-vermilion); color: #fff;">
+              <h3 style="font-size: 1.1rem;">НУМЕРОВАНИЙ СПИСОК &lt;ol&gt;</h3>
+            </div>
+            <div class="info-card-body">
+              <p style="font-size: 0.95rem;">
+                <strong>&lt;ol&gt; (Ordered List)</strong> — впорядкований список, у якому послідовність пунктів має значення (інструкції, рецепти, алгоритми).
+              </p>
+              <p style="font-size: 0.9rem; margin-bottom: 0;">
+                Значення атрибута <code>type</code>:
+                <br>• <code>1</code> — звичайні числа: 1, 2, 3...;
+                <br>• <code>a</code> / <code>A</code> — малі або великі латинські літери: a, b, c...;
+                <br>• <code>i</code> / <code>I</code> — малі або великі римські цифри: i, ii, iii...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 4: КОНСТРУКТОР СПИСКІВ ТА МЕНЮ -->
+        <div class="interactive-container">
+          <div class="interactive-header">
+            <span class="interactive-badge">📋 ІНТЕРАКТИВНИЙ СИМУЛЯТОР №4</span>
+            <h3 class="interactive-title">КОНСТРУКТОР СПИСКІВ ТА НАВІГАЦІЙНИХ МЕНЮ</h3>
+            <p class="interactive-desc">
+              Змінюйте тип списку, маркери та вмикайте режим «Трансформація в меню сайту», щоб побачити, як веб-розробники створюють панелі навігації:
+            </p>
+          </div>
+
+          <div class="lists-builder-wrapper">
+            <div class="builder-controls">
+              <div class="control-group">
+                <label for="listTypeSelect">Тип списку (HTML-тег):</label>
+                <select id="listTypeSelect" class="control-select">
+                  <option value="ul">&lt;ul&gt; — Маркований список</option>
+                  <option value="ol">&lt;ol&gt; — Нумерований список</option>
+                </select>
+              </div>
+
+              <div class="control-group">
+                <label for="listStyleSelect">Стиль маркера (type="..."):</label>
+                <select id="listStyleSelect" class="control-select">
+                  <option value="">За замовчуванням (disc)</option>
+                  <option value="circle">circle (порожнє коло)</option>
+                  <option value="square">square (квадрат)</option>
+                  <option value="none">none (без маркерів)</option>
+                </select>
+              </div>
+
+              <div class="control-group">
+                <label for="listCountInput">Кількість пунктів (1–5):</label>
+                <input type="number" id="listCountInput" class="control-input" value="4" min="1" max="5">
+              </div>
+
+              <div class="control-group" style="display: flex; flex-direction: column; justify-content: flex-end;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                  <input type="checkbox" id="listNavToggle" style="width: 18px; height: 18px; cursor: pointer;">
+                  <span style="font-weight: 600;">Трансформувати у меню сайту</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="lists-builder-grid">
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-muted);">
+                  ЗГЕНЕРОВАНИЙ HTML-КОД:
+                </div>
+                <pre class="builder-code-box" id="listCodeBox"></pre>
+              </div>
+
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-muted);">
+                  ВІДОБРАЖЕННЯ У БРАУЗЕРІ:
+                </div>
+                <div class="builder-render-box" id="listRenderBox"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 5: ГІПЕРПОСИЛАННЯ (<a>)
+         ==================================================================== -->
+    <section id="topic5" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 5 • ЗВ'ЯЗОК ВСЬОГО ІНТЕРНЕТУ</div>
+          <h2 class="section-title">5. ГІПЕРПОСИЛАННЯ: <span class="text-gradient">ПАВУТИНА WWW</span></h2>
+          <p class="section-subtitle">
+            Тег &lt;a&gt; (anchor), обов'язковий атрибут href, абсолютні та відносні адреси, якірні посилання для навігації сторінкою та спеціальні протоколи mailto/tel.
+          </p>
+        </div>
+
+        <!-- Theoretical Overview of Link Types -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+          <div class="info-card">
+            <h4 style="color: var(--accent-vermilion); margin-bottom: 0.4rem;">🌐 1. Абсолютні посилання</h4>
+            <p style="font-size: 0.9rem;">
+              Містять повну URL-адресу з протоколом (наприклад, <code>https://mon.gov.ua</code>). Використовуються для переходу на зовнішні сайти в глобальній мережі.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4 style="color: var(--accent-blue); margin-bottom: 0.4rem;">📁 2. Відносні посилання</h4>
+            <p style="font-size: 0.9rem;">
+              Вказують шлях до файлу відносно поточної сторінки (наприклад, <code>about.html</code> або <code>images/photo.jpg</code>). Використовуються для внутрішньої структури власного сайту.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4 style="color: var(--accent-green); margin-bottom: 0.4rem;">⚓ 3. Якірні посилання (Anchors)</h4>
+            <p style="font-size: 0.9rem;">
+              Здійснюють плавний перехід до конкретного блоку на <em>тій самій</em> сторінці через ідентифікатор: <code>href="#test"</code> переходить до елемента з <code>id="test"</code>.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4 style="color: var(--accent-purple); margin-bottom: 0.4rem;">✉️ 4. Службові протоколи</h4>
+            <p style="font-size: 0.9rem;">
+              <code>mailto:info@site.ua</code> — викликає поштовий клієнт; <code>tel:+380...</code> — запускає телефонний набір номера на смартфонах.
+            </p>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 5: СИМУЛЯТОР ГІПЕРПОСИЛАНЬ -->
+        <div class="interactive-container">
+          <div class="interactive-header">
+            <span class="interactive-badge">🔗 ІНТЕРАКТИВНИЙ СИМУЛЯТОР №5</span>
+            <h3 class="interactive-title">СИМУЛЯТОР ГІПЕРПОСИЛАНЬ ТА ІНСПЕКТОР URL</h3>
+            <p class="interactive-desc">
+              Оберіть категорію посилання для аналізу параметрів, протоколів та поведінки переглядача:
+            </p>
+          </div>
+
+          <div class="link-sim-wrapper">
+            <div class="link-types-nav">
+              <button class="link-type-pill active" data-link-type="absolute">1. Абсолютне (Зовнішнє)</button>
+              <button class="link-type-pill" data-link-type="relative">2. Відносне (Файл сайту)</button>
+              <button class="link-type-pill" data-link-type="anchor">3. Якірне (Внутрішній скрол)</button>
+              <button class="link-type-pill" data-link-type="mailto">4. Поштове (mailto:)</button>
+              <button class="link-type-pill" data-link-type="tel">5. Телефонне (tel:)</button>
+            </div>
+
+            <div class="link-inspector-grid">
+              <!-- Interactive Link Box -->
+              <div class="link-interactive-card">
+                <div style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem;">
+                  ЖИВЕ ПОСИЛАННЯ НА СТОРІНЦІ:
+                </div>
+                <div class="live-link-box">
+                  <a href="#" id="liveDemoLink">Вікіпедія: Вільна енциклопедія</a>
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">
+                  HTML-код посилання:
+                </div>
+                <div style="background: #14141c; color: #4ade80; padding: 0.75rem; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto; border-radius: 4px; border: 1.5px solid var(--border-color);" id="linkCodeDisplay"></div>
+                <div id="linkActionMsg" style="font-size: 0.9rem; font-weight: 600; padding: 0.6rem 0.8rem; background: var(--bg-primary); border-left: 4px solid var(--accent-blue);"></div>
+              </div>
+
+              <!-- Monitor Inspector -->
+              <div class="link-status-monitor">
+                <div style="font-weight: 700; font-size: 0.95rem; color: #fff; border-bottom: 2px solid #333340; padding-bottom: 0.5rem;">
+                  🔍 ТЕХНІЧНИЙ ДІАГНОСТ URL-АДРЕСИ:
+                </div>
+                <div class="status-row">
+                  <span class="status-key">Мережевий протокол:</span>
+                  <span class="status-val" id="linkProtocolDisplay">HTTPS</span>
+                </div>
+                <div class="status-row">
+                  <span class="status-key">Тип адресації:</span>
+                  <span class="status-val" id="linkKindDisplay">Абсолютна URL-адреса</span>
+                </div>
+                <div class="status-row">
+                  <span class="status-key">Атрибут target:</span>
+                  <span class="status-val" id="linkTargetDisplay">_blank (нова вкладка)</span>
+                </div>
+                <div class="status-row">
+                  <span class="status-key">Стандарт безпеки:</span>
+                  <span class="status-val" style="color: var(--accent-green);">rel="noopener noreferrer"</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ПРАКТИЧНА РОБОТА: СТВОРЕННЯ ВЕБ-СТОРІНКИ
+         ==================================================================== -->
+    <section id="practical-work" class="section practical-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge" style="background: var(--accent-green); color: #000;">⚙️ ПРАКТИЧНИЙ МОДУЛЬ</div>
+          <h2 class="section-title"><span class="text-gradient">ПРАКТИКУМ №2</span></h2>
+          <p class="section-subtitle">
+            Тема: «Текстові елементи вебсторінки. Створення навігаційних посилань та списків на HTML5».
+          </p>
+        </div>
+
+        <!-- Steps Grid -->
+        <div class="practical-steps-grid">
+          <div class="step-card">
+            <div class="step-number">КРОК 1</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Базова структура</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">
+              Створення файлу <code>index.html</code>, декларація <code>&lt;!DOCTYPE html&gt;</code>, мова <code>lang="uk"</code>, кодування <code>UTF-8</code> та назва у <code>&lt;title&gt;</code>.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">КРОК 2</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Шапка &lt;header&gt;</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">
+              Додавання головного заголовка <code>&lt;h1&gt;</code> та підзаголовка <code>&lt;h2&gt;</code> з вирівнюванням по центру.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">КРОК 3</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Навігація &lt;nav&gt;</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">
+              Створення маркованого списку <code>&lt;ul&gt;</code> з посиланнями <code>&lt;a href="..."&gt;</code> на тематичні розділи сторінки.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">КРОК 4</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Контент & Підвал</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">
+              Наповнення блоку <code>&lt;main&gt;</code> абзацами <code>&lt;p&gt;</code>, нумерованим списком <code>&lt;ol&gt;</code> та створення підвалу <code>&lt;footer&gt;</code>.
+            </p>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВНИЙ ОНЛАЙН-РЕДАКТОР КОДУ (SANDBOX) -->
+        <div class="sandbox-container">
+          <div class="sandbox-header">
+            <div class="sandbox-title">💻 ІНТЕРАКТИВНИЙ РЕДАКТОР HTML (LIVE SANDBOX)</div>
+            <div class="sandbox-btn-group">
+              <button class="sandbox-btn" id="sandboxRunBtn">▶ ВИКОНАТИ КОД</button>
+              <button class="sandbox-btn btn-reset" id="sandboxResetBtn">↺ Скинути до зразка</button>
+            </div>
+          </div>
+
+          <div class="sandbox-workspace">
+            <div class="sandbox-editor-panel">
+              <textarea class="sandbox-code" id="sandboxCodeArea" spellcheck="false"></textarea>
+            </div>
+            <div style="background: #ffffff; display: flex; flex-direction: column;">
+              <iframe class="sandbox-preview-frame" id="sandboxIframe" title="Результат виконання коду"></iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-badge">&lt;/&gt;</span>
+            <span>ВЕБТЕХНОЛОГІЇ 10–11 КЛАСИ</span>
+          </div>
+          <p class="footer-text">
+            Інтерактивна навчальна платформа з веб-розробки для учнів 10–11 класів. Сучасні стандарти W3C, WHATWG та семантична верстка HTML5.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">НАВЧАЛЬНІ УРОКИ</h4>
+          <ul>
+            <li><a href="index.html">Урок 1: Веб-дизайн та структура сайту</a></li>
+            <li><a href="html-basics.html" style="font-weight: 700; color: var(--accent-yellow);">Урок 2: Основи HTML (Поточний урок)</a></li>
+            <li><a href="#practical-work">Практичний модуль №2 ⚙️</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">СТАНДАРТИ ТА РЕСУРСИ</h4>
+          <ul>
+            <li><a href="https://www.w3.org" target="_blank" rel="noopener noreferrer">Консорціум W3C</a></li>
+            <li><a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer">MDN Web Docs</a></li>
+            <li><a href="https://html.spec.whatwg.org" target="_blank" rel="noopener noreferrer">Специфікація WHATWG HTML</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Інтерактивний веб-курс. Усі права захищено.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/html-lesson.js?v=2"></script>
+  <script>
+    // Hero interactive teaser
+    const heroToggleRawBtn = document.getElementById('heroToggleRawBtn');
+    const heroToggleHtmlBtn = document.getElementById('heroToggleHtmlBtn');
+    const heroPreviewBox = document.getElementById('heroPreviewBox');
+
+    if (heroToggleRawBtn && heroToggleHtmlBtn && heroPreviewBox) {
+      heroToggleRawBtn.addEventListener('click', () => {
+        heroPreviewBox.innerHTML = `Основи сучасної веб-розробки Курс Вебтехнології та основи інтерфейсів 10 11 класи Структура документа DOCTYPE html Форматування тексту та ієрархія заголовків Гіперпосилання як основа Всесвітньої павутини Результат весь текст злипся в один суцільний рядок без ієрархії відступів та списків`;
+        heroToggleRawBtn.classList.remove('btn-secondary');
+        heroToggleRawBtn.classList.add('btn-primary');
+        heroToggleHtmlBtn.classList.remove('btn-primary');
+        heroToggleHtmlBtn.classList.add('btn-secondary');
+      });
+
+      heroToggleHtmlBtn.addEventListener('click', () => {
+        heroPreviewBox.innerHTML = `
+          <h2 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.25rem;">Основи сучасної веб-розробки</h2>
+          <p style="margin-bottom: 0.5rem;"><strong>Курс:</strong> Вебтехнології та основи інтерфейсів (10–11 класи).</p>
+          <ul style="padding-left: 1.2rem; margin-bottom: 0.5rem;">
+            <li>Структура документа <code>&lt;!DOCTYPE html&gt;</code></li>
+            <li>Форматування тексту та ієрархія заголовків</li>
+            <li>Гіперпосилання як основа Всесвітньої павутини</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: #64748b;">Результат: чітка структура, візуальна ієрархія та зручність сприйняття!</p>
+        `;
+        heroToggleHtmlBtn.classList.remove('btn-secondary');
+        heroToggleHtmlBtn.classList.add('btn-primary');
+        heroToggleRawBtn.classList.remove('btn-primary');
+        heroToggleRawBtn.classList.add('btn-secondary');
+      });
+    }
+  </script>
+</body>
+</html>

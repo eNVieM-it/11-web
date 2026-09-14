@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок: Веб-дизайн, Структура та Інструменти розробника (10-11 кл)</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles/main.css?v=4">
+  <link rel="stylesheet" href="styles/hero.css?v=4">
+  <link rel="stylesheet" href="styles/modules.css?v=4">
+  <link rel="stylesheet" href="styles/responsive.css?v=4">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Live Stats Ticker -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        WWW ДАНІ: <strong id="liveWebsitesTicker">1 691 207 347</strong> сайтів у світі (+2 сайти щосекунди)
+      </div>
+      <div>
+        ІНФОРМАТИКА 10–11 КЛАСИ • РОЗДІЛ 1: ВЕБ-ДИЗАЙН ТА РОЗРОБКА
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#hero" class="header-logo">
+        <span class="logo-badge">&lt;/&gt;</span>
+        <span>ВЕБ-УРОК</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero" class="nav-link active">Вступ</a></li>
+          <li><a href="#topic1" class="nav-link">1. Тренди дизайну</a></li>
+          <li><a href="#topic2" class="nav-link">2. Види сайтів і ЦА</a></li>
+          <li><a href="#topic3" class="nav-link">3. Структура сайту</a></li>
+          <li><a href="#topic4" class="nav-link">4. Інструменти розробника</a></li>
+          <li><a href="#test" class="nav-link" style="color: var(--accent-vermilion);">Тест уроку ★</a></li>
+          <li><a href="html-basics.html" class="nav-link" style="color: var(--accent-blue); font-weight: 700;">Урок 2: Основи HTML →</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="section-badge">🎯 ІНТЕРАКТИВНИЙ УРОК ДЛЯ 10–11 КЛАСІВ</div>
+            <h1 class="hero-title">ОСНОВИ <span class="text-gradient">ВЕБ-ДИЗАЙНУ</span> ТА РОЗРОБКИ</h1>
+            <p class="hero-description">
+              Повний інтерактивний курс з основ сучасного веб-дизайну, інформаційної архітектури та інструментів веброзробки. 
+              Вивчіть 4 ключові теми за допомогою інтерактивних симуляторів, тренажерів та наочних експериментів.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#topic1" class="btn btn-primary">РОЗПОЧАТИ УРОК 🚀</a>
+              <a href="#test" class="btn btn-secondary">ПЕРЕВІРИТИ ЗНАННЯ 📝</a>
+            </div>
+
+            <div class="hero-highlight-boxes">
+              <div class="highlight-box">
+                <span class="box-value">4</span>
+                <span class="box-label">ГОЛОВНІ ТЕМИ</span>
+              </div>
+              <div class="highlight-box">
+                <span class="box-value">&lt; 3s</span>
+                <span class="box-label">ПРАВИЛО ЗАВАНТАЖЕННЯ</span>
+              </div>
+              <div class="highlight-box">
+                <span class="box-value">85%</span>
+                <span class="box-label">МОБІЛЬНИЙ ТРАФІК</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Інтерактив 3 секунди -->
+          <div class="hero-interactive-card">
+            <div class="interactive-card-header">
+              <span>⏱️ ПРАВИЛО 3 СЕКУНД У ДІЇ</span>
+              <span class="badge badge-red">ТРЕНАЖЕР УВАГИ</span>
+            </div>
+
+            <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+              <em>«Людині достатньо 3 секунд, щоб скласти враження. Якщо сайт не завантажився за цей час, понад 53% користувачів закривають вкладку назавжди!»</em>
+            </p>
+
+            <div class="speed-timer-display">
+              <div class="digital-clock" id="benchmarkClock">0.00s</div>
+              <div class="timer-verdict">
+                <div class="verdict-status success" id="verdictStatus">ОЧІКУВАННЯ</div>
+                <div class="verdict-hint" id="verdictHint">Оберіть оптимізацію та запустіть тест</div>
+              </div>
+            </div>
+
+            <div class="progress-gauge-track">
+              <div class="benchmark-threshold-marker" title="Поріг 3 секунди"></div>
+              <div class="progress-gauge-fill" id="benchmarkFill"></div>
+            </div>
+            <div class="gauge-labels">
+              <span>0.0s</span>
+              <span style="color: var(--accent-vermilion); font-weight: 800;">3.0s (КРИТИЧНА МЕЖА)</span>
+              <span>5.0s</span>
+            </div>
+
+            <div class="retention-stat-bar">
+              <span>УТРИМАННЯ АУДИТОРІЇ:</span>
+              <span id="retentionRate" style="color: var(--accent-green); font-size: 1.4rem;">100%</span>
+            </div>
+
+            <div class="benchmark-controls" style="margin-bottom: 1.25rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+              <label><input type="radio" name="benchmarkMode" value="optimized" checked> Оптимізований сайт (1.15s)</label>
+              <label><input type="radio" name="benchmarkMode" value="heavy"> Перевантажений сайт (4.85s)</label>
+            </div>
+
+            <button id="runBenchmarkBtn" class="btn btn-primary" style="width: 100%;">ЗАПУСТИТИ СИМУЛЯЦІЮ ЗАВАНТАЖЕННЯ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 1. ОСНОВНІ ТРЕНДИ У ВЕБ-ДИЗАЙНІ
+         ==================================================================== -->
+    <section id="topic1" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 1 • ТРЕНДИ ДИЗАЙНУ</div>
+          <h2 class="section-title">ОСНОВНІ ТРЕНДИ У <span class="text-gradient">ВЕБ-ДИЗАЙНІ</span></h2>
+          <p class="section-subtitle">
+            Як змінюється сприйняття сайтів користувачами, чому мобільний перегляд випередив десктопний, що таке спліт-екрани, сінемаграфіка та варіативна типографіка.
+          </p>
+        </div>
+
+        <!-- Теорія ТЕМИ 1 -->
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <span>📖 ТЕОРЕТИЧНИЙ БЛОК: ЕВОЛЮЦІЯ ВЕБ-ДИЗАЙНУ ТА СУЧАСНІ ТЕНДЕНЦІЇ</span>
+            <span>▲</span>
+          </div>
+          <div class="accordion-content">
+            <div class="callout callout-definition">
+              <div class="callout-header">📌 ТРЕНД ТА КЛЮЧОВІ НАПРЯМИ (§1.1, с. 6)</div>
+              <p><strong>Тренд (від англ. trend — тенденція, напрям)</strong> — ймовірний вектор розвитку подій та стилістики за певний проміжок часу.</p>
+              <p>Згідно з дослідженнями <em>We Are Social</em> та інтернет-журналів <em>Awwwards</em> і <em>Designmodo</em>, ключовими трендами є:</p>
+              <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li><strong>Швидкість завантаження (&lt;3 сек):</strong> найважливіший фактор успіху та ранжування в Google.</li>
+                <li><strong>Мобільний перегляд (85% користувачів):</strong> дизайн розробляється з орієнтацією на керування одним великим пальцем (концепція Джоша Кларка <em>Designing for Touch</em>).</li>
+                <li><strong>Спліт-екран (Split-screen):</strong> естетичний поділ сторінки на дві частини для порівняння інформації або створення сильного візуального контрасту.</li>
+                <li><strong>Сінемаграфіка:</strong> фотографія, у якій рухається лише одна дрібна деталь (наприклад, пара з кави або вогонь). Це створює живий ефект без перевантаження мережі важким відео.</li>
+                <li><strong>Варіативна та вінтажна типографіка:</strong> використання гнучких шрифтів, де одна гарнітура дозволяє плавно регулювати жирність і нахил, а також повернення до шрифтів із зарубками (<em>serif</em>).</li>
+                <li><strong>Штучний інтелект і чат-боти:</strong> понад 43% користувачів застосовують голосовий пошук, а чат-боти (як IBM Watson) забезпечують інтерактивну підтримку 24/7.</li>
+              </ul>
+            </div>
+
+            <div class="callout callout-fact">
+              <div class="callout-header">💡 ЕРГОНОМІКА ДЖОША КЛАРКА: ЧОМУ МЕНЮ ВНИЗУ? (§1.1, с. 7)</div>
+              <p>Джош Кларк дослідив хват смартфонів: оскільки екрани стають більшими, дотягнутися до верхнього лівого кута важко. Саме тому традиційне меню-гамбургер та ключові кнопки взаємодії все частіше зміщують у <strong>нижню третину екрана (Thumb Zone)</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 1.1: ДЕСКТОП VS СМАРТФОН + THUMB ZONE -->
+        <div id="device-sim" class="device-simulator-section" style="margin-top: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; align-items: flex-start;">
+            <div>
+              <div class="section-badge" style="background: var(--accent-yellow); color:#121212;">ІНТЕРАКТИВНИЙ СИМУЛЯТОР</div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.8rem;">ЕРГОНОМІКА ТА МЕНЮ-ГАМБУРГЕР</h3>
+              <p style="font-weight: 500; max-width: 650px;">
+                Перемикайте пристрої, активуйте підсвітку зони великого пальця та перевірте роботу мобільного меню:
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+              <label style="font-family: var(--font-mono); font-weight: 700; cursor: pointer; background: #fff; color: #121212; padding: 0.4rem 0.8rem; border: 2px solid #121212;">
+                <input type="checkbox" id="thumbZoneToggle"> THUMB ZONE
+              </label>
+              <div class="device-switcher-pills">
+                <button id="btnModeDesktop" class="device-pill-btn active">МОНІТОР</button>
+                <button id="btnModeMobile" class="device-pill-btn">СМАРТФОН</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="simulator-viewport-container">
+            <div class="sim-viewport mode-desktop" id="simViewport">
+              <div class="sim-browser-bar">
+                <div class="sim-dot red"></div><div class="sim-dot yellow"></div><div class="sim-dot green"></div>
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; margin-left: 0.5rem; font-weight: 600;">school-webdesign.ua</span>
+              </div>
+              <div class="sim-page-content">
+                <div class="sim-header">
+                  <div class="sim-brand">TREND DESIGN</div>
+                  <nav class="sim-nav-desktop">
+                    <span>Головна</span>
+                    <span>Тренди</span>
+                    <span>Портфоліо</span>
+                    <span>Контакти</span>
+                  </nav>
+                  <div class="sim-hamburger-icon" id="simHamburger" title="Клікніть, щоб відкрити мобільне меню">☰</div>
+                </div>
+
+                <div class="sim-mobile-drawer" id="simDrawer" style="display: none; padding: 1rem; border: 3px solid #121212; margin-top: 1rem; background: var(--accent-yellow);">
+                  <div style="font-weight: 800; margin-bottom: 0.5rem; font-family: var(--font-mono);">АДАПТИВНЕ МЕНЮ:</div>
+                  <div style="display: flex; flex-direction: column; gap: 0.5rem; font-family: var(--font-heading); font-weight: 700;">
+                    <a href="#topic1" style="color:#121212;">• ТРЕНДИ ДИЗАЙНУ</a>
+                    <a href="#topic2" style="color:#121212;">• ВИДИ САЙТІВ</a>
+                    <a href="#topic3" style="color:#121212;">• СТРУКТУРА</a>
+                    <a href="#topic4" style="color:#121212;">• ІНСТРУМЕНТИ</a>
+                  </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                  <h4 style="font-size: 1.3rem;">АДАПТИВНИЙ РЕЖИМ ПЕРЕГЛЯДУ</h4>
+                  <p style="font-size: 0.95rem; margin-top: 0.5rem;">
+                    У режимі смартфона екран згортається, навігація ховається за іконку гамбургера, а кнопки переміщуються вниз.
+                  </p>
+                  <button class="btn btn-primary btn-sm" style="margin-top: 0.5rem;">НАТИСНИ МЕНЕ В ЗОНІ ПАЛЬЦЯ</button>
+                </div>
+
+                <div class="thumb-zone-overlay">
+                  <div>👍 ЗОНА ВЕЛИКОГО ПАЛЬЦЯ (THUMB ZONE)</div>
+                  <div style="font-size: 0.8rem; color: #121212; font-weight: 600;">Найкомфортніша область для взаємодії однією рукою</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 1.2: SPLIT-SCREEN & СІНЕМАГРАФІКА -->
+        <h3 style="font-size: 1.8rem; margin: 3.5rem 0 1rem 0;">1.2 ІНТЕРАКТИВНИЙ SPLIT-SCREEN ТА СІНЕМАГРАФІКА (§1.1, с. 8–10)</h3>
+        <p>Наведіть курсор миші на одну з половин спліт-екрана для демонстрації асиметричного фокусування уваги:</p>
+
+        <div class="split-screen-wrapper">
+          <div class="split-screen-container">
+            <div class="split-panel panel-left">
+              <span class="split-badge">ЛІВА ЧАСТИНА (ФОКУС)</span>
+              <h4 class="split-title">МІНІМАЛІЗМ ТА ЧИСТИЙ ЗМІСТ</h4>
+              <p>Зосередження на текстовому посилі, вивірених відступах та максимальній швидкості читання інформації.</p>
+            </div>
+            <div class="split-panel panel-right">
+              <span class="split-badge" style="border-color:#fff;">ПРАВА ЧАСТИНА (ЕМОЦІЯ)</span>
+              <h4 class="split-title">ЕКСПРЕСІЯ ТА ВІЗУАЛЬНИЙ СТИЛЬ</h4>
+              <p>Яскраві акцентні блоки кольору, масивна графіка та інтерактивні ефекти, які запам'ятовуються відвідувачу.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Сінемаграфи -->
+        <div class="cinemagraph-grid">
+          <div class="cinema-card cinema-active">
+            <div class="cinema-visual-frame">
+              <div class="coffee-cup-art">
+                <div class="coffee-handle"></div>
+                <div class="steam-element">
+                  <div class="steam-path"></div><div class="steam-path"></div><div class="steam-path"></div>
+                </div>
+              </div>
+            </div>
+            <div class="cinema-body">
+              <h4 class="cinema-title">СІНЕМАГРАФ: ПАРУЮЧА КАВА</h4>
+              <p class="cinema-text">Статичне фото + анімована пара. Дає відчуття затишку без завантаження важкого відео.</p>
+              <button class="btn btn-primary btn-sm btn-cinema-toggle">ЗУПИНИТИ АНІМАЦІЮ ⏸</button>
+            </div>
+          </div>
+
+          <div class="cinema-card cinema-active">
+            <div class="cinema-visual-frame"><div class="neon-sign-art">OPEN 24/7</div></div>
+            <div class="cinema-body">
+              <h4 class="cinema-title">СІНЕМАГРАФ: НЕОНОВА ВИВІСКА</h4>
+              <p class="cinema-text">Імітація мерехтіння світла через CSS keyframes. Привертає увагу покупців у темну пору доби.</p>
+              <button class="btn btn-primary btn-sm btn-cinema-toggle">ЗУПИНИТИ АНІМАЦІЮ ⏸</button>
+            </div>
+          </div>
+
+          <div class="cinema-card cinema-active">
+            <div class="cinema-visual-frame"><div class="wave-layer"></div></div>
+            <div class="cinema-body">
+              <h4 class="cinema-title">ГЕОМЕТРИЧНІ ПАТЕРНИ</h4>
+              <p class="cinema-text">Композиції геометричних форм та хвиль, що створюють відчуття глибини та сучасного стилю.</p>
+              <button class="btn btn-primary btn-sm btn-cinema-toggle">ЗУПИНИТИ АНІМАЦІЮ ⏸</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 1.3: ВАРІАТИВНА ТИПОГРАФІКА -->
+        <div class="card" style="margin-top: 3.5rem;">
+          <div class="section-badge">ТЕСТЕР ТИПОГРАФІКИ (§1.1, с. 7–8)</div>
+          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">ДОСЛІДЖЕННЯ ВАРІАТИВНИХ ТА ВІНТАЖНИХ ШРИФТІВ</h3>
+          <p>
+            Один варіативний шрифт замінює десятки окремих файлів. Змінюйте товщину (font-weight), міжлітерну відстань (letter-spacing) та перемикайтеся між Sans-serif та Serif:
+          </p>
+
+          <div class="variable-demo-text" id="variableFontDemoText">ТИПОГРАФІКА 2026</div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div class="slider-group">
+              <label style="font-family:var(--font-mono); font-weight:700;"><span>ТОВЩИНА ШРИФТУ (WEIGHT):</span><strong id="fontWeightVal">700</strong></label>
+              <input type="range" id="fontSliderWeight" min="400" max="800" value="700" step="100" style="width:100%;">
+            </div>
+            <div class="slider-group">
+              <label style="font-family:var(--font-mono); font-weight:700;"><span>МІЖЛІТЕРНИЙ ІНТЕРВАЛ (SPACING):</span><strong id="fontSpacingVal">0px</strong></label>
+              <input type="range" id="fontSliderSpacing" min="-4" max="12" value="0" step="1" style="width:100%;">
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <label style="font-family: var(--font-mono); font-weight: 700; cursor: pointer;">
+              <input type="radio" name="fontStyleFamily" value="sans" checked> СУЧАСНИЙ ГРОТЕСК (SANS-SERIF)
+            </label>
+            <label style="font-family: var(--font-mono); font-weight: 700; cursor: pointer;">
+              <input type="radio" name="fontStyleFamily" value="serif"> ВІНТАЖНИЙ АНТИКВА (SERIF З ЗАРУБКАМИ)
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 2. ВИДИ САЙТІВ ТА ЦІЛЬОВА АУДИТОРІЯ
+         ==================================================================== -->
+    <section id="topic2" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 2 • ВИДИ САЙТІВ ТА ЦА</div>
+          <h2 class="section-title">ВИДИ САЙТІВ ТА <span class="text-gradient">ЦІЛЬОВА АУДИТОРІЯ</span></h2>
+          <p class="section-subtitle">
+            Класифікація вебресурсів за призначенням, способи вивчення відвідувачів та створення точного портрета клієнта за всесвітньо відомою методикою 5W Марка Шерінґтона.
+          </p>
+        </div>
+
+        <!-- Теорія ТЕМИ 2 -->
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <span>📖 ТЕОРЕТИЧНИЙ БЛОК: КЛАСИФІКАЦІЯ ТА СЕГМЕНТАЦІЯ АУДИТОРІЇ</span>
+            <span>▲</span>
+          </div>
+          <div class="accordion-content">
+            <div class="callout callout-definition">
+              <div class="callout-header">📚 КЛАСИФІКАЦІЯ САЙТІВ (§1.2, с. 13–17)</div>
+              <p>Усі сайти поділяються на кілька ключових категорій за своєю функцією:</p>
+              <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li><strong>Інформаційні сайти:</strong> блоги (особисті та корпоративні), новинні видання та тематичні портали.</li>
+                <li><strong>Сайти-візитки та портфоліо:</strong> короткі презентації компанії чи спеціаліста (зазвичай до 20 сторінок).</li>
+                <li><strong>Комерційні сайти:</strong> сайти-вітрини (landing pages для лідогенерації), промо-сайти (для акцій) та повноцінні інтернет-магазини з кошиком і оплатою.</li>
+                <li><strong>Соціальні проєкти та форуми:</strong> спільноти за інтересами, форуми та соцмережі.</li>
+                <li><strong>Освітні ресурси:</strong> платформи відкритих онлайн-курсів (Prometheus, EdEra, Coursera, edX).</li>
+                <li><strong>Вебсервіси:</strong> пошукові системи, вебпошта, хмарні сховища та онлайн-конвертери.</li>
+              </ul>
+            </div>
+
+            <div class="callout callout-attention">
+              <div class="callout-header">🎯 ЦІЛЬОВА АУДИТОРІЯ (ЦА) ТА МЕТОДИКА 5W (§1.2, с. 17–20)</div>
+              <p><strong>Цільова аудиторія</strong> — коло користувачів, на яких спрямовано контент або комерційну пропозицію сайту. Буває також <em>побічна</em> (прийшли за схожими запитами) та <em>випадкова</em>.</p>
+              <p>Існує <strong>4 принципи сегментації</strong>: демографічний (вік, дохід), поведінковий (мотивація, частота покупок), психологічний (цінності, статус) і географічний (місто, регіон).</p>
+              <p><strong>Методика 5W Марка Шерінґтона</strong> базується на 5 ключових питаннях: <em>What? (Що продаємо)</em>, <em>Who? (Хто купує)</em>, <em>Why? (Чому купують)</em>, <em>When? (Коли купують)</em>, <em>Where? (Де здійснюється контакт)</em>.</p>
+              <p><strong>Інструменти дослідження ЦА:</strong> Google Analytics (статистика дій), Google Alerts (моніторинг згадок), Socialbakers / Hootsuite (аналітика соцмереж), YouScan (ШІ-моніторинг бренду).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 2.1: ІНТЕРАКТИВНИЙ КАТАЛОГ З ФІЛЬТРАЦІЄЮ -->
+        <h3 style="font-size: 1.8rem; margin: 3rem 0 1rem 0;">2.1 ІНТЕРАКТИВНИЙ КАТАЛОГ САЙТІВ З ФІЛЬТРОМ (§1.2)</h3>
+        <p>Оберіть категорію, щоб дослідити специфіку та призначення різних типів сайтів:</p>
+
+        <div class="filter-tabs-bar">
+          <button class="filter-tab active" data-filter="all">ВСІ ТИПИ</button>
+          <button class="filter-tab" data-filter="info">ІНФОРМАЦІЙНІ</button>
+          <button class="filter-tab" data-filter="corporate">КОРПОРАТИВНІ</button>
+          <button class="filter-tab" data-filter="portfolio">ПОРТФОЛІО</button>
+          <button class="filter-tab" data-filter="commerce">КОМЕРЦІЙНІ</button>
+          <button class="filter-tab" data-filter="edu">ОСВІТНІ</button>
+        </div>
+
+        <div class="site-catalog-grid">
+          <div class="site-card" data-category="info">
+            <div class="site-card-icon">📰</div>
+            <h4 style="font-size: 1.4rem; margin-bottom: 0.5rem;">НОВИННІ ЗМІ ТА БЛОГИ</h4>
+            <p style="flex: 1; font-size: 0.95rem;">Регулярна публікація подій, аналітики чи особистих думок авторів. Монетизація за рахунок реклами та платної підписки.</p>
+            <span class="badge badge-blue">ІНФОРМАЦІЙНІ</span>
+          </div>
+
+          <div class="site-card" data-category="corporate">
+            <div class="site-card-icon">🏢</div>
+            <h4 style="font-size: 1.4rem; margin-bottom: 0.5rem;">КОРПОРАТИВНИЙ САЙТ</h4>
+            <p style="flex: 1; font-size: 0.95rem;">Презентація компанії, бренду, прайс-листів та послуг. Може містити закритий розділ для внутрішнього документообігу філій.</p>
+            <span class="badge badge-yellow">КОРПОРАТИВНІ</span>
+          </div>
+
+          <div class="site-card" data-category="portfolio">
+            <div class="site-card-icon">🎨</div>
+            <h4 style="font-size: 1.4rem; margin-bottom: 0.5rem;">САЙТ-ПОРТФОЛІО / ВІЗИТКА</h4>
+            <p style="flex: 1; font-size: 0.95rem;">Візитівка фрілансера, фотографа чи дизайн-студії. Мета — наочно продемонструвати кращі роботи та надати контакти для замовлення.</p>
+            <span class="badge badge-green">ПОРТФОЛІО</span>
+          </div>
+
+          <div class="site-card" data-category="commerce">
+            <div class="site-card-icon">🛍️</div>
+            <h4 style="font-size: 1.4rem; margin-bottom: 0.5rem;">ІНТЕРНЕТ-МАГАЗИН</h4>
+            <p style="flex: 1; font-size: 0.95rem;">Онлайн-продаж товарів з каталогом, фільтрами цін, кошиком покупця та підключеним банківським еквайрингом.</p>
+            <span class="badge badge-red">КОМЕРЦІЙНІ</span>
+          </div>
+
+          <div class="site-card" data-category="commerce">
+            <div class="site-card-icon">🎯</div>
+            <h4 style="font-size: 1.4rem; margin-bottom: 0.5rem;">LANDING PAGE (САЙТ-ВІТРИНА)</h4>
+            <p style="flex: 1; font-size: 0.95rem;">Односторінковий сайт, оптимізований під швидку дію відвідувача: замовити консультацію, завантажити файл або купити один товар.</p>
+            <span class="badge badge-red">КОМЕРЦІЙНІ</span>
+          </div>
+
+          <div class="site-card" data-category="edu">
+            <div class="site-card-icon">🎓</div>
+            <h4 style="font-size: 1.4rem; margin-bottom: 0.5rem;">ОСВІТНІ ПОРТАЛИ</h4>
+            <p style="flex: 1; font-size: 0.95rem;">Платформи онлайн-навчання (Prometheus, EdEra), шкільні ресурси з уроками, тестами та електронними журналами.</p>
+            <span class="badge badge-blue">ОСВІТНІ</span>
+          </div>
+        </div>
+
+        <!-- МАТЕРІАЛ 2.2: МЕТОДИКА 5W МАРКА ШЕРІНҐТОНА -->
+        <div class="card" style="margin-top: 3.5rem;">
+          <div class="section-badge">МАРКЕТИНГОВИЙ АНАЛІЗ (§1.2, с. 19–20)</div>
+          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">МЕТОДИКА 5W МАРКА ШЕРІНҐТОНА: ПРИКЛАД АНАЛІЗУ ЦА</h3>
+          <p>
+            Засновник консалтингової компанії <em>Added Value</em> <strong>Марк Шерінґтон</strong> запропонував ефективну формулу з 5 запитань, яка дозволяє розробникам та маркетологам точно визначити цільову аудиторію сайту ще до початку його створення:
+          </p>
+
+          <div class="sherington-grid">
+            <div class="sherington-card">
+              <h5>1. WHAT? (ЩО?)</h5>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Тип товару, послуги чи контенту</p>
+              <div style="background: var(--bg-primary); border: 2px solid var(--border-color); padding: 0.75rem; font-weight: 600; font-size: 0.95rem;">
+                Онлайн-магазин комп'ютерної техніки та геймерських девайсів
+              </div>
+            </div>
+
+            <div class="sherington-card">
+              <h5>2. WHO? (ХТО?)</h5>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Портрет споживача (вік, стать)</p>
+              <div style="background: var(--bg-primary); border: 2px solid var(--border-color); padding: 0.75rem; font-weight: 600; font-size: 0.95rem;">
+                Школярі 10–11 класів, студенти та геймери (15–24 роки)
+              </div>
+            </div>
+
+            <div class="sherington-card">
+              <h5>3. WHY? (ЧОМУ?)</h5>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Мотивація здійснення покупки</p>
+              <div style="background: var(--bg-primary); border: 2px solid var(--border-color); padding: 0.75rem; font-weight: 600; font-size: 0.95rem;">
+                Потреба в якісному звуці для ігор та навчання, надійна гарантія
+              </div>
+            </div>
+
+            <div class="sherington-card">
+              <h5>4. WHEN? (КОЛИ?)</h5>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Час та ситуація візиту</p>
+              <div style="background: var(--bg-primary); border: 2px solid var(--border-color); padding: 0.75rem; font-weight: 600; font-size: 0.95rem;">
+                Увечері (18:00–22:00) зі смартфонів, у період знижок та свят
+              </div>
+            </div>
+
+            <div class="sherington-card">
+              <h5>5. WHERE? (ДЕ?)</h5>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Канал продажу та комунікації</p>
+              <div style="background: var(--bg-primary); border: 2px solid var(--border-color); padding: 0.75rem; font-weight: 600; font-size: 0.95rem;">
+                Пошук Google, реклама в YouTube, Telegram-канали та Instagram
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-fact" style="margin-top: 1.5rem; margin-bottom: 0;">
+            <div class="callout-header">💡 ПРАКТИЧНИЙ ВИСНОВОК</div>
+            <p style="margin: 0;">
+              На основі цієї формули складається семантичне ядро, структура каталогу та вибирається колірна гама вебсайту. Наприклад, для молодіжної геймерської аудиторії обирають темні теми з контрастними неоновими акцентами.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 3. ІНФОРМАЦІЙНА СТРУКТУРА САЙТУ
+         ==================================================================== -->
+    <section id="topic3" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 3 • ІНФОРМАЦІЙНА СТРУКТУРА</div>
+          <h2 class="section-title">ІНФОРМАЦІЙНА СТРУКТУРА <span class="text-gradient">САЙТУ</span></h2>
+          <p class="section-subtitle">
+            Логічні схеми побудови сторінок: ієрархічна, лінійна, довільна (мережева) та landing page. Розрахунок вкладеності, збалансованість і правило 3 кліків.
+          </p>
+        </div>
+
+        <!-- Теорія ТЕМИ 3 -->
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <span>📖 ТЕОРЕТИЧНИЙ БЛОК: СХЕМИ, ВКЛАДЕНІСТЬ ТА ПРАВИЛО 3 КЛІКІВ</span>
+            <span>▲</span>
+          </div>
+          <div class="accordion-content">
+            <div class="callout callout-definition">
+              <div class="callout-header">🌳 ЩО ТАКЕ ІНФОРМАЦІЙНА СТРУКТУРА?</div>
+              <p><strong>Інформаційна структура сайту</strong> — спосіб організації даних на вебсайті, а також логічна схема взаємодії різних блоків і сторінок між собою. Вона створюється <em>до</em> написання коду або дизайну.</p>
+              <p>Для візуалізації структури рекомендуються сервіси <strong>Draw.io</strong> (безкоштовний сервіс із технічними шаблонами) та <strong>X-Mind</strong> (побудова інтелект-карт).</p>
+            </div>
+
+            <div class="callout callout-attention">
+              <div class="callout-header">⚖️ ДВА ПАРАМЕТРИ СКЛАДНОСТІ СТРУКТУРИ (§1.3, с. 24)</div>
+              <p><strong>1. Рівень вкладеності (Правило 3 кліків):</strong> кількість переходів від головної сторінки до найвіддаленішого документа. Не рекомендується, щоб значення перевищувало 3 кліки, інакше відвідувач втомлюється і йде з сайту.</p>
+              <p><strong>2. Збалансованість:</strong> визначається оцінкою рівномірності наповнення. Неприпустимо, коли в одній рубриці міститься 100 статей, а в іншій — лише 2.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- НАВЧАЛЬНИЙ МАТЕРІАЛ: 4 ТИПИ СХЕМ СТРУКТУРИ САЙТУ -->
+        <div class="card" style="margin-top: 2.5rem;">
+          <div class="section-badge">ТИПОВІ СХЕМИ (§1.3, с. 22–25)</div>
+          <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">ОСНОВНІ ТИПИ СТРУКТУРИ ВЕБСАЙТІВ</h3>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+            <!-- 1. Ієрархічна -->
+            <div style="border: 2px solid var(--border-color); padding: 1.5rem; background: var(--bg-card); box-shadow: var(--shadow-sm); display: flex; flex-direction: column;">
+              <span class="badge badge-red" style="margin-bottom: 0.75rem; align-self: flex-start;">БАЗОВА (90% САЙТІВ)</span>
+              <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">1. ІЄРАРХІЧНА (ДЕРЕВО)</h4>
+              <p style="font-size: 0.95rem; flex: 1;">
+                Класична модель: <strong>Головна</strong> (стовбур) ➔ <strong>Каталог / Послуги</strong> (гілки) ➔ <strong>Конкретний товар</strong> (листя).
+              </p>
+              <div style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 0.75rem; font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold; text-align: center;">
+                Головна<br>↓<br>Розділи (Каталог)<br>↓<br>Товари / Статті
+              </div>
+            </div>
+
+            <!-- 2. Лінійна -->
+            <div style="border: 2px solid var(--border-color); padding: 1.5rem; background: var(--bg-card); box-shadow: var(--shadow-sm); display: flex; flex-direction: column;">
+              <span class="badge badge-yellow" style="margin-bottom: 0.75rem; align-self: flex-start;">ПОСЛІДОВНА</span>
+              <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">2. ЛІНІЙНА СТРУКТУРА</h4>
+              <p style="font-size: 0.95rem; flex: 1;">
+                Сторінки переглядаються строго одна за одною. Використовується в онлайн-тестах, реєстраціях та покроковому оформленні замовлення.
+              </p>
+              <div style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 0.75rem; font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold; text-align: center;">
+                Крок 1 ➔ Крок 2 ➔ Крок 3 ➔ Фініш
+              </div>
+            </div>
+
+            <!-- 3. Довільна / Мережева -->
+            <div style="border: 2px solid var(--border-color); padding: 1.5rem; background: var(--bg-card); box-shadow: var(--shadow-sm); display: flex; flex-direction: column;">
+              <span class="badge badge-blue" style="margin-bottom: 0.75rem; align-self: flex-start;">МЕРЕЖЕВА</span>
+              <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">3. ДОВІЛЬНА СТРУКТУРА</h4>
+              <p style="font-size: 0.95rem; flex: 1;">
+                Користувач переходить між документами у вільному порядку через перехресні гіперпосилання. Яскравий приклад — <strong>Вікіпедія</strong>.
+              </p>
+              <div style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 0.75rem; font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold; text-align: center;">
+                Стаття А ⟷ Стаття Б ⟷ Словник
+              </div>
+            </div>
+
+            <!-- 4. Landing Page -->
+            <div style="border: 2px solid var(--border-color); padding: 1.5rem; background: var(--bg-card); box-shadow: var(--shadow-sm); display: flex; flex-direction: column;">
+              <span class="badge badge-green" style="margin-bottom: 0.75rem; align-self: flex-start;">ОДНОСТОРІНКОВА</span>
+              <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem;">4. LANDING PAGE</h4>
+              <p style="font-size: 0.95rem; flex: 1;">
+                Цільова сторінка з послідовними смисловими блоками (офер, переваги, відгуки), що веде до єдиної дії — заповнення форми.
+              </p>
+              <div style="background: var(--bg-secondary); border: 2px dashed var(--border-color); padding: 0.75rem; font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold; text-align: center;">
+                Офер ↓ Переваги ↓ Форма замовлення
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 3.2: ПРОСТИЙ ТА ЗРОЗУМІЛИЙ КВЕСТ ПРАВИЛА 3 КЛІКІВ -->
+        <div class="brutal-card" style="margin-top: 3rem;">
+          <div class="section-badge">ПРАКТИЧНИЙ ТРЕНАЖЕР (§1.3, с. 24)</div>
+          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">ТРЕНАЖЕР: «ПРАВИЛО ТРЬОХ КЛІКІВ» В ІНТЕРНЕТ-МАГАЗИНІ</h3>
+          <p style="margin-bottom: 1.25rem;">
+            Уявіть, що ви відвідувач інтернет-магазину техніки. Знайдіть <strong>«Навушники HyperX Cloud»</strong> не більше ніж за <strong>3 кліки</strong> від головної сторінки:
+          </p>
+
+          <div style="background: var(--bg-primary); border: 3px solid var(--border-color); padding: 1.25rem; margin-bottom: 1.5rem;">
+            <div style="font-family: var(--font-mono); font-weight: 700; color: var(--text-secondary);">
+              🎯 ВАША ЦІЛЬ: <span style="color: var(--text-primary); text-decoration: underline;">Купити «Бездротові навушники HyperX Cloud»</span>
+            </div>
+            <div style="font-size: 1.2rem; font-weight: bold; margin-top: 0.5rem;">
+              📍 ВАШ ПОТОЧНИЙ ШЛЯХ: <span id="questBreadcrumb" style="color: var(--accent-blue);">Головна</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+            <div id="questClickCounter" class="click-counter-badge">0 / 3 КЛІКИ</div>
+            <button id="questResetBtn" class="btn btn-secondary btn-sm">ПОЧАТИ СПОЧАТКУ ↺</button>
+          </div>
+
+          <!-- Контейнер варіантів переходу -->
+          <div style="margin-bottom: 0.5rem; font-family: var(--font-mono); font-weight: 700; font-size: 0.9rem;">
+            КУДИ ВИ КЛАЦАЄТЕ ДАЛІ:
+          </div>
+          <div id="questActionButtons" style="display: flex; gap: 1rem; flex-wrap: wrap;"></div>
+
+          <div id="questStatusMessage"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ТЕМА 4. ІНСТРУМЕНТИ ВЕБ-РОЗРОБНИКА
+         ==================================================================== -->
+    <section id="topic4" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 4 • ІНСТРУМЕНТИ ВЕБ-РОЗРОБНИКА</div>
+          <h2 class="section-title">ІНСТРУМЕНТИ <span class="text-gradient">ВЕБ-РОЗРОБНИКА</span></h2>
+          <p class="section-subtitle">
+            Розподіл ролей (дизайнер vs розробник), рейтинг популярності редакторів коду за версією Stack Overflow, їхні переваги та інтерактивний Live Preview редактор.
+          </p>
+        </div>
+
+        <!-- Теорія ТЕМИ 4 -->
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <span>📖 ТЕОРЕТИЧНИЙ БЛОК: РОЛІ ТА СУЧАСНІ РЕДАКТОРИ КОДУ</span>
+            <span>▲</span>
+          </div>
+          <div class="accordion-content">
+            <div class="callout callout-definition">
+              <div class="callout-header">👥 ВЕБДИЗАЙНЕР VS ВЕБРОЗРОБНИК (§1.4, с. 29)</div>
+              <p><strong>Вебдизайнер:</strong> опікується візуальним виглядом, зручністю інтерфейсу (UI/UX) та створює графічний макет у Figma чи Photoshop.</p>
+              <p><strong>Веброзробник:</strong> отримує макет і пише код мовами HTML (каркас), CSS (стилістика) та JavaScript (інтерактивність), щоб браузер відтворив задумане один-в-один.</p>
+            </div>
+
+            <div class="callout callout-fact">
+              <div class="callout-header">💻 РЕЙТИНГ РЕДАКТОРІВ КОДУ ЗА ДАНИМИ STACK OVERFLOW (§1.4, с. 29–33)</div>
+              <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li><strong>Visual Studio Code (55.6%):</strong> безкоштовний кросплатформний редактор від Microsoft із величезною екосистемою розширень та автодоповненням IntelliSense.</li>
+                <li><strong>Notepad++ (30.4%):</strong> швидкий компактний редактор лише для Windows, популярний для початківців та швидких правок.</li>
+                <li><strong>Vim (25.9%):</strong> легендарний модальний консольний редактор (створений у 1991 р. Брамом Мооленааром на базі vi 1976 р.). Потребує знання гарячих клавіш (:wq для виходу).</li>
+                <li><strong>Sublime Text 3 (24.0%):</strong> надзвичайно швидкий редактор із підтримкою мультикурсорного редагування (Ctrl+D).</li>
+                <li><strong>Atom (12.7%):</strong> проект від GitHub із вбудованою функцією Teletype для парного кодингу в реальному часі.</li>
+                <li><strong>Brackets:</strong> спеціалізований веб-редактор із технологією Extract для підтягування кольорів і шрифтів напряму з PSD-файлів.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 4: ВБУДОВАНИЙ LIVE PREVIEW РЕДАКТОР КОДУ -->
+        <div class="editor-simulator-card" style="margin-top: 2.5rem;">
+          <div class="editor-window-header">
+            <div class="editor-selector-tabs">
+              <button class="editor-tab-btn active" data-editor="vscode">VS Code (55.6%)</button>
+              <button class="editor-tab-btn" data-editor="sublime">Sublime (24.0%)</button>
+              <button class="editor-tab-btn" data-editor="notepadpp">Notepad++ (30.4%)</button>
+              <button class="editor-tab-btn" data-editor="vim">Vim (25.9%)</button>
+            </div>
+            <button id="runCodeBtn" class="btn btn-primary btn-sm">ВИКОНАТИ КОД ▶</button>
+          </div>
+
+          <div class="editor-feature-spotlight">
+            <span id="editorSpotlightStat" style="color: var(--accent-blue); font-weight: 800; font-size: 1.1rem;">55.6%</span> 
+            <span id="editorSpotlightText">Найпопулярніший редактор світу згідно з глобальним опитуванням Stack Overflow.</span>
+          </div>
+
+          <div class="editor-workspace">
+            <div class="code-pane">
+              <div class="code-tabs-bar">
+                <div class="file-tab active" data-file="html">index.html</div>
+                <div class="file-tab" data-file="css">style.css</div>
+                <div class="file-tab" data-file="js">app.js</div>
+              </div>
+              <textarea id="codeEditorTextarea" class="code-textarea" spellcheck="false"></textarea>
+            </div>
+
+            <div class="preview-pane">
+              <div class="preview-bar">ЖИВИЙ ПЕРЕГЛЯД РЕЗУЛЬТАТУ (LIVE PREVIEW IFRAME)</div>
+              <iframe id="codeLivePreview" class="preview-frame"></iframe>
+            </div>
+          </div>
+
+          <div class="editor-status-bar">
+            <span id="editorStatusInfo">Visual Studio Code • UTF-8</span>
+            <span id="editorStatusMode">Режим: HTML5 / CSS3 / JS Live</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ПІДСУМКОВИЙ ТЕСТ ЗНАНЬ ЗА 4 ТЕМАМИ (НА 12 БАЛІВ)
+         ==================================================================== -->
+    <section id="test" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header" style="text-align: center;">
+          <div class="section-badge">КОНТРОЛЬ ЗАСВОЄННЯ МАТЕРІАЛУ</div>
+          <h2 class="section-title">ПІДСУМКОВИЙ ТЕСТ <span class="text-gradient">НА 12 БАЛІВ</span></h2>
+          <p class="section-subtitle" style="margin: 0 auto; border-left: none; text-align: center;">
+            Перевірте, як ви засвоїли 4 головні теми розділу: Тренди, Види сайтів, Структуру та Інструменти.
+          </p>
+        </div>
+
+        <div class="quiz-container">
+          <form id="lessonQuizForm">
+            <!-- 1 -->
+            <div class="quiz-question">
+              <strong>1. Який критичний час завантаження сайту, після якого понад 53% відвідувачів залишають сторінку (§1.1)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q1" value="0"> 10 секунд</label>
+                <label class="quiz-option"><input type="radio" name="q1" value="1"> 3 секунди (Правило 3 секунд)</label>
+                <label class="quiz-option"><input type="radio" name="q1" value="0"> 30 секунд</label>
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="quiz-question">
+              <strong>2. Що таке «сінемаграфіка» у сучасному веб-дизайні (§1.1)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q2" value="0"> Повноекранне відео з YouTube</label>
+                <label class="quiz-option"><input type="radio" name="q2" value="1"> Статична фотографія, яка містить лише один анімований елемент</label>
+                <label class="quiz-option"><input type="radio" name="q2" value="0"> 3D-модель комп'ютерної гри</label>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="quiz-question">
+              <strong>3. Куди, на думку фахівця Джоша Кларка, переміщується меню-гамбургер на смартфонах (§1.1)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q3" value="1"> У нижню частину екрана (Thumb Zone) для зручності великого пальця</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="0"> Залишається виключно у верхньому правому кутку</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="0"> Повністю видаляється з мобільних сайтів</label>
+              </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="quiz-question">
+              <strong>4. Хто є автором Всесвітньої павутини (WWW) і створив перший вебсервер у 1989 році (§1.2)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q4" value="0"> Стів Джобс</label>
+                <label class="quiz-option"><input type="radio" name="q4" value="1"> Тім Бернерс-Лі</label>
+                <label class="quiz-option"><input type="radio" name="q4" value="0"> Марк Цукерберг</label>
+              </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="quiz-question">
+              <strong>5. Які типи блогів виділяють за їхньою функцією у підручнику (§1.2)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q5" value="1"> Особисті та корпоративні</label>
+                <label class="quiz-option"><input type="radio" name="q5" value="0"> Платні та державні</label>
+                <label class="quiz-option"><input type="radio" name="q5" value="0"> Тільки новинні</label>
+              </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="quiz-question">
+              <strong>6. Яка методика аналізу цільової аудиторії за 5 запитаннями запропонована Марком Шерінґтоном (§1.2)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q6" value="1"> 5W (What, Who, Why, When, Where)</label>
+                <label class="quiz-option"><input type="radio" name="q6" value="0"> SWOT-аналіз</label>
+                <label class="quiz-option"><input type="radio" name="q6" value="0"> 3-Click Rule</label>
+              </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="quiz-question">
+              <strong>7. Яка структура сайту є найбільш поширеною базою для 90% вебресурсів (§1.3)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q7" value="1"> Ієрархічна (деревоподібна — стовбур, гілки, листя)</label>
+                <label class="quiz-option"><input type="radio" name="q7" value="0"> Суворо лінійна</label>
+                <label class="quiz-option"><input type="radio" name="q7" value="0"> Хаотична</label>
+              </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="quiz-question">
+              <strong>8. Яка максимальна рекомендована кількість кліків від головної до цільового документа (§1.3)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q8" value="0"> 10 переходів</label>
+                <label class="quiz-option"><input type="radio" name="q8" value="1"> Не більше 3 переходів (Правило 3 кліків)</label>
+                <label class="quiz-option"><input type="radio" name="q8" value="0"> 7 переходів</label>
+              </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="quiz-question">
+              <strong>9. Який безкоштовний онлайн-інструмент рекомендовано підручником для створення схем сайтів (§1.3)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q9" value="1"> Draw.io (або X-Mind)</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="0"> Microsoft Paint</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="0"> Adobe Premier</label>
+              </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="quiz-question">
+              <strong>10. У чому полягає різниця між роботою вебдизайнера та веброзробника (§1.4)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q10" value="1"> Дизайнер проектує макет (UI/UX), а розробник пише код (HTML/CSS/JS)</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="0"> Дизайнер пише код, а розробник налаштовує рекламу</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="0"> Між ними немає жодної різниці</label>
+              </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="quiz-question">
+              <strong>11. Який редактор коду посів 1 місце за опитуванням Stack Overflow з часткою понад 55% (§1.4)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q11" value="1"> Visual Studio Code (VS Code)</label>
+                <label class="quiz-option"><input type="radio" name="q11" value="0"> Блокнот Windows</label>
+                <label class="quiz-option"><input type="radio" name="q11" value="0"> WordPad</label>
+              </div>
+            </div>
+
+            <!-- 12 -->
+            <div class="quiz-question">
+              <strong>12. Яка унікальна властивість редактора Brackets особливо цінується веб-дизайнерами (§1.4)?</strong>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q12" value="1"> Властивість Extract (витягування кольорів та шрифтів з PSD-файла у CSS)</label>
+                <label class="quiz-option"><input type="radio" name="q12" value="0"> Автоматичний монтаж відео</label>
+                <label class="quiz-option"><input type="radio" name="q12" value="0"> Генерація 3D-ігор</label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1rem; margin-top: 1.5rem;">
+              ПЕРЕВІРИТИ РЕЗУЛЬТАТ ТА ОТРИМАТИ ОЦІНКУ 🎓
+            </button>
+          </form>
+
+          <div id="quizResultDisplay" class="quiz-result-score"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: #121212; color: #ffffff; padding: 4rem 0; text-align: center; border-top: 8px solid var(--accent-vermilion);">
+    <div class="container">
+      <h2 style="font-size: 2rem; color: #fff; margin-bottom: 0.5rem;">ІНТЕРАКТИВНИЙ КУРС З ВЕБТЕХНОЛОГІЙ</h2>
+      <p style="font-family: var(--font-mono); font-weight: 600; color: #aaa;">
+        10–11 класи • Навчальний модуль з основ веб-дизайну та розробки
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+        <span class="badge badge-yellow">ТРЕНДИ ДИЗАЙНУ</span>
+        <span class="badge badge-blue">ВИДИ САЙТІВ &amp; ЦА</span>
+        <span class="badge badge-green">ІНФОРМАЦІЙНА СТРУКТУРА</span>
+        <span class="badge badge-red">ІНСТРУМЕНТИ РОЗРОБНИКА</span>
+      </div>
+      <div style="margin-top: 2rem;">
+        <a href="html-basics.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 0.8rem 1.5rem; text-decoration: none;">
+          ПЕРЕЙТИ ДО УРОКУ 2: ОСНОВИ HTML ТА СТРУКТУРА ДОКУМЕНТА →
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
