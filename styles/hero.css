@@ -1,0 +1,283 @@
+/* ==========================================================================
+   NEO-BRUTALISM: HERO SECTION & BENCHMARKS
+   ========================================================================== */
+
+.hero-section {
+  padding: 6rem 0;
+  background-color: var(--bg-primary);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hero-highlight-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.highlight-box {
+  background: var(--accent-warning);
+  border: var(--border-width) solid var(--border-color);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  color: #111;
+}
+
+[data-theme="dark"] .highlight-box {
+  box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.highlight-box .box-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+}
+
+.highlight-box .box-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+/* Speed Benchmark Interactive Card */
+.hero-interactive-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.interactive-card-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px dashed var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.speed-timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-secondary);
+  border: var(--border-width) solid var(--border-color);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: inset 4px 4px 0px rgba(0,0,0,0.05);
+}
+[data-theme="dark"] .speed-timer-display {
+  box-shadow: inset 4px 4px 0px rgba(0,0,0,0.3);
+}
+
+.digital-clock {
+  font-family: var(--font-mono);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  line-height: 1;
+}
+
+.timer-verdict {
+  text-align: right;
+  font-family: var(--font-heading);
+}
+
+.verdict-status {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.verdict-status.success { color: var(--accent-success); }
+.verdict-status.danger { color: var(--accent-danger); }
+
+.verdict-hint {
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  margin-top: 0.25rem;
+}
+
+.progress-gauge-track {
+  height: 24px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.progress-gauge-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--text-primary);
+}
+
+.benchmark-threshold-marker {
+  position: absolute;
+  top: -4px; bottom: -4px;
+  left: 60%;
+  width: 4px;
+  background: var(--accent-primary);
+  z-index: 2;
+}
+
+.gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.retention-stat-bar {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  background: var(--bg-primary);
+}
+
+.benchmark-controls label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Simulator Device */
+.device-simulator-section {
+  margin-top: 3.5rem;
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem;
+  color: var(--text-primary);
+}
+[data-theme="dark"] .device-simulator-section {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.device-switcher-pills {
+  display: flex;
+  gap: 0.5rem;
+}
+.device-pill-btn {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--border-color);
+  transition: 0.1s;
+}
+.device-pill-btn.active {
+  background: var(--accent-yellow);
+  color: #121212;
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 transparent;
+}
+
+.simulator-viewport-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  margin-top: 2rem;
+}
+
+.sim-viewport {
+  background: #fff;
+  border: 4px solid #111;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  color: #111;
+}
+.sim-viewport.mode-desktop {
+  width: 100%; max-width: 900px; height: 450px;
+  box-shadow: 8px 8px 0 #111;
+}
+.sim-viewport.mode-mobile {
+  width: 320px; height: 500px;
+  border-radius: 20px;
+  border-width: 12px;
+  box-shadow: 12px 12px 0 #111;
+}
+
+.sim-browser-bar {
+  display: flex;
+  padding: 0.75rem;
+  background: #f0f0f0;
+  border-bottom: 2px solid #111;
+  gap: 0.5rem;
+}
+.sim-dot { width: 12px; height: 12px; border: 2px solid #111; border-radius: 50%; }
+.sim-dot.red { background: #ff4a32; }
+.sim-dot.yellow { background: #facc15; }
+.sim-dot.green { background: #10b981; }
+
+.sim-page-content { padding: 1.5rem; position: relative; flex: 1; }
+.sim-header { display: flex; justify-content: space-between; border-bottom: 2px solid #111; padding-bottom: 1rem; }
+.sim-brand { font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; }
+.sim-nav-desktop { display: flex; gap: 1rem; font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem; }
+.sim-hamburger-icon { display: none; cursor: pointer; border: 2px solid #111; padding: 0.2rem 0.5rem; background: var(--accent-warning); font-weight: bold; }
+
+.mode-mobile .sim-nav-desktop { display: none; }
+.mode-mobile .sim-hamburger-icon { display: block; }
+
+.thumb-zone-overlay {
+  display: none;
+  position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+  background: rgba(16, 185, 129, 0.2);
+  border-top: 4px dashed #10b981;
+  padding: 1rem;
+  justify-content: flex-end;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #10b981;
+}
+.mode-mobile.show-thumb-zone .thumb-zone-overlay { display: flex; flex-direction: column; }

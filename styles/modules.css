@@ -1,0 +1,534 @@
+/* ==========================================================================
+   NEO-BRUTALISM: ALL MODULE INTERACTIVES & LABS
+   Відповідно до програми підручника Н. В. Речич "Вебтехнології" (Ранок)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   ТЕМА 1: ОСНОВНІ ТРЕНДИ У ВЕБ-ДИЗАЙНІ
+   -------------------------------------------------------------------------- */
+
+/* 1.1 Split Screen */
+.split-screen-wrapper {
+  margin: 2.5rem 0;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-card);
+}
+.split-screen-container {
+  display: flex;
+  height: 360px;
+  transition: all 0.2s;
+}
+.split-panel {
+  flex: 1;
+  padding: 2.5rem 2rem;
+  transition: all 0.25s ease-out;
+  cursor: pointer;
+  border-right: var(--border-width) solid var(--border-color);
+}
+.split-panel:last-child { border-right: none; }
+.split-panel.panel-left { background: var(--bg-primary); }
+.split-panel.panel-right { background: var(--accent-blue); color: #fff; }
+[data-theme="dark"] .split-panel.panel-right { color: #121212; }
+.split-screen-container:hover .split-panel { flex: 0.8; opacity: 0.5; filter: grayscale(0.8); }
+.split-screen-container .split-panel:hover { flex: 1.25; opacity: 1; filter: grayscale(0); }
+.split-badge { font-family: var(--font-mono); font-weight: 700; padding: 0.25rem 0.5rem; border: 2px solid currentColor; display: inline-block; margin-bottom: 1rem; }
+.split-title { font-size: 1.75rem; margin-bottom: 0.75rem; }
+
+/* 1.2 Cinemagraph Grid & Art Elements */
+.cinemagraph-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.cinema-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cinema-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cinema-visual-frame {
+  height: 220px;
+  background: #121212;
+  border-bottom: var(--border-width) solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cinema-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cinema-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+.cinema-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+/* Cinemagraph Visual Arts: Coffee Cup */
+.coffee-cup-art {
+  width: 90px;
+  height: 70px;
+  background: #ffffff;
+  border: 4px solid var(--accent-yellow);
+  border-radius: 0 0 45px 45px;
+  position: relative;
+  margin-top: 25px;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+}
+.coffee-handle {
+  position: absolute;
+  right: -24px;
+  top: 8px;
+  width: 22px;
+  height: 38px;
+  border: 4px solid var(--accent-yellow);
+  border-left: none;
+  border-radius: 0 20px 20px 0;
+}
+.steam-element {
+  position: absolute;
+  top: -50px;
+  left: 15px;
+  display: flex;
+  gap: 10px;
+}
+.steam-path {
+  width: 8px;
+  height: 42px;
+  background: #ffffff;
+  filter: blur(2px);
+  opacity: 0;
+  border-radius: 4px;
+}
+.cinema-active .steam-path {
+  animation: steamRise 2s infinite ease-in;
+}
+.cinema-active .steam-path:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.cinema-active .steam-path:nth-child(3) {
+  animation-delay: 1.2s;
+}
+@keyframes steamRise {
+  0% { transform: translateY(0); opacity: 0.8; }
+  100% { transform: translateY(-45px); opacity: 0; }
+}
+
+/* Cinemagraph Visual Arts: Neon Sign */
+.neon-sign-art {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #333333;
+  border: 4px solid #333333;
+  padding: 0.5rem 1.2rem;
+  transition: all 0.2s;
+}
+.cinema-active .neon-sign-art {
+  color: var(--accent-vermilion);
+  border-color: var(--accent-vermilion);
+  text-shadow: 0 0 10px rgba(255, 71, 50, 0.8), 0 0 20px rgba(255, 71, 50, 0.5);
+  box-shadow: 0 0 15px rgba(255, 71, 50, 0.6);
+  animation: neonBlink 1.4s infinite alternate;
+}
+@keyframes neonBlink {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.85; }
+  50% { opacity: 0.15; }
+  55% { opacity: 1; }
+  80% { opacity: 0.3; }
+  85% { opacity: 1; }
+}
+
+/* Cinemagraph Visual Arts: Wave Layer */
+.wave-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 80px;
+  background: repeating-linear-gradient(45deg, var(--accent-blue), var(--accent-blue) 20px, var(--accent-green) 20px, var(--accent-green) 40px);
+}
+.cinema-active .wave-layer {
+  animation: waveSlide 2s linear infinite;
+}
+@keyframes waveSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-40px); }
+}
+
+/* 1.3 Variable Typography Tester */
+.variable-demo-text {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  text-align: center;
+  margin: 2rem 0;
+  font-family: var(--font-heading);
+  line-height: 1.1;
+  padding: 1.5rem;
+  border: 3px dashed var(--border-color);
+  background: var(--bg-secondary);
+}
+.slider-group {
+  margin-bottom: 1rem;
+}
+.slider-group label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   ТЕМА 2: ВИДИ САЙТІВ ТА ЦІЛЬОВА АУДИТОРІЯ
+   -------------------------------------------------------------------------- */
+
+/* 2.1 Catalog & Filter */
+.filter-tabs-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  justify-content: center;
+}
+.filter-tab {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--border-color);
+  color: var(--text-primary);
+  transition: 0.1s;
+}
+.filter-tab.active {
+  background: var(--accent-vermilion);
+  color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 transparent;
+}
+[data-theme="dark"] .filter-tab.active { color: #121212; }
+
+.site-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+.site-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+.site-card.hidden { display: none; }
+.site-card-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+/* 2.2 5W Persona Generator */
+.sherington-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.sherington-card {
+  border: 2px solid var(--border-color);
+  padding: 1rem;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+.sherington-card h5 {
+  color: var(--accent-vermilion);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.sherington-card select, .sherington-card input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   ТЕМА 3: ІНФОРМАЦІЙНА СТРУКТУРА САЙТУ
+   -------------------------------------------------------------------------- */
+
+/* 3.1 Draw.io Workbench */
+.drawio-workbench {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-card);
+  min-height: 480px;
+}
+@media (max-width: 768px) {
+  .drawio-workbench { grid-template-columns: 1fr; }
+}
+.drawio-sidebar {
+  border-right: var(--border-width) solid var(--border-color);
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+}
+.drawio-tool-btn {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.6rem;
+  border: 2px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--border-color);
+}
+.drawio-tool-btn:hover { background: var(--accent-yellow); color: #121212; }
+.drawio-canvas {
+  padding: 2rem;
+  position: relative;
+  background: var(--bg-primary);
+  background-image: radial-gradient(var(--text-muted) 1px, transparent 1px);
+  background-size: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  overflow: auto;
+}
+.drawio-node {
+  border: 3px solid var(--border-color);
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  box-shadow: 4px 4px 0 var(--border-color);
+  background: var(--bg-card);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.drawio-node.trunk { background: var(--accent-vermilion); color: #fff; }
+.drawio-node.branch { background: var(--accent-yellow); color: #121212; }
+.drawio-node.leaf { background: #fff; color: #121212; }
+
+/* 3.2 Rule of 3 Clicks Game */
+.click-counter-badge {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid var(--border-color);
+  background: var(--accent-green);
+  color: #121212;
+}
+.click-counter-badge.warn { background: var(--accent-yellow); }
+.click-counter-badge.fail { background: var(--accent-vermilion); color: #fff; }
+.nav-target-btn {
+  border: 2px solid var(--border-color);
+  padding: 0.6rem 1.2rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 3px 3px 0 var(--border-color);
+  transition: 0.1s;
+}
+.nav-target-btn:hover { background: var(--accent-yellow); color: #121212; }
+.quest-alert {
+  padding: 1rem;
+  border: 3px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.quest-alert.success { background: var(--accent-green); color: #121212; }
+.quest-alert.fail { background: var(--accent-vermilion); color: #fff; }
+.quest-alert.warn { background: var(--accent-yellow); color: #121212; }
+
+/* --------------------------------------------------------------------------
+   ТЕМА 4: ІНСТРУМЕНТИ ВЕБ-РОЗРОБНИКА (LIVE PREVIEW EDITOR)
+   -------------------------------------------------------------------------- */
+
+.editor-simulator-card {
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  background: #1e1e1e;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-window-header {
+  background: #2d2d2d;
+  border-bottom: 2px solid #444444;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.editor-selector-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.editor-tab-btn {
+  background: #3c3c3c;
+  color: #cccccc;
+  border: 2px solid #555555;
+  padding: 0.45rem 1rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.editor-tab-btn:hover {
+  background: #505050;
+  color: #ffffff;
+}
+.editor-tab-btn.active {
+  background: var(--accent-vermilion);
+  color: #ffffff;
+  border-color: var(--accent-vermilion);
+}
+
+.editor-feature-spotlight {
+  background: var(--accent-yellow);
+  color: #121212;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 2px solid #121212;
+}
+
+.editor-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+  background: #1e1e1e;
+}
+@media (max-width: 820px) {
+  .editor-workspace { grid-template-columns: 1fr; }
+}
+
+.code-pane {
+  background: #1e1e1e;
+  border-right: 2px solid #444444;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-tabs-bar {
+  display: flex;
+  background: #252526;
+  border-bottom: 1px solid #333333;
+}
+
+.file-tab {
+  padding: 0.6rem 1.4rem;
+  color: #969696;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-right: 1px solid #333333;
+  transition: 0.1s;
+}
+.file-tab:hover {
+  color: #ffffff;
+  background: #1e1e1e;
+}
+.file-tab.active {
+  color: #ffffff;
+  background: #1e1e1e;
+  border-top: 3px solid var(--accent-blue);
+  font-weight: 700;
+}
+
+.code-textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 360px;
+  background: #1e1e1e;
+  color: #9cdcfe;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 1.25rem;
+  border: none;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.preview-pane {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-bar {
+  background: #f0f0f0;
+  color: #121212;
+  padding: 0.55rem 1.25rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-bottom: 2px solid #dddddd;
+}
+
+.preview-frame {
+  flex: 1;
+  width: 100%;
+  min-height: 360px;
+  border: none;
+  background: #ffffff;
+}
+
+.editor-status-bar {
+  background: var(--accent-blue);
+  color: #ffffff;
+  padding: 0.45rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
