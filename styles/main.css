@@ -300,6 +300,58 @@ pre code {
   color: #121212;
 }
 
+.btn-practical-highlight {
+  background-color: var(--accent-green);
+  color: #121212;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.btn-practical-highlight:hover {
+  background-color: #34d399;
+  color: #000000;
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+}
+.btn-practical-highlight:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px transparent;
+}
+
+.header-quick-prac-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--accent-green);
+  color: #121212;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.85rem;
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0 var(--border-color);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+}
+.header-quick-prac-btn:hover {
+  background: #34d399;
+  color: #000000;
+  text-decoration: none;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--border-color);
+}
+.header-quick-prac-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 transparent;
+}
+
+.floating-mobile-prac-btn {
+  display: none;
+}
+
 .btn-sm {
   padding: 0.45rem 0.9rem;
   font-size: 0.8rem;

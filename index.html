@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles/main.css?v=4">
-  <link rel="stylesheet" href="styles/hero.css?v=4">
-  <link rel="stylesheet" href="styles/modules.css?v=4">
-  <link rel="stylesheet" href="styles/responsive.css?v=4">
+  <link rel="stylesheet" href="styles/main.css?v=5">
+  <link rel="stylesheet" href="styles/hero.css?v=5">
+  <link rel="stylesheet" href="styles/modules.css?v=5">
+  <link rel="stylesheet" href="styles/responsive.css?v=5">
 </head>
 <body>
 
@@ -52,10 +52,13 @@
           <li><a href="#topic4" class="nav-link">4. Інструменти розробника</a></li>
           <li><a href="#test" class="nav-link" style="color: var(--accent-vermilion);">Тест уроку ★</a></li>
           <li><a href="html-basics.html" class="nav-link" style="color: var(--accent-blue); font-weight: 700;">Урок 2: Основи HTML →</a></li>
+          <li><a href="css-basics.html" class="nav-link" style="color: var(--accent-purple); font-weight: 700;">Урок 3: Основи CSS →</a></li>
+          <li><a href="html-basics.html#practical-work" class="nav-link" style="color: var(--accent-green); font-weight: 800;">⚙️ Практична робота →</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
+        <a href="html-basics.html#practical-work" class="header-quick-prac-btn" title="Перейти до практичної роботи">⚙️ ПРАКТИЧНА</a>
         <button id="themeToggleBtn" class="theme-toggle-btn">НІЧ 🌙</button>
         <button id="burgerMenuBtn" class="burger-menu-btn">МЕНЮ ☰</button>
       </div>
@@ -76,6 +79,7 @@
             </p>
 
             <div class="hero-cta-group">
+              <a href="html-basics.html#practical-work" class="btn btn-practical-highlight">⚙️ ПРАКТИЧНА РОБОТА (ПРАКТИКУМ)</a>
               <a href="#topic1" class="btn btn-primary">РОЗПОЧАТИ УРОК 🚀</a>
               <a href="#test" class="btn btn-secondary">ПЕРЕВІРИТИ ЗНАННЯ 📝</a>
             </div>
@@ -314,7 +318,7 @@
 
           <div class="variable-demo-text" id="variableFontDemoText">ТИПОГРАФІКА 2026</div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div class="variable-font-controls-grid">
             <div class="slider-group">
               <label style="font-family:var(--font-mono); font-weight:700;"><span>ТОВЩИНА ШРИФТУ (WEIGHT):</span><strong id="fontWeightVal">700</strong></label>
               <input type="range" id="fontSliderWeight" min="400" max="800" value="700" step="100" style="width:100%;">
@@ -860,13 +864,21 @@
         <span class="badge badge-green">ІНФОРМАЦІЙНА СТРУКТУРА</span>
         <span class="badge badge-red">ІНСТРУМЕНТИ РОЗРОБНИКА</span>
       </div>
-      <div style="margin-top: 2rem;">
-        <a href="html-basics.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 0.8rem 1.5rem; text-decoration: none;">
-          ПЕРЕЙТИ ДО УРОКУ 2: ОСНОВИ HTML ТА СТРУКТУРА ДОКУМЕНТА →
+      <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="html-basics.html" class="btn btn-primary" style="font-size: 1.05rem; padding: 0.8rem 1.5rem; text-decoration: none;">
+          УРОК 2: ОСНОВИ HTML →
+        </a>
+        <a href="css-basics.html" class="btn btn-secondary" style="font-size: 1.05rem; padding: 0.8rem 1.5rem; text-decoration: none; border-color: var(--accent-yellow); color: #fff;">
+          УРОК 3: ОСНОВИ CSS →
         </a>
       </div>
     </div>
   </footer>
+
+  <!-- Швидка плаваюча кнопка переходу на практичну роботу для смартфонів -->
+  <a href="html-basics.html#practical-work" class="floating-mobile-prac-btn" aria-label="Перейти до практичної роботи">
+    <span>⚙️ ПРАКТИЧНА РОБОТА</span>
+  </a>
 
   <script src="js/app.js"></script>
 </body>
