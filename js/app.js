@@ -10,6 +10,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Загальні компоненти
   initThemeToggle();
+  initCourseDropdown();
   initMobileNavigation();
   initActiveNavHighlight();
   initGlobalStatsCounter();
@@ -40,6 +41,29 @@ document.addEventListener('DOMContentLoaded', () => {
 /** -------------------------------------------------------------------------
  * БАЗОВІ СИСТЕМНІ ФУНКЦІЇ
  * ------------------------------------------------------------------------ */
+function initCourseDropdown() {
+  const dropdown = document.getElementById('courseDropdown');
+  const dropdownBtn = document.getElementById('courseDropdownBtn');
+  if (!dropdown || !dropdownBtn) return;
+
+  dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdown.classList.remove('open');
+    }
+  });
+}
+
 function initThemeToggle() {
   const themeBtn = document.getElementById('themeToggleBtn');
   if (!themeBtn) return;

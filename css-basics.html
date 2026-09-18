@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Урок 3: Каскадні таблиці стилів CSS. Підключення, базові селектори та стилі тексту (10-11 кл)</title>
+  <title>Урок 3: Каскадні таблиці стилів CSS · Підключення, базові селектори та стилі тексту</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles/main.css?v=5">
-  <link rel="stylesheet" href="styles/hero.css?v=5">
-  <link rel="stylesheet" href="styles/modules.css?v=5">
-  <link rel="stylesheet" href="styles/responsive.css?v=5">
-  <link rel="stylesheet" href="styles/css-lesson.css?v=1">
+  <link rel="stylesheet" href="styles/main.css?v=6">
+  <link rel="stylesheet" href="styles/hero.css?v=6">
+  <link rel="stylesheet" href="styles/modules.css?v=6">
+  <link rel="stylesheet" href="styles/responsive.css?v=6">
+  <link rel="stylesheet" href="styles/css-lesson.css?v=3">
 </head>
 <body>
 
@@ -24,116 +24,141 @@
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
   </div>
 
-  <!-- Live Stats Ticker -->
+  <!-- Stats Ribbon -->
   <div class="stats-ribbon">
     <div class="container stats-ribbon-content">
       <div>
         <span class="pulse-dot"></span>
-        WWW СТАНДАРТ: понад <strong>97.4%</strong> вебсайтів планети оформлені мовою <strong>CSS3</strong> (W3C / WHATWG)
+        Стандарт W3C: <strong>97.4%</strong> вебсторінок планети оформлені мовою CSS3
       </div>
       <div>
-        ІНФОРМАТИКА 10–11 КЛАСИ • РОЗДІЛ: ВЕБТЕХНОЛОГІЇ ТА ОФОРМЛЕННЯ ВЕБСТОРІНОК
+        Інформатика 10–11 класи · Модуль «Вебтехнології»
       </div>
     </div>
   </div>
 
-  <!-- Site Header -->
+  <!-- Site Header з масштабованим меню уроків -->
   <header class="site-header">
     <div class="container header-container">
-      <a href="index.html" class="header-logo" title="На головну сторінку курсу">
-        <span class="logo-badge">&lt;/&gt;</span>
-        <span>ВЕБТЕХНОЛОГІЇ</span>
-      </a>
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
 
-      <nav>
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу">
+            <span>📚 Уроки курсу</span>
+            <span class="dropdown-arrow">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu">
+            <div class="course-dropdown-header">Навчальна програма (10–11 класи)</div>
+            <a href="index.html" class="course-dropdown-item">
+              <span>Урок 1: Вебдизайн та структура сайту</span>
+              <span class="lesson-tag">Розділ 1</span>
+            </a>
+            <a href="html-basics.html" class="course-dropdown-item">
+              <span>Урок 2: Основи мови HTML5</span>
+              <span class="lesson-tag">Розділ 2</span>
+            </a>
+            <a href="css-basics.html" class="course-dropdown-item active">
+              <span>Урок 3: Каскадні таблиці стилів CSS</span>
+              <span class="lesson-tag current">Поточний</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зміст поточного уроку (десктоп) та мобільне меню -->
+      <nav class="header-nav" aria-label="Зміст уроку">
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="nav-link" style="color: var(--accent-blue);">← Урок 1</a></li>
-          <li><a href="html-basics.html" class="nav-link" style="color: var(--accent-blue);">← Урок 2</a></li>
-          <li><a href="#topic1" class="nav-link">1. Каскад & CSS</a></li>
+          <!-- Мобільний блок списку уроків (видно лише на смартфонах/планшетах) -->
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item">Урок 2: Основи мови HTML5</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item active">Урок 3: Каскадні таблиці стилів CSS ★</a></li>
+            </ul>
+          </li>
+
+          <!-- Посилання на розділи цього уроку -->
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
+          <li><a href="#topic1" class="nav-link">1. Що таке CSS</a></li>
           <li><a href="#topic2" class="nav-link">2. Підключення</a></li>
           <li><a href="#topic3" class="nav-link">3. Селектори</a></li>
-          <li><a href="#topic4" class="nav-link">4. Стилі тексту</a></li>
-          <li><a href="#practical-work" class="nav-link" style="color: var(--accent-green); font-weight: 700;">Практикум ⚙️</a></li>
-          <li><a href="#test-section" class="nav-link" style="color: var(--accent-vermilion); font-weight: 700;">Тест ★</a></li>
+          <li><a href="#topic4" class="nav-link">4. Шрифти</a></li>
+          <li><a href="#practical-work" class="nav-link nav-link-highlight" style="color: var(--accent-blue) !important;">Практикум ⚙️</a></li>
+          <li><a href="#test-section" class="nav-link nav-link-highlight" style="color: var(--accent-vermilion) !important;">Тест ★</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <button id="themeToggleBtn" class="theme-toggle-btn">НІЧ 🌙</button>
-        <button id="burgerMenuBtn" class="burger-menu-btn">МЕНЮ ☰</button>
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему день/ніч">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
       </div>
     </div>
   </header>
 
   <main>
     <!-- ====================================================================
-         HERO SECTION
+         HERO SECTION: ІНТЕРАКТИВНИЙ ПУЛЬТ КЕРУВАННЯ
          ==================================================================== -->
     <section id="hero" class="section hero-section">
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content">
-            <div class="section-badge">🎯 ІНТЕРАКТИВНИЙ ОНЛАЙН-КУРС • УРОК 3</div>
-            <h1 class="hero-title">КАСКАДНІ ТАБЛИЦІ <span class="text-gradient">СТИЛІВ CSS</span></h1>
+            <div class="lesson-badge">Урок 3 · Вебтехнології для початківців</div>
+            <h1 class="hero-title">Каскадні таблиці стилів CSS</h1>
             <p class="hero-description">
-              Фундаментальний інтерактивний курс з оформлення та дизайну вебсторінок.
-              Вивчіть 3 способи підключення CSS, принцип каскаду й пріоритетів, роботу з базовими селекторами та стилями тексту за допомогою 5 наочних інтерактивних модулів, студії типографіки та пісочниці коду.
+              Якщо <strong>HTML</strong> — це фундамент і стіни будинку, то <strong>CSS</strong> — це шпалери, фарба, м'які меблі та гарне освітлення.
+              Без CSS вебсайти виглядали б як сірі шкільні бланки. За допомогою стилів ми робимо сайти барвистими, зручними та сучасними!
             </p>
 
             <div class="hero-cta-group">
-              <a href="#topic1" class="btn btn-primary">РОЗПОЧАТИ УРОК 🚀</a>
-              <a href="#practical-work" class="btn btn-secondary">ПРАКТИЧНА РОБОТА ⚙️</a>
-              <a href="#test-section" class="btn btn-secondary" style="border-color: var(--accent-vermilion);">ТЕСТ ЗНАНЬ ★</a>
-            </div>
-
-            <div class="hero-highlight-boxes">
-              <div class="highlight-box">
-                <span class="box-value">1996</span>
-                <span class="box-label">РІК ВИПУСКУ CSS1</span>
-              </div>
-              <div class="highlight-box">
-                <span class="box-value">3</span>
-                <span class="box-label">СПОСОБИ ПІДКЛЮЧЕННЯ</span>
-              </div>
-              <div class="highlight-box">
-                <span class="box-value">60+</span>
-                <span class="box-label">ТЕКСТОВИХ ВЛАСТИВОСТЕЙ</span>
-              </div>
+              <a href="#topic1" class="btn btn-primary">Зрозуміти CSS легко</a>
+              <a href="#practical-work" class="btn btn-secondary">Створити свою картку</a>
+              <a href="#test-section" class="btn btn-secondary">Тест для перевірки</a>
             </div>
           </div>
 
-          <!-- Hero Teaser Card: Raw HTML vs Styled with CSS -->
-          <div class="hero-interactive-card">
-            <div class="interactive-card-header">
-              <span class="badge badge-red">🧪 ЕКСПЕРИМЕНТ №1</span>
-              <h3>БЕЗ CSS ПРОТИ З CSS3</h3>
+          <!-- Hero Switchboard Interactive -->
+          <div class="hero-switchboard-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+              <strong style="font-family: var(--font-heading); font-size: 1rem;">Експеримент: клікайте кнопки та дивіться магію!</strong>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #64748b;">живі шари CSS</span>
             </div>
-            <div class="interactive-card-body">
-              <p style="font-size: 0.95rem; margin-bottom: 1rem;">
-                Як виглядає вебсторінка без стилів? Натисніть кнопку, щоб порівняти "голий" HTML-скелет та оформлений блок:
-              </p>
 
-              <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                <button class="btn btn-secondary" id="heroToggleRawBtn" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">Без CSS (Голий HTML)</button>
-                <button class="btn btn-primary" id="heroToggleStyledBtn" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">Зі стилями CSS3</button>
-              </div>
+            <!-- Toggles -->
+            <div class="switchboard-toggles">
+              <button class="switch-pill active" data-toggle="font">1. Шрифт</button>
+              <button class="switch-pill active" data-toggle="color">2. Кольори</button>
+              <button class="switch-pill active" data-toggle="spacing">3. Відступи</button>
+              <button class="switch-pill active" data-toggle="border">4. Рамка</button>
+              <button class="switch-pill active" data-toggle="shadow">5. Тінь</button>
+            </div>
 
-              <div id="heroPreviewBox" style="min-height: 200px; display: flex; flex-direction: column; justify-content: center;">
-                <div style="font-family: var(--font-heading); background: #ffffff; color: #0f172a; border: 3px solid #121212; padding: 1.5rem; box-shadow: 6px 6px 0 #121212; border-radius: 2px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                    <span style="background: #facc15; color: #121212; font-family: var(--font-mono); font-weight: 800; font-size: 0.75rem; padding: 0.2rem 0.6rem; border: 1.5px solid #121212;">★ СТИЛІЗОВАНО З CSS3</span>
-                    <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">status: online</span>
-                  </div>
-                  <h3 style="font-size: 1.35rem; color: #1e3a8a; margin-bottom: 0.5rem; letter-spacing: -0.02em;">ПРОФІЛЬ ВЕБРОЗРОБНИКА</h3>
-                  <p style="font-family: var(--font-sans); color: #334155; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">
-                    Привіт! За допомогою CSS ми оживляємо сухі теги: задаємо кольори, шрифти, тіні, гармонійні відступи та адаптивний вигляд!
-                  </p>
-                  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <button style="background: #2563eb; color: #ffffff; border: 2px solid #121212; padding: 0.45rem 1rem; font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; box-shadow: 2px 2px 0 #121212; cursor: pointer;">ПОРТФОЛІО →</button>
-                    <button style="background: #f1f5f9; color: #121212; border: 2px solid #121212; padding: 0.45rem 0.85rem; font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; cursor: pointer;">ЗВ'ЯЗОК ✉</button>
-                  </div>
+            <!-- Canvas Preview -->
+            <div class="switchboard-preview-canvas" id="heroSwitchboardCanvas">
+              <div class="switchboard-target" id="heroSwitchboardTarget">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <span class="switchboard-badge" style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;">Урок 3</span>
+                  <span style="font-size: 0.75rem; color: #64748b; font-family: var(--font-mono);">CSS3</span>
                 </div>
+                <h3 class="switchboard-title" style="font-size: 1.25rem; margin-bottom: 0.4rem;">Моя перша вебсторінка</h3>
+                <p style="font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.85rem;">
+                  Один клік мишки — і стиль перетворює сухий текст на справжній витвір цифрового мистецтва!
+                </p>
+                <button class="switchboard-cta" style="padding: 0.35rem 0.85rem; font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+                  Спробувати самому →
+                </button>
               </div>
+            </div>
+
+            <!-- Code Ribbon -->
+            <div class="switchboard-code-ribbon" id="heroSwitchboardCode">
+/* Тут відображається код, який ви щойно створили */
             </div>
           </div>
         </div>
@@ -141,94 +166,129 @@
     </section>
 
     <!-- ====================================================================
-         ТЕМА 1: ЩО ТАКЕ CSS, ПРИНЦИП КАСКАДУ ТА АНАТОМІЯ ПРАВИЛА
+         ТЕМА 1: ЩО ТАКЕ CSS? АНАЛОГІЇ, КАСКАД ТА АНАТОМІЯ
          ==================================================================== -->
     <section id="topic1" class="section">
       <div class="container">
         <div class="section-header">
-          <div class="lesson-badge">ТЕМА 1 • ТЕОРЕТИЧНИЙ ФУНДАМЕНТ</div>
-          <h2 class="section-title">1. ЩО ТАКЕ <span class="text-gradient">CSS ТА ПРИНЦИП КАСКАДУ</span></h2>
+          <div class="lesson-badge">Тема 1 · Знайомство без нудьги</div>
+          <h2 class="section-title">1. Що таке CSS та чому він «каскадний»?</h2>
           <p class="section-subtitle">
-            Історія створення каскадних таблиць стилів, фундаментальне розділення структури та оформлення, принципи каскадності (Cascade), специфічності (Specificity) та спадкування (Inheritance).
+            Прості життєві аналогії, які допоможуть зрозуміти головний принцип роботи стилів раз і назавжди.
           </p>
         </div>
 
-        <!-- Info Cards Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
-          <div class="info-card">
-            <div class="info-card-header">
-              <h3>🎨 ЩО ТАКЕ CSS?</h3>
+        <!-- 3 прості аналогії для дітей -->
+        <div class="friendly-analogy-box">
+          <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.35rem;">
+            💡 Головна підказка: Будинок, людина та три кити вебу
+          </h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary);">
+            Усі вебсайти у світі будуються з трьох технологій, кожна з яких має свою чітку роль:
+          </p>
+
+          <div class="analogy-grid">
+            <div class="analogy-pill-card">
+              <div class="analogy-icon">🧱</div>
+              <div class="analogy-title">HTML — це стіни й скелет</div>
+              <div class="analogy-desc">
+                Створює заголовок, текст, кнопку чи картинку. Без HTML немає взагалі нічого.
+              </div>
             </div>
-            <div class="info-card-body">
-              <p style="font-size: 0.95rem; margin-bottom: 0.75rem;">
-                <strong>CSS (Cascading Style Sheets)</strong> — це мова опису зовнішнього вигляду документа, написаного мовою розмітки (HTML або XML).
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                Якщо <strong>HTML</strong> відповідає на запитання <em>«Що це за контент?»</em> (заголовок, абзац, кнопка), то <strong>CSS</strong> визначає <em>«Як цей контент виглядає?»</em> (колір, розмір, шрифт, позиція, анімація).
-              </p>
+
+            <div class="analogy-pill-card" style="border-left: 4px solid var(--accent-blue); background: rgba(37, 99, 235, 0.05);">
+              <div class="analogy-icon">🎨</div>
+              <div class="analogy-title">CSS — це одяг і фарба (Наш урок)</div>
+              <div class="analogy-desc">
+                Фарбує стіни в синій колір, робить шрифт красивим, ставить тіні та налаштовує розміри.
+              </div>
+            </div>
+
+            <div class="analogy-pill-card">
+              <div class="analogy-icon">⚡</div>
+              <div class="analogy-title">JavaScript — це електрика та розум</div>
+              <div class="analogy-desc">
+                Оживляє сайт: двері відчиняються самі, вмикається нічна тема, рахуються бали в тесті.
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="info-card">
-            <div class="info-card-header">
-              <h3>🌊 ЧОМУ «КАСКАДНІ»?</h3>
-            </div>
-            <div class="info-card-body">
-              <p style="font-size: 0.95rem; margin-bottom: 0.75rem;">
-                Слово <strong>«каскадний»</strong> означає, що стилі можуть надходити з кількох джерел і «стікати» зверху вниз як сходинки водоспаду.
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                Якщо для одного й того ж елемента задано декілька суперечливих правил, браузер за чіткими правилами каскаду (специфічність селектора, джерело правила, порядок у коді) визначає <strong>одне фінальне правило-переможець</strong>.
-              </p>
-            </div>
+        <!-- Чому саме "Каскадні" таблиці? -->
+        <div class="friendly-analogy-box" style="margin-top: 2rem;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.5rem;">
+            🧣 Чому стилі називають «каскадними»? (Аналогія з шарами одягу)
+          </h3>
+          <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
+            Уявіть, що ви вдягли вранці <strong>синій светр</strong>, а перед виходом на вулицю накинули зверху <strong>яскраву червону куртку</strong>.
+            Який колір побачать ваші друзі на вулиці? Звісно, <strong>червоний</strong>! Бо куртка надіта зверху (вона ближча до глядача).<br>
+            Так само і в CSS: якщо для одного тексту написано декілька правил з різними кольорами, браузер обирає те правило, яке <strong>сильніше або ближче</strong>.
+          </p>
+
+          <!-- Шкала сили (Game-like Power scale) -->
+          <div style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">
+            🎮 Шкала сили селекторів: хто кого перемагає?
           </div>
 
-          <div class="info-card">
-            <div class="info-card-header">
-              <h3>🧬 СПАДКУВАННЯ ВЛАСТИВОСТЕЙ</h3>
+          <div class="power-meter-grid">
+            <div class="power-card">
+              <div class="power-rank">РІВЕНЬ 1 · БАЗОВИЙ</div>
+              <div class="power-points">1 бал</div>
+              <div class="power-name">Селектор тегу (p, h1)</div>
+              <div class="power-desc">Фарбує всі абзаци на сторінці однаково. Легко перебивається класом.</div>
             </div>
-            <div class="info-card-body">
-              <p style="font-size: 0.95rem; margin-bottom: 0.75rem;">
-                <strong>Спадкування (Inheritance)</strong> — механізм, коли дочірні елементи автоматично переймають певні властивості своїх батьківських блоків.
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                Наприклад, властивості тексту (<code>font-family</code>, <code>color</code>, <code>line-height</code>), задані для <code>&lt;body&gt;</code>, автоматично успадковуються всіма вкладеними абзацами <code>&lt;p&gt;</code> і списками.
-              </p>
+
+            <div class="power-card">
+              <div class="power-rank">РІВЕНЬ 2 · СИЛЬНИЙ</div>
+              <div class="power-points">10 балів</div>
+              <div class="power-name">Селектор класу (.badge)</div>
+              <div class="power-desc">Починається з крапки. Перемагає селектор тегу, бо він точніший.</div>
+            </div>
+
+            <div class="power-card">
+              <div class="power-rank">РІВЕНЬ 3 · ДУЖЕ СИЛЬНИЙ</div>
+              <div class="power-points">100 балів</div>
+              <div class="power-name">Селектор ID (#hero)</div>
+              <div class="power-desc">Починається з решітки #. Перебиває класи, бо він унікальний на сторінці.</div>
+            </div>
+
+            <div class="power-card">
+              <div class="power-rank">РІВЕНЬ 4 · СУПЕРСИЛА</div>
+              <div class="power-points">1000 балів</div>
+              <div class="power-name">Вбудований style="..."</div>
+              <div class="power-desc">Написаний прямо всередині HTML-тегу. Перемагає будь-які правила з файлу.</div>
             </div>
           </div>
         </div>
 
         <!-- ІНТЕРАКТИВНА АНАТОМІЯ CSS-ПРАВИЛА -->
-        <div class="anatomy-container">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
-            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">🔬 ІНТЕРАКТИВНА АНАТОМІЯ CSS-ПРАВИЛА</h3>
-            <span class="badge badge-yellow">КЛІКАЙТЕ НА ТОКЕНИ КОДУ</span>
+        <div class="anatomy-container" style="margin-top: 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem;">🔬 Анатомія команди: як говорити з комп'ютером</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #64748b;">клікайте на будь-яку деталь</span>
           </div>
 
-          <p style="margin-bottom: 1.25rem; font-size: 0.95rem;">
-            Оберіть тип правила та натискайте на будь-яку його частину (селектор, дужки, властивість, двокрапку, значення чи крапку з комою), щоб дізнатися її роль, стандарти та типові помилки початківців:
+          <p style="margin-bottom: 1.25rem; font-size: 0.95rem; max-width: 72ch;">
+            Комп'ютер не розуміє фраз на кшталт «зроби текст красивим». Він вимагає точну формулу:
+            <strong>Кого фарбуємо { Що змінюємо : На що змінюємо ; }</strong>
           </p>
 
           <div class="anatomy-modes">
-            <button class="anatomy-mode-btn active" data-mode="tag">1. Правило для тегу (h1)</button>
-            <button class="anatomy-mode-btn" data-mode="class">2. Правило для класу (.card-badge)</button>
-            <button class="anatomy-mode-btn" data-mode="id">3. Правило для ID (#main-header)</button>
+            <button class="anatomy-mode-btn active" data-mode="tag">Команда для тегу (h1)</button>
+            <button class="anatomy-mode-btn" data-mode="class">Команда для класу (.card-badge)</button>
+            <button class="anatomy-mode-btn" data-mode="id">Команда для ID (#main-header)</button>
           </div>
 
-          <!-- Code Token Display Box -->
-          <div class="css-anatomy-box" id="anatomyDisplayBox">
-            <!-- Populated via JavaScript -->
-          </div>
+          <!-- Code Token Box -->
+          <div class="css-anatomy-box" id="anatomyDisplayBox"></div>
 
           <!-- Explanation Card -->
           <div class="anatomy-explanation-card">
             <div class="anatomy-icon-box" id="anatomyIcon">🎯</div>
             <div style="flex: 1;">
-              <h4 class="anatomy-info-title" id="anatomyTitle">Селектор (Selector)</h4>
-              <p class="anatomy-info-desc" id="anatomyDesc">
-                Вказує браузеру, до якого елемента застосовувати стилі.
-              </p>
-              <span class="anatomy-rule-pill" id="anatomyRule">Правило синтаксису W3C</span>
+              <h4 class="anatomy-info-title" id="anatomyTitle">Селектор</h4>
+              <p class="anatomy-info-desc" id="anatomyDesc">Вказує, до якого елемента застосовувати стилі.</p>
+              <span class="anatomy-rule-pill" id="anatomyRule">Синтаксис</span>
             </div>
           </div>
         </div>
@@ -237,112 +297,114 @@
     </section>
 
     <!-- ====================================================================
-         ТЕМА 2: ТРИ СПОСОБИ ПІДКЛЮЧЕННЯ CSS ДО ВЕБСТОРІНКИ
+         ТЕМА 2: ТРИ СПОСОБИ ПІДКЛЮЧЕННЯ CSS
          ==================================================================== -->
     <section id="topic2" class="section" style="background: var(--bg-secondary); border-top: var(--border-width) solid var(--border-color); border-bottom: var(--border-width) solid var(--border-color);">
       <div class="container">
         <div class="section-header">
-          <div class="lesson-badge">ТЕМА 2 • АРХІТЕКТУРА КОДУ</div>
-          <h2 class="section-title">2. ТРИ СПОСОБИ <span class="text-gradient">ПІДКЛЮЧЕННЯ CSS</span></h2>
+          <div class="lesson-badge">Тема 2 · Де писати стилі?</div>
+          <h2 class="section-title">2. Три способи підключення CSS</h2>
           <p class="section-subtitle">
-            Зовнішній файл стилів (External), внутрішні стилі у &lt;head&gt; (Internal) та вбудовані атрибути style (Inline). Порівняння пріоритетів та симулятор каскаду.
+            Куди записувати код стилів: у власний окремий файл, нагорі сторінки чи прямо в тег?
           </p>
         </div>
 
-        <!-- Cheatsheet Table -->
-        <div class="table-responsive-wrapper">
-          <table class="tag-cheat-table">
-            <thead>
-              <tr>
-                <th>Спосіб підключення</th>
-                <th>Синтаксис у коді</th>
-                <th>Де розміщується?</th>
-                <th>Переваги та недоліки</th>
-                <th>Рекомендація W3C</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>1. Зовнішня таблиця (External)</strong></td>
-                <td><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></td>
-                <td>Усередині секції <code>&lt;head&gt;</code></td>
-                <td>
-                  <strong>+</strong> Єдиний файл для всього сайту.<br>
-                  <strong>+</strong> Кешується браузером (швидке завантаження).<br>
-                  <strong>+</strong> Чистий HTML без змішування зі стилями.
-                </td>
-                <td><span style="color: var(--accent-green); font-weight: 800;">★ ГОЛОВНИЙ СТАНДАРТ</span></td>
-              </tr>
-              <tr>
-                <td><strong>2. Внутрішні стилі (Internal)</strong></td>
-                <td><code>&lt;style&gt; p { color: blue; } &lt;/style&gt;</code></td>
-                <td>Усередині секції <code>&lt;head&gt;</code></td>
-                <td>
-                  <strong>+</strong> Зручно для швидких односторінкових тестів.<br>
-                  <strong>-</strong> Не підходить для багатосторінкових сайтів (код доводиться копіювати).
-                </td>
-                <td>Тільки для окремих унікальних сторінок</td>
-              </tr>
-              <tr>
-                <td><strong>3. Вбудовані / рядкові стилі (Inline)</strong></td>
-                <td><code>&lt;p style="color: red; font-size: 18px;"&gt;</code></td>
-                <td>Як атрибут <code>style</code> прямо в тегу HTML</td>
-                <td>
-                  <strong>+</strong> Найвищий локальний пріоритет.<br>
-                  <strong>-</strong> Засмічує розмітку, складно підтримувати.<br>
-                  <strong>-</strong> Не дозволяє перевикористовувати стилі.
-                </td>
-                <td><span style="color: var(--accent-vermilion); font-weight: 800;">⚠ УНИКАТИ (Погана практика)</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- 3 способи простими словами -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+          <div class="info-card">
+            <div class="info-card-header">
+              <h3>📁 1. Окремий файл (style.css)</h3>
+            </div>
+            <div class="info-card-body">
+              <p style="font-size: 0.92rem; margin-bottom: 0.5rem;">
+                <strong>Як це працює:</strong> створюємо поруч файл <code>style.css</code> та підключаємо його одним рядком усередині <code>&lt;head&gt;</code>:
+              </p>
+              <code style="display: block; background: var(--bg-primary); padding: 0.5rem; border: 1px solid var(--border-color); font-size: 0.85rem; margin-bottom: 0.5rem;">
+                &lt;link rel="stylesheet" href="style.css"&gt;
+              </code>
+              <p style="font-size: 0.85rem; color: var(--accent-green); font-weight: 700;">
+                ★ Найкращий спосіб! Цей файл можна підключити до 100 різних сторінок одночасно.
+              </p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <h3>📄 2. Усередині тегу &lt;style&gt;</h3>
+            </div>
+            <div class="info-card-body">
+              <p style="font-size: 0.92rem; margin-bottom: 0.5rem;">
+                <strong>Як це працює:</strong> пишемо стилі прямо в шапці <code>&lt;head&gt;</code> конкретної HTML-сторінки:
+              </p>
+              <code style="display: block; background: var(--bg-primary); padding: 0.5rem; border: 1px solid var(--border-color); font-size: 0.85rem; margin-bottom: 0.5rem;">
+                &lt;style&gt;<br>&nbsp;&nbsp;h1 { color: red; }<br>&lt;/style&gt;
+              </code>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                Зручно для швидкої перевірки однієї сторінки, але незручно копіювати на весь сайт.
+              </p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <h3>⚡ 3. Прямо в тегу (Inline style)</h3>
+            </div>
+            <div class="info-card-body">
+              <p style="font-size: 0.92rem; margin-bottom: 0.5rem;">
+                <strong>Як це працює:</strong> пишемо атрибут прямо в слові тегу:
+              </p>
+              <code style="display: block; background: var(--bg-primary); padding: 0.5rem; border: 1px solid var(--border-color); font-size: 0.85rem; margin-bottom: 0.5rem;">
+                &lt;p style="color: red;"&gt;Привіт!&lt;/p&gt;
+              </code>
+              <p style="font-size: 0.85rem; color: var(--accent-vermilion); font-weight: 700;">
+                ⚠ Не рекомендується: сторінка стає брудною, важко знайти і виправити помилку.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <!-- СИМУЛЯТОР БИТВИ ПРІОРИТЕТІВ (CASCADE BATTLE SIMULATOR) -->
+        <!-- СИМУЛЯТОР: БИТВА ПРІОРИТЕТІВ -->
         <div class="cascade-simulator">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.75rem;">
-            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">⚔️ СИМУЛЯТОР: БИТВА ПРІОРИТЕТІВ ТА КАСКАД</h3>
-            <span class="badge badge-red">ЖИВА ДЕМОНСТРАЦІЯ КАСКАДУ</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem;">⚔️ Гра-симулятор: чий стиль переможе?</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #64748b;">спробуйте перемикати прапорці</span>
           </div>
-          <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">
-            Увімкніть або вимкніть різні способи підключення стилю для одного й того ж елемента. Подивіться, яке правило виграє боротьбу та чому браузер обирає саме його:
+          <p style="font-size: 0.95rem; margin-bottom: 1.25rem; max-width: 72ch;">
+            Увімкніть різні джерела стилю для одного речення. Подивіться, якого кольору стане текст і чому браузер обрав саме його:
           </p>
 
           <div class="cascade-grid">
             <!-- Left: Toggle Cards -->
             <div class="cascade-sources">
-              <!-- External -->
               <div class="source-card" id="cardExternal">
                 <div class="source-header">
-                  <span class="source-title">📁 1. Зовнішній файл (style.css)</span>
-                  <span class="priority-badge">Пріоритет: 1 (Базовий)</span>
+                  <span class="source-title">1. Зовнішній файл style.css (Синій)</span>
+                  <span class="priority-badge">Сила: 1</span>
                 </div>
-                <div class="source-code-snippet">&lt;link rel="stylesheet" href="style.css"&gt;<br>/* У файлі style.css: */<br>p { color: #2563eb; } /* СИНІЙ */</div>
+                <div class="source-code-snippet">p { color: #2563eb; } /* Синій колір з файлу */</div>
                 <div class="source-controls">
-                  <label><input type="checkbox" id="chkExternal" checked> Підключити style.css</label>
-                  <label style="font-size: 0.8rem; color: var(--accent-vermilion);"><input type="checkbox" id="chkImportant"> Додати !important</label>
+                  <label><input type="checkbox" id="chkExternal" checked> Підключити файл style.css</label>
+                  <label style="font-size: 0.8rem; color: var(--accent-vermilion);"><input type="checkbox" id="chkImportant"> Чіт-код !important</label>
                 </div>
               </div>
 
-              <!-- Internal -->
               <div class="source-card" id="cardInternal">
                 <div class="source-header">
-                  <span class="source-title">📄 2. Внутрішній тег &lt;style&gt;</span>
-                  <span class="priority-badge">Пріоритет: 2 (Середній)</span>
+                  <span class="source-title">2. Блок &lt;style&gt; у шапці (Зелений)</span>
+                  <span class="priority-badge">Сила: 1</span>
                 </div>
-                <div class="source-code-snippet">&lt;style&gt;<br>  p { color: #10b981; } /* ЗЕЛЕНИЙ */<br>&lt;/style&gt;</div>
+                <div class="source-code-snippet">&lt;style&gt; p { color: #10b981; } &lt;/style&gt;</div>
                 <div class="source-controls">
-                  <label><input type="checkbox" id="chkInternal" checked> Увімкнути тег &lt;style&gt; у &lt;head&gt;</label>
+                  <label><input type="checkbox" id="chkInternal" checked> Увімкнути тег &lt;style&gt;</label>
                 </div>
               </div>
 
-              <!-- Inline -->
               <div class="source-card" id="cardInline">
                 <div class="source-header">
-                  <span class="source-title">⚡ 3. Вбудований стиль style="..."</span>
-                  <span class="priority-badge">Пріоритет: 3 (Найвищий)</span>
+                  <span class="source-title">3. Прямо в тегу style="..." (Червоний)</span>
+                  <span class="priority-badge">Сила: 1000</span>
                 </div>
-                <div class="source-code-snippet">&lt;p style="color: #ff4732;"&gt; /* ЧЕРВОНИЙ */</div>
+                <div class="source-code-snippet">&lt;p style="color: #ff4732;"&gt;Текст&lt;/p&gt;</div>
                 <div class="source-controls">
                   <label><input type="checkbox" id="chkInline" checked> Додати атрибут style до тегу</label>
                 </div>
@@ -352,25 +414,25 @@
             <!-- Right: Preview and Inspector -->
             <div class="cascade-preview-panel">
               <div class="live-render-box">
-                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #64748b; margin-bottom: 0.75rem;">РЕЗУЛЬТАТ ВІДОБРАЖЕННЯ В БРАУЗЕРІ:</div>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #64748b; margin-bottom: 0.75rem;">Що показує браузер:</div>
                 <div class="live-target-element" id="cascadeTargetElement">
-                  Привіт! Якого кольору цей текст?
+                  Привіт! Якого я зараз кольору?
                 </div>
               </div>
 
               <div class="cascade-inspector-card">
                 <div class="inspector-title">
-                  <span>🏆 ПЕРЕМОЖЕЦЬ:</span>
-                  <span id="cascadeWinnerBadge" style="font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem;">INLINE</span>
+                  <span>Переможець:</span>
+                  <span id="cascadeWinnerBadge" style="font-family: var(--font-mono); font-weight: 700; font-size: 1rem;">Inline</span>
                 </div>
-                <p id="cascadeWinnerReason" style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem; color: var(--text-secondary);">
-                  Вбудований рядок в атрибуті style="..." перемагає всі правила з файлу та блоку &lt;style&gt;!
+                <p id="cascadeWinnerReason" style="font-size: 0.9rem; line-height: 1.55; margin-bottom: 0.75rem; color: var(--text-secondary);">
+                  Вбудований стиль прямо в тегу переміг, бо він найближче до слова!
                 </p>
 
-                <div class="inspector-title" style="font-size: 0.9rem; margin-bottom: 0.5rem;">ІЄРАРХІЯ ПРАВИЛ У БРАУЗЕРІ:</div>
-                <div class="rule-hierarchy-item" id="ruleInline">1. Inline style="..." (Специфічність: 1,0,0,0)</div>
-                <div class="rule-hierarchy-item" id="ruleInternal">2. Internal &lt;style&gt; (Специфічність: 0,0,0,1)</div>
-                <div class="rule-hierarchy-item" id="ruleExternal">3. External style.css (Специфічність: 0,0,0,1)</div>
+                <div class="inspector-title" style="font-size: 0.85rem; margin-bottom: 0.4rem;">Хто головніший:</div>
+                <div class="rule-hierarchy-item" id="ruleInline">1. Вбудований style="..." (Найсильніший)</div>
+                <div class="rule-hierarchy-item" id="ruleInternal">2. Блок &lt;style&gt; на сторінці</div>
+                <div class="rule-hierarchy-item" id="ruleExternal">3. Зовнішній файл style.css</div>
               </div>
             </div>
           </div>
@@ -385,126 +447,160 @@
     <section id="topic3" class="section">
       <div class="container">
         <div class="section-header">
-          <div class="lesson-badge">ТЕМА 3 • СИНТАКСИС ТА ТОЧНІСТЬ</div>
-          <h2 class="section-title">3. БАЗОВІ <span class="text-gradient">СЕЛЕКТОРИ CSS</span></h2>
+          <div class="lesson-badge">Тема 3 · Селектори</div>
+          <h2 class="section-title">3. Базові селектори: як покликати потрібний елемент</h2>
           <p class="section-subtitle">
-            Універсальний селектор (*), селектор тегу, селектор класу (.), селектор ідентифікатора (#), групування селекторів (,) та селектор нащадків (пробіл).
+            Уявіть, що ви вчитель у класі. Як ви можете звернутися до учнів? Точно так само працюють селектори в CSS!
           </p>
         </div>
 
-        <!-- Accordions with Detailed Explanations -->
+        <!-- 4 типи селекторів через шкільний клас -->
         <div class="accordion-group">
           <div class="accordion-item active">
             <button class="accordion-header">
-              <span>1. Універсальний селектор (*) та Селектор тегу</span>
+              <span>1. Селектор тегу (p, h1, a) — «Усі учні 10-А класу!»</span>
               <span class="accordion-icon">−</span>
             </button>
             <div class="accordion-content">
               <p style="margin-bottom: 0.75rem;">
-                <strong>Універсальний селектор <code>*</code></strong> обирає абсолютно всі елементи вебсторінки без винятку. Його найчастіше використовують для так званого «скидання стилів» (CSS Reset), наприклад, встановлення <code>box-sizing: border-box; margin: 0;</code> для передбачуваного розрахунку розмірів.
+                Коли ми пишемо просто <code>p { color: blue; }</code>, це означає: «Знайти <strong>всі абзаци</strong> на сторінці та пофарбувати їх у синій колір».
               </p>
-              <p>
-                <strong>Селектор тегу (Type Selector)</strong> вказує назву HTML-тегу без дужок (наприклад: <code>h1</code>, <code>p</code>, <code>a</code>, <code>button</code>, <code>table</code>). Застосовує стиль до кожного екземпляра вказаного тегу на всій сторінці.
+              <p style="font-size: 0.9rem; color: var(--text-secondary);">
+                Селектор <code>*</code> означає «Уся школа без винятку!». Його часто ставлять на початку файлу, щоб прибрати зайві відступи за замовчуванням.
               </p>
             </div>
           </div>
 
           <div class="accordion-item">
             <button class="accordion-header">
-              <span>2. Селектор класу (.class-name) — головний інструмент вебдизайнера</span>
+              <span>2. Селектор класу (.card, .badge) — «Усі, у кого значок чергового!»</span>
               <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-content">
               <p style="margin-bottom: 0.75rem;">
-                <strong>Клас</strong> створюється для багаторазового стилізування групи елементів. У CSS селектор класу обов'язково починається з <strong>крапки</strong>: <code>.card</code>, <code>.button-primary</code>, <code>.badge</code>.
+                Клас — це як однаковий значок або форма. Будь-який учень може надіти значок чергового. У CSS клас <strong>завжди починається з крапки <code>.</code></strong>:
               </p>
-              <div style="background: var(--bg-secondary); padding: 1rem; border-left: 4px solid var(--accent-blue); margin-bottom: 0.75rem; font-family: var(--font-mono); font-size: 0.9rem;">
-                /* У CSS файлі: */<br>
-                .highlight { background-color: #facc15; font-weight: bold; }<br><br>
-                &lt;!-- В HTML документі (БЕЗ КРАПКИ!): --&gt;<br>
-                &lt;p class="highlight"&gt;Важливе повідомлення для учнів&lt;/p&gt;
+              <div style="background: var(--bg-secondary); padding: 0.85rem; border-left: 3px solid var(--accent-blue); margin-bottom: 0.75rem; font-family: var(--font-mono); font-size: 0.88rem;">
+                /* У файлі CSS (ставимо крапку!): */<br>
+                .badge { background-color: yellow; }<br><br>
+                &lt;!-- В HTML (БЕЗ крапки!): --&gt;<br>
+                &lt;span class="badge"&gt;Черговий учень&lt;/span&gt;
               </div>
               <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                Один HTML-елемент може містити одразу декілька класів через пробіл: <code>&lt;button class="btn btn-blue btn-large"&gt;</code>.
+                Клас можна давати хоч 100 різним елементам сторінки: кнопкам, картинкам, заголовкам.
               </p>
             </div>
           </div>
 
           <div class="accordion-item">
             <button class="accordion-header">
-              <span>3. Селектор ідентифікатора (#id-name) — унікальний елемент</span>
+              <span>3. Селектор ID (#hero, #main-header) — «Один конкретний староста класу!»</span>
               <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-content">
               <p style="margin-bottom: 0.75rem;">
-                <strong>Ідентифікатор ID</strong> у CSS позначається знаком <strong>решітки <code>#</code></strong>. Він призначений для стилізації та адресації одного-єдиного унікального об'єкта на сторінці (наприклад: <code>#main-nav</code>, <code>#site-footer</code>).
+                Ідентифікатор ID у CSS <strong>починається з решітки <code>#</code></strong>. Він дається тільки <strong>одному єдиному</strong> елементу на всій сторінці (як паспорт або номер телефону):
               </p>
               <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                За стандартом W3C однаковий <code>id</code> не може повторюватися на одній сторінці двічі! Селектор ID має набагато вищу вагу специфічності за селектор класу.
+                У класі може бути тільки один староста. Тому однаковий ID ніколи не повинен повторюватися двічі на одній вебсторінці!
               </p>
             </div>
           </div>
 
           <div class="accordion-item">
             <button class="accordion-header">
-              <span>4. Комбіновані селектори: Групування (,) та Нащадки (пробіл)</span>
+              <span>4. Кома та пробіл: як об'єднувати команди</span>
               <span class="accordion-icon">+</span>
             </button>
             <div class="accordion-content">
               <p style="margin-bottom: 0.75rem;">
-                <strong>Групування селекторів (через кому):</strong> якщо потрібно надати однаковий стиль різним елементам, їхні селектори перелічують через кому. Це скорочує код і уникає дублювання:
-                <code>h1, h2, h3, .custom-title { font-family: 'Space Grotesk', sans-serif; }</code>.
+                <strong>Кома <code>,</code></strong> означає «І той, і цей»: <code>h1, h2, p { color: black; }</code> пофарбує і h1, і h2, і p однаково.
               </p>
               <p>
-                <strong>Селектор нащадків (через пробіл):</strong> вибирає елементи лише тоді, коли вони розташовані всередині іншого елемента. Наприклад, <code>nav a { color: white; }</code> змінить колір посилань тільки всередині блоку навігації <code>&lt;nav&gt;</code>, не чіпаючи інші посилання сторінки!
+                <strong>Пробіл</strong> означає «Тільки якщо лежить всередині»: <code>ul li { color: red; }</code> пофарбує лише ті пункти <code>li</code>, які лежать всередині списку <code>ul</code>.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- ІНТЕРАКТИВНИЙ ТРЕНАЖЕР СЕЛЕКТОРІВ (CSS SELECTOR PLAYGROUND) -->
-        <div class="selector-playground">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
-            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">🎮 ТРЕНАЖЕР БАЗОВИХ СЕЛЕКТОРІВ (PLAYGROUND)</h3>
-            <span class="badge badge-yellow">ЖИВИЙ ПОШУК У DOM</span>
+        <!-- 3 ГОЛОВНІ ПОМИЛКИ НОВАЧКА (ОБЕРЕЖНО, ГРАБЛІ!) -->
+        <div style="margin-top: 2rem;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.35rem;">
+            ⚠️ Обережно, граблі! 3 головні помилки початківців
+          </h3>
+          <p style="font-size: 0.92rem; color: var(--text-secondary);">
+            Усі, хто вперше вчить CSS, наступають на ці 3 помилки. Запам'ятайте їх, щоб не витрачати години на пошук:
+          </p>
+
+          <div class="mistakes-grid">
+            <div class="mistake-card">
+              <span class="mistake-badge">Помилка №1</span>
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Крапка в HTML</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">У HTML крапку ставити не можна!</p>
+              <div class="mistake-code-row mistake-wrong">❌ &lt;p class=".title"&gt;</div>
+              <div class="mistake-code-row mistake-right">✅ &lt;p class="title"&gt;</div>
+            </div>
+
+            <div class="mistake-card">
+              <span class="mistake-badge">Помилка №2</span>
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Забута крапка в CSS</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">У CSS перед класом крапка обов'язкова!</p>
+              <div class="mistake-code-row mistake-wrong">❌ title { color: red; }</div>
+              <div class="mistake-code-row mistake-right">✅ .title { color: red; }</div>
+            </div>
+
+            <div class="mistake-card">
+              <span class="mistake-badge">Помилка №3</span>
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem;">Забута крапка з комою ;</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Без ; команди злипаються в кашу:</p>
+              <div class="mistake-code-row mistake-wrong">❌ color: red font-size: 18px</div>
+              <div class="mistake-code-row mistake-right">✅ color: red; font-size: 18px;</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ТРЕНАЖЕР СЕЛЕКТОРІВ -->
+        <div class="selector-playground" style="margin-top: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem;">🎮 Тренажер селекторів у дії</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #64748b;">клікайте селектори вгорі</span>
           </div>
 
-          <p style="font-size: 0.95rem; margin-bottom: 1.25rem;">
-            Оберіть швидкий селектор або введіть свій власний у рядок пошуку. Спостерігайте, які саме вузли віртуальної сторінки підсвічуються червоним контуром та як це виглядає в коді дерева DOM:
+          <p style="font-size: 0.95rem; margin-bottom: 1.25rem; max-width: 72ch;">
+            Натискайте кнопки з селекторами або спробуйте ввести свій власний. Дивіться, які саме блоки у віртуальному вікні обводяться червоною рамочкою:
           </p>
 
           <div class="selector-toolbar">
             <div class="selector-quick-buttons">
-              <button class="sel-btn" data-sel="*">* (Всі)</button>
-              <button class="sel-btn" data-sel="h2">h2 (Тег)</button>
-              <button class="sel-btn" data-sel="p">p (Абзаци)</button>
-              <button class="sel-btn active" data-sel=".card">.card (Клас)</button>
-              <button class="sel-btn" data-sel=".badge">.badge (Клас)</button>
-              <button class="sel-btn" data-sel="#special-offer">#special-offer (ID)</button>
-              <button class="sel-btn" data-sel="h2, p">h2, p (Групування)</button>
-              <button class="sel-btn" data-sel="ul li">ul li (Нащадки)</button>
+              <button class="sel-btn" data-sel="*">* (Уся сторінка)</button>
+              <button class="sel-btn" data-sel="h2">h2 (Усі заголовки h2)</button>
+              <button class="sel-btn" data-sel="p">p (Усі абзаци)</button>
+              <button class="sel-btn active" data-sel=".card">.card (Усі картки)</button>
+              <button class="sel-btn" data-sel=".badge">.badge (Значки)</button>
+              <button class="sel-btn" data-sel="#special-offer">#special-offer (Один староста ID)</button>
+              <button class="sel-btn" data-sel="h2, p">h2, p (І заголовки, і текст)</button>
+              <button class="sel-btn" data-sel="ul li">ul li (Пункти в списку)</button>
             </div>
 
             <div class="selector-input-bar">
-              <input type="text" id="playgroundSelectorInput" class="selector-input" value=".card" placeholder="Введіть будь-який селектор, наприклад: .card або h2...">
+              <input type="text" id="playgroundSelectorInput" class="selector-input" value=".card" placeholder="Напишіть будь-який селектор, наприклад: .card або h2...">
             </div>
           </div>
 
           <div class="selector-stats-ribbon">
             <div>
-              <strong>ТИП:</strong> <span id="selectorTypeBadge" style="color: var(--accent-blue); font-weight: 700;">Селектор класу (.)</span>
+              <strong>Тип команди:</strong> <span id="selectorTypeBadge" style="color: var(--accent-blue); font-weight: 700;">Селектор класу (.)</span>
             </div>
             <div>
-              <strong>ЗНАЙДЕНО:</strong> <span id="matchedCountBadge" style="color: var(--accent-vermilion); font-weight: 700;">2 елементи</span>
+              <strong>Знайдено елементів:</strong> <span id="matchedCountBadge" style="color: var(--accent-vermilion); font-weight: 700;">2 елементи</span>
             </div>
-            <div style="width: 100%; font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem;" id="selectorDescriptionText">
-              Обирає всі елементи, які мають клас "card".
+            <div style="width: 100%; font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;" id="selectorDescriptionText">
+              Обирає всі елементи, які мають атрибут class="card".
             </div>
           </div>
 
-          <!-- Virtual Mock Browser and DOM Tree -->
+          <!-- Virtual Window and DOM Tree -->
           <div class="virtual-dom-grid">
-            <!-- Left: Mock Web Page -->
             <div class="mock-browser-window">
               <div class="mock-window-header">
                 <span class="window-dot dot-red"></span>
@@ -521,40 +617,39 @@
                 <div class="dom-item card" data-node-id="2">
                   <span class="dom-tag-label">&lt;div class="card"&gt;</span>
                   <div style="font-weight: 600; margin-bottom: 0.35rem;">Картка курсу: HTML & CSS</div>
-                  <div style="font-size: 0.85rem; color: #475569;">Вивчаємо основи сучасної розмітки та оформлення вебсторінок.</div>
+                  <div style="font-size: 0.85rem; color: #475569;">Створюємо гарні сторінки без страху перед кодом.</div>
                 </div>
 
                 <div class="dom-item card" id="special-offer" data-node-id="3">
                   <span class="dom-tag-label">&lt;div class="card" id="special-offer"&gt;</span>
-                  <span class="badge" style="background: #facc15; padding: 0.15rem 0.4rem; font-size: 0.75rem; font-weight: 700;">ТОП КУРС</span>
-                  <div style="font-weight: 600; margin: 0.35rem 0;">Практикум з дизайну інтерфейсів</div>
+                  <span class="badge" style="background: #facc15; padding: 0.15rem 0.4rem; font-size: 0.75rem; font-weight: 700;">Значок</span>
+                  <div style="font-weight: 600; margin: 0.35rem 0;">Картка старости (унікальний ID)</div>
                 </div>
 
                 <div class="dom-item" data-node-id="4">
                   <span class="dom-tag-label">&lt;p&gt;</span>
-                  <span>Навчальна програма затверджена МОН України для 10–11 класів.</span>
+                  <span>Навчальна програма з інформатики для 10–11 класів.</span>
                 </div>
 
                 <div class="dom-item" data-node-id="5">
                   <span class="dom-tag-label">&lt;ul&gt;</span>
                   <ul style="padding-left: 1.25rem; margin-top: 0.35rem; font-size: 0.85rem;">
-                    <li class="dom-item" data-node-id="6"><span class="dom-tag-label">&lt;li&gt;</span> Селектори тегів</li>
-                    <li class="dom-item" data-node-id="7"><span class="dom-tag-label">&lt;li&gt;</span> Селектори класів</li>
+                    <li class="dom-item" data-node-id="6"><span class="dom-tag-label">&lt;li&gt;</span> Перший пункт списку</li>
+                    <li class="dom-item" data-node-id="7"><span class="dom-tag-label">&lt;li&gt;</span> Другий пункт списку</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <!-- Right: DOM Tree Code View -->
             <div class="dom-tree-panel" id="mockDomTree">
-              <div style="color: #64748b; margin-bottom: 0.75rem; font-size: 0.8rem;">ДЕРЕВО ДОКУМЕНТА (DOM STRUCTURE):</div>
+              <div style="color: #64748b; margin-bottom: 0.75rem; font-size: 0.8rem;">Дерево документа (DOM structure):</div>
               <div class="tree-code-line" data-tree-id="1">&lt;h2&gt;Вітаємо у вебстудії 10-А&lt;/h2&gt;</div>
               <div class="tree-code-line matched-tree-line" data-tree-id="2">&lt;div class="card"&gt;...&lt;/div&gt;</div>
               <div class="tree-code-line matched-tree-line" data-tree-id="3">&lt;div class="card" id="special-offer"&gt;...&lt;/div&gt;</div>
               <div class="tree-code-line" data-tree-id="4">&lt;p&gt;Навчальна програма...&lt;/p&gt;</div>
               <div class="tree-code-line" data-tree-id="5">&lt;ul&gt;</div>
-              <div class="tree-code-line" data-tree-id="6">  &lt;li&gt;Селектори тегів&lt;/li&gt;</div>
-              <div class="tree-code-line" data-tree-id="7">  &lt;li&gt;Селектори класів&lt;/li&gt;</div>
+              <div class="tree-code-line" data-tree-id="6">  &lt;li&gt;Перший пункт&lt;/li&gt;</div>
+              <div class="tree-code-line" data-tree-id="7">  &lt;li&gt;Другий пункт&lt;/li&gt;</div>
               <div class="tree-code-line">&lt;/ul&gt;</div>
             </div>
           </div>
@@ -564,224 +659,217 @@
     </section>
 
     <!-- ====================================================================
-         ТЕМА 4: СТИЛІ ТЕКСТУ ТА ШРИФТІВ (CSS TYPOGRAPHY)
+         ТЕМА 4: СТИЛІ ТЕКСТУ ТА ШРИФТІВ
          ==================================================================== -->
     <section id="topic4" class="section" style="background: var(--bg-secondary); border-top: var(--border-width) solid var(--border-color); border-bottom: var(--border-width) solid var(--border-color);">
       <div class="container">
         <div class="section-header">
-          <div class="lesson-badge">ТЕМА 4 • ВЕБТИПОГРАФІКА</div>
-          <h2 class="section-title">4. СТИЛІ <span class="text-gradient">ТЕКСТУ ТА ШРИФТІВ</span></h2>
+          <div class="lesson-badge">Тема 4 · Текст та шрифти</div>
+          <h2 class="section-title">4. Стилі тексту: робимо слова виразними</h2>
           <p class="section-subtitle">
-            Властивості сімейства шрифтів font-family, розмір font-size (px, rem), насиченість font-weight, висота рядка line-height, вирівнювання text-align та декорування text-decoration.
+            Шпаргалка з перекладом основних англійських слів на зрозумілу українську мову та жива студія шрифтів.
           </p>
         </div>
 
-        <!-- Typography Cheatsheet Table -->
+        <!-- Словничок для дітей -->
         <div class="table-responsive-wrapper">
           <table class="tag-cheat-table">
             <thead>
               <tr>
-                <th>Властивість CSS</th>
-                <th>Опис та призначення</th>
-                <th>Типові значення та приклади</th>
+                <th>Англійське слово в CSS</th>
+                <th>Що це означає по-простому?</th>
+                <th>Приклад у коді</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td><code>color</code></td>
+                <td><strong>Колір букв</strong> (не фону!). Можна писати назвами або кодом #121212.</td>
+                <td><code>color: blue;</code> або <code>color: #ff4732;</code></td>
+              </tr>
+              <tr>
+                <td><code>background-color</code></td>
+                <td><strong>Колір підкладки</strong> під текстом (як пофарбувати аркуш паперу).</td>
+                <td><code>background-color: #facc15;</code> (жовтий)</td>
+              </tr>
+              <tr>
                 <td><code>font-family</code></td>
-                <td>Гарнітура (сімейство) шрифту з резервним списком (fallback stack).</td>
-                <td><code>'Space Grotesk', Arial, sans-serif</code>, <code>'Times New Roman', serif</code>, <code>monospace</code></td>
+                <td><strong>Гарнітура (вигляд) літер</strong>: із засічками, рівний або як у програмістів.</td>
+                <td><code>font-family: 'Space Grotesk', sans-serif;</code></td>
               </tr>
               <tr>
                 <td><code>font-size</code></td>
-                <td>Розмір кегля шрифту. Рекомендовано використовувати відносні <code>rem</code>.</td>
-                <td><code>16px</code>, <code>1rem</code>, <code>1.25rem</code>, <code>2.5rem</code>, <code>120%</code></td>
+                <td><strong>Розмір літер</strong>. 1rem = звичайний текст (16px), 2rem = великий заголовок (32px).</td>
+                <td><code>font-size: 1.25rem;</code> або <code>font-size: 20px;</code></td>
               </tr>
               <tr>
                 <td><code>font-weight</code></td>
-                <td>Насиченість (товщина) літер.</td>
-                <td><code>normal (400)</code>, <code>bold (700)</code>, числові значення від <code>100</code> до <code>900</code></td>
-              </tr>
-              <tr>
-                <td><code>font-style</code></td>
-                <td>Накреслення шрифту (пряме чи курсивне).</td>
-                <td><code>normal</code>, <code>italic</code>, <code>oblique</code></td>
-              </tr>
-              <tr>
-                <td><code>color</code></td>
-                <td>Основний колір літер тексту.</td>
-                <td><code>#1e293b</code> (HEX), <code>rgb(37, 99, 235)</code>, <code>hsl(217, 91%, 60%)</code>, <code>crimson</code></td>
-              </tr>
-              <tr>
-                <td><code>text-align</code></td>
-                <td>Горизонтальне вирівнювання тексту всередині блоку.</td>
-                <td><code>left</code> (по лівому краю), <code>center</code> (по центру), <code>right</code>, <code>justify</code> (по ширині)</td>
+                <td><strong>Жирність літер</strong>. 400 — звичайний текст, 700 — напівжирний (bold).</td>
+                <td><code>font-weight: 700;</code></td>
               </tr>
               <tr>
                 <td><code>line-height</code></td>
-                <td>Інтерліньяж (висота рядка / міжрядковий інтервал).</td>
-                <td><code>1.5</code>, <code>1.6</code> (безрозмірний коефіцієнт), <code>24px</code>, <code>150%</code></td>
+                <td><strong>Повітря між рядками</strong>. Щоб рядки не злипалися в очах, ставлять 1.5–1.7.</td>
+                <td><code>line-height: 1.6;</code></td>
               </tr>
               <tr>
                 <td><code>letter-spacing</code></td>
-                <td>Трекінг (додатковий простір між літерами).</td>
-                <td><code>normal</code>, <code>1px</code>, <code>2px</code>, <code>-0.5px</code></td>
+                <td><strong>Відстань між літерами</strong> у слові (робить заголовок стильним).</td>
+                <td><code>letter-spacing: 1px;</code></td>
               </tr>
               <tr>
-                <td><code>text-decoration</code></td>
-                <td>Оформлення ліній тексту (підкреслення, закреслення).</td>
-                <td><code>none</code> (зняти підкреслення з посилань!), <code>underline</code>, <code>line-through</code></td>
+                <td><code>text-align</code></td>
+                <td><strong>Куди притиснути текст</strong>: ліворуч (left), по центру (center) чи праворуч (right).</td>
+                <td><code>text-align: center;</code></td>
               </tr>
               <tr>
-                <td><code>text-transform</code></td>
-                <td>Регістр літер тексту.</td>
-                <td><code>uppercase</code> (ВСІ ВЕЛИКІ), <code>lowercase</code>, <code>capitalize</code> (Кожне Слово З Великої), <code>none</code></td>
-              </tr>
-              <tr>
-                <td><code>text-shadow</code></td>
-                <td>Тінь від тексту (зміщення X, зміщення Y, радіус розмиття, колір).</td>
-                <td><code>2px 2px 4px rgba(0,0,0,0.3)</code>, <code>3px 3px 0px #000000</code></td>
+                <td><code>text-decoration: none;</code></td>
+                <td><strong>Магічне правило</strong>, яке знімає синє підкреслення з посилань.</td>
+                <td><code>text-decoration: none;</code></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- ІНТЕРАКТИВНА ЛАБОРАТОРІЯ ТИПОГРАФІКИ (CSS TYPOGRAPHY STUDIO) -->
+        <!-- СТУДІЯ ТИПОГРАФІКИ -->
         <div class="typography-studio">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
-            <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">🎛️ ІНТЕРАКТИВНА СТУДІЯ ВЕБТИПОГРАФІКИ</h3>
-            <span class="badge badge-red">ГЕНЕРАТОР ЖИВОГО КОДУ</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem;">🎛️ Студія вебтипографіки: налаштуйте свій текст</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #64748b;">рухайте повзунки</span>
           </div>
 
-          <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">
-            Змінюйте параметри повзунками та селекторами. Текст змінюватиметься наживо, а готова CSS-декларація згенерується для копіювання в один клік:
+          <p style="font-size: 0.95rem; margin-bottom: 1.25rem; max-width: 72ch;">
+            Натисніть один із готових пресетів або змінюйте повзунки самостійно. Текст праворуч змінюється на льоту, а готовий код можна скопіювати однією кнопкою:
           </p>
 
+          <div class="typo-presets-bar">
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; display: flex; align-items: center; margin-right: 0.25rem;">Швидкі стилі:</span>
+            <button class="preset-btn" data-preset="startup">Сучасний сайт</button>
+            <button class="preset-btn" data-preset="editorial">Книжковий роман</button>
+            <button class="preset-btn" data-preset="technical">Код хакера</button>
+          </div>
+
           <div class="studio-grid">
-            <!-- Controls Column -->
             <div class="controls-column">
-              <!-- Font Family & Weight -->
               <div class="control-card">
                 <div class="control-title">
-                  <span>1. ШРИФТ ТА НАСИЧЕНІСТЬ</span>
-                  <span class="badge badge-yellow">Гарнітура</span>
+                  <span>1. Шрифт та накреслення</span>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">font-family:</span>
+                  <span class="control-label">Шрифт:</span>
                   <select id="typoFontFamily" class="control-select">
                     <option value="'Work Sans', sans-serif">Work Sans (Сучасний гротеск)</option>
-                    <option value="'Space Grotesk', sans-serif">Space Grotesk (Технічний Display)</option>
+                    <option value="'Space Grotesk', sans-serif">Space Grotesk (Геометричний)</option>
                     <option value="'IBM Plex Mono', monospace">IBM Plex Mono (Моноширинний код)</option>
-                    <option value="Georgia, serif">Georgia (Класичний із засічками Serif)</option>
-                    <option value="Impact, sans-serif">Impact (Масивний плакатний)</option>
+                    <option value="Georgia, serif">Georgia (Книжковий із засічками)</option>
+                    <option value="Impact, sans-serif">Impact (Плакатний жирний)</option>
                   </select>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">font-weight:</span>
+                  <span class="control-label">Жирність:</span>
                   <select id="typoFontWeight" class="control-select">
-                    <option value="300">300 (Light / Тонкий)</option>
-                    <option value="400" selected>400 (Normal / Звичайний)</option>
-                    <option value="600">600 (Semi-bold / Напівжирний)</option>
-                    <option value="700">700 (Bold / Жирний)</option>
-                    <option value="900">900 (Black / Надзвичайно жирний)</option>
+                    <option value="300">300 (Тонкий)</option>
+                    <option value="400" selected>400 (Звичайний)</option>
+                    <option value="600">600 (Напівжирний)</option>
+                    <option value="700">700 (Жирний / Bold)</option>
+                    <option value="900">900 (Надзвичайно жирний)</option>
                   </select>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">font-style:</span>
-                  <button id="btnToggleItalic" class="toggle-opt-btn" style="flex: 1;"><i>italic</i> (Курсив: вимкнено)</button>
+                  <span class="control-label">Курсив:</span>
+                  <button id="btnToggleItalic" class="toggle-opt-btn" style="flex: 1;">italic (Курсив: вимкнено)</button>
                 </div>
               </div>
 
-              <!-- Size, Line Height & Spacing -->
               <div class="control-card">
                 <div class="control-title">
-                  <span>2. РОЗМІР ТА ВІДСТУПИ</span>
-                  <span class="badge badge-yellow">Кегль</span>
+                  <span>2. Розмір та повітря між рядками</span>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">font-size:</span>
-                  <input type="range" id="typoFontSize" class="control-range" min="14" max="36" value="18" step="1">
+                  <span class="control-label">Розмір літер:</span>
+                  <input type="range" id="typoFontSize" class="control-range" min="14" max="32" value="18" step="1">
                   <span class="control-val-badge" id="valFontSize">18px (1.12rem)</span>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">line-height:</span>
-                  <input type="range" id="typoLineHeight" class="control-range" min="1.0" max="2.4" value="1.6" step="0.1">
+                  <span class="control-label">Міжрядковий інтервал:</span>
+                  <input type="range" id="typoLineHeight" class="control-range" min="1.1" max="2.3" value="1.6" step="0.1">
                   <span class="control-val-badge" id="valLineHeight">1.6</span>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">letter-spacing:</span>
-                  <input type="range" id="typoLetterSpacing" class="control-range" min="-1" max="6" value="0" step="0.5">
+                  <span class="control-label">Між літерами:</span>
+                  <input type="range" id="typoLetterSpacing" class="control-range" min="-1" max="5" value="0" step="0.5">
                   <span class="control-val-badge" id="valLetterSpacing">0px</span>
                 </div>
               </div>
 
-              <!-- Colors & Alignment -->
               <div class="control-card">
                 <div class="control-title">
-                  <span>3. КОЛІР, ВИРІВНЮВАННЯ ТА ДЕКОР</span>
-                  <span class="badge badge-yellow">Стиль</span>
+                  <span>3. Колір та розташування</span>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">color:</span>
-                  <input type="color" id="typoColor" value="#0f172a" style="border: 2px solid var(--border-color); height: 36px; cursor: pointer; width: 60px; padding: 2px;">
-                  <span style="font-family: var(--font-mono); font-size: 0.85rem;">Оберіть колір тексту</span>
+                  <span class="control-label">Колір літер:</span>
+                  <input type="color" id="typoColor" value="#0f172a" style="border: 1.5px solid var(--border-color); height: 34px; cursor: pointer; width: 55px; padding: 2px;">
+                  <span style="font-family: var(--font-mono); font-size: 0.85rem;">Оберіть колір</span>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">text-align:</span>
+                  <span class="control-label">Вирівнювання:</span>
                   <select id="typoTextAlign" class="control-select">
                     <option value="left" selected>left (По лівому краю)</option>
                     <option value="center">center (По центру)</option>
                     <option value="right">right (По правому краю)</option>
-                    <option value="justify">justify (По ширині абзацу)</option>
+                    <option value="justify">justify (По ширині)</option>
                   </select>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">text-decoration:</span>
+                  <span class="control-label">Лінії:</span>
                   <select id="typoTextDecor" class="control-select">
-                    <option value="none" selected>none (Без ліній)</option>
+                    <option value="none" selected>none (Без підкреслення)</option>
                     <option value="underline">underline (Підкреслений)</option>
                     <option value="line-through">line-through (Закреслений)</option>
                   </select>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">text-transform:</span>
+                  <span class="control-label">Регістр літер:</span>
                   <select id="typoTextTransform" class="control-select">
-                    <option value="none" selected>none (Звичайний)</option>
-                    <option value="uppercase">uppercase (ВЕЛИКІ ЛІТЕРИ)</option>
-                    <option value="lowercase">lowercase (маленькі літери)</option>
+                    <option value="none" selected>none (Як у тексті)</option>
+                    <option value="uppercase">uppercase (УСІ ВЕЛИКІ)</option>
+                    <option value="lowercase">lowercase (усі маленькі)</option>
                     <option value="capitalize">capitalize (Кожне З Великої)</option>
                   </select>
                 </div>
                 <div class="control-row">
-                  <span class="control-label">text-shadow:</span>
+                  <span class="control-label">Тінь тексту:</span>
                   <select id="typoTextShadow" class="control-select">
                     <option value="none" selected>none (Без тіні)</option>
-                    <option value="2px 2px 4px rgba(0,0,0,0.3)">М'яка тінь (2px 2px 4px)</option>
-                    <option value="3px 3px 0px #ff4732">Neo-Brutalism акцент (3px 3px 0 #ff4732)</option>
-                    <option value="0 0 10px #2563eb">Світіння Neon (0 0 10px #2563eb)</option>
+                    <option value="2px 2px 4px rgba(0,0,0,0.25)">М'яка розмита тінь</option>
+                    <option value="3px 3px 0px #121212">Чітка графічна тінь</option>
                   </select>
+                </div>
+
+                <!-- Accessibility Contrast Meter -->
+                <div class="contrast-meter-ribbon">
+                  <span>Зручність для очей:</span>
+                  <span id="contrastRatioText" class="contrast-score-pass">Контраст 14.2:1 · Дуже легко читати</span>
                 </div>
               </div>
             </div>
 
-            <!-- Preview and Code Column -->
+            <!-- Preview and Code -->
             <div class="preview-column">
               <div class="studio-preview-box" id="typoPreviewBox">
-                <h2 class="studio-target-h2" id="typoTargetH2">Сучасний вебдизайн та верстка</h2>
+                <h2 class="studio-target-h2" id="typoTargetH2">Мій перший стильний заголовок</h2>
                 <p class="studio-target-p" id="typoTargetP">
-                  Каскадні таблиці стилів відкривають повний контроль над естетикою та зручністю читання вебсторінки.
-                  Правильно підібрані шрифти, гармонійний інтерліньяж і контрастний колір роблять інтерфейс приємним, професійним і доступним для кожного користувача!
+                  Каскадні таблиці стилів дозволяють перетворити будь-який нудний абзац на вишуканий журнальний текст.
+                  Зверніть увагу, наскільки легше читати, коли між рядками достатньо повітря, а колір літер чітко контрастує з білим папером!
                 </p>
               </div>
 
               <div class="generated-code-card">
                 <div class="code-card-header">
-                  <span class="code-card-title">&lt;style&gt; ЗГЕНЕРОВАНИЙ CSS-КОД:</span>
-                  <button class="btn-copy-code" id="btnCopyTypoCode">КОПІЮВАТИ CSS 📋</button>
+                  <span class="code-card-title">Згенерований CSS-код:</span>
+                  <button class="btn-copy-code" id="btnCopyTypoCode">Скопіювати CSS 📋</button>
                 </div>
-                <div class="code-card-body" id="typoGeneratedCode">
-/* Тут згенерується чистий CSS */
-                </div>
+                <div class="code-card-body" id="typoGeneratedCode"></div>
               </div>
             </div>
           </div>
@@ -791,49 +879,48 @@
     </section>
 
     <!-- ====================================================================
-         ПРАКТИЧНА РОБОТА: СТИЛІЗАЦІЯ ВЕБСТОРІНКИ ЗА ДОПОМОГОЮ CSS
+         ПРАКТИЧНА РОБОТА ТА LIVE SANDBOX
          ==================================================================== -->
     <section id="practical-work" class="practical-section">
       <div class="container">
         <div class="section-header">
-          <div class="lesson-badge" style="background: var(--accent-green); color: #000;">⚙️ ПРАКТИЧНИЙ МОДУЛЬ</div>
-          <h2 class="section-title"><span class="text-gradient">ПРАКТИКУМ №3</span></h2>
+          <div class="lesson-badge" style="background: var(--accent-blue); color: #ffffff;">Практичний блок</div>
+          <h2 class="section-title">Практикум №3: стилізуємо візитку</h2>
           <p class="section-subtitle">
-            Тема: «Оформлення структури вебсторінки: підключення зовнішніх стилів, базові селектори тегів, класів та стилізація текстових елементів».
+            Спробуйте самостійно поєднати HTML та CSS прямо тут, в онлайн-пісочниці!
           </p>
         </div>
 
-        <!-- 4 Step Cards -->
         <div class="practical-steps-grid">
           <div class="step-card">
-            <div class="step-number">КРОК 1</div>
-            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Зв'язування файлів</h4>
+            <div class="step-number">Крок 1</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Файл style.css</h4>
             <p style="font-size: 0.85rem; color: var(--text-secondary);">
-              Створіть файл <code>style.css</code> поруч із <code>index.html</code>. У секції <code>&lt;head&gt;</code> підключіть його за допомогою тегу <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>.
+              Підключаємо стилі у тегу <code>&lt;head&gt;</code> через <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>.
             </p>
           </div>
 
           <div class="step-card">
-            <div class="step-number">КРОК 2</div>
-            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Стилі основи &lt;body&gt;</h4>
+            <div class="step-number">Крок 2</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Фон для body</h4>
             <p style="font-size: 0.85rem; color: var(--text-secondary);">
-              Задайте для <code>body</code> базовий шрифт (<code>font-family</code>), міжрядковий інтервал (<code>line-height: 1.6</code>), колір тексту та фоновий колір сторінки.
+              Задаємо для всієї сторінки приємний світлий колір фону <code>background-color: #f8fafc;</code> та гарний шрифт.
             </p>
           </div>
 
           <div class="step-card">
-            <div class="step-number">КРОК 3</div>
-            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Класи для карток</h4>
+            <div class="step-number">Крок 3</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Картка .user-card</h4>
             <p style="font-size: 0.85rem; color: var(--text-secondary);">
-              Створіть класи <code>.user-card</code>, <code>.card-badge</code> та <code>.card-title</code>. Налаштуйте відступи, рамки та плашки категорій.
+              Даємо білий колір картки, чорну рамку 3px та відступи <code>padding: 24px;</code>, щоб текст не лип до країв.
             </p>
           </div>
 
           <div class="step-card">
-            <div class="step-number">КРОК 4</div>
-            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Стилізація кнопок</h4>
+            <div class="step-number">Крок 4</div>
+            <h4 style="font-size: 1rem; margin-bottom: 0.35rem;">Кнопка .card-btn</h4>
             <p style="font-size: 0.85rem; color: var(--text-secondary);">
-              Оформіть посилання-кнопку <code>.card-btn</code>: приберіть підкреслення (<code>text-decoration: none</code>), задайте насиченість <code>font-weight: 700</code> та тінь <code>box-shadow</code>.
+              Робимо посилання схожим на справжню кнопку: <code>text-decoration: none;</code>, синій колір та жирний шрифт.
             </p>
           </div>
         </div>
@@ -841,16 +928,16 @@
         <!-- LIVE SANDBOX -->
         <div class="sandbox-container">
           <div class="sandbox-header">
-            <div class="sandbox-title">💻 ІНТЕРАКТИВНА ПІСОЧНИЦЯ: HTML5 + CSS3 (LIVE EDITOR)</div>
+            <div class="sandbox-title">💻 Живий редактор: змінюйте код і дивіться результат!</div>
             <div class="sandbox-btn-group">
-              <button class="sandbox-btn" id="sandboxRunBtn">▶ ВИКОНАТИ КОД</button>
-              <button class="sandbox-btn btn-reset" id="sandboxResetBtn">↺ Скинути до зразка</button>
+              <button class="sandbox-btn" id="sandboxRunBtn">Запустити код ▶</button>
+              <button class="sandbox-btn btn-reset" id="sandboxResetBtn">Скинути до зразка ↺</button>
             </div>
           </div>
 
           <div class="sandbox-tabs">
-            <button class="sandbox-tab-btn active" id="tabHtmlBtn">&lt;/&gt; index.html (Розмітка)</button>
-            <button class="sandbox-tab-btn" id="tabCssBtn">🎨 style.css (Стилі)</button>
+            <button class="sandbox-tab-btn active" id="tabHtmlBtn">&lt;/&gt; index.html (Каркас)</button>
+            <button class="sandbox-tab-btn" id="tabCssBtn">🎨 style.css (Стилі та краса)</button>
           </div>
 
           <div class="sandbox-workspace">
@@ -867,15 +954,15 @@
     </section>
 
     <!-- ====================================================================
-         ТЕСТ ЗНАНЬ (QUIZ)
+         ТЕСТ ЗНАНЬ
          ==================================================================== -->
     <section id="test-section" class="quiz-section">
       <div class="container">
         <div class="section-header">
-          <div class="lesson-badge" style="background: var(--accent-vermilion); color: #ffffff;">★ ПЕРЕВІРКА ЗНАНЬ</div>
-          <h2 class="section-title">ПІДСУМКОВИЙ ТЕСТ: <span class="text-gradient">ОСНОВИ CSS</span></h2>
+          <div class="lesson-badge" style="background: var(--accent-vermilion); color: #ffffff;">Перевірка знань</div>
+          <h2 class="section-title">Підсумковий тест: основи CSS</h2>
           <p class="section-subtitle">
-            Дайте відповіді на 10 контрольних запитань за матеріалами підручника та уроку. Отримайте миттєву оцінку за 12-бальною шкалою!
+            10 запитань без підступів. Дайте відповіді та миттєво дізнайтеся свою оцінку за шкільною 12-бальною системою!
           </p>
         </div>
 
@@ -884,20 +971,18 @@
             <div class="quiz-progress-bar-fill" id="quizProgressFill"></div>
           </div>
 
-          <div id="quizQuestionsContainer">
-            <!-- Questions rendered by js/css-lesson.js -->
-          </div>
+          <div id="quizQuestionsContainer"></div>
 
           <div class="quiz-results-card" id="quizResultsCard">
-            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem;">🎉 ТЕСТ ЗАВЕРШЕНО!</h3>
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem;">🎉 Тест завершено!</h3>
             <div class="quiz-score-badge" id="quizScoreBadge">10 / 10</div>
             <div class="quiz-grade-text" id="quizGradeText">
               Оцінка: 12 балів
             </div>
             <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 550px; margin: 0 auto 1.5rem auto;">
-              Чудова робота! Ви засвоїли поняття каскаду, селекторів, способів підключення стилів та оформлення тексту в CSS3.
+              Ви чудово впоралися! Тепер ви знаєте, що таке каскад, як підключати стилі та як оформлювати текст мовою CSS3.
             </p>
-            <a href="#practical-work" class="btn btn-primary">ПОВТОРИТИ ПРАКТИКУМ ⚙️</a>
+            <a href="#practical-work" class="btn btn-primary">Спробувати практикум ще раз</a>
           </div>
         </div>
 
@@ -913,29 +998,29 @@
         <div class="footer-brand">
           <div class="footer-logo">
             <span class="logo-badge">&lt;/&gt;</span>
-            <span>ВЕБТЕХНОЛОГІЇ 10–11 КЛАСИ</span>
+            <span>Вебтехнології 10–11 класи</span>
           </div>
           <p class="footer-text">
-            Інтерактивна навчальна онлайн-платформа з веброзробки для учнів 10–11 класів. Підручник «Вебтехнології» (автор Н. В. Речич), стандарти W3C та сучасний вебдизайн.
+            Інтерактивний онлайн-курс зі створення сучасних сайтів для українських старшокласників.
           </p>
         </div>
 
         <div class="footer-links">
-          <h4 class="footer-heading">НАВЧАЛЬНІ УРОКИ КУРСУ</h4>
+          <h4 class="footer-heading">Уроки курсу</h4>
           <ul>
             <li><a href="index.html">Урок 1: Веб-дизайн та структура сайту</a></li>
             <li><a href="html-basics.html">Урок 2: Основи мови HTML5</a></li>
-            <li><a href="css-basics.html" style="font-weight: 700; color: var(--accent-yellow);">Урок 3: Каскадні таблиці стилів CSS (Поточний)</a></li>
-            <li><a href="#practical-work">Практичний модуль №3 ⚙️</a></li>
+            <li><a href="css-basics.html" style="font-weight: 700; color: var(--accent-yellow);">Урок 3: Каскадні таблиці стилів CSS</a></li>
+            <li><a href="#practical-work">Практичний модуль №3</a></li>
           </ul>
         </div>
 
         <div class="footer-links">
-          <h4 class="footer-heading">СТАНДАРТИ ТА ДОВІДНИКИ</h4>
+          <h4 class="footer-heading">Корисні посилання</h4>
           <ul>
-            <li><a href="https://developer.mozilla.org/ru/docs/Web/CSS" target="_blank" rel="noopener noreferrer">MDN Web Docs (Довідник CSS)</a></li>
-            <li><a href="https://www.w3.org/Style/CSS/" target="_blank" rel="noopener noreferrer">Консорціум W3C CSS Standards</a></li>
-            <li><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts (Каталог шрифтів)</a></li>
+            <li><a href="https://developer.mozilla.org/ru/docs/Web/CSS" target="_blank" rel="noopener noreferrer">MDN Web Docs: Довідник CSS</a></li>
+            <li><a href="https://www.w3.org/Style/CSS/" target="_blank" rel="noopener noreferrer">Консорціум W3C CSS</a></li>
+            <li><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts: Безкоштовні шрифти</a></li>
           </ul>
         </div>
       </div>
@@ -947,6 +1032,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/css-lesson.js?v=1"></script>
+  <script src="js/css-lesson.js?v=3"></script>
 </body>
 </html>

@@ -1,34 +1,59 @@
 /* ==========================================================================
    УРОК 3: КАСКАДНІ ТАБЛИЦІ СТИЛІВ (CSS)
    Інтерактивні модулі, тренажери, типографічна лабораторія, пісочниця та тест
-   Курс «Вебтехнології» (10–11 класи) • Підручник Н. В. Речич • Стандарти W3C
+   Курс «Вебтехнології» (10–11 класи) • Стандарти W3C / WHATWG
+   Оновлено згідно з принципами frontend-design (чиста типографіка, живий зворотний зв'язок)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Системні компоненти сайту
   initThemeToggle();
+  initCourseDropdown();
   initMobileNavigation();
   initActiveNavHighlight();
   initScrollProgress();
   initAccordions();
 
   // 2. Інтерактивні навчальні блоки
-  initHeroComparison();
+  initHeroSwitchboard();
   initCssAnatomyModule();
   initCascadeBattleSimulator();
   initSelectorPlayground();
   initTypographyStudio();
 
-  // 3. Практична робота & Пісочниця & Тест
+  // 3. Практична робота, пісочниця & тест
   initCssSandbox();
   initQuiz();
 
-  console.log('🚀 Урок 3 (Каскадні таблиці стилів CSS) успішно ініціалізовано!');
+  console.log('🚀 Урок 3 (Основи CSS) успішно ініціалізовано!');
 });
 
 /* --------------------------------------------------------------------------
    1. СИСТЕМНІ КОМПОНЕНТИ
    -------------------------------------------------------------------------- */
+function initCourseDropdown() {
+  const dropdown = document.getElementById('courseDropdown');
+  const dropdownBtn = document.getElementById('courseDropdownBtn');
+  if (!dropdown || !dropdownBtn) return;
+
+  dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdown.classList.remove('open');
+    }
+  });
+}
+
 function initThemeToggle() {
   const themeBtn = document.getElementById('themeToggleBtn');
   if (!themeBtn) return;
@@ -56,7 +81,7 @@ function initMobileNavigation() {
     burgerBtn.textContent = navLinks.classList.contains('mobile-active') ? 'ЗАКРИТИ ✕' : 'МЕНЮ ☰';
   });
 
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
+  navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('mobile-active');
       burgerBtn.textContent = 'МЕНЮ ☰';
@@ -115,59 +140,86 @@ function initAccordions() {
 }
 
 /* --------------------------------------------------------------------------
-   2. HERO ЕКСПЕРИМЕНТ: БЕЗ CSS ПРОТИ З CSS
+   2. HERO INTERACTIVE: CSS SWITCHBOARD (ЖИВИЙ ПУЛЬТ КЕРУВАННЯ ШАРАМИ CSS)
    -------------------------------------------------------------------------- */
-function initHeroComparison() {
-  const btnRaw = document.getElementById('heroToggleRawBtn');
-  const btnStyled = document.getElementById('heroToggleStyledBtn');
-  const previewBox = document.getElementById('heroPreviewBox');
+function initHeroSwitchboard() {
+  const target = document.getElementById('heroSwitchboardTarget');
+  const codeRibbon = document.getElementById('heroSwitchboardCode');
+  const togglePills = document.querySelectorAll('.switch-pill');
 
-  if (!btnRaw || !btnStyled || !previewBox) return;
+  if (!target || !codeRibbon) return;
 
-  const rawHTML = `
-    <div style="font-family: 'Times New Roman', serif; color: #000000; background: #ffffff; padding: 1rem; border: 1px solid #999;">
-      <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; text-decoration: none;">Профіль веброзробника</h3>
-      <p style="margin-bottom: 0.5rem;">Привіт! Я створюю сучасні сайти. Без стилів CSS веб виглядає як текстовий документ 1990-х років.</p>
-      <ul style="margin-bottom: 0.5rem; padding-left: 1.25rem;">
-        <li>HTML — це кістяк сторінки</li>
-        <li>CSS — це візуальний стиль та краса</li>
-      </ul>
-      <a href="#" style="color: blue; text-decoration: underline;" onclick="return false;">Читати портфоліо</a>
-    </div>
-  `;
+  const state = {
+    font: true,
+    color: true,
+    spacing: true,
+    border: true,
+    shadow: true
+  };
 
-  const styledHTML = `
-    <div style="font-family: var(--font-heading); background: #ffffff; color: #0f172a; border: 3px solid #121212; padding: 1.5rem; box-shadow: 6px 6px 0 #121212; border-radius: 2px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-        <span style="background: #facc15; color: #121212; font-family: var(--font-mono); font-weight: 800; font-size: 0.75rem; padding: 0.2rem 0.6rem; border: 1.5px solid #121212;">★ СТИЛІЗОВАНО З CSS3</span>
-        <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">status: online</span>
-      </div>
-      <h3 style="font-size: 1.35rem; color: #1e3a8a; margin-bottom: 0.5rem; letter-spacing: -0.02em;">ПРОФІЛЬ ВЕБРОЗРОБНИКА</h3>
-      <p style="font-family: var(--font-sans); color: #334155; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">
-        Привіт! За допомогою CSS ми оживляємо сухі теги: задаємо кольори, шрифти, тіні, гармонійні відступи та адаптивний вигляд!
-      </p>
-      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-        <button style="background: #2563eb; color: #ffffff; border: 2px solid #121212; padding: 0.45rem 1rem; font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; box-shadow: 2px 2px 0 #121212; cursor: pointer;">ПОРТФОЛІО →</button>
-        <button style="background: #f1f5f9; color: #121212; border: 2px solid #121212; padding: 0.45rem 0.85rem; font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; cursor: pointer;">ЗВ'ЯЗОК ✉</button>
-      </div>
-    </div>
-  `;
+  function updateSwitchboard() {
+    // Reset styles
+    target.style.fontFamily = state.font ? "'Space Grotesk', system-ui, sans-serif" : "Times, 'Times New Roman', serif";
+    target.style.letterSpacing = state.font ? "-0.01em" : "normal";
+    
+    target.style.backgroundColor = state.color ? "#ffffff" : "#f0f0f0";
+    target.style.color = state.color ? "#0f172a" : "#000000";
 
-  btnRaw.addEventListener('click', () => {
-    previewBox.innerHTML = rawHTML;
-    btnRaw.classList.remove('btn-secondary');
-    btnRaw.classList.add('btn-primary');
-    btnStyled.classList.remove('btn-primary');
-    btnStyled.classList.add('btn-secondary');
+    target.style.padding = state.spacing ? "1.5rem" : "0.5rem";
+    
+    target.style.border = state.border ? "3px solid #121212" : "1px solid #777777";
+    target.style.borderRadius = state.border ? "4px" : "0px";
+
+    target.style.boxShadow = state.shadow ? "6px 6px 0 #121212" : "none";
+
+    const titleEl = target.querySelector('.switchboard-title');
+    const badgeEl = target.querySelector('.switchboard-badge');
+    const buttonEl = target.querySelector('.switchboard-cta');
+
+    if (titleEl) {
+      titleEl.style.fontFamily = state.font ? "'Space Grotesk', sans-serif" : "serif";
+      titleEl.style.color = state.color ? "#1e3a8a" : "#000000";
+    }
+    if (badgeEl) {
+      badgeEl.style.display = state.border || state.color ? "inline-block" : "none";
+      badgeEl.style.backgroundColor = state.color ? "#facc15" : "#e0e0e0";
+      badgeEl.style.padding = state.spacing ? "0.2rem 0.55rem" : "0.1rem 0.3rem";
+    }
+    if (buttonEl) {
+      buttonEl.style.backgroundColor = state.color ? "#2563eb" : "#e0e0e0";
+      buttonEl.style.color = state.color ? "#ffffff" : "#000000";
+      buttonEl.style.border = state.border ? "2px solid #121212" : "1px solid #777";
+      buttonEl.style.boxShadow = state.shadow ? "2px 2px 0 #121212" : "none";
+    }
+
+    // Build readable CSS snippet
+    const lines = ['.interactive-card {'];
+    if (state.font) lines.push("  font-family: 'Space Grotesk', sans-serif;");
+    if (state.color) {
+      lines.push("  background-color: #ffffff;");
+      lines.push("  color: #0f172a;");
+    }
+    if (state.spacing) lines.push("  padding: 1.5rem;");
+    if (state.border) {
+      lines.push("  border: 3px solid #121212;");
+      lines.push("  border-radius: 4px;");
+    }
+    if (state.shadow) lines.push("  box-shadow: 6px 6px 0 #121212;");
+    lines.push('}');
+
+    codeRibbon.textContent = lines.join('\n');
+  }
+
+  togglePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const prop = pill.getAttribute('data-toggle');
+      state[prop] = !state[prop];
+      pill.classList.toggle('active', state[prop]);
+      updateSwitchboard();
+    });
   });
 
-  btnStyled.addEventListener('click', () => {
-    previewBox.innerHTML = styledHTML;
-    btnStyled.classList.remove('btn-secondary');
-    btnStyled.classList.add('btn-primary');
-    btnRaw.classList.remove('btn-primary');
-    btnRaw.classList.add('btn-secondary');
-  });
+  updateSwitchboard();
 }
 
 /* --------------------------------------------------------------------------
@@ -175,116 +227,101 @@ function initHeroComparison() {
    -------------------------------------------------------------------------- */
 const anatomyData = {
   tag: {
-    rule: `<span class="anatomy-token" data-token="selector"><span class="tok-selector">h1</span><span class="token-badge">СЕЛЕКТОР ТЕГУ</span></span> <span class="anatomy-token" data-token="open-brace"><span class="tok-brace">{</span><span class="token-badge">ВІДКРИТА ДУЖКА</span></span> <span class="anatomy-token" data-token="property"><span class="tok-property">color</span><span class="token-badge">ВЛАСТИВІСТЬ</span></span><span class="anatomy-token" data-token="colon"><span class="tok-colon">:</span><span class="token-badge">ДВОКРАПКА</span></span> <span class="anatomy-token" data-token="value"><span class="tok-value">#2563eb</span><span class="token-badge">ЗНАЧЕННЯ</span></span><span class="anatomy-token" data-token="semicolon"><span class="tok-semicolon">;</span><span class="token-badge">КРАПКА З КОМОЮ</span></span> <span class="anatomy-token" data-token="property-2"><span class="tok-property">font-size</span><span class="token-badge">ВЛАСТИВІСТЬ 2</span></span><span class="anatomy-token" data-token="colon-2"><span class="tok-colon">:</span><span class="token-badge">ДВОКРАПКА</span></span> <span class="anatomy-token" data-token="value-2"><span class="tok-value">2.5rem</span><span class="token-badge">ЗНАЧЕННЯ 2</span></span><span class="anatomy-token" data-token="semicolon-2"><span class="tok-semicolon">;</span><span class="token-badge">КРАПКА З КОМОЮ</span></span> <span class="anatomy-token" data-token="close-brace"><span class="tok-brace">}</span><span class="token-badge">ЗАКРИТА ДУЖКА</span></span>`,
+    rule: `<span class="anatomy-token" data-token="selector"><span class="tok-selector">h1</span><span class="token-badge">Селектор тегу</span></span> <span class="anatomy-token" data-token="open-brace"><span class="tok-brace">{</span><span class="token-badge">Відкрита дужка</span></span> <span class="anatomy-token" data-token="property"><span class="tok-property">color</span><span class="token-badge">Властивість</span></span><span class="anatomy-token" data-token="colon"><span class="tok-colon">:</span><span class="token-badge">Двокрапка</span></span> <span class="anatomy-token" data-token="value"><span class="tok-value">#2563eb</span><span class="token-badge">Значення</span></span><span class="anatomy-token" data-token="semicolon"><span class="tok-semicolon">;</span><span class="token-badge">Крапка з комою</span></span> <span class="anatomy-token" data-token="property-2"><span class="tok-property">font-size</span><span class="token-badge">Властивість 2</span></span><span class="anatomy-token" data-token="colon-2"><span class="tok-colon">:</span><span class="token-badge">Двокрапка</span></span> <span class="anatomy-token" data-token="value-2"><span class="tok-value">2.5rem</span><span class="token-badge">Значення 2</span></span><span class="anatomy-token" data-token="semicolon-2"><span class="tok-semicolon">;</span><span class="token-badge">Крапка з комою</span></span> <span class="anatomy-token" data-token="close-brace"><span class="tok-brace">}</span><span class="token-badge">Закрита дужка</span></span>`,
     explanations: {
       'selector': {
         icon: '🎯',
         title: 'Селектор тегу (Type Selector)',
-        desc: 'Вказує браузеру, до яких саме елементів на веб-сторінці застосувати стилі. Селектор "h1" обере всі заголовки першого рівня без винятку.',
-        rule: 'Правило: пишеться без дужок і лапок — точно так, як назва HTML-тегу'
+        desc: 'Обирає всі елементи зазначеного типу на всій сторінці без винятку. Селектор h1 змінить зовнішній вигляд усіх заголовків першого рівня.',
+        rule: 'Правило: пишеться без лапок і без кутових дужок < >'
       },
       'open-brace': {
         icon: '{',
-        title: 'Фігурна дужка відкриття {',
-        desc: 'Починає блок оголошення стилів (Declaration Block). Усі властивості всередині цих дужок будуть застосовані до обраного селектора.',
-        rule: 'Правило: кожна відкрита дужка { обовʼязково має мати пару — закриту дужку }'
+        title: 'Відкрита фігурна дужка {',
+        desc: 'Починає блок оголошення стилів (Declaration Block). Усі властивості всередині належатимуть обраному селектору.',
+        rule: 'Кожній відкритій дужці { обовʼязково відповідає закрита дужка }'
       },
       'property': {
         icon: '⚙️',
         title: 'Властивість CSS (Property)',
-        desc: 'Параметр зовнішнього вигляду, який ми хочемо змінити. Наприклад: color (колір тексту), font-size (розмір шрифту), background (тло).',
-        rule: 'Правило: назви властивостей пишуться латиницею, слова розділяються дефісом (наприклад, text-align, line-height)'
+        desc: 'Параметр відображення елемента: color (колір тексту), font-size (розмір), line-height (інтервал).',
+        rule: 'Назви властивостей пишуться латиницею, складові слова розділяються дефісом'
       },
       'colon': {
         icon: ':',
         title: 'Двокрапка (:)',
-        desc: 'Слугує обовʼязковим роздільником між назвою властивості та її значенням у CSS.',
-        rule: 'Часта помилка новачків: ставити знак дорівнює "=" замість двокрапки ":"!'
+        desc: 'Слугує синтаксичним роздільником між назвою властивості та її значенням.',
+        rule: 'Часта помилка початківців: ставити знак дорівнює "=" замість двокрапки ":"'
       },
       'value': {
         icon: '💎',
         title: 'Значення властивості (Value)',
-        desc: 'Конкретне налаштування для властивості. Для кольору — це назва (red), шістнадцятковий код (#2563eb), або rgb(37, 99, 235).',
-        rule: 'Правило: одиниці виміру (px, rem, %) пишуться разом із числом без пробілу (2.5rem, 16px)'
+        desc: 'Конкретне налаштування параметра: шістнадцятковий код кольору (#2563eb), назва або значення в rem/px.',
+        rule: 'Одиниці виміру пишуться разом із числом без пробілу: 2.5rem, 16px'
       },
       'semicolon': {
         icon: ';',
         title: 'Крапка з комою (;)',
-        desc: 'Завершує окреме оголошення стилю. Сигналізує браузеру про кінець поточної команди.',
-        rule: 'Критично: якщо пропустити крапку з комою, браузер не зрозуміє наступну властивість і вона зламається!'
+        desc: 'Завершує окреме оголошення стилю та відокремлює його від наступного.',
+        rule: 'Критично: пропущена крапка з комою ламає обробку всіх наступних правил!'
       },
       'property-2': {
         icon: '📏',
         title: 'Друга властивість (font-size)',
-        desc: 'В одному блоці стилів можна вказувати необмежену кількість властивостей одну за одною, розділяючи їх крапкою з комою.',
-        rule: 'Властивість font-size керує розміром кегля тексту'
+        desc: 'У межах одного CSS-блоку можна вказувати стільки властивостей, скільки потрібно для оформлення.',
+        rule: 'Рекомендовано записувати кожну властивість з нового рядка'
       },
-      'colon-2': {
-        icon: ':',
-        title: 'Двокрапка другого правила',
-        desc: 'Відокремлює font-size від його розмірного значення.',
-        rule: 'Синтаксис: Властивість : Значення ;'
-      },
+      'colon-2': { icon: ':', title: 'Двокрапка другого правила', desc: 'Відокремлює font-size від його значення.', rule: 'Синтаксичний роздільник' },
       'value-2': {
         icon: '📐',
         title: 'Значення розміру (2.5rem)',
-        desc: 'Відносна одиниця вимірювання rem (Root EM). 2.5rem означає у 2.5 рази більше за базовий шрифт документа (зазвичай 2.5 × 16px = 40px).',
-        rule: 'Одиниці rem адаптивні й підтримують налаштування масштабування браузера користувача'
+        desc: 'Відносна одиниця rem відштовхується від базового кегля кореня html (зазвичай 1rem = 16px, відповідно 2.5rem = 40px).',
+        rule: 'Підтримує налаштування масштабування користувача в браузері'
       },
-      'semicolon-2': {
-        icon: ';',
-        title: 'Крапка з комою другого правила',
-        desc: 'Завершує друге оголошення. Навіть перед закриваючою фігурною дужкою крапка з комою є хорошим професійним тоном.',
-        rule: 'Завжди ставте ";" у кінці кожного рядка стилю'
-      },
-      'close-brace': {
-        icon: '}',
-        title: 'Фігурна дужка закриття }',
-        desc: 'Завершує повний блок CSS-правила. Усе, що написано після неї, браузер сприйматиме як наступне нове правило.',
-        rule: 'Перевіряйте баланс дужок у коді вашого файлу стилів'
-      }
+      'semicolon-2': { icon: ';', title: 'Крапка з комою', desc: 'Завершує друге стильове оголошення.', rule: 'Обовʼязковий роздільник' },
+      'close-brace': { icon: '}', title: 'Закрита фігурна дужка }', desc: 'Позначає кінець блоку оголошення стилю.', rule: 'Стежте за парністю дужок' }
     }
   },
   class: {
-    rule: `<span class="anatomy-token" data-token="selector"><span class="tok-selector">.card-badge</span><span class="token-badge">СЕЛЕКТОР КЛАСУ</span></span> <span class="anatomy-token" data-token="open-brace"><span class="tok-brace">{</span><span class="token-badge">ВІДКРИТА ДУЖКА</span></span> <span class="anatomy-token" data-token="property"><span class="tok-property">background-color</span><span class="token-badge">ВЛАСТИВІСТЬ</span></span><span class="anatomy-token" data-token="colon"><span class="tok-colon">:</span><span class="token-badge">ДВОКРАПКА</span></span> <span class="anatomy-token" data-token="value"><span class="tok-value">#facc15</span><span class="token-badge">ЗНАЧЕННЯ</span></span><span class="anatomy-token" data-token="semicolon"><span class="tok-semicolon">;</span><span class="token-badge">КРАПКА З КОМОЮ</span></span> <span class="anatomy-token" data-token="property-2"><span class="tok-property">font-weight</span><span class="token-badge">ВЛАСТИВІСТЬ 2</span></span><span class="anatomy-token" data-token="colon-2"><span class="tok-colon">:</span><span class="token-badge">ДВОКРАПКА</span></span> <span class="anatomy-token" data-token="value-2"><span class="tok-value">700</span><span class="token-badge">ЗНАЧЕННЯ 2</span></span><span class="anatomy-token" data-token="semicolon-2"><span class="tok-semicolon">;</span><span class="token-badge">КРАПКА З КОМОЮ</span></span> <span class="anatomy-token" data-token="close-brace"><span class="tok-brace">}</span><span class="token-badge">ЗАКРИТА ДУЖКА</span></span>`,
+    rule: `<span class="anatomy-token" data-token="selector"><span class="tok-selector">.card-badge</span><span class="token-badge">Селектор класу</span></span> <span class="anatomy-token" data-token="open-brace"><span class="tok-brace">{</span><span class="token-badge">Відкрита дужка</span></span> <span class="anatomy-token" data-token="property"><span class="tok-property">background-color</span><span class="token-badge">Властивість</span></span><span class="anatomy-token" data-token="colon"><span class="tok-colon">:</span><span class="token-badge">Двокрапка</span></span> <span class="anatomy-token" data-token="value"><span class="tok-value">#facc15</span><span class="token-badge">Значення</span></span><span class="anatomy-token" data-token="semicolon"><span class="tok-semicolon">;</span><span class="token-badge">Крапка з комою</span></span> <span class="anatomy-token" data-token="property-2"><span class="tok-property">font-weight</span><span class="token-badge">Властивість 2</span></span><span class="anatomy-token" data-token="colon-2"><span class="tok-colon">:</span><span class="token-badge">Двокрапка</span></span> <span class="anatomy-token" data-token="value-2"><span class="tok-value">700</span><span class="token-badge">Значення 2</span></span><span class="anatomy-token" data-token="semicolon-2"><span class="tok-semicolon">;</span><span class="token-badge">Крапка з комою</span></span> <span class="anatomy-token" data-token="close-brace"><span class="tok-brace">}</span><span class="token-badge">Закрита дужка</span></span>`,
     explanations: {
       'selector': {
         icon: '🏷️',
         title: 'Селектор класу (.card-badge)',
-        desc: 'Починається з крапки "."! Стилізує будь-які HTML-елементи, які мають атрибут class="card-badge". Може повторюватись на сторінці скільки завгодно разів.',
-        rule: 'УВАГА: У CSS пишемо крапку попереду (.card-badge), а в HTML пишемо class="card-badge" (БЕЗ КРАПКИ)!'
+        desc: 'Починається з крапки. Стилізує будь-які елементи з відповідним атрибутом class="card-badge". Призначений для багаторазового використання.',
+        rule: 'Увага: у CSS пишемо крапку (.card-badge), а в HTML — class="card-badge" (без крапки)'
       },
-      'open-brace': { icon: '{', title: 'Блок оголошень {', desc: 'Початок стилів класу .card-badge.', rule: 'Обовʼязкова фігурна дужка' },
-      'property': { icon: '🎨', title: 'Властивість (background-color)', desc: 'Задає колір заднього тла для плашки чи контейнера.', rule: 'Можна також скорочено писати background' },
-      'colon': { icon: ':', title: 'Двокрапка', desc: 'Розділяє властивість та колір.', rule: 'Синтаксичний роздільник' },
-      'value': { icon: '🟡', title: 'Шістнадцятковий колір (#facc15)', desc: 'Яскраво-жовтий акцентний колір у форматі HEX (#RRGGBB).', rule: 'HEX-код починається з символу #' },
-      'semicolon': { icon: ';', title: 'Крапка з комою', desc: 'Завершує налаштування кольору тла.', rule: 'Обовʼязковий роздільник' },
-      'property-2': { icon: '💪', title: 'Властивість (font-weight)', desc: 'Керує насиченістю (товщиною) накреслення літер.', rule: 'Значення 700 відповідає напівжирному шрифту (bold)' },
-      'colon-2': { icon: ':', title: 'Двокрапка', desc: 'Відокремлює font-weight від числового значення.', rule: 'Синтаксичний роздільник' },
-      'value-2': { icon: '700', title: 'Значення насиченості (700)', desc: 'Числове значення насиченості: 400 — звичайний (normal), 700 — жирний (bold).', rule: 'Пишеться числом без лапок і без одиниць виміру' },
-      'semicolon-2': { icon: ';', title: 'Крапка з комою', desc: 'Завершує друге оголошення.', rule: 'Обовʼязковий роздільник' },
-      'close-brace': { icon: '}', title: 'Кінець правила }', desc: 'Закриття стильового блоку класу.', rule: 'Баланс фігурних дужок' }
+      'open-brace': { icon: '{', title: 'Відкрита дужка', desc: 'Початок стильового блоку класу.', rule: 'Обовʼязковий символ' },
+      'property': { icon: '🎨', title: 'Властивість background-color', desc: 'Задає колір заднього тла для плашки чи контейнера.', rule: 'Стилізує підкладку' },
+      'colon': { icon: ':', title: 'Двокрапка', desc: 'Розділяє властивість та колір.', rule: 'Синтаксичний знак' },
+      'value': { icon: '🟡', title: 'Колір #facc15', desc: 'Теплий жовтий колір у шістнадцятковому форматі HEX (#RRGGBB).', rule: 'HEX-код починається з символу #' },
+      'semicolon': { icon: ';', title: 'Крапка з комою', desc: 'Завершує налаштування тла.', rule: 'Роздільник команд' },
+      'property-2': { icon: '💪', title: 'Властивість font-weight', desc: 'Керує товщиною літер шрифту.', rule: 'Діапазон від 100 до 900' },
+      'colon-2': { icon: ':', title: 'Двокрапка', desc: 'Відокремлює font-weight від значення.', rule: 'Синтаксичний знак' },
+      'value-2': { icon: '700', title: 'Значення 700 (Bold)', desc: 'Числове позначення жирного накреслення (стандарт bold = 700).', rule: 'Пишеться числом без лапок і без одиниць' },
+      'semicolon-2': { icon: ';', title: 'Крапка з комою', desc: 'Завершує друге оголошення.', rule: 'Роздільник команд' },
+      'close-brace': { icon: '}', title: 'Закрита дужка', desc: 'Завершення блоку класу.', rule: 'Баланс дужок' }
     }
   },
   id: {
-    rule: `<span class="anatomy-token" data-token="selector"><span class="tok-selector">#main-header</span><span class="token-badge">СЕЛЕКТОР ID</span></span> <span class="anatomy-token" data-token="open-brace"><span class="tok-brace">{</span><span class="token-badge">ВІДКРИТА ДУЖКА</span></span> <span class="anatomy-token" data-token="property"><span class="tok-property">text-align</span><span class="token-badge">ВЛАСТИВІСТЬ</span></span><span class="anatomy-token" data-token="colon"><span class="tok-colon">:</span><span class="token-badge">ДВОКРАПКА</span></span> <span class="anatomy-token" data-token="value"><span class="tok-value">center</span><span class="token-badge">ЗНАЧЕННЯ</span></span><span class="anatomy-token" data-token="semicolon"><span class="tok-semicolon">;</span><span class="token-badge">КРАПКА З КОМОЮ</span></span> <span class="anatomy-token" data-token="property-2"><span class="tok-property">letter-spacing</span><span class="token-badge">ВЛАСТИВІСТЬ 2</span></span><span class="anatomy-token" data-token="colon-2"><span class="tok-colon">:</span><span class="token-badge">ДВОКРАПКА</span></span> <span class="anatomy-token" data-token="value-2"><span class="tok-value">2px</span><span class="token-badge">ЗНАЧЕННЯ 2</span></span><span class="anatomy-token" data-token="semicolon-2"><span class="tok-semicolon">;</span><span class="token-badge">КРАПКА З КОМОЮ</span></span> <span class="anatomy-token" data-token="close-brace"><span class="tok-brace">}</span><span class="token-badge">ЗАКРИТА ДУЖКА</span></span>`,
+    rule: `<span class="anatomy-token" data-token="selector"><span class="tok-selector">#main-header</span><span class="token-badge">Селектор ID</span></span> <span class="anatomy-token" data-token="open-brace"><span class="tok-brace">{</span><span class="token-badge">Відкрита дужка</span></span> <span class="anatomy-token" data-token="property"><span class="tok-property">text-align</span><span class="token-badge">Властивість</span></span><span class="anatomy-token" data-token="colon"><span class="tok-colon">:</span><span class="token-badge">Двокрапка</span></span> <span class="anatomy-token" data-token="value"><span class="tok-value">center</span><span class="token-badge">Значення</span></span><span class="anatomy-token" data-token="semicolon"><span class="tok-semicolon">;</span><span class="token-badge">Крапка з комою</span></span> <span class="anatomy-token" data-token="property-2"><span class="tok-property">letter-spacing</span><span class="token-badge">Властивість 2</span></span><span class="anatomy-token" data-token="colon-2"><span class="tok-colon">:</span><span class="token-badge">Двокрапка</span></span> <span class="anatomy-token" data-token="value-2"><span class="tok-value">2px</span><span class="token-badge">Значення 2</span></span><span class="anatomy-token" data-token="semicolon-2"><span class="tok-semicolon">;</span><span class="token-badge">Крапка з комою</span></span> <span class="anatomy-token" data-token="close-brace"><span class="tok-brace">}</span><span class="token-badge">Закрита дужка</span></span>`,
     explanations: {
       'selector': {
         icon: '🆔',
         title: 'Селектор ідентифікатора (#main-header)',
-        desc: 'Починається з решітки "#"! Стилізує конкретний унікальний елемент із відповідним id="main-header". За стандартом W3C ідентифікатор повинен бути єдиним на всій вебсторінці.',
-        rule: 'Увага: у CSS ставимо "#", а в HTML пишемо id="main-header" (БЕЗ РЕШІТКИ)!'
+        desc: 'Починається з символу решітки "#". Стилізує унікальний елемент із атрибутом id="main-header". За стандартом W3C однаковий ID може траплятися на сторінці лише один раз.',
+        rule: 'У CSS пишемо "#", у HTML — id="main-header" (без решітки)'
       },
-      'open-brace': { icon: '{', title: 'Блок оголошень {', desc: 'Початок стилів унікального елемента #main-header.', rule: 'Фігурна дужка' },
-      'property': { icon: '↔️', title: 'Властивість (text-align)', desc: 'Задає горизонтальне вирівнювання тексту всередині блоку.', rule: 'Можливі значення: left, center, right, justify' },
-      'colon': { icon: ':', title: 'Двокрапка', desc: 'Розділяє властивість і значення.', rule: 'Синтаксичний роздільник' },
-      'value': { icon: '🎯', title: 'Значення (center)', desc: 'Вирівнює заголовок точно по центру горизонтальної осі контейнера.', rule: 'Ключове слово center' },
-      'semicolon': { icon: ';', title: 'Крапка з комою', desc: 'Завершує правило вирівнювання.', rule: 'Обовʼязковий роздільник' },
-      'property-2': { icon: '🔠', title: 'Властивість (letter-spacing)', desc: 'Керує додатковою мікро-відстанню (трекінгом) між символами в словах.', rule: 'Робить великі заголовки більш читабельними' },
-      'colon-2': { icon: ':', title: 'Двокрапка', desc: 'Розділяє властивість та величину.', rule: 'Синтаксичний роздільник' },
-      'value-2': { icon: '2px', title: 'Значення відступу (2px)', desc: 'Додає по 2 пікселі простору між кожною літерою тексту.', rule: 'Пікселі пишуться суцільно: 2px' },
-      'semicolon-2': { icon: ';', title: 'Крапка з комою', desc: 'Завершує правило міжлітерного відступу.', rule: 'Обовʼязковий роздільник' },
-      'close-brace': { icon: '}', title: 'Кінець правила }', desc: 'Закриває блок стилів id-селектора.', rule: 'Баланс дужок' }
+      'open-brace': { icon: '{', title: 'Відкрита дужка', desc: 'Початок стилів елемента #main-header.', rule: 'Синтаксис CSS' },
+      'property': { icon: '↔️', title: 'Властивість text-align', desc: 'Вирівнювання тексту по горизонталі (left, center, right, justify).', rule: 'Керує горизонтальною віссю' },
+      'colon': { icon: ':', title: 'Двокрапка', desc: 'Відокремлює властивість від значення.', rule: 'Синтаксичний знак' },
+      'value': { icon: '🎯', title: 'Значення center', desc: 'Вирівнює текстовий рядок точно по центру контейнера.', rule: 'Ключове слово' },
+      'semicolon': { icon: ';', title: 'Крапка з комою', desc: 'Завершує правило вирівнювання.', rule: 'Обовʼязковий знак' },
+      'property-2': { icon: '🔠', title: 'Властивість letter-spacing', desc: 'Керує додатковим міжлітерним інтервалом (трекінгом).', rule: 'Покращує читання великих заголовків' },
+      'colon-2': { icon: ':', title: 'Двокрапка', desc: 'Роздільник другого правила.', rule: 'Синтаксичний знак' },
+      'value-2': { icon: '2px', title: 'Значення 2px', desc: 'Додає по 2 пікселі простору між кожним символом.', rule: 'Пишеться разом з одиницею' },
+      'semicolon-2': { icon: ';', title: 'Крапка з комою', desc: 'Завершує друге оголошення.', rule: 'Обовʼязковий знак' },
+      'close-brace': { icon: '}', title: 'Закрита дужка', desc: 'Кінець блоку стилів ID.', rule: 'Баланс дужок' }
     }
   }
 };
@@ -340,7 +377,7 @@ function initCssAnatomyModule() {
 }
 
 /* --------------------------------------------------------------------------
-   4. ІНТЕРАКТИВ 2: СИМУЛЯТОР КАСКАДУ ТА СПОСОБІВ ПІДКЛЮЧЕННЯ
+   4. ІНТЕРАКТИВ 2: СИМУЛЯТОР КАСКАДУ ТА ВАГИ СПЕЦИФІЧНОСТІ
    -------------------------------------------------------------------------- */
 function initCascadeBattleSimulator() {
   const chkExternal = document.getElementById('chkExternal');
@@ -368,12 +405,7 @@ function initCascadeBattleSimulator() {
     const hasInline = chkInline.checked;
     const hasImportant = chkImportant ? chkImportant.checked : false;
 
-    // Reset styles
-    targetEl.style.color = '#000000';
-    targetEl.style.backgroundColor = 'transparent';
-    targetEl.style.borderColor = '#94a3b8';
-
-    // Cards highlighting
+    // Reset cards and hierarchy classes
     cardExternal.classList.remove('active-winner');
     cardInternal.classList.remove('active-winner');
     cardInline.classList.remove('active-winner');
@@ -382,52 +414,49 @@ function initCascadeBattleSimulator() {
     ruleInternal.className = 'rule-hierarchy-item';
     ruleInline.className = 'rule-hierarchy-item';
 
-    // Logic:
-    // 1. If !important is active on External: it overrides even inline!
-    // 2. Otherwise: Inline > Internal > External > Default
     let winner = 'default';
     let color = '#334155';
     let bg = '#f8fafc';
     let reasonText = '';
 
     if (hasExternal && hasImportant) {
-      winner = 'external-important';
+      winner = 'style.css (!important)';
       color = '#2563eb';
       bg = '#dbeafe';
       cardExternal.classList.add('active-winner');
       ruleExternal.classList.add('winner');
       if (hasInline) ruleInline.classList.add('overridden');
       if (hasInternal) ruleInternal.classList.add('overridden');
-      reasonText = 'ПЕРЕМАГАЄ: Зовнішній файл завдяки директиві !important! Вона перебиває навіть inline-стилі.';
+      reasonText = 'Зовнішній файл переміг завдяки директиві !important. Вона штучно підвищує вагу над inline-стилями.';
     } else if (hasInline) {
-      winner = 'inline';
+      winner = 'Inline style="..."';
       color = '#ff4732';
       bg = '#ffe4e6';
       cardInline.classList.add('active-winner');
       ruleInline.classList.add('winner');
       if (hasInternal) ruleInternal.classList.add('overridden');
       if (hasExternal) ruleExternal.classList.add('overridden');
-      reasonText = 'ПЕРЕМАГАЄ: Вбудований (Inline) стиль style="..."! Має найвищу локальну вагу специфічності (1,0,0,0).';
+      reasonText = 'Вбудований рядок в атрибуті style="..." перемагає, бо має найвищу специфічність (1, 0, 0, 0).';
     } else if (hasInternal) {
-      winner = 'internal';
+      winner = 'Internal <style>';
       color = '#10b981';
       bg = '#d1fae5';
       cardInternal.classList.add('active-winner');
       ruleInternal.classList.add('winner');
       if (hasExternal) ruleExternal.classList.add('overridden');
-      reasonText = 'ПЕРЕМАГАЄ: Внутрішній стиль у тегу <style>! Оскільки inline відсутній, спрацьовує правило зі сторінки.';
+      reasonText = 'Спрацював внутрішній стиль у <head>. За відсутності inline-атрибута застосовується правило сторінки.';
     } else if (hasExternal) {
-      winner = 'external';
+      winner = 'External style.css';
       color = '#2563eb';
       bg = '#dbeafe';
       cardExternal.classList.add('active-winner');
       ruleExternal.classList.add('winner');
-      reasonText = 'ПЕРЕМАГАЄ: Зовнішня таблиця стилів style.css! Рекомендований стандарт W3C для веброзробки.';
+      reasonText = 'Зовнішній файл style.css — основний стандарт індустрії. Стиль завантажено та кешовано.';
     } else {
-      winner = 'default';
+      winner = 'Стиль браузера';
       color = '#000000';
       bg = '#ffffff';
-      reasonText = 'Всі власні стилі вимкнено. Браузер застосовує стандартний вигляд за замовчуванням (User Agent Stylesheet).';
+      reasonText = 'Усі користувацькі стилі вимкнено. Браузер застосовує стандартний вигляд (User Agent Stylesheet).';
     }
 
     targetEl.style.color = color;
@@ -435,7 +464,7 @@ function initCascadeBattleSimulator() {
     targetEl.style.borderColor = color;
 
     if (winnerBadge) {
-      winnerBadge.textContent = winner.toUpperCase();
+      winnerBadge.textContent = winner;
       winnerBadge.style.color = color;
     }
     if (winnerReason) {
@@ -451,7 +480,7 @@ function initCascadeBattleSimulator() {
 }
 
 /* --------------------------------------------------------------------------
-   5. ІНТЕРАКТИВ 3: ТРЕНАЖЕР БАЗОВИХ СЕЛЕКТОРІВ
+   5. ІНТЕРАКТИВ 3: ТРЕНАЖЕР СЕЛЕКТОРІВ
    -------------------------------------------------------------------------- */
 function initSelectorPlayground() {
   const inputEl = document.getElementById('playgroundSelectorInput');
@@ -468,24 +497,21 @@ function initSelectorPlayground() {
     const cleanSel = selectorStr.trim();
     inputEl.value = cleanSel;
 
-    // Reset buttons
     quickBtns.forEach(b => {
       b.classList.toggle('active', b.getAttribute('data-sel') === cleanSel);
     });
 
-    // Reset previous highlights in mock window
     const allDomItems = domContainer.querySelectorAll('.dom-item');
     allDomItems.forEach(el => el.classList.remove('matched-node'));
 
-    // Reset lines in tree view
     if (treeContainer) {
       treeContainer.querySelectorAll('.tree-code-line').forEach(line => line.classList.remove('matched-tree-line'));
     }
 
     if (!cleanSel) {
       if (countBadge) countBadge.textContent = '0 елементів';
-      if (selTypeBadge) selTypeBadge.textContent = 'НЕ ВКАЗАНО';
-      if (selDescText) selDescText.textContent = 'Введіть селектор або натисніть одну з кнопок угорі.';
+      if (selTypeBadge) selTypeBadge.textContent = 'Не вказано';
+      if (selDescText) selDescText.textContent = 'Введіть селектор або оберіть зі списку швидких кнопок.';
       return;
     }
 
@@ -504,44 +530,42 @@ function initSelectorPlayground() {
 
       if (countBadge) countBadge.textContent = `${count} елемент(ів)`;
 
-      // Determine selector type description
       let typeText = 'Селектор';
       let desc = '';
 
       if (cleanSel === '*') {
-        typeText = 'Універсальний селектор (*)';
-        desc = 'Обирає абсолютно ВСІ елементи на сторінці. Застосовується для скидання відступів (box-sizing, margin, padding).';
+        typeText = 'Універсальний селектор (*) [0, 0, 0, 0]';
+        desc = 'Обирає всі елементи документа. Використовується для скидання базових відступів і box-sizing.';
       } else if (cleanSel.startsWith('#')) {
-        typeText = 'Селектор ідентифікатора ID (#)';
-        desc = `Обирає строго один унікальний елемент із заданим ідентифікатором: ${cleanSel}.`;
+        typeText = `Селектор ID (${cleanSel}) [0, 1, 0, 0]`;
+        desc = `Вибирає строго один унікальний елемент із відповідним ідентифікатором: id="${cleanSel.slice(1)}".`;
       } else if (cleanSel.startsWith('.')) {
-        typeText = 'Селектор класу (.)';
-        desc = `Обирає всі елементи, які мають клас "${cleanSel.slice(1)}". Класи можна призначати багатьом елементам.`;
+        typeText = `Селектор класу (${cleanSel}) [0, 0, 1, 0]`;
+        desc = `Вибирає всі елементи, які містять клас class="${cleanSel.slice(1)}". Може застосовуватися до багатьох елементів.`;
       } else if (cleanSel.includes(',')) {
-        typeText = 'Групування селекторів (,)';
-        desc = `Застосовує однакове оформлення до декількох селекторів через кому: "${cleanSel}".`;
+        typeText = `Групування (${cleanSel})`;
+        desc = `Застосовує однаковий набір властивостей до кожного зазначеного селектора через кому.`;
       } else if (cleanSel.includes(' ')) {
-        typeText = 'Селектор нащадків (пробіл)';
-        desc = `Обирає елементи, які вкладені всередину зазначеного предка: "${cleanSel}".`;
+        typeText = `Селектор нащадків (${cleanSel})`;
+        desc = `Знаходить цільові елементи тільки тоді, коли вони вкладені всередину зазначеного предка.`;
       } else {
-        typeText = `Селектор тегу <${cleanSel}>`;
-        desc = `Обирає всі стандартні теги <${cleanSel}> у документі без привʼязки до класів.`;
+        typeText = `Селектор тегу <${cleanSel}> [0, 0, 0, 1]`;
+        desc = `Вибирає всі елементи з HTML-тегом <${cleanSel}> на всій сторінці.`;
       }
 
       if (selTypeBadge) selTypeBadge.textContent = typeText;
       if (selDescText) selDescText.textContent = desc;
 
     } catch (err) {
-      if (countBadge) countBadge.textContent = '0 (помилка синтаксису)';
-      if (selTypeBadge) selTypeBadge.textContent = 'НЕВАЛІДНИЙ СЕЛЕКТОР';
-      if (selDescText) selDescText.textContent = 'Перевірте правильність написання CSS-селектора. Не забувайте про крапку для класів або решітку для ID.';
+      if (countBadge) countBadge.textContent = '0 (помилка)';
+      if (selTypeBadge) selTypeBadge.textContent = 'Невалідний селектор';
+      if (selDescText) selDescText.textContent = 'Перевірте синтаксис: крапка для класів (.name) або решітка для ідентифікаторів (#name).';
     }
   }
 
   quickBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const sel = btn.getAttribute('data-sel');
-      applySelector(sel);
+      applySelector(btn.getAttribute('data-sel'));
     });
   });
 
@@ -549,12 +573,11 @@ function initSelectorPlayground() {
     applySelector(e.target.value);
   });
 
-  // Default test
   applySelector('.card');
 }
 
 /* --------------------------------------------------------------------------
-   6. ІНТЕРАКТИВ 4: ЛАБОРАТОРІЯ ТИПОГРАФІКИ (CSS TYPOGRAPHY STUDIO)
+   6. ІНТЕРАКТИВ 4: СТУДІЯ ТИПОГРАФІКИ (CSS TYPOGRAPHY STUDIO)
    -------------------------------------------------------------------------- */
 function initTypographyStudio() {
   const selFont = document.getElementById('typoFontFamily');
@@ -577,10 +600,46 @@ function initTypographyStudio() {
   const targetP = document.getElementById('typoTargetP');
   const codeOutput = document.getElementById('typoGeneratedCode');
   const copyBtn = document.getElementById('btnCopyTypoCode');
+  const contrastRatioText = document.getElementById('contrastRatioText');
+
+  const presetBtns = document.querySelectorAll('.preset-btn');
 
   if (!previewBox || !targetH2 || !targetP || !codeOutput) return;
 
   let isItalic = false;
+
+  // Relative luminance calculation for WCAG contrast ratio
+  function getLuminance(hex) {
+    const rgb = parseInt(hex.slice(1), 16);
+    const r = (rgb >> 16) & 0xff;
+    const g = (rgb >> 8) & 0xff;
+    const b = (rgb >> 0) & 0xff;
+    const a = [r, g, b].map(v => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+  }
+
+  function updateContrastScore(textColorHex) {
+    if (!contrastRatioText) return;
+    try {
+      const lumText = getLuminance(textColorHex);
+      const lumBg = 1.0; // White background preview
+      const ratio = (Math.max(lumText, lumBg) + 0.05) / (Math.min(lumText, lumBg) + 0.05);
+      const rounded = ratio.toFixed(1);
+
+      if (ratio >= 7) {
+        contrastRatioText.innerHTML = `<span class="contrast-score-pass">Контраст ${rounded}:1 · WCAG AAA (Відмінно)</span>`;
+      } else if (ratio >= 4.5) {
+        contrastRatioText.innerHTML = `<span style="color: var(--accent-blue); font-weight: 700;">Контраст ${rounded}:1 · WCAG AA (Добре)</span>`;
+      } else {
+        contrastRatioText.innerHTML = `<span style="color: var(--accent-vermilion); font-weight: 700;">Контраст ${rounded}:1 · Низький (Складно читати)</span>`;
+      }
+    } catch {
+      contrastRatioText.textContent = 'Контраст: стандартний';
+    }
+  }
 
   function updateTypography() {
     const fontFamily = selFont ? selFont.value : "'Work Sans', sans-serif";
@@ -596,12 +655,10 @@ function initTypographyStudio() {
     const textTransform = selTransform ? selTransform.value : 'none';
     const shadowVal = selShadow ? selShadow.value : 'none';
 
-    // Update labels
     if (valSize && rngSize) valSize.textContent = `${rngSize.value}px (${fontSizeRem})`;
     if (valLineH && rngLineH) valLineH.textContent = rngLineH.value;
     if (valSpacing && rngSpacing) valSpacing.textContent = `${rngSpacing.value}px`;
 
-    // Apply styles to target elements
     targetH2.style.fontFamily = fontFamily;
     targetH2.style.color = color;
     targetH2.style.textAlign = textAlign;
@@ -621,7 +678,8 @@ function initTypographyStudio() {
     targetP.style.textTransform = textTransform;
     targetP.style.textShadow = shadowVal;
 
-    // Generate clean CSS output
+    updateContrastScore(color);
+
     const generatedCSS = `.article-card {
   font-family: ${fontFamily};
   color: ${color};
@@ -636,7 +694,7 @@ function initTypographyStudio() {
 }
 
 .article-card p {
-  font-size: ${fontSizeRem}; /* або ${fontSize} */
+  font-size: ${fontSizeRem}; /* ${fontSize} */
   font-weight: ${fontWeight};
   font-style: ${fontStyle};
   line-height: ${lineHeight};
@@ -646,22 +704,56 @@ function initTypographyStudio() {
     codeOutput.textContent = generatedCSS;
   }
 
-  // Event listeners
-  if (rngSize) rngSize.addEventListener('input', updateTypography);
-  if (selFont) selFont.addEventListener('change', updateTypography);
-  if (selWeight) selWeight.addEventListener('change', updateTypography);
-  if (inputColor) inputColor.addEventListener('input', updateTypography);
-  if (selAlign) selAlign.addEventListener('change', updateTypography);
-  if (selDecor) selDecor.addEventListener('change', updateTypography);
-  if (rngLineH) rngLineH.addEventListener('input', updateTypography);
-  if (rngSpacing) rngSpacing.addEventListener('input', updateTypography);
-  if (selTransform) selTransform.addEventListener('change', updateTypography);
-  if (selShadow) selShadow.addEventListener('change', updateTypography);
+  // Presets
+  presetBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const p = btn.getAttribute('data-preset');
+      if (p === 'startup') {
+        if (selFont) selFont.value = "'Space Grotesk', sans-serif";
+        if (rngSize) rngSize.value = 17;
+        if (rngLineH) rngLineH.value = 1.6;
+        if (rngSpacing) rngSpacing.value = 0;
+        if (selWeight) selWeight.value = 400;
+        if (inputColor) inputColor.value = '#0f172a';
+        if (selAlign) selAlign.value = 'left';
+        if (selShadow) selShadow.value = 'none';
+      } else if (p === 'editorial') {
+        if (selFont) selFont.value = "Georgia, serif";
+        if (rngSize) rngSize.value = 19;
+        if (rngLineH) rngLineH.value = 1.8;
+        if (rngSpacing) rngSpacing.value = 0.5;
+        if (selWeight) selWeight.value = 400;
+        if (inputColor) inputColor.value = '#292524';
+        if (selAlign) selAlign.value = 'left';
+        if (selShadow) selShadow.value = 'none';
+      } else if (p === 'technical') {
+        if (selFont) selFont.value = "'IBM Plex Mono', monospace";
+        if (rngSize) rngSize.value = 16;
+        if (rngLineH) rngLineH.value = 1.5;
+        if (rngSpacing) rngSpacing.value = 0.5;
+        if (selWeight) selWeight.value = 400;
+        if (inputColor) inputColor.value = '#1e293b';
+        if (selAlign) selAlign.value = 'left';
+        if (selShadow) selShadow.value = 'none';
+      }
+      isItalic = false;
+      if (btnItalic) btnItalic.classList.remove('active');
+      updateTypography();
+    });
+  });
+
+  [rngSize, selFont, selWeight, inputColor, selAlign, selDecor, rngLineH, rngSpacing, selTransform, selShadow].forEach(input => {
+    if (input) {
+      input.addEventListener('input', updateTypography);
+      input.addEventListener('change', updateTypography);
+    }
+  });
 
   if (btnItalic) {
     btnItalic.addEventListener('click', () => {
       isItalic = !isItalic;
       btnItalic.classList.toggle('active', isItalic);
+      btnItalic.textContent = isItalic ? 'italic (Курсив: увімкнено)' : 'italic (Курсив: вимкнено)';
       updateTypography();
     });
   }
@@ -670,7 +762,7 @@ function initTypographyStudio() {
     copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText(codeOutput.textContent).then(() => {
         const orig = copyBtn.textContent;
-        copyBtn.textContent = 'СКОПІЙОВАНО! ✓';
+        copyBtn.textContent = 'Скопійовано! ✓';
         copyBtn.style.backgroundColor = 'var(--accent-green)';
         copyBtn.style.color = '#000';
         setTimeout(() => {
@@ -686,7 +778,7 @@ function initTypographyStudio() {
 }
 
 /* --------------------------------------------------------------------------
-   7. LIVE CODE SANDBOX (HTML + CSS)
+   7. LIVE CODE SANDBOX (З АВТОМАТИЧНИМ ОНОВЛЕННЯМ І ШАБЛОНАМИ)
    -------------------------------------------------------------------------- */
 function initCssSandbox() {
   const codeArea = document.getElementById('sandboxCodeArea');
@@ -704,8 +796,8 @@ function initCssSandbox() {
   <h1 class="card-title">Олексій Коваленко</h1>
   <p class="card-role">Початківець у фронтенд-розробці</p>
   <p class="card-bio">
-    Вивчаю мову розмітки <strong>HTML5</strong> та каскадні таблиці стилів <strong>CSS3</strong>. 
-    Мрію створювати зручні, швидкі та стильні вебсайти для українських шкіл та проєктів!
+    Вивчаю семантичну розмітку <strong>HTML5</strong> та каскадні таблиці стилів <strong>CSS3</strong>.
+    Прагну створювати гармонійні, читабельні та швидкі вебсайти для шкільних проектів!
   </p>
   <div class="card-skills">
     <span class="skill-tag">HTML5</span>
@@ -719,20 +811,20 @@ function initCssSandbox() {
 body {
   margin: 0;
   padding: 24px;
-  background-color: #f1f5f9;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  font-family: system-ui, -apple-system, sans-serif;
   color: #1e293b;
   display: flex;
   justify-content: center;
 }
 
 .user-card {
-  max-width: 480px;
+  max-width: 460px;
   background-color: #ffffff;
   border: 3px solid #0f172a;
   border-radius: 4px;
   padding: 28px;
-  box-shadow: 6px 6px 0px #0f172a;
+  box-shadow: 5px 5px 0px #0f172a;
 }
 
 .card-badge {
@@ -741,22 +833,20 @@ body {
   color: #0f172a;
   font-size: 0.8rem;
   font-weight: 700;
-  padding: 4px 10px;
-  border: 2px solid #0f172a;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border: 1.5px solid #0f172a;
   margin-bottom: 12px;
 }
 
 .card-title {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   margin: 0 0 4px 0;
   color: #0f172a;
   letter-spacing: -0.02em;
 }
 
 .card-role {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #2563eb;
   font-weight: 600;
   margin: 0 0 16px 0;
@@ -764,7 +854,7 @@ body {
 
 .card-bio {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: #475569;
   margin: 0 0 20px 0;
 }
@@ -792,21 +882,22 @@ body {
   color: #ffffff;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.95rem;
-  padding: 10px 20px;
+  font-size: 0.9rem;
+  padding: 10px 18px;
   border: 2px solid #0f172a;
-  box-shadow: 3px 3px 0px #0f172a;
+  box-shadow: 2px 2px 0px #0f172a;
   transition: transform 0.1s;
 }
 
 .card-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0px #0f172a;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #0f172a;
 }`;
 
   let currentTab = 'html';
   let storedHTML = defaultHTML;
   let storedCSS = defaultCSS;
+  let debounceTimer = null;
 
   function renderIframe() {
     const combinedDoc = `
@@ -825,12 +916,8 @@ body {
   }
 
   function switchTab(tab) {
-    // Save current textarea content
-    if (currentTab === 'html') {
-      storedHTML = codeArea.value;
-    } else {
-      storedCSS = codeArea.value;
-    }
+    if (currentTab === 'html') storedHTML = codeArea.value;
+    else storedCSS = codeArea.value;
 
     currentTab = tab;
     if (tab === 'html') {
@@ -846,6 +933,16 @@ body {
 
   if (tabHtmlBtn) tabHtmlBtn.addEventListener('click', () => switchTab('html'));
   if (tabCssBtn) tabCssBtn.addEventListener('click', () => switchTab('css'));
+
+  // Live auto-run as the user types
+  codeArea.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      if (currentTab === 'html') storedHTML = codeArea.value;
+      else storedCSS = codeArea.value;
+      renderIframe();
+    }, 400);
+  });
 
   if (runBtn) {
     runBtn.addEventListener('click', () => {
@@ -864,7 +961,6 @@ body {
     });
   }
 
-  // Initial setup
   codeArea.value = defaultHTML;
   renderIframe();
 }
@@ -926,7 +1022,7 @@ const quizQuestions = [
       'Стилі браузера за замовчуванням'
     ],
     correct: 2,
-    expl: 'Вбудовані (inline) стилі мають найвищу вагу специфічності (1,0,0,0) і перебивають стилі з тегу <style> та зовнішніх файлів.'
+    expl: 'Вбудовані (inline) стилі мають найвищу вагу специфічності (1, 0, 0, 0) і перебивають стилі з тегу <style> та зовнішніх файлів.'
   },
   {
     q: '6. Яка CSS-властивість відповідає за сімейство шрифтів та запасні варіанти (fallback)?',
@@ -1003,7 +1099,7 @@ function initQuiz() {
     const card = document.createElement('div');
     card.className = 'quiz-question-card';
     card.innerHTML = `
-      <div class="quiz-question-number">ЗАПИТАННЯ ${qIdx + 1} З ${quizQuestions.length}</div>
+      <div class="quiz-question-number">Запитання ${qIdx + 1} з ${quizQuestions.length}</div>
       <div class="quiz-question-text">${item.q}</div>
       <div class="quiz-options-list">
         ${item.opts.map((opt, optIdx) => `
@@ -1026,7 +1122,6 @@ function initQuiz() {
       const parentCard = btn.closest('.quiz-question-card');
       const siblingBtns = parentCard.querySelectorAll('.quiz-option-btn');
 
-      // Disable buttons for this question
       siblingBtns.forEach(b => b.disabled = true);
 
       answeredCount++;
@@ -1037,25 +1132,23 @@ function initQuiz() {
       if (optIdx === question.correct) {
         btn.classList.add('selected-correct');
         feedbackEl.className = 'quiz-feedback show-correct';
-        feedbackEl.innerHTML = `<strong>ВІРНО! ✓</strong> ${question.expl}`;
+        feedbackEl.innerHTML = `<strong>Вірно! ✓</strong> ${question.expl}`;
         correctScore++;
       } else {
         btn.classList.add('selected-incorrect');
         siblingBtns[question.correct].classList.add('selected-correct');
         feedbackEl.className = 'quiz-feedback show-incorrect';
-        feedbackEl.innerHTML = `<strong>НЕВІРНО! ✕</strong> ${question.expl}`;
+        feedbackEl.innerHTML = `<strong>Невірно! ✕</strong> ${question.expl}`;
       }
 
-      // Check if finished
       if (answeredCount === quizQuestions.length && resultsCard) {
         resultsCard.style.display = 'block';
         const percent = Math.round((correctScore / quizQuestions.length) * 100);
-        // School 12-point scale
         const grade12 = Math.max(1, Math.round((correctScore / quizQuestions.length) * 12));
 
         if (scoreBadge) scoreBadge.textContent = `${correctScore} / ${quizQuestions.length}`;
         if (gradeText) {
-          gradeText.innerHTML = `Оцінка за 12-бальною шкалою: <span style="color: var(--accent-vermilion); font-weight: 800;">${grade12} балів</span> (${percent}% успішності)`;
+          gradeText.innerHTML = `Оцінка за 12-бальною шкалою: <span style="color: var(--accent-blue); font-weight: 800;">${grade12} балів</span> (${percent}% успішності)`;
         }
         resultsCard.scrollIntoView({ behavior: 'smooth' });
       }

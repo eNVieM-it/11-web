@@ -1,30 +1,41 @@
 /* ==========================================================================
    УРОК 3: КАСКАДНІ ТАБЛИЦІ СТИЛІВ (CSS)
    Стилі інтерактивних модулів, тренажерів, лабораторії типографіки та тесту
-   Дизайн-система: Neo-Brutalist Paper & Code
+   Дизайн-система: Neo-Brutalist Paper & Code (Оновлено за Frontend Design)
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    0. СЕКЦІЇ, КАРТКИ ТА ЗАГАЛЬНІ ЕЛЕМЕНТИ
    -------------------------------------------------------------------------- */
 .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
+  max-width: 72ch;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
 }
 
 .lesson-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: var(--accent-blue);
-  color: #ffffff;
-  font-family: var(--font-heading);
+  gap: 0.4rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.35rem 0.85rem;
-  border: 2px solid var(--border-color);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid var(--border-color);
   box-shadow: 2px 2px 0 var(--border-color);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   margin-bottom: 1rem;
 }
 
@@ -45,20 +56,20 @@
 
 .tag-cheat-table th {
   background: var(--bg-secondary);
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.25rem;
   border-bottom: var(--border-width) solid var(--border-color);
   font-family: var(--font-heading);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   color: var(--text-primary);
 }
 
 .tag-cheat-table td {
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.25rem;
   border-bottom: 1.5px solid var(--border-color);
   vertical-align: top;
   color: var(--text-primary);
+  line-height: 1.55;
 }
 
 .tag-cheat-table tr:last-child td {
@@ -66,13 +77,13 @@
 }
 
 .tag-cheat-table tr:hover {
-  background-color: rgba(37, 99, 235, 0.04);
+  background-color: rgba(37, 99, 235, 0.03);
 }
 
 .tag-cheat-table code {
   background: var(--bg-secondary);
   color: var(--accent-blue);
-  padding: 0.2rem 0.45rem;
+  padding: 0.15rem 0.4rem;
   border: 1px solid var(--border-color);
   font-family: var(--font-mono);
   font-weight: 600;
@@ -88,7 +99,7 @@
 .accordion-group {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   margin: 2rem 0;
 }
 
@@ -107,10 +118,10 @@
   width: 100%;
   text-align: left;
   background: var(--bg-card);
-  padding: 1.25rem 1.5rem;
+  padding: 1.15rem 1.4rem;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -127,15 +138,15 @@
 
 .accordion-icon {
   font-family: var(--font-mono);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  color: var(--accent-vermilion);
+  color: var(--accent-blue);
   flex-shrink: 0;
 }
 
 .accordion-content {
   display: none;
-  padding: 1.5rem;
+  padding: 1.4rem;
   background: var(--bg-card);
   border-top: 2px solid var(--border-color);
   line-height: 1.7;
@@ -147,6 +158,83 @@
 
 .accordion-item.active .accordion-header {
   background: var(--bg-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   0.1 HERO CSS SWITCHBOARD (НОВИЙ ДИЗАЙН HERO)
+   -------------------------------------------------------------------------- */
+.hero-switchboard-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.switchboard-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.switch-pill {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.switch-pill.active {
+  background: var(--accent-blue);
+  color: #ffffff;
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .switch-pill.active {
+  background: var(--accent-yellow);
+  color: #121212;
+}
+
+.switchboard-preview-canvas {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  padding: 1.5rem;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+[data-theme="dark"] .switchboard-preview-canvas {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+.switchboard-target {
+  width: 100%;
+  max-width: 380px;
+  transition: all 0.25s ease;
+}
+
+.switchboard-code-ribbon {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  border-radius: 3px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
 }
 
 /* --------------------------------------------------------------------------
@@ -162,8 +250,8 @@
 
 .anatomy-modes {
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.75rem;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
@@ -171,9 +259,9 @@
   background: var(--bg-primary);
   color: var(--text-primary);
   border: var(--border-width) solid var(--border-color);
-  padding: 0.6rem 1.25rem;
+  padding: 0.5rem 1.15rem;
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
@@ -204,9 +292,9 @@
   color: #f8f9fa;
   border: var(--border-width) solid var(--border-color);
   border-radius: 4px;
-  padding: 2rem 1.5rem;
+  padding: 1.75rem 1.25rem;
   font-family: var(--font-mono);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -221,7 +309,7 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  padding: 0.4rem 0.65rem;
+  padding: 0.35rem 0.55rem;
   border-radius: 4px;
   border: 2px dashed transparent;
   transition: all var(--transition-fast);
@@ -236,19 +324,17 @@
 }
 
 .anatomy-token .token-badge {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.15rem 0.45rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.4rem;
   border-radius: 2px;
-  margin-top: 0.5rem;
+  margin-top: 0.45rem;
   font-weight: 700;
   background: #252836;
   color: #cbd5e1;
   white-space: nowrap;
 }
 
-/* Кольорове маркування частин CSS-правила */
 .tok-selector { color: #f43f5e; font-weight: 700; }
 .tok-brace { color: #cbd5e1; font-weight: 700; }
 .tok-property { color: #38bdf8; font-weight: 600; }
@@ -257,10 +343,10 @@
 .tok-semicolon { color: #fb7185; font-weight: 800; }
 
 .anatomy-explanation-card {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   background: var(--bg-secondary);
   border: var(--border-width) solid var(--border-color);
-  padding: 1.5rem;
+  padding: 1.35rem;
   display: flex;
   gap: 1.25rem;
   align-items: flex-start;
@@ -268,31 +354,31 @@
 }
 
 .anatomy-icon-box {
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   background: var(--accent-yellow);
   color: #121212;
   border: var(--border-width) solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   flex-shrink: 0;
   box-shadow: var(--shadow-sm);
 }
 
 .anatomy-info-title {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
-  margin-bottom: 0.35rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
   color: var(--text-primary);
 }
 
 .anatomy-info-desc {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .anatomy-rule-pill {
@@ -300,15 +386,14 @@
   background: var(--bg-card);
   color: var(--text-primary);
   border: 1.5px solid var(--border-color);
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.65rem;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  box-shadow: 2px 2px 0 var(--border-color);
 }
 
 /* --------------------------------------------------------------------------
-   2. СИМУЛЯТОР СПОСОБІВ ПІДКЛЮЧЕННЯ ТА КАСКАДУ (CASCADE & SPECIFICITY BATTLE)
+   2. СИМУЛЯТОР КАСКАДУ ТА СПЕЦИФІЧНОСТІ
    -------------------------------------------------------------------------- */
 .cascade-simulator {
   background: var(--bg-card);
@@ -334,13 +419,13 @@
 .cascade-sources {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
 .source-card {
   border: 2px solid var(--border-color);
   background: var(--bg-secondary);
-  padding: 1.25rem;
+  padding: 1.15rem;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
 }
@@ -355,23 +440,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .source-title {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .priority-badge {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 2px;
+  padding: 0.15rem 0.5rem;
   font-weight: 700;
   border: 1px solid var(--border-color);
   background: var(--bg-card);
@@ -380,12 +464,13 @@
 .source-code-snippet {
   background: #13141f;
   color: #e2e8f0;
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.85rem;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   border-radius: 3px;
   overflow-x: auto;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.45;
 }
 
 .source-controls {
@@ -394,21 +479,22 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem;
+  font-size: 0.88rem;
 }
 
 .cascade-preview-panel {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
 .live-render-box {
   border: var(--border-width) solid var(--border-color);
   background: #ffffff;
   color: #121212;
-  padding: 2rem;
+  padding: 1.75rem;
   box-shadow: var(--shadow-md);
-  min-height: 200px;
+  min-height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -418,9 +504,9 @@
 }
 
 .live-target-element {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.25rem;
   border: 2px dashed #94a3b8;
   border-radius: 4px;
   transition: all 0.25s ease;
@@ -430,15 +516,15 @@
 .cascade-inspector-card {
   background: var(--bg-secondary);
   border: var(--border-width) solid var(--border-color);
-  padding: 1.25rem;
+  padding: 1.15rem;
   box-shadow: var(--shadow-sm);
 }
 
 .inspector-title {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.65rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -448,11 +534,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  margin-bottom: 0.35rem;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-family: var(--font-mono);
 }
 
@@ -464,11 +550,11 @@
 
 .rule-hierarchy-item.overridden {
   text-decoration: line-through;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* --------------------------------------------------------------------------
-   3. ТРЕНАЖЕР БАЗОВИХ СЕЛЕКТОРІВ (CSS SELECTOR PLAYGROUND)
+   3. ТРЕНАЖЕР СЕЛЕКТОРІВ (CSS SELECTOR PLAYGROUND)
    -------------------------------------------------------------------------- */
 .selector-playground {
   background: var(--bg-card);
@@ -481,24 +567,24 @@
 .selector-toolbar {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
 }
 
 .selector-quick-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .sel-btn {
   background: var(--bg-secondary);
   color: var(--text-primary);
-  border: 2px solid var(--border-color);
-  padding: 0.45rem 0.9rem;
+  border: 1.5px solid var(--border-color);
+  padding: 0.4rem 0.8rem;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   box-shadow: 2px 2px 0 var(--border-color);
   transition: all var(--transition-fast);
@@ -532,9 +618,9 @@
   background: var(--bg-primary);
   color: var(--text-primary);
   border: var(--border-width) solid var(--border-color);
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.95rem;
   font-family: var(--font-mono);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -549,10 +635,10 @@
   align-items: center;
   justify-content: space-between;
   background: var(--bg-secondary);
-  padding: 0.6rem 1rem;
+  padding: 0.55rem 0.9rem;
   border: 1.5px solid var(--border-color);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -583,17 +669,16 @@
 .mock-window-header {
   background: #e2e8f0;
   border-bottom: 2px solid var(--border-color);
-  padding: 0.5rem 0.85rem;
+  padding: 0.45rem 0.75rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .window-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  border: 1px solid #64748b;
 }
 
 .dot-red { background: #ef4444; }
@@ -602,7 +687,7 @@
 
 .mock-window-url {
   background: #ffffff;
-  padding: 0.2rem 0.75rem;
+  padding: 0.15rem 0.65rem;
   border: 1px solid #cbd5e1;
   border-radius: 3px;
   font-family: var(--font-mono);
@@ -612,16 +697,15 @@
 }
 
 .mock-window-content {
-  padding: 1.5rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  min-height: 280px;
+  gap: 0.85rem;
+  min-height: 270px;
 }
 
-/* Елементи віртуального сайту */
 .dom-item {
-  padding: 0.5rem 0.75rem;
+  padding: 0.45rem 0.65rem;
   border: 2px solid transparent;
   border-radius: 3px;
   transition: all 0.2s ease;
@@ -631,24 +715,24 @@
 .dom-item.matched-node {
   border-color: #ef4444 !important;
   background-color: rgba(239, 68, 68, 0.12) !important;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
-  animation: pulse-match 1s infinite alternate;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+  animation: pulse-match 1.2s infinite alternate;
 }
 
 @keyframes pulse-match {
   0% { transform: scale(1); }
-  100% { transform: scale(1.02); }
+  100% { transform: scale(1.015); }
 }
 
 .dom-item .dom-tag-label {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   background: #334155;
   color: #ffffff;
-  padding: 0.1rem 0.4rem;
+  padding: 0.1rem 0.35rem;
   border-radius: 2px;
-  margin-right: 0.5rem;
+  margin-right: 0.4rem;
   font-weight: 700;
 }
 
@@ -657,14 +741,14 @@
   color: #e2e8f0;
   border: var(--border-width) solid var(--border-color);
   box-shadow: var(--shadow-md);
-  padding: 1.25rem;
+  padding: 1.15rem;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   overflow-x: auto;
 }
 
 .tree-code-line {
-  padding: 0.25rem 0.5rem;
+  padding: 0.2rem 0.45rem;
   border-radius: 3px;
   white-space: pre;
   transition: background 0.15s;
@@ -678,7 +762,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   4. ІНТЕРАКТИВНА ЛАБОРАТОРІЯ ТИПОГРАФІКИ (CSS TYPOGRAPHY STUDIO)
+   4. СТУДІЯ ТИПОГРАФІКИ (CSS TYPOGRAPHY STUDIO)
    -------------------------------------------------------------------------- */
 .typography-studio {
   background: var(--bg-card);
@@ -686,6 +770,30 @@
   box-shadow: var(--shadow-lg);
   padding: 2rem;
   margin: 2.5rem 0;
+}
+
+.typo-presets-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.preset-btn {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
+  padding: 0.35rem 0.85rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.preset-btn:hover {
+  background: var(--accent-yellow);
+  color: #121212;
 }
 
 .studio-grid {
@@ -703,21 +811,21 @@
 .controls-column {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
 .control-card {
   background: var(--bg-secondary);
   border: 1.5px solid var(--border-color);
-  padding: 1.25rem;
+  padding: 1.15rem;
   box-shadow: var(--shadow-sm);
 }
 
 .control-title {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.95rem;
-  margin-bottom: 0.85rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -727,8 +835,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
-  gap: 1rem;
+  margin-bottom: 0.65rem;
+  gap: 0.75rem;
 }
 
 .control-row:last-child {
@@ -737,18 +845,18 @@
 
 .control-label {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-primary);
-  min-width: 120px;
+  min-width: 115px;
 }
 
 .control-val-badge {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.45rem;
   font-weight: 700;
   min-width: 55px;
   text-align: center;
@@ -759,21 +867,15 @@
   background: var(--bg-card);
   color: var(--text-primary);
   border: 1.5px solid var(--border-color);
-  padding: 0.4rem 0.6rem;
+  padding: 0.35rem 0.55rem;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .control-range {
   flex: 1;
   accent-color: var(--accent-blue);
   cursor: pointer;
-}
-
-.btn-toggle-group {
-  display: flex;
-  gap: 0.35rem;
-  flex-wrap: wrap;
 }
 
 .toggle-opt-btn {
@@ -798,20 +900,37 @@
   color: #121212;
 }
 
+.contrast-meter-ribbon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  padding: 0.6rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.contrast-score-pass {
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
 /* Studio Preview & Generated Code */
 .preview-column {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .studio-preview-box {
   border: var(--border-width) solid var(--border-color);
   background: #ffffff;
   color: #121212;
-  padding: 2rem;
+  padding: 1.75rem;
   box-shadow: var(--shadow-md);
-  min-height: 250px;
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -820,11 +939,12 @@
 }
 
 .studio-target-h2 {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .studio-target-p {
   margin-bottom: 0;
+  max-width: 65ch;
 }
 
 .generated-code-card {
@@ -837,7 +957,7 @@
 
 .code-card-header {
   background: #090a10;
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.95rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -846,7 +966,7 @@
 
 .code-card-title {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #94a3b8;
 }
@@ -855,7 +975,7 @@
   background: var(--accent-blue);
   color: #ffffff;
   border: 1px solid #3b82f6;
-  padding: 0.35rem 0.75rem;
+  padding: 0.3rem 0.7rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
@@ -868,43 +988,43 @@
 }
 
 .code-card-body {
-  padding: 1.25rem;
+  padding: 1.15rem;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.5;
   overflow-x: auto;
   white-space: pre;
 }
 
 /* --------------------------------------------------------------------------
-   5. ІНТЕРАКТИВНА ПІСОЧНИЦЯ (LIVE SANDBOX)
+   5. LIVE SANDBOX
    -------------------------------------------------------------------------- */
 .sandbox-container {
   border: var(--border-width) solid var(--border-color);
   background: var(--bg-card);
   box-shadow: var(--shadow-lg);
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   overflow: hidden;
 }
 
 .sandbox-header {
   background: var(--bg-secondary);
   border-bottom: var(--border-width) solid var(--border-color);
-  padding: 0.85rem 1.25rem;
+  padding: 0.75rem 1.15rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .sandbox-title {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .sandbox-btn-group {
@@ -917,10 +1037,10 @@
   background: var(--accent-green);
   color: #000000;
   border: 2px solid var(--border-color);
-  padding: 0.45rem 0.95rem;
+  padding: 0.4rem 0.85rem;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   cursor: pointer;
   box-shadow: 2px 2px 0 var(--border-color);
   transition: all var(--transition-fast);
@@ -946,10 +1066,10 @@
   background: transparent;
   color: #94a3b8;
   border: none;
-  padding: 0.75rem 1.25rem;
+  padding: 0.65rem 1.15rem;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   border-bottom: 3px solid transparent;
   display: flex;
@@ -991,9 +1111,9 @@
   background: #181b26;
   color: #f1f5f9;
   border: none;
-  padding: 1.25rem;
+  padding: 1.15rem;
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.55;
   resize: none;
   outline: none;
@@ -1009,91 +1129,91 @@
 }
 
 /* --------------------------------------------------------------------------
-   6. ПРАКТИКУМ: КРОКИ ТА СТРУКТУРА
+   6. ПРАКТИКУМ: КРОКИ
    -------------------------------------------------------------------------- */
 .practical-section {
   background: var(--bg-secondary);
   border-top: var(--border-width) solid var(--border-color);
   border-bottom: var(--border-width) solid var(--border-color);
-  padding: 5rem 0;
+  padding: 4.5rem 0;
 }
 
 .practical-steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
 }
 
 .step-card {
   background: var(--bg-card);
   border: var(--border-width) solid var(--border-color);
-  padding: 1.5rem;
+  padding: 1.35rem;
   box-shadow: var(--shadow-sm);
   position: relative;
   transition: transform var(--transition-fast);
 }
 
 .step-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 .step-number {
   display: inline-block;
-  background: var(--accent-vermilion);
+  background: var(--accent-blue);
   color: #ffffff;
   font-family: var(--font-mono);
   font-weight: 800;
-  font-size: 0.8rem;
-  padding: 0.2rem 0.55rem;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
   border: 1.5px solid var(--border-color);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 /* --------------------------------------------------------------------------
    7. ТЕСТОВИЙ МОДУЛЬ (QUIZ)
    -------------------------------------------------------------------------- */
 .quiz-section {
-  padding: 5rem 0;
+  padding: 4.5rem 0;
 }
 
 .quiz-container {
   background: var(--bg-card);
   border: var(--border-width) solid var(--border-color);
   box-shadow: var(--shadow-lg);
-  padding: 2.5rem;
-  margin: 2.5rem 0;
+  padding: 2.25rem;
+  margin: 2rem 0;
 }
 
 .quiz-progress-bar-container {
-  height: 8px;
+  height: 6px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  margin-bottom: 2rem;
-  border-radius: 4px;
+  margin-bottom: 1.75rem;
+  border-radius: 3px;
   overflow: hidden;
 }
 
 .quiz-progress-bar-fill {
   height: 100%;
   width: 0%;
-  background: var(--accent-vermilion);
+  background: var(--accent-blue);
   transition: width 0.3s ease;
 }
 
 .quiz-question-card {
-  margin-bottom: 2rem;
-  padding-bottom: 1.75rem;
-  border-bottom: 2px solid var(--bg-secondary);
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1.5px solid var(--bg-secondary);
 }
 
 .quiz-question-number {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--accent-blue);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 [data-theme="dark"] .quiz-question-number {
@@ -1102,26 +1222,27 @@
 
 .quiz-question-text {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.15rem;
   color: var(--text-primary);
+  line-height: 1.4;
 }
 
 .quiz-options-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .quiz-option-btn {
   background: var(--bg-primary);
   color: var(--text-primary);
   border: 2px solid var(--border-color);
-  padding: 0.85rem 1.25rem;
+  padding: 0.75rem 1.15rem;
   text-align: left;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   cursor: pointer;
   box-shadow: 2px 2px 0 var(--border-color);
   transition: all var(--transition-fast);
@@ -1130,7 +1251,7 @@
 
 .quiz-option-btn:hover:not(:disabled) {
   background: var(--bg-secondary);
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 .quiz-option-btn.selected-correct {
@@ -1148,10 +1269,10 @@
 }
 
 .quiz-feedback {
-  margin-top: 1rem;
-  padding: 0.85rem 1.25rem;
+  margin-top: 0.85rem;
+  padding: 0.75rem 1.15rem;
   border-radius: 3px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   display: none;
   line-height: 1.55;
 }
@@ -1173,7 +1294,7 @@
 .quiz-results-card {
   display: none;
   text-align: center;
-  padding: 2.5rem;
+  padding: 2.25rem;
   background: var(--bg-secondary);
   border: var(--border-width) solid var(--border-color);
   box-shadow: var(--shadow-md);
@@ -1181,16 +1302,157 @@
 
 .quiz-score-badge {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 800;
-  color: var(--accent-vermilion);
-  margin-bottom: 0.5rem;
+  color: var(--accent-blue);
+  margin-bottom: 0.4rem;
 }
 
 .quiz-grade-text {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   8. ДРУЖНІ ДЛЯ ДІТЕЙ ПОЯСНЮВАЛЬНІ БЛОКИ (FOR BEGINNERS)
+   -------------------------------------------------------------------------- */
+.friendly-analogy-box {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.analogy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.analogy-pill-card {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.analogy-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.analogy-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.analogy-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Power Meter (Шкала сили селекторів) */
+.power-meter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.power-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.power-rank {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.power-points {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+}
+
+.power-card:nth-child(4) .power-points {
+  color: var(--accent-vermilion);
+}
+
+.power-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.power-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* 3 Головні помилки новачка */
+.mistakes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.mistake-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.mistake-badge {
+  display: inline-block;
+  background: #ffe4e6;
+  color: #e11d48;
+  border: 1px solid #fda4af;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.mistake-code-row {
+  margin: 0.6rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  border-radius: 2px;
+}
+
+.mistake-wrong {
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 3px solid #ef4444;
+  color: #b91c1c;
+}
+
+.mistake-right {
+  background: rgba(16, 185, 129, 0.08);
+  border-left: 3px solid #10b981;
+  color: #047857;
 }

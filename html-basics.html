@@ -40,27 +40,62 @@
   <!-- Site Header -->
   <header class="site-header">
     <div class="container header-container">
-      <a href="index.html" class="header-logo" title="На головну сторінку курсу">
-        <span class="logo-badge">&lt;/&gt;</span>
-        <span>ВЕБТЕХНОЛОГІЇ</span>
-      </a>
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
 
-      <nav>
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу">
+            <span>📚 Уроки курсу</span>
+            <span class="dropdown-arrow">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu">
+            <div class="course-dropdown-header">Навчальна програма (10–11 класи)</div>
+            <a href="index.html" class="course-dropdown-item">
+              <span>Урок 1: Вебдизайн та структура сайту</span>
+              <span class="lesson-tag">Розділ 1</span>
+            </a>
+            <a href="html-basics.html" class="course-dropdown-item active">
+              <span>Урок 2: Основи мови HTML5</span>
+              <span class="lesson-tag current">Поточний</span>
+            </a>
+            <a href="css-basics.html" class="course-dropdown-item">
+              <span>Урок 3: Каскадні таблиці стилів CSS</span>
+              <span class="lesson-tag">Розділ 3</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="header-nav" aria-label="Зміст уроку">
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="nav-link" style="color: var(--accent-blue);">← Урок 1</a></li>
+          <!-- Мобільний блок списку уроків -->
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item active">Урок 2: Основи мови HTML5 ★</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
+            </ul>
+          </li>
+
+          <!-- Посилання на розділи цього уроку -->
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
           <li><a href="#topic1" class="nav-link">1. Гіпертекст</a></li>
           <li><a href="#topic2" class="nav-link">2. Структура</a></li>
           <li><a href="#topic3" class="nav-link">3. Текст</a></li>
           <li><a href="#topic4" class="nav-link">4. Списки</a></li>
           <li><a href="#topic5" class="nav-link">5. Посилання</a></li>
-          <li><a href="#practical-work" class="nav-link" style="color: var(--accent-green);">Практикум ⚙️</a></li>
-          <li><a href="css-basics.html" class="nav-link" style="color: var(--accent-purple); font-weight: 700;">Урок 3: Основи CSS →</a></li>
+          <li><a href="#practical-work" class="nav-link nav-link-highlight" style="color: var(--accent-green) !important;">Практикум ⚙️</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <button id="themeToggleBtn" class="theme-toggle-btn">НІЧ 🌙</button>
-        <button id="burgerMenuBtn" class="burger-menu-btn">МЕНЮ ☰</button>
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
       </div>
     </div>
   </header>
