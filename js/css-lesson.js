@@ -970,22 +970,41 @@ function initCssSandbox() {
 
   if (!codeArea || !iframe) return;
 
-  const defaultHTML = `<!-- Структура сторінки (HTML) -->
-<div class="user-card">
-  <div class="card-badge">Учень 10-го класу</div>
-  <h1 class="card-title">Олексій Коваленко</h1>
-  <p class="card-role">Початківець у фронтенд-розробці</p>
-  <p class="card-bio">
-    Вивчаю семантичну розмітку <strong>HTML5</strong> та каскадні таблиці стилів <strong>CSS3</strong>.
-    Прагну створювати гармонійні, читабельні та швидкі вебсайти для шкільних проектів!
-  </p>
-  <div class="card-skills">
-    <span class="skill-tag">HTML5</span>
-    <span class="skill-tag">CSS3</span>
-    <span class="skill-tag">Typography</span>
+  const defaultHTML = `<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Візитка учня</title>
+
+  <!-- =================================================================
+       ПІДКЛЮЧЕННЯ КАСКАДНИХ ТАБЛИЦЬ СТИЛІВ CSS:
+       Тег <link> розміщується всередині службового блоку <head>.
+       • rel="stylesheet" — вказує браузеру, що це файл таблиці стилів;
+       • href="style.css" — шлях до файлу (відкрийте вкладку style.css праворуч).
+       ================================================================= -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Структура картки-візитки (HTML-каркас) -->
+  <div class="user-card">
+    <div class="card-badge">Учень 10-го класу</div>
+    <h1 class="card-title">Олексій Коваленко</h1>
+    <p class="card-role">Початківець у фронтенд-розробці</p>
+    <p class="card-bio">
+      Вивчаю семантичну розмітку <strong>HTML5</strong> та каскадні таблиці стилів <strong>CSS3</strong>.
+      Прагну створювати гармонійні, читабельні та швидкі вебсайти для шкільних проєктів!
+    </p>
+    <div class="card-skills">
+      <span class="skill-tag">HTML5</span>
+      <span class="skill-tag">CSS3</span>
+      <span class="skill-tag">Typography</span>
+    </div>
+    <a href="#contact" class="card-btn">Написати повідомлення</a>
   </div>
-  <a href="#contact" class="card-btn">Написати повідомлення</a>
-</div>`;
+
+</body>
+</html>`;
 
   const defaultCSS = `/* Стилі сторінки (CSS) */
 body {
@@ -1080,19 +1099,31 @@ body {
   let debounceTimer = null;
 
   function renderIframe() {
-    const combinedDoc = `
-      <!DOCTYPE html>
-      <html lang="uk">
-      <head>
-        <meta charset="UTF-8">
-        <style>${storedCSS}</style>
-      </head>
-      <body>
-        ${storedHTML}
-      </body>
-      </html>
-    `;
-    iframe.srcdoc = combinedDoc;
+    let html = storedHTML;
+
+    // Якщо у HTML є підключення style.css, підставляємо актуальний CSS з сусідньої вкладки
+    if (/<link[^>]*href=["']style\.css["'][^>]*>/i.test(html)) {
+      html = html.replace(/<link[^>]*href=["']style\.css["'][^>]*>/i, `<style>\n${storedCSS}\n</style>`);
+    } else if (html.includes('</head>')) {
+      // Якщо тег <link> видалено, але є </head>, застосовуємо стиль
+      html = html.replace('</head>', `<style>\n${storedCSS}\n</style>\n</head>`);
+    } else if (!html.includes('<html')) {
+      // Якщо введено лише фрагмент
+      html = `<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <style>
+${storedCSS}
+  </style>
+</head>
+<body>
+  ${html}
+</body>
+</html>`;
+    }
+
+    iframe.srcdoc = html;
   }
 
   function switchTab(tab) {
@@ -1143,5 +1174,75 @@ body {
 
   codeArea.value = defaultHTML;
   renderIframe();
+
+  // Логіка повноекранного режиму (Full-page IDE)
+  const container = document.getElementById('sandboxContainer');
+  const fullscreenBtn = document.getElementById('sandboxFullscreenBtn');
+  const launchTopBtn = document.getElementById('launchFullscreenTopBtn');
+  const tasksBtn = document.getElementById('sandboxTasksBtn');
+  const tasksDrawer = document.getElementById('sandboxTasksDrawer');
+  const tasksCloseBtn = document.getElementById('sandboxTasksCloseBtn');
+
+  function toggleFullscreen(forceState) {
+    if (!container) return;
+    const isFs = typeof forceState === 'boolean' ? forceState : !container.classList.contains('is-fullscreen');
+    if (isFs) {
+      container.classList.add('is-fullscreen');
+      document.body.classList.add('sandbox-fullscreen-active');
+      if (fullscreenBtn) {
+        fullscreenBtn.innerHTML = '<span class="fs-icon">🗗</span> <span class="fs-label">Згорнути</span>';
+        fullscreenBtn.title = 'Згорнути у звичайний вигляд (Esc)';
+      }
+      codeArea.focus();
+    } else {
+      container.classList.remove('is-fullscreen');
+      document.body.classList.remove('sandbox-fullscreen-active');
+      if (fullscreenBtn) {
+        fullscreenBtn.innerHTML = '<span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>';
+        fullscreenBtn.title = 'Відкрити практикум на всю сторінку (Esc для виходу)';
+      }
+      if (tasksDrawer) {
+        tasksDrawer.classList.remove('is-open');
+        if (tasksBtn) tasksBtn.classList.remove('active');
+      }
+    }
+  }
+
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => toggleFullscreen());
+  }
+
+  if (launchTopBtn) {
+    launchTopBtn.addEventListener('click', () => {
+      toggleFullscreen(true);
+    });
+  }
+
+  function toggleTasksDrawer() {
+    if (!tasksDrawer) return;
+    const isOpen = tasksDrawer.classList.toggle('is-open');
+    if (tasksBtn) tasksBtn.classList.toggle('active', isOpen);
+  }
+
+  if (tasksBtn) {
+    tasksBtn.addEventListener('click', toggleTasksDrawer);
+  }
+
+  if (tasksCloseBtn) {
+    tasksCloseBtn.addEventListener('click', () => {
+      if (tasksDrawer) tasksDrawer.classList.remove('is-open');
+      if (tasksBtn) tasksBtn.classList.remove('active');
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && container && container.classList.contains('is-fullscreen')) {
+      toggleFullscreen(false);
+    }
+  });
+
+  if (window.location.search.includes('fullscreen=1') || window.location.hash === '#practical-work-fullscreen') {
+    toggleFullscreen(true);
+  }
 }
 

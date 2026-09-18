@@ -882,19 +882,21 @@
   align-items: center;
   border-bottom: 2px solid #2d2d3a;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .sandbox-title {
   color: #e2e8f0;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 700;
 }
 
 .sandbox-btn-group {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .sandbox-btn {
@@ -904,20 +906,51 @@
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.85rem;
-  padding: 0.4rem 0.85rem;
+  padding: 0.45rem 0.85rem;
   cursor: pointer;
   box-shadow: 2px 2px 0 var(--border-color);
   transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .sandbox-btn:hover {
   background: #22c55e;
   transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--border-color);
 }
 
 .sandbox-btn.btn-reset {
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: #252836;
+  color: #f1f5f9;
+  border-color: #3b4258;
+}
+
+.sandbox-btn.btn-reset:hover {
+  background: #33384c;
+  color: #ffffff;
+}
+
+.sandbox-btn.btn-tasks {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+.sandbox-btn.btn-tasks:hover {
+  background: #334155;
+}
+
+.sandbox-btn.btn-fullscreen {
+  background: var(--accent-yellow) !important;
+  color: #121212 !important;
+  border: 2px solid #121212 !important;
+}
+
+.sandbox-btn.btn-fullscreen:hover {
+  background: #fde047 !important;
+  transform: translate(-1px, -1px);
 }
 
 .sandbox-workspace {

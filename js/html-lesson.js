@@ -516,6 +516,34 @@ function initTextPlayground() {
     });
   });
 
+  // Повноекранний режим для текстової лабораторії
+  const textLabContainer = document.getElementById('textLabContainer');
+  const textLabFullscreenBtn = document.getElementById('textLabFullscreenBtn');
+
+  if (textLabContainer && textLabFullscreenBtn) {
+    textLabFullscreenBtn.addEventListener('click', () => {
+      const isFs = textLabContainer.classList.toggle('is-fullscreen');
+      document.body.classList.toggle('sandbox-fullscreen-active', isFs);
+      if (isFs) {
+        textLabFullscreenBtn.innerHTML = '<span class="fs-icon">🗗</span> <span class="fs-label">Згорнути</span>';
+        textLabFullscreenBtn.title = 'Згорнути у звичайний вигляд (Esc)';
+        textarea.focus();
+      } else {
+        textLabFullscreenBtn.innerHTML = '<span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>';
+        textLabFullscreenBtn.title = 'Розгорнути текстову лабораторію на весь екран';
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && textLabContainer.classList.contains('is-fullscreen')) {
+        textLabContainer.classList.remove('is-fullscreen');
+        document.body.classList.remove('sandbox-fullscreen-active');
+        textLabFullscreenBtn.innerHTML = '<span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>';
+        textLabFullscreenBtn.title = 'Розгорнути текстову лабораторію на весь екран';
+      }
+    });
+  }
+
   renderPreview();
 }
 
@@ -803,4 +831,81 @@ function initPracticalSandbox() {
     clearTimeout(timeout);
     timeout = setTimeout(executeCode, 600);
   });
+
+  // Логіка повноекранного режиму (Full-page IDE)
+  const container = document.getElementById('sandboxContainer');
+  const fullscreenBtn = document.getElementById('sandboxFullscreenBtn');
+  const launchTopBtn = document.getElementById('launchFullscreenTopBtn');
+  const launchHeaderBtn = document.getElementById('launchFsHeaderBtn');
+  const tasksBtn = document.getElementById('sandboxTasksBtn');
+  const tasksDrawer = document.getElementById('sandboxTasksDrawer');
+  const tasksCloseBtn = document.getElementById('sandboxTasksCloseBtn');
+
+  function toggleFullscreen(forceState) {
+    if (!container) return;
+    const isFs = typeof forceState === 'boolean' ? forceState : !container.classList.contains('is-fullscreen');
+    if (isFs) {
+      container.classList.add('is-fullscreen');
+      document.body.classList.add('sandbox-fullscreen-active');
+      if (fullscreenBtn) {
+        fullscreenBtn.innerHTML = '<span class="fs-icon">🗗</span> <span class="fs-label">Згорнути</span>';
+        fullscreenBtn.title = 'Згорнути у звичайний вигляд (Esc)';
+      }
+      codeArea.focus();
+    } else {
+      container.classList.remove('is-fullscreen');
+      document.body.classList.remove('sandbox-fullscreen-active');
+      if (fullscreenBtn) {
+        fullscreenBtn.innerHTML = '<span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>';
+        fullscreenBtn.title = 'Відкрити практикум на всю сторінку (Esc для виходу)';
+      }
+      if (tasksDrawer) {
+        tasksDrawer.classList.remove('is-open');
+        if (tasksBtn) tasksBtn.classList.remove('active');
+      }
+    }
+  }
+
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => toggleFullscreen());
+  }
+
+  if (launchTopBtn) {
+    launchTopBtn.addEventListener('click', () => {
+      toggleFullscreen(true);
+    });
+  }
+
+  if (launchHeaderBtn) {
+    launchHeaderBtn.addEventListener('click', () => {
+      toggleFullscreen(true);
+    });
+  }
+
+  function toggleTasksDrawer() {
+    if (!tasksDrawer) return;
+    const isOpen = tasksDrawer.classList.toggle('is-open');
+    if (tasksBtn) tasksBtn.classList.toggle('active', isOpen);
+  }
+
+  if (tasksBtn) {
+    tasksBtn.addEventListener('click', toggleTasksDrawer);
+  }
+
+  if (tasksCloseBtn) {
+    tasksCloseBtn.addEventListener('click', () => {
+      if (tasksDrawer) tasksDrawer.classList.remove('is-open');
+      if (tasksBtn) tasksBtn.classList.remove('active');
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && container && container.classList.contains('is-fullscreen')) {
+      toggleFullscreen(false);
+    }
+  });
+
+  if (window.location.search.includes('fullscreen=1') || window.location.hash === '#practical-work-fullscreen') {
+    toggleFullscreen(true);
+  }
 }

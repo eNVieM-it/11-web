@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles/main.css?v=5">
+  <link rel="stylesheet" href="styles/main.css?v=8">
   <link rel="stylesheet" href="styles/hero.css?v=5">
   <link rel="stylesheet" href="styles/modules.css?v=5">
   <link rel="stylesheet" href="styles/responsive.css?v=5">
-  <link rel="stylesheet" href="styles/html-lesson.css?v=2">
+  <link rel="stylesheet" href="styles/html-lesson.css?v=4">
 </head>
 <body>
 
@@ -485,9 +485,14 @@
         </div>
 
         <!-- ІНТЕРАКТИВ 3: ТЕКСТОВА ЛАБОРАТОРІЯ -->
-        <div class="interactive-container">
+        <div class="interactive-container" id="textLabContainer">
           <div class="interactive-header">
-            <span class="interactive-badge">✍️ ІНТЕРАКТИВНИЙ СИМУЛЯТОР №3</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span class="interactive-badge" style="margin: 0;">✍️ ІНТЕРАКТИВНИЙ СИМУЛЯТОР №3</span>
+              <button class="sandbox-btn btn-fullscreen" id="textLabFullscreenBtn" type="button" title="Розгорнути текстову лабораторію на весь екран">
+                <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
+              </button>
+            </div>
             <h3 class="interactive-title">ЖИВА ТЕКСТОВА ЛАБОРАТОРІЯ (TEXT PLAYGROUND)</h3>
             <p class="interactive-desc">
               Виділяйте слова у редакторі та натискайте кнопки тегів на панелі зверху, або оберіть готовий приклад коду — результат оновлюється в реальному часі!
@@ -775,6 +780,11 @@
           <p class="section-subtitle">
             Тема: «Текстові елементи вебсторінки. Створення навігаційних посилань та списків на HTML5».
           </p>
+          <div style="margin-top: 1.25rem;">
+            <button class="btn btn-primary" id="launchFsHeaderBtn" type="button" style="font-size: 1.05rem; padding: 0.8rem 1.6rem; cursor: pointer; box-shadow: var(--shadow-md);">
+              ⛶ Відкрити Практикум на всю сторінку
+            </button>
+          </div>
         </div>
 
         <!-- Steps Grid -->
@@ -812,13 +822,57 @@
           </div>
         </div>
 
+        <!-- Швидкий запуск повного екрана перед пісочницею -->
+        <div style="text-align: right; margin-top: 1.25rem; margin-bottom: -1rem;">
+          <button class="sandbox-banner-fs-btn" id="launchFullscreenTopBtn" type="button" title="Розгорнути онлайн-редактор на всю сторінку браузера">
+            <span>⛶</span> Відкрити редактор на всю сторінку
+          </button>
+        </div>
+
         <!-- ІНТЕРАКТИВНИЙ ОНЛАЙН-РЕДАКТОР КОДУ (SANDBOX) -->
-        <div class="sandbox-container">
+        <div class="sandbox-container" id="sandboxContainer">
           <div class="sandbox-header">
             <div class="sandbox-title">💻 ІНТЕРАКТИВНИЙ РЕДАКТОР HTML (LIVE SANDBOX)</div>
             <div class="sandbox-btn-group">
-              <button class="sandbox-btn" id="sandboxRunBtn">▶ ВИКОНАТИ КОД</button>
-              <button class="sandbox-btn btn-reset" id="sandboxResetBtn">↺ Скинути до зразка</button>
+              <button class="sandbox-btn btn-tasks" id="sandboxTasksBtn" type="button" title="Переглянути завдання практикуму">📋 Завдання</button>
+              <button class="sandbox-btn" id="sandboxRunBtn" type="button">▶ ВИКОНАТИ КОД</button>
+              <button class="sandbox-btn btn-reset" id="sandboxResetBtn" type="button">↺ Скинути до зразка</button>
+              <button class="sandbox-btn btn-fullscreen" id="sandboxFullscreenBtn" type="button" title="Відкрити практикум на всю сторінку (Esc для виходу)">
+                <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Висувна панель завдань для повноекранного режиму -->
+          <div class="sandbox-tasks-drawer" id="sandboxTasksDrawer">
+            <div class="sandbox-tasks-header">
+              <h3>📋 Завдання Практикуму №2</h3>
+              <button class="sandbox-tasks-close" id="sandboxTasksCloseBtn" type="button" aria-label="Закрити панель завдань">✕</button>
+            </div>
+            <div class="sandbox-tasks-body">
+              <div class="sandbox-task-card task-accent-vermilion">
+                <div class="sandbox-task-card-step">Крок 1</div>
+                <div class="sandbox-task-card-title">Базова структура документа</div>
+                <p>Декларація <code>&lt;!DOCTYPE html&gt;</code>, кореневий тег <code>&lt;html lang="uk"&gt;</code>, службовий тег <code>&lt;meta charset="UTF-8"&gt;</code> та заголовок у <code>&lt;title&gt;</code>.</p>
+              </div>
+
+              <div class="sandbox-task-card task-accent-blue">
+                <div class="sandbox-task-card-step">Крок 2</div>
+                <div class="sandbox-task-card-title">Шапка сайту &lt;header&gt;</div>
+                <p>Додайте головний заголовок першого рівня <code>&lt;h1 align="center"&gt;</code> та підзаголовок <code>&lt;h2 align="center"&gt;</code>.</p>
+              </div>
+
+              <div class="sandbox-task-card task-accent-yellow">
+                <div class="sandbox-task-card-step">Крок 3</div>
+                <div class="sandbox-task-card-title">Навігація &lt;nav&gt;</div>
+                <p>Створіть маркований список <code>&lt;ul&gt;</code> з посиланнями-якорями: <code>&lt;a href="#about"&gt;</code>, <code>&lt;a href="#structure"&gt;</code>, <code>&lt;a href="#contacts"&gt;</code>.</p>
+              </div>
+
+              <div class="sandbox-task-card task-accent-green">
+                <div class="sandbox-task-card-step">Крок 4</div>
+                <div class="sandbox-task-card-title">Контент &lt;main&gt; та підвал &lt;footer&gt;</div>
+                <p>Наповніть тег <code>&lt;main&gt;</code> абзацами <code>&lt;p&gt;</code>, нумерованим списком <code>&lt;ol&gt;</code> і додайте підвал <code>&lt;footer&gt;</code> з копірайтом <code>&amp;copy;</code>.</p>
+              </div>
             </div>
           </div>
 
@@ -826,7 +880,7 @@
             <div class="sandbox-editor-panel">
               <textarea class="sandbox-code" id="sandboxCodeArea" spellcheck="false"></textarea>
             </div>
-            <div style="background: #ffffff; display: flex; flex-direction: column;">
+            <div class="sandbox-preview-panel" style="background: #ffffff; display: flex; flex-direction: column;">
               <iframe class="sandbox-preview-frame" id="sandboxIframe" title="Результат виконання коду"></iframe>
             </div>
           </div>
@@ -878,7 +932,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/html-lesson.js?v=2"></script>
+  <script src="js/html-lesson.js?v=5"></script>
   <script>
     // Hero interactive teaser
     const heroToggleRawBtn = document.getElementById('heroToggleRawBtn');

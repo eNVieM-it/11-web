@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles/main.css?v=6">
+  <link rel="stylesheet" href="styles/main.css?v=8">
   <link rel="stylesheet" href="styles/hero.css?v=6">
   <link rel="stylesheet" href="styles/modules.css?v=6">
   <link rel="stylesheet" href="styles/responsive.css?v=6">
-  <link rel="stylesheet" href="styles/css-lesson.css?v=3">
+  <link rel="stylesheet" href="styles/css-lesson.css?v=5">
 </head>
 <body>
 
@@ -1016,13 +1016,57 @@ p {
           </div>
         </div>
 
+        <!-- Швидкий запуск повного екрана перед пісочницею -->
+        <div style="text-align: right; margin-top: 1.25rem; margin-bottom: -1rem;">
+          <button class="sandbox-banner-fs-btn" id="launchFullscreenTopBtn" type="button" title="Розгорнути онлайн-редактор на всю сторінку браузера">
+            <span>⛶</span> Відкрити редактор на всю сторінку
+          </button>
+        </div>
+
         <!-- LIVE SANDBOX -->
-        <div class="sandbox-container">
+        <div class="sandbox-container" id="sandboxContainer">
           <div class="sandbox-header">
             <div class="sandbox-title">💻 Живий редактор: змінюйте код і дивіться результат!</div>
             <div class="sandbox-btn-group">
-              <button class="sandbox-btn" id="sandboxRunBtn">Запустити код ▶</button>
-              <button class="sandbox-btn btn-reset" id="sandboxResetBtn">Скинути до зразка ↺</button>
+              <button class="sandbox-btn btn-tasks" id="sandboxTasksBtn" type="button" title="Переглянути завдання практикуму">📋 Завдання</button>
+              <button class="sandbox-btn" id="sandboxRunBtn" type="button">Запустити код ▶</button>
+              <button class="sandbox-btn btn-reset" id="sandboxResetBtn" type="button">Скинути до зразка ↺</button>
+              <button class="sandbox-btn btn-fullscreen" id="sandboxFullscreenBtn" type="button" title="Відкрити практикум на всю сторінку (Esc для виходу)">
+                <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Висувна панель завдань для повноекранного режиму -->
+          <div class="sandbox-tasks-drawer" id="sandboxTasksDrawer">
+            <div class="sandbox-tasks-header">
+              <h3>📋 Завдання Практикуму №3</h3>
+              <button class="sandbox-tasks-close" id="sandboxTasksCloseBtn" type="button" aria-label="Закрити панель завдань">✕</button>
+            </div>
+            <div class="sandbox-tasks-body">
+              <div class="sandbox-task-card task-accent-blue">
+                <div class="sandbox-task-card-step">Крок 1</div>
+                <div class="sandbox-task-card-title">Підключення style.css</div>
+                <p>У вкладці <code>index.html</code> всередині <code>&lt;head&gt;</code> перевірте тег <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>.</p>
+              </div>
+
+              <div class="sandbox-task-card task-accent-yellow">
+                <div class="sandbox-task-card-step">Крок 2</div>
+                <div class="sandbox-task-card-title">Фон та шрифти для body</div>
+                <p>У вкладці <code>style.css</code> для селектора <code>body</code> задайте <code>background-color: #f8fafc;</code>, відступи <code>padding: 24px;</code> та системний шрифт.</p>
+              </div>
+
+              <div class="sandbox-task-card task-accent-vermilion">
+                <div class="sandbox-task-card-step">Крок 3</div>
+                <div class="sandbox-task-card-title">Стилізація картки .user-card</div>
+                <p>Додайте білий фон, рамку <code>border: 3px solid #0f172a;</code>, внутрішні відступи <code>padding: 28px;</code> та тінь <code>box-shadow: 5px 5px 0px #0f172a;</code>.</p>
+              </div>
+
+              <div class="sandbox-task-card task-accent-green">
+                <div class="sandbox-task-card-step">Крок 4</div>
+                <div class="sandbox-task-card-title">Кнопка .card-btn</div>
+                <p>Перетворіть посилання на кнопку: <code>text-decoration: none;</code>, синій фон, білий текст, відступи та ефект підняття при наведенні (<code>:hover</code>).</p>
+              </div>
             </div>
           </div>
 
@@ -1035,7 +1079,7 @@ p {
             <div class="sandbox-editor-panel">
               <textarea class="sandbox-code-area" id="sandboxCodeArea" spellcheck="false"></textarea>
             </div>
-            <div style="background: #ffffff; display: flex; flex-direction: column;">
+            <div class="sandbox-preview-panel" style="background: #ffffff; display: flex; flex-direction: column;">
               <iframe class="sandbox-preview-frame" id="sandboxIframe" title="Результат виконання коду"></iframe>
             </div>
           </div>
@@ -1177,6 +1221,6 @@ p {
   </footer>
 
   <!-- Scripts -->
-  <script src="js/css-lesson.js?v=3"></script>
+  <script src="js/css-lesson.js?v=5"></script>
 </body>
 </html>
