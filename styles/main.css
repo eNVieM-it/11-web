@@ -778,3 +778,102 @@ pre code {
   display: none;
   text-align: center;
 }
+
+/* ==========================================================================
+   GLOBAL SITE FOOTER
+   ========================================================================== */
+.site-footer {
+  background: #121216;
+  color: #f8f9fa;
+  padding: 4.5rem 0 2.5rem 0;
+  border-top: 8px solid var(--accent-vermilion);
+  margin-top: 4rem;
+}
+
+[data-theme="dark"] .site-footer {
+  background: #0c0c10;
+  border-top-color: var(--accent-yellow);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 850px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.footer-brand .footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+}
+
+.footer-brand .logo-badge {
+  background: var(--accent-vermilion);
+  color: #ffffff;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid #ffffff;
+  box-shadow: 2px 2px 0px #ffffff;
+}
+
+.footer-text {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: var(--accent-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--accent-yellow);
+  text-decoration: underline;
+  background: transparent;
+}
+
+.footer-bottom {
+  border-top: 1px solid #2d2d3a;
+  padding-top: 2rem;
+  text-align: center;
+  color: #64748b;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+

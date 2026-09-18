@@ -17,13 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Інтерактивні навчальні блоки
   initHeroSwitchboard();
   initCssAnatomyModule();
-  initCascadeBattleSimulator();
+  initCascadeDevToolsInspector();
   initSelectorPlayground();
   initTypographyStudio();
 
-  // 3. Практична робота, пісочниця & тест
+  // 3. Практична робота та пісочниця
   initCssSandbox();
-  initQuiz();
 
   console.log('🚀 Урок 3 (Основи CSS) успішно ініціалізовано!');
 });
@@ -377,106 +376,287 @@ function initCssAnatomyModule() {
 }
 
 /* --------------------------------------------------------------------------
-   4. ІНТЕРАКТИВ 2: СИМУЛЯТОР КАСКАДУ ТА ВАГИ СПЕЦИФІЧНОСТІ
+   4. ІНТЕРАКТИВ 2: ДЕМОНСТРАТОР КАСКАДУ ТА СПЕЦИФІЧНОСТІ (DEVTOOLS ІНСПЕКТОР)
    -------------------------------------------------------------------------- */
-function initCascadeBattleSimulator() {
-  const chkExternal = document.getElementById('chkExternal');
-  const chkInternal = document.getElementById('chkInternal');
-  const chkInline = document.getElementById('chkInline');
-  const chkImportant = document.getElementById('chkImportant');
+const cascadeScenarios = {
+  'tag_vs_class': {
+    title: '1. Тег проти Класу',
+    htmlCode: `&lt;p class="status-badge"&gt;Обробка запиту сервера&lt;/p&gt;`,
+    cssCode: `/* Правило 1 (селектор тегу): */
+p {
+  color: #64748b; /* Сірий */
+  font-size: 1.15rem;
+}
 
-  const cardExternal = document.getElementById('cardExternal');
-  const cardInternal = document.getElementById('cardInternal');
-  const cardInline = document.getElementById('cardInline');
+/* Правило 2 (селектор класу): */
+.status-badge {
+  color: #2563eb; /* Синій */
+  font-weight: 700;
+}`,
+    previewText: 'Обробка запиту сервера',
+    previewStyles: {
+      color: '#2563eb',
+      fontWeight: '700',
+      fontSize: '1.15rem',
+      backgroundColor: '#eff6ff',
+      borderColor: '#2563eb'
+    },
+    winnerName: '.status-badge (Селектор класу)',
+    winnerColor: '#2563eb',
+    winnerReason: 'Селектор класу має специфічність (0, 0, 1, 0), що перемагає селектор тегу (0, 0, 0, 1). Властивість color перекривається синім кольором.',
+    rules: [
+      {
+        selector: '.status-badge',
+        fileOrigin: 'style.css:8',
+        weight: '(0, 0, 1, 0)',
+        styles: 'color: #2563eb; font-weight: 700;',
+        active: true,
+        reason: 'Застосовано: клас має вищу специфічність за тег'
+      },
+      {
+        selector: 'p',
+        fileOrigin: 'style.css:1',
+        weight: '(0, 0, 0, 1)',
+        styles: 'color: #64748b; font-size: 1.15rem;',
+        active: false,
+        reason: 'color: #64748b перевизначено правилом .status-badge'
+      }
+    ]
+  },
+  'class_vs_id': {
+    title: '2. Клас проти ID',
+    htmlCode: `&lt;p class="status-badge" id="system-alert"&gt;Критичне сповіщення безпеки&lt;/p&gt;`,
+    cssCode: `/* Правило 1 (селектор класу): */
+.status-badge {
+  color: #2563eb; /* Синій */
+  font-weight: 700;
+}
 
+/* Правило 2 (селектор ID): */
+#system-alert {
+  color: #059669; /* Смарагдово-зелений */
+  text-transform: uppercase;
+}`,
+    previewText: 'Критичне сповіщення безпеки',
+    previewStyles: {
+      color: '#059669',
+      fontWeight: '700',
+      fontSize: '1.15rem',
+      textTransform: 'uppercase',
+      backgroundColor: '#ecfdf5',
+      borderColor: '#059669'
+    },
+    winnerName: '#system-alert (Селектор ID)',
+    winnerColor: '#059669',
+    winnerReason: 'Ідентифікатор ID має вагу (0, 1, 0, 0), що значно сильніше за клас (0, 0, 1, 0). Один ID перебиває будь-яку кількість селекторів класів.',
+    rules: [
+      {
+        selector: '#system-alert',
+        fileOrigin: 'style.css:14',
+        weight: '(0, 1, 0, 0)',
+        styles: 'color: #059669; text-transform: uppercase;',
+        active: true,
+        reason: 'Застосовано: ідентифікатор ID перемагає селектор класу'
+      },
+      {
+        selector: '.status-badge',
+        fileOrigin: 'style.css:8',
+        weight: '(0, 0, 1, 0)',
+        styles: 'color: #2563eb;',
+        active: false,
+        reason: 'color: #2563eb перевизначено правилом #system-alert'
+      }
+    ]
+  },
+  'id_vs_inline': {
+    title: '3. ID проти Інлайн-стилю',
+    htmlCode: `&lt;p id="system-alert" style="color: #ff4732;"&gt;Помилка конфігурації мережі&lt;/p&gt;`,
+    cssCode: `/* У зовнішньому файлі style.css: */
+#system-alert {
+  color: #059669; /* Зелений */
+  font-weight: 700;
+}
+
+/* Вбудований атрибут безпосередньо в тегу: */
+&lt;p style="color: #ff4732;"&gt; /* Червоний */`,
+    previewText: 'Помилка конфігурації мережі',
+    previewStyles: {
+      color: '#ff4732',
+      fontWeight: '700',
+      fontSize: '1.15rem',
+      textTransform: 'none',
+      backgroundColor: '#fff1f2',
+      borderColor: '#ff4732'
+    },
+    winnerName: 'style="..." (Вбудований inline)',
+    winnerColor: '#ff4732',
+    winnerReason: 'Вбудовані інлайн-стилі мають найвищу специфічність (1, 0, 0, 0) і перекривають навіть селектори ідентифікаторів з CSS-файлів.',
+    rules: [
+      {
+        selector: 'element.style (атрибут style)',
+        fileOrigin: 'index.html:42',
+        weight: '(1, 0, 0, 0)',
+        styles: 'color: #ff4732;',
+        active: true,
+        reason: 'Застосовано: інлайн-стиль має вищий пріоритет за будь-які селектори з файлу'
+      },
+      {
+        selector: '#system-alert',
+        fileOrigin: 'style.css:14',
+        weight: '(0, 1, 0, 0)',
+        styles: 'color: #059669;',
+        active: false,
+        reason: 'color: #059669 перевизначено вбудованим атрибутом style'
+      }
+    ]
+  },
+  'source_order': {
+    title: '4. Порядок оголошення (Source Order)',
+    htmlCode: `&lt;button class="btn-action"&gt;Зберегти конфігурацію&lt;/button&gt;`,
+    cssCode: `/* Рядок 10 у файлі: */
+.btn-action {
+  color: #2563eb; /* Синій */
+}
+
+/* Рядок 25 у файлі (оголошено пізніше): */
+.btn-action {
+  color: #8b5cf6; /* Фіолетовий */
+}`,
+    previewText: 'Зберегти конфігурацію',
+    previewStyles: {
+      color: '#8b5cf6',
+      fontWeight: '700',
+      fontSize: '1.15rem',
+      textTransform: 'none',
+      backgroundColor: '#f5f3ff',
+      borderColor: '#8b5cf6'
+    },
+    winnerName: '.btn-action (рядок 25 — останнє правило)',
+    winnerColor: '#8b5cf6',
+    winnerReason: 'Обидва селектори мають абсолютно однакову вагу (0, 0, 1, 0). Згідно з правилом каскаду, перемагає правило, записане нижче по коду документа.',
+    rules: [
+      {
+        selector: '.btn-action',
+        fileOrigin: 'style.css:25',
+        weight: '(0, 0, 1, 0)',
+        styles: 'color: #8b5cf6;',
+        active: true,
+        reason: 'Застосовано: однаковий селектор, але оголошено пізніше в коді'
+      },
+      {
+        selector: '.btn-action',
+        fileOrigin: 'style.css:10',
+        weight: '(0, 0, 1, 0)',
+        styles: 'color: #2563eb;',
+        active: false,
+        reason: 'color: #2563eb перезаписано наступним правилом у файлі'
+      }
+    ]
+  },
+  'important_override': {
+    title: '5. Директива !important',
+    htmlCode: `&lt;p id="alert" style="color: #ff4732;"&gt;Пріоритетне системне ядро&lt;/p&gt;`,
+    cssCode: `/* У зовнішньому файлі style.css: */
+p {
+  color: #2563eb !important; /* Синій з !important */
+}
+
+/* Вбудований інлайн-атрибут: */
+style="color: #ff4732;" /* Червоний */`,
+    previewText: 'Пріоритетне системне ядро',
+    previewStyles: {
+      color: '#2563eb',
+      fontWeight: '700',
+      fontSize: '1.15rem',
+      textTransform: 'none',
+      backgroundColor: '#eff6ff',
+      borderColor: '#2563eb'
+    },
+    winnerName: 'p { color: ... !important; }',
+    winnerColor: '#2563eb',
+    winnerReason: 'Директива !important ігнорує звичайні правила специфічності та каскаду, примусово перебиваючи навіть інлайн-стилі. У професійній розробці її уникають, щоб не ламати архітектуру стилів.',
+    rules: [
+      {
+        selector: 'p',
+        fileOrigin: 'style.css:4',
+        weight: '!important (Винятковий пріоритет)',
+        styles: 'color: #2563eb !important;',
+        active: true,
+        reason: 'Застосовано: директива !important блокує всі звичайні стилі'
+      },
+      {
+        selector: 'element.style (атрибут style)',
+        fileOrigin: 'index.html:15',
+        weight: '(1, 0, 0, 0)',
+        styles: 'color: #ff4732;',
+        active: false,
+        reason: 'color: #ff4732 заблоковано директивою !important'
+      }
+    ]
+  }
+};
+
+function initCascadeDevToolsInspector() {
+  const scenarioBtns = document.querySelectorAll('.devtools-scenario-btn');
+  const codeHtmlEl = document.getElementById('devtoolsHtmlSnippet');
+  const codeCssEl = document.getElementById('devtoolsCssSnippet');
   const targetEl = document.getElementById('cascadeTargetElement');
   const winnerBadge = document.getElementById('cascadeWinnerBadge');
   const winnerReason = document.getElementById('cascadeWinnerReason');
+  const rulesList = document.getElementById('devtoolsRulesList');
 
-  const ruleExternal = document.getElementById('ruleExternal');
-  const ruleInternal = document.getElementById('ruleInternal');
-  const ruleInline = document.getElementById('ruleInline');
+  if (!scenarioBtns.length || !targetEl || !rulesList) return;
 
-  if (!chkExternal || !chkInternal || !chkInline || !targetEl) return;
+  function loadScenario(scenarioKey) {
+    const data = cascadeScenarios[scenarioKey] || cascadeScenarios['tag_vs_class'];
 
-  function updateCascade() {
-    const hasExternal = chkExternal.checked;
-    const hasInternal = chkInternal.checked;
-    const hasInline = chkInline.checked;
-    const hasImportant = chkImportant ? chkImportant.checked : false;
+    scenarioBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-scenario') === scenarioKey);
+    });
 
-    // Reset cards and hierarchy classes
-    cardExternal.classList.remove('active-winner');
-    cardInternal.classList.remove('active-winner');
-    cardInline.classList.remove('active-winner');
+    if (codeHtmlEl) codeHtmlEl.innerHTML = data.htmlCode;
+    if (codeCssEl) codeCssEl.textContent = data.cssCode;
 
-    ruleExternal.className = 'rule-hierarchy-item';
-    ruleInternal.className = 'rule-hierarchy-item';
-    ruleInline.className = 'rule-hierarchy-item';
-
-    let winner = 'default';
-    let color = '#334155';
-    let bg = '#f8fafc';
-    let reasonText = '';
-
-    if (hasExternal && hasImportant) {
-      winner = 'style.css (!important)';
-      color = '#2563eb';
-      bg = '#dbeafe';
-      cardExternal.classList.add('active-winner');
-      ruleExternal.classList.add('winner');
-      if (hasInline) ruleInline.classList.add('overridden');
-      if (hasInternal) ruleInternal.classList.add('overridden');
-      reasonText = 'Зовнішній файл переміг завдяки директиві !important. Вона штучно підвищує вагу над inline-стилями.';
-    } else if (hasInline) {
-      winner = 'Inline style="..."';
-      color = '#ff4732';
-      bg = '#ffe4e6';
-      cardInline.classList.add('active-winner');
-      ruleInline.classList.add('winner');
-      if (hasInternal) ruleInternal.classList.add('overridden');
-      if (hasExternal) ruleExternal.classList.add('overridden');
-      reasonText = 'Вбудований рядок в атрибуті style="..." перемагає, бо має найвищу специфічність (1, 0, 0, 0).';
-    } else if (hasInternal) {
-      winner = 'Internal <style>';
-      color = '#10b981';
-      bg = '#d1fae5';
-      cardInternal.classList.add('active-winner');
-      ruleInternal.classList.add('winner');
-      if (hasExternal) ruleExternal.classList.add('overridden');
-      reasonText = 'Спрацював внутрішній стиль у <head>. За відсутності inline-атрибута застосовується правило сторінки.';
-    } else if (hasExternal) {
-      winner = 'External style.css';
-      color = '#2563eb';
-      bg = '#dbeafe';
-      cardExternal.classList.add('active-winner');
-      ruleExternal.classList.add('winner');
-      reasonText = 'Зовнішній файл style.css — основний стандарт індустрії. Стиль завантажено та кешовано.';
-    } else {
-      winner = 'Стиль браузера';
-      color = '#000000';
-      bg = '#ffffff';
-      reasonText = 'Усі користувацькі стилі вимкнено. Браузер застосовує стандартний вигляд (User Agent Stylesheet).';
-    }
-
-    targetEl.style.color = color;
-    targetEl.style.backgroundColor = bg;
-    targetEl.style.borderColor = color;
+    targetEl.textContent = data.previewText;
+    targetEl.style.color = data.previewStyles.color;
+    targetEl.style.backgroundColor = data.previewStyles.backgroundColor;
+    targetEl.style.borderColor = data.previewStyles.borderColor;
+    targetEl.style.fontWeight = data.previewStyles.fontWeight;
+    targetEl.style.textTransform = data.previewStyles.textTransform || 'none';
 
     if (winnerBadge) {
-      winnerBadge.textContent = winner;
-      winnerBadge.style.color = color;
+      winnerBadge.textContent = data.winnerName;
+      winnerBadge.style.color = data.winnerColor;
     }
     if (winnerReason) {
-      winnerReason.textContent = reasonText;
+      winnerReason.textContent = data.winnerReason;
     }
+
+    rulesList.innerHTML = '';
+    data.rules.forEach(r => {
+      const item = document.createElement('div');
+      item.className = `rule-hierarchy-item ${r.active ? 'winner' : 'overridden'}`;
+      item.innerHTML = `
+        <div class="rule-item-top">
+          <span class="rule-item-selector">${r.selector}</span>
+          <span class="rule-item-weight">${r.weight} · ${r.fileOrigin}</span>
+        </div>
+        <div class="rule-item-decl">${r.styles}</div>
+        <div class="rule-item-status ${r.active ? 'status-active' : 'status-overridden'}">
+          ${r.active ? '✓ ' + r.reason : '✕ ' + r.reason}
+        </div>
+      `;
+      rulesList.appendChild(item);
+    });
   }
 
-  [chkExternal, chkInternal, chkInline, chkImportant].forEach(chk => {
-    if (chk) chk.addEventListener('change', updateCascade);
+  scenarioBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      loadScenario(btn.getAttribute('data-scenario'));
+    });
   });
 
-  updateCascade();
+  loadScenario('tag_vs_class');
 }
 
 /* --------------------------------------------------------------------------
@@ -965,193 +1145,3 @@ body {
   renderIframe();
 }
 
-/* --------------------------------------------------------------------------
-   8. ПІДСУМКОВИЙ ТЕСТ (QUIZ)
-   -------------------------------------------------------------------------- */
-const quizQuestions = [
-  {
-    q: '1. Що означає абревіатура CSS у веброзробці?',
-    opts: [
-      'Creative Style System (Креативна система стилів)',
-      'Cascading Style Sheets (Каскадні таблиці стилів)',
-      'Computer Screen Standards (Стандарти компʼютерних екранів)',
-      'Colorful Software Solutions (Барвисті програмні рішення)'
-    ],
-    correct: 1,
-    expl: 'CSS розшифровується як Cascading Style Sheets — Каскадні таблиці стилів. Вони відповідають за візуальне оформлення та макет вебсторінки.'
-  },
-  {
-    q: '2. Який тег і атрибут використовуються для підключення зовнішнього файлу стилів до HTML-документа?',
-    opts: [
-      '<style src="styles.css">',
-      '<link rel="stylesheet" href="style.css"> всередині <head>',
-      '<script href="style.css">',
-      '<css link="styles.css">'
-    ],
-    correct: 1,
-    expl: 'Зовнішні стилі підключаються одинарним тегом <link rel="stylesheet" href="style.css">, розташованим усередині секції <head>.'
-  },
-  {
-    q: '3. Який синтаксис має селектор класу в CSS для стилізації елемента <p class="intro">?',
-    opts: [
-      '#intro { ... }',
-      'intro { ... }',
-      '.intro { ... }',
-      '@intro { ... }'
-    ],
-    correct: 2,
-    expl: 'Селектори класів у CSS завжди починаються з крапки: .intro. У HTML при цьому пишеться class="intro" (без крапки).'
-  },
-  {
-    q: '4. Чим селектор ідентифікатора (#id) принципово відрізняється від селектора класу (.class)?',
-    opts: [
-      'Ідентифікатор можна застосовувати до сотень елементів одночасно',
-      'Ідентифікатор повинен бути строго унікальним і зустрічатися лише один раз на сторінці',
-      'Клас має вищу специфічність за ідентифікатор',
-      'Ідентифікатори працюють лише для заголовків <h1>'
-    ],
-    correct: 1,
-    expl: 'За стандартом W3C кожен id має бути унікальним у межах одного документа. Класи ж призначені для багаторазового повторного використання.'
-  },
-  {
-    q: '5. Який спосіб підключення стилів за замовчуванням має найвищий пріоритет (специфічність)?',
-    opts: [
-      'Зовнішній файл <link rel="stylesheet">',
-      'Внутрішній блок <style> у <head>',
-      'Вбудований рядок в атрибуті style="..." безпосередньо в тегу (Inline)',
-      'Стилі браузера за замовчуванням'
-    ],
-    correct: 2,
-    expl: 'Вбудовані (inline) стилі мають найвищу вагу специфічності (1, 0, 0, 0) і перебивають стилі з тегу <style> та зовнішніх файлів.'
-  },
-  {
-    q: '6. Яка CSS-властивість відповідає за сімейство шрифтів та запасні варіанти (fallback)?',
-    opts: [
-      'font-weight',
-      'font-family',
-      'text-font',
-      'font-style'
-    ],
-    correct: 1,
-    expl: 'Властивість font-family визначає список шрифтів через кому: спочатку бажаний шрифт, потім резервні (наприклад: "Space Grotesk", Arial, sans-serif).'
-  },
-  {
-    q: '7. Чому відносна одиниця rem вважається кращою для font-size, ніж фіксовані px?',
-    opts: [
-      'rem завжди дорівнює точно 100 пікселям',
-      'rem масштабується відповідно до налаштувань розміру шрифту в браузері користувача, покращуючи доступність',
-      'rem заборонено використовувати на мобільних телефонах',
-      'rem швидше завантажує сторінку з сервера'
-    ],
-    correct: 1,
-    expl: 'Одиниця rem відштовхується від базового кегля кореневого елемента html (1rem = 16px за замовчуванням). Якщо користувач зі слабким зором збільшить шрифт у браузері, всі розміри в rem пропорційно адаптуються.'
-  },
-  {
-    q: '8. Як повністю зняти стандартне підкреслення з посилань <a> за допомогою CSS?',
-    opts: [
-      'text-style: none;',
-      'text-align: plain;',
-      'text-decoration: none;',
-      'link-underline: off;'
-    ],
-    correct: 2,
-    expl: 'Властивість text-decoration: none; прибирає декоративне підкреслення ліній у посиланнях та тексті.'
-  },
-  {
-    q: '9. Яка властивість керує відстанню між рядками (інтерліньяжем) у тексті?',
-    opts: [
-      'letter-spacing',
-      'word-spacing',
-      'line-height',
-      'text-indent'
-    ],
-    correct: 2,
-    expl: 'Властивість line-height задає висоту рядка тексту (рекомендоване значення для читабельності довгих статей — 1.5 або 1.6).'
-  },
-  {
-    q: '10. Як правильно записати груповий селектор, щоб надати однаковий синій колір усім <h1>, <h2> та <p>?',
-    opts: [
-      'h1 + h2 + p { color: blue; }',
-      'h1, h2, p { color: blue; }',
-      'h1 & h2 & p { color: blue; }',
-      'h1 h2 p { color: blue; }'
-    ],
-    correct: 1,
-    expl: 'Групування селекторів записується через кому: "h1, h2, p". Запис через пробіл "h1 h2 p" означав би селектор нащадків (p всередині h2 всередині h1).'
-  }
-];
-
-function initQuiz() {
-  const container = document.getElementById('quizQuestionsContainer');
-  const resultsCard = document.getElementById('quizResultsCard');
-  const scoreBadge = document.getElementById('quizScoreBadge');
-  const gradeText = document.getElementById('quizGradeText');
-  const progressFill = document.getElementById('quizProgressFill');
-
-  if (!container) return;
-
-  let answeredCount = 0;
-  let correctScore = 0;
-
-  container.innerHTML = '';
-
-  quizQuestions.forEach((item, qIdx) => {
-    const card = document.createElement('div');
-    card.className = 'quiz-question-card';
-    card.innerHTML = `
-      <div class="quiz-question-number">Запитання ${qIdx + 1} з ${quizQuestions.length}</div>
-      <div class="quiz-question-text">${item.q}</div>
-      <div class="quiz-options-list">
-        ${item.opts.map((opt, optIdx) => `
-          <button class="quiz-option-btn" data-q="${qIdx}" data-opt="${optIdx}">
-            ${opt}
-          </button>
-        `).join('')}
-      </div>
-      <div class="quiz-feedback" id="feedback-${qIdx}"></div>
-    `;
-    container.appendChild(card);
-  });
-
-  container.querySelectorAll('.quiz-option-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const qIdx = parseInt(btn.getAttribute('data-q'), 10);
-      const optIdx = parseInt(btn.getAttribute('data-opt'), 10);
-      const question = quizQuestions[qIdx];
-      const feedbackEl = document.getElementById(`feedback-${qIdx}`);
-      const parentCard = btn.closest('.quiz-question-card');
-      const siblingBtns = parentCard.querySelectorAll('.quiz-option-btn');
-
-      siblingBtns.forEach(b => b.disabled = true);
-
-      answeredCount++;
-      if (progressFill) {
-        progressFill.style.width = `${(answeredCount / quizQuestions.length) * 100}%`;
-      }
-
-      if (optIdx === question.correct) {
-        btn.classList.add('selected-correct');
-        feedbackEl.className = 'quiz-feedback show-correct';
-        feedbackEl.innerHTML = `<strong>Вірно! ✓</strong> ${question.expl}`;
-        correctScore++;
-      } else {
-        btn.classList.add('selected-incorrect');
-        siblingBtns[question.correct].classList.add('selected-correct');
-        feedbackEl.className = 'quiz-feedback show-incorrect';
-        feedbackEl.innerHTML = `<strong>Невірно! ✕</strong> ${question.expl}`;
-      }
-
-      if (answeredCount === quizQuestions.length && resultsCard) {
-        resultsCard.style.display = 'block';
-        const percent = Math.round((correctScore / quizQuestions.length) * 100);
-        const grade12 = Math.max(1, Math.round((correctScore / quizQuestions.length) * 12));
-
-        if (scoreBadge) scoreBadge.textContent = `${correctScore} / ${quizQuestions.length}`;
-        if (gradeText) {
-          gradeText.innerHTML = `Оцінка за 12-бальною шкалою: <span style="color: var(--accent-blue); font-weight: 800;">${grade12} балів</span> (${percent}% успішності)`;
-        }
-        resultsCard.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-}
