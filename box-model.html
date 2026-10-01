@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 4: Проектування та верстка веб-сторінок. Блочна модель верстки</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="stylesheet" href="styles/hero.css?v=6">
+  <link rel="stylesheet" href="styles/modules.css?v=6">
+  <link rel="stylesheet" href="styles/responsive.css?v=6">
+  <link rel="stylesheet" href="styles/css-lesson.css?v=5">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Stats Ribbon -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        Стандарт W3C: <strong>97.4%</strong> вебсторінок планети оформлені мовою CSS3
+      </div>
+      <div>
+        Інформатика 10–11 класи · Модуль «Вебтехнології»
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header з масштабованим меню уроків -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
+
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу">
+            <span>📚 Уроки курсу</span>
+            <span class="dropdown-arrow">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu">
+            <div class="course-dropdown-header">Навчальна програма (10–11 класи)</div>
+            <a href="index.html" class="course-dropdown-item">
+              <span>Урок 1: Вебдизайн та структура сайту</span>
+              <span class="lesson-tag">Розділ 1</span>
+            </a>
+            <a href="html-basics.html" class="course-dropdown-item">
+              <span>Урок 2: Основи мови HTML5</span>
+              <span class="lesson-tag">Розділ 2</span>
+            </a>
+            <a href="css-basics.html" class="course-dropdown-item">
+              <span>Урок 3: Каскадні таблиці стилів CSS</span>
+              <span class="lesson-tag">Розділ 3</span>
+            </a>
+            <a href="box-model.html" class="course-dropdown-item active">
+              <span>Урок 4: Блочна модель верстки</span>
+              <span class="lesson-tag current">Поточний</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зміст поточного уроку (десктоп) та мобільне меню -->
+      <nav class="header-nav" aria-label="Зміст уроку">
+        <ul class="nav-links" id="navLinks">
+          <!-- Мобільний блок списку уроків (видно лише на смартфонах/планшетах) -->
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item">Урок 2: Основи мови HTML5</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
+            <li><a href="box-model.html" style="font-weight: 700; color: var(--accent-yellow);">Урок 4: Блочна модель верстки (Поточний)</a></li>
+              <li><a href="box-model.html" class="mobile-nav-item active">Урок 4: Блочна модель верстки ★</a></li>
+            </ul>
+          </li>
+
+          <!-- Посилання на розділи цього уроку -->
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
+          <li><a href="#topic1" class="nav-link">1. Блочна модель</a></li>
+          <li><a href="#topic2" class="nav-link">2. Відступи (Margin, Padding)</a></li>
+          <li><a href="#topic3" class="nav-link">3. Рамки (Border)</a></li>
+          <li><a href="#topic4" class="nav-link">4. Box-sizing</a></li>
+          <li><a href="#practical-work" class="nav-link nav-link-highlight" style="color: var(--accent-blue) !important;">Практикум ⚙️</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему день/ніч">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero-section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="section-badge">🎯 ІНТЕРАКТИВНИЙ ОНЛАЙН-КУРС • УРОК 4</div>
+            <h1 class="hero-title">ПРОЕКТУВАННЯ ТА ВЕРСТКА. <span class="text-gradient">БЛОЧНА МОДЕЛЬ</span></h1>
+            <p class="hero-description">
+              Дізнайтеся, як браузери розраховують розміри елементів. Опануйте CSS Box Model: margins, borders, padding та контент.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#topic1" class="btn btn-primary">РОЗПОЧАТИ УРОК 🚀</a>
+              <a href="#practical-work" class="btn btn-secondary">ПРАКТИЧНА РОБОТА ⚙️</a>
+            </div>
+            <div class="hero-highlight-boxes">
+              <div class="highlight-box">
+                <span class="box-value">Box</span>
+                <span class="box-label">ОСНОВА ВЕРСТКИ</span>
+              </div>
+              <div class="highlight-box">
+                <span class="box-value">4</span>
+                <span class="box-label">ЗОНИ БЛОКУ</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-interactive-card">
+            <div class="interactive-card-header">
+              <span class="card-badge">🧪 ЕКСПЕРИМЕНТ</span>
+              <h3>CSS BOX MODEL</h3>
+            </div>
+            <div class="interactive-card-body" style="text-align: center;">
+              <div style="background: #f1c40f; padding: 20px; border: 2px dashed #000; display: inline-block;">
+                Margin
+                <div style="background: #e67e22; padding: 20px; border: 5px solid #000;">
+                  Border
+                  <div style="background: #2ecc71; padding: 20px;">
+                    Padding
+                    <div style="background: #3498db; color: white; padding: 20px; font-weight: bold;">
+                      Content
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 1 -->
+    <section id="topic1" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 1</div>
+          <h2 class="section-title">1. ЩО ТАКЕ <span class="text-gradient">БЛОЧНА МОДЕЛЬ (BOX MODEL)?</span></h2>
+          <p class="section-subtitle">
+            Кожен елемент на веб-сторінці — це прямокутний блок. Блочна модель визначає, як розраховується його розмір та відступи.
+          </p>
+        </div>
+        <div class="info-card" style="margin-bottom: 2.5rem;">
+          <div class="info-card-header">
+            <h3>📖 СКЛАДОВІ БЛОЧНОЇ МОДЕЛІ</h3>
+          </div>
+          <div class="info-card-body">
+            <ul style="font-size: 1.05rem; line-height: 1.6; padding-left: 1.5rem;">
+              <li><strong>Content (Контент)</strong> — вміст елемента: текст, зображення тощо. Його розмір задається властивостями <code>width</code> та <code>height</code>.</li>
+              <li><strong>Padding (Внутрішній відступ)</strong> — простір між контентом і рамкою. Він прозорий і приймає колір фону елемента.</li>
+              <li><strong>Border (Рамка)</strong> — лінія, яка обмежує padding і контент. Вона може мати товщину, стиль і колір.</li>
+              <li><strong>Margin (Зовнішній відступ)</strong> — простір за межами рамки. Він прозорий і відокремлює елемент від інших елементів на сторінці.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 2 -->
+    <section id="topic2" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 2</div>
+          <h2 class="section-title">2. ВІДСТУПИ: <span class="text-gradient">MARGIN ТА PADDING</span></h2>
+        </div>
+        <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div class="info-card">
+            <h3 style="color: var(--accent-blue);">Внутрішні відступи (Padding)</h3>
+            <p>Задають простір всередині елемента, від його вмісту до рамки.</p>
+            <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px;">
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 10px;
+padding-left: 15px;
+
+/* Короткий запис */
+padding: 10px 15px 10px 15px; 
+/* або */
+padding: 10px 15px;</pre>
+          </div>
+          <div class="info-card">
+            <h3 style="color: var(--accent-vermilion);">Зовнішні відступи (Margin)</h3>
+            <p>Задають простір зовні елемента, відсуваючи його від інших.</p>
+            <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px;">
+margin-top: 20px;
+margin-right: auto;
+margin-bottom: 20px;
+margin-left: auto;
+
+/* Центрування блоку по горизонталі */
+margin: 0 auto;</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 3 -->
+    <section id="topic3" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 3</div>
+          <h2 class="section-title">3. РАМКИ: <span class="text-gradient">ВЛАСТИВІСТЬ BORDER</span></h2>
+        </div>
+        <p style="font-size: 1.1rem; text-align: center; margin-bottom: 2rem;">Властивість <code>border</code> дозволяє задати рамку навколо елемента. Вона вимагає трьох значень: товщину, стиль і колір.</p>
+        
+        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+          <div style="border: 2px solid black; padding: 20px; font-size: 1.2rem;">border: 2px solid black;</div>
+          <div style="border: 4px dashed red; padding: 20px; font-size: 1.2rem;">border: 4px dashed red;</div>
+          <div style="border: 3px dotted blue; padding: 20px; font-size: 1.2rem;">border: 3px dotted blue;</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 4 -->
+    <section id="topic4" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 4</div>
+          <h2 class="section-title">4. <span class="text-gradient">BOX-SIZING</span></h2>
+        </div>
+        <div class="info-card">
+          <p>За замовчуванням у CSS загальна ширина блоку розраховується як: <strong>width + padding + border</strong>.</p>
+          <p>Щоб ширина <code>width</code> включала в себе і padding, і border (що набагато зручніше при верстці), використовують властивість <code>box-sizing: border-box;</code>.</p>
+          <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+* {
+  box-sizing: border-box;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRACTICAL WORK -->
+    <section id="practical-work" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge" style="background: var(--accent-blue);">ПРАКТИКУМ</div>
+          <h2 class="section-title">⚙️ ПРАКТИЧНА РОБОТА: <span class="text-gradient">НАЛАШТУВАННЯ БЛОКІВ</span></h2>
+        </div>
+        
+        <div class="sandbox-container" id="sandboxContainer">
+          <div class="sandbox-header">
+            <div class="sandbox-title">💻 CSS РЕДАКТОР</div>
+            <div class="sandbox-btn-group">
+              <button class="sandbox-btn" id="sandboxRunBtn" type="button">▶ ВИКОНАТИ КОД</button>
+              <button class="sandbox-btn btn-fullscreen" id="sandboxFullscreenBtn" type="button" title="Відкрити практикум на всю сторінку (Esc для виходу)">
+                <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
+              </button>
+            </div>
+          </div>
+          <div class="sandbox-workspace" style="display: flex; gap: 1rem; min-height: 400px; padding: 1rem; background: #1e1e1e;">
+            <div style="flex: 1;">
+              <h3 style="color: #fff; margin-top:0;">CSS:</h3>
+              <textarea id="sandboxCss" style="width: 100%; height: 90%; background: #2d2d2d; color: #0f0; font-family: monospace; padding: 10px; font-size: 14px;">
+.box {
+  width: 200px;
+  background-color: #3498db;
+  color: white;
+  
+  /* Додайте padding 20px */
+  
+  /* Додайте margin 30px */
+  
+  /* Додайте border 5px solid #e74c3c */
+  
+}
+</textarea>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="color: #fff; margin-top:0;">HTML (тільки для читання):</h3>
+              <textarea readonly style="width: 100%; height: 20%; background: #2d2d2d; color: #fff; font-family: monospace; padding: 10px; font-size: 14px;">&lt;div class="box"&gt;Я блочний елемент!&lt;/div&gt;</textarea>
+              <h3 style="color: #fff; margin-top: 1rem;">Результат:</h3>
+              <iframe id="sandboxPreview" style="width: 100%; height: 50%; background: #fff; border: none;"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-badge">&lt;/&gt;</span>
+            <span>Вебтехнології 10–11 класи</span>
+          </div>
+          <p class="footer-text">
+            Інтерактивний онлайн-курс зі створення сучасних сайтів для українських старшокласників.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Уроки курсу</h4>
+          <ul>
+            <li><a href="index.html">Урок 1: Веб-дизайн та структура сайту</a></li>
+            <li><a href="html-basics.html">Урок 2: Основи мови HTML5</a></li>
+            <li><a href="css-basics.html">Урок 3: Каскадні таблиці стилів CSS</a></li>
+            <li><a href="box-model.html" style="font-weight: 700; color: var(--accent-yellow);">Урок 4: Блочна модель верстки (Поточний)</a></li>
+            <li><a href="#practical-work">Практичний модуль №3</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Корисні посилання</h4>
+          <ul>
+            <li><a href="https://developer.mozilla.org/ru/docs/Web/CSS" target="_blank" rel="noopener noreferrer">MDN Web Docs: Довідник CSS</a></li>
+            <li><a href="https://www.w3.org/Style/CSS/" target="_blank" rel="noopener noreferrer">Консорціум W3C CSS</a></li>
+            <li><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts: Безкоштовні шрифти</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Інтерактивний веб-курс. Усі права захищено.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/css-lesson.js?v=5"></script>
+
+<script>
+  const runBtn = document.getElementById('sandboxRunBtn');
+  const cssEditor = document.getElementById('sandboxCss');
+  const previewFrame = document.getElementById('sandboxPreview');
+
+  function updatePreview() {
+    if (!cssEditor || !previewFrame) return;
+    const css = cssEditor.value;
+    const html = '<div class="box">Я блочний елемент!</div>';
+    const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    doc.open();
+    doc.write('<html><head><style>body{margin:0;padding:20px;display:flex;justify-content:center;align-items:center;min-height:90vh;background:#f5f5f5;} ' + css + '</style></head><body>' + html + '</body></html>');
+    doc.close();
+  }
+
+  if(runBtn) {
+    runBtn.addEventListener('click', updatePreview);
+    updatePreview(); // initial render
+  }
+
+  // Fullscreen logic
+  const container = document.getElementById('sandboxContainer');
+  const fullscreenBtn = document.getElementById('sandboxFullscreenBtn');
+
+  function toggleFullscreen(forceState) {
+    if (!container) return;
+    const isFs = typeof forceState === 'boolean' ? forceState : !container.classList.contains('is-fullscreen');
+    
+    if (isFs) {
+      container.classList.add('is-fullscreen');
+      document.body.classList.add('sandbox-fullscreen-active');
+      if (fullscreenBtn) {
+        fullscreenBtn.innerHTML = '<span class="fs-icon">✖</span> <span class="fs-label">Закрити</span>';
+      }
+    } else {
+      container.classList.remove('is-fullscreen');
+      document.body.classList.remove('sandbox-fullscreen-active');
+      if (fullscreenBtn) {
+        fullscreenBtn.innerHTML = '<span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>';
+      }
+    }
+  }
+
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => toggleFullscreen());
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && container && container.classList.contains('is-fullscreen')) {
+      toggleFullscreen(false);
+    }
+  });
+
+</script>
+
+</body>
+</html>
