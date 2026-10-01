@@ -1,0 +1,16 @@
+# Редактори та ОС
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Залежності (проєкт статичний, але на випадок майбутньої збірки)
+node_modules/
+
+# Збірка / кеш
+dist/
+build/
+.cache/
+*.log

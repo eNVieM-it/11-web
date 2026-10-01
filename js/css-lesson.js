@@ -1,142 +1,27 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    УРОК 3: КАСКАДНІ ТАБЛИЦІ СТИЛІВ (CSS)
    Інтерактивні модулі, тренажери, типографічна лабораторія, пісочниця та тест
    Курс «Вебтехнології» (10–11 класи) • Стандарти W3C / WHATWG
    Оновлено згідно з принципами frontend-design (чиста типографіка, живий зворотний зв'язок)
+
+   Також використовується Уроком 4 (box-model.html) для пісочниці
+   та повноекранного режиму.
+   Спільні системні компоненти — в js/core.js, логіка практикумів — у js/sandbox.js.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Системні компоненти сайту
-  initThemeToggle();
-  initCourseDropdown();
-  initMobileNavigation();
-  initActiveNavHighlight();
-  initScrollProgress();
-  initAccordions();
-
-  // 2. Інтерактивні навчальні блоки
+  // 1. Інтерактивні навчальні блоки
   initHeroSwitchboard();
   initCssAnatomyModule();
   initCascadeDevToolsInspector();
   initSelectorPlayground();
   initTypographyStudio();
 
-  // 3. Практична робота та пісочниця
+  // 2. Практична робота та пісочниця
   initCssSandbox();
 
   console.log('🚀 Урок 3 (Основи CSS) успішно ініціалізовано!');
 });
-
-/* --------------------------------------------------------------------------
-   1. СИСТЕМНІ КОМПОНЕНТИ
-   -------------------------------------------------------------------------- */
-function initCourseDropdown() {
-  const dropdown = document.getElementById('courseDropdown');
-  const dropdownBtn = document.getElementById('courseDropdownBtn');
-  if (!dropdown || !dropdownBtn) return;
-
-  dropdownBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('open');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('open');
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      dropdown.classList.remove('open');
-    }
-  });
-}
-
-function initThemeToggle() {
-  const themeBtn = document.getElementById('themeToggleBtn');
-  if (!themeBtn) return;
-
-  const currentTheme = localStorage.getItem('site_theme') || 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  themeBtn.textContent = currentTheme === 'dark' ? 'ДЕНЬ ☀️' : 'НІЧ 🌙';
-
-  themeBtn.addEventListener('click', () => {
-    const active = document.documentElement.getAttribute('data-theme');
-    const newTheme = active === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('site_theme', newTheme);
-    themeBtn.textContent = newTheme === 'dark' ? 'ДЕНЬ ☀️' : 'НІЧ 🌙';
-  });
-}
-
-function initMobileNavigation() {
-  const burgerBtn = document.getElementById('burgerMenuBtn');
-  const navLinks = document.getElementById('navLinks');
-  if (!burgerBtn || !navLinks) return;
-
-  burgerBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('mobile-active');
-    burgerBtn.textContent = navLinks.classList.contains('mobile-active') ? 'ЗАКРИТИ ✕' : 'МЕНЮ ☰';
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('mobile-active');
-      burgerBtn.textContent = 'МЕНЮ ☰';
-    });
-  });
-}
-
-function initActiveNavHighlight() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPos = window.scrollY + 140;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }, { passive: true });
-}
-
-function initScrollProgress() {
-  const progressBar = document.getElementById('scrollProgressBar');
-  if (!progressBar) return;
-
-  window.addEventListener('scroll', () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-    progressBar.style.width = `${progress}%`;
-  }, { passive: true });
-}
-
-function initAccordions() {
-  document.querySelectorAll('.accordion-header').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.accordion-item');
-      if (!item) return;
-      item.classList.toggle('active');
-      const icon = btn.querySelector('.accordion-icon');
-      if (icon) {
-        icon.textContent = item.classList.contains('active') ? '−' : '+';
-      }
-    });
-  });
-}
 
 /* --------------------------------------------------------------------------
    2. HERO INTERACTIVE: CSS SWITCHBOARD (ЖИВИЙ ПУЛЬТ КЕРУВАННЯ ШАРАМИ CSS)
@@ -1093,156 +978,20 @@ body {
   box-shadow: 4px 4px 0px #0f172a;
 }`;
 
-  let currentTab = 'html';
-  let storedHTML = defaultHTML;
-  let storedCSS = defaultCSS;
-  let debounceTimer = null;
-
-  function renderIframe() {
-    let html = storedHTML;
-
-    // Якщо у HTML є підключення style.css, підставляємо актуальний CSS з сусідньої вкладки
-    if (/<link[^>]*href=["']style\.css["'][^>]*>/i.test(html)) {
-      html = html.replace(/<link[^>]*href=["']style\.css["'][^>]*>/i, `<style>\n${storedCSS}\n</style>`);
-    } else if (html.includes('</head>')) {
-      // Якщо тег <link> видалено, але є </head>, застосовуємо стиль
-      html = html.replace('</head>', `<style>\n${storedCSS}\n</style>\n</head>`);
-    } else if (!html.includes('<html')) {
-      // Якщо введено лише фрагмент
-      html = `<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <style>
-${storedCSS}
-  </style>
-</head>
-<body>
-  ${html}
-</body>
-</html>`;
-    }
-
-    iframe.srcdoc = html;
-  }
-
-  function switchTab(tab) {
-    if (currentTab === 'html') storedHTML = codeArea.value;
-    else storedCSS = codeArea.value;
-
-    currentTab = tab;
-    if (tab === 'html') {
-      codeArea.value = storedHTML;
-      if (tabHtmlBtn) tabHtmlBtn.classList.add('active');
-      if (tabCssBtn) tabCssBtn.classList.remove('active');
-    } else {
-      codeArea.value = storedCSS;
-      if (tabCssBtn) tabCssBtn.classList.add('active');
-      if (tabHtmlBtn) tabHtmlBtn.classList.remove('active');
-    }
-  }
-
-  if (tabHtmlBtn) tabHtmlBtn.addEventListener('click', () => switchTab('html'));
-  if (tabCssBtn) tabCssBtn.addEventListener('click', () => switchTab('css'));
-
-  // Live auto-run as the user types
-  codeArea.addEventListener('input', () => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      if (currentTab === 'html') storedHTML = codeArea.value;
-      else storedCSS = codeArea.value;
-      renderIframe();
-    }, 400);
+  // Рендер і логіка вкладок/фулскрину винесені в js/sandbox.js
+  SandboxUI.initCodeSandbox({
+    codeAreaId: 'sandboxCodeArea',
+    iframeId: 'sandboxIframe',
+    runBtnId: 'sandboxRunBtn',
+    resetBtnId: 'sandboxResetBtn',
+    htmlTabId: 'tabHtmlBtn',
+    cssTabId: 'tabCssBtn',
+    defaultHTML: defaultHTML,
+    defaultCSS: defaultCSS,
+    debounceMs: 400
   });
 
-  if (runBtn) {
-    runBtn.addEventListener('click', () => {
-      if (currentTab === 'html') storedHTML = codeArea.value;
-      else storedCSS = codeArea.value;
-      renderIframe();
-    });
-  }
-
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      storedHTML = defaultHTML;
-      storedCSS = defaultCSS;
-      codeArea.value = currentTab === 'html' ? defaultHTML : defaultCSS;
-      renderIframe();
-    });
-  }
-
-  codeArea.value = defaultHTML;
-  renderIframe();
-
-  // Логіка повноекранного режиму (Full-page IDE)
-  const container = document.getElementById('sandboxContainer');
-  const fullscreenBtn = document.getElementById('sandboxFullscreenBtn');
-  const launchTopBtn = document.getElementById('launchFullscreenTopBtn');
-  const tasksBtn = document.getElementById('sandboxTasksBtn');
-  const tasksDrawer = document.getElementById('sandboxTasksDrawer');
-  const tasksCloseBtn = document.getElementById('sandboxTasksCloseBtn');
-
-  function toggleFullscreen(forceState) {
-    if (!container) return;
-    const isFs = typeof forceState === 'boolean' ? forceState : !container.classList.contains('is-fullscreen');
-    if (isFs) {
-      container.classList.add('is-fullscreen');
-      document.body.classList.add('sandbox-fullscreen-active');
-      if (fullscreenBtn) {
-        fullscreenBtn.innerHTML = '<span class="fs-icon">🗗</span> <span class="fs-label">Згорнути</span>';
-        fullscreenBtn.title = 'Згорнути у звичайний вигляд (Esc)';
-      }
-      codeArea.focus();
-    } else {
-      container.classList.remove('is-fullscreen');
-      document.body.classList.remove('sandbox-fullscreen-active');
-      if (fullscreenBtn) {
-        fullscreenBtn.innerHTML = '<span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>';
-        fullscreenBtn.title = 'Відкрити практикум на всю сторінку (Esc для виходу)';
-      }
-      if (tasksDrawer) {
-        tasksDrawer.classList.remove('is-open');
-        if (tasksBtn) tasksBtn.classList.remove('active');
-      }
-    }
-  }
-
-  if (fullscreenBtn) {
-    fullscreenBtn.addEventListener('click', () => toggleFullscreen());
-  }
-
-  if (launchTopBtn) {
-    launchTopBtn.addEventListener('click', () => {
-      toggleFullscreen(true);
-    });
-  }
-
-  function toggleTasksDrawer() {
-    if (!tasksDrawer) return;
-    const isOpen = tasksDrawer.classList.toggle('is-open');
-    if (tasksBtn) tasksBtn.classList.toggle('active', isOpen);
-  }
-
-  if (tasksBtn) {
-    tasksBtn.addEventListener('click', toggleTasksDrawer);
-  }
-
-  if (tasksCloseBtn) {
-    tasksCloseBtn.addEventListener('click', () => {
-      if (tasksDrawer) tasksDrawer.classList.remove('is-open');
-      if (tasksBtn) tasksBtn.classList.remove('active');
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && container && container.classList.contains('is-fullscreen')) {
-      toggleFullscreen(false);
-    }
-  });
-
-  if (window.location.search.includes('fullscreen=1') || window.location.hash === '#practical-work-fullscreen') {
-    toggleFullscreen(true);
-  }
+  SandboxUI.initFullscreen({ closeIcon: '✖' });
 }
+
 

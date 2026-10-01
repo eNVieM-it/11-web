@@ -1,19 +1,15 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    УРОК 2: МОВА ГІПЕРТЕКСТОВОЇ РОЗМІРКИ HTML
    Інтерактивні модулі, симулятори, жива лабораторія та пісочниця коду
    Курс «Вебтехнології» (10–11 класи) • Стандарти W3C та HTML5
+
+   Спільні системні компоненти винесено в js/core.js, спільну логіку
+   практикумів (рендер iframe, повноекранний режим) — у js/sandbox.js.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Загальні системні модулі
-  initThemeToggle();
-  initCourseDropdown();
-  initMobileNavigation();
-  initActiveNavHighlight();
-  initScrollProgress();
-  initAccordions();
-
   // Навчальні інтерактивні модулі уроку HTML
+  initHeroToggle();
   initAnatomyModule();
   initXrayModule();
   initTextPlayground();
@@ -27,113 +23,44 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /** -------------------------------------------------------------------------
- * 1. БАЗОВІ СИСТЕМНІ ФУНКЦІЇ
+ * HERO-ТІЗЕР: перемикання «сирий HTML-код ↔ розшифрований HTML»
+ * (раніше виконувався інлайн-скриптом у html-basics.html)
  * ------------------------------------------------------------------------ */
-function initCourseDropdown() {
-  const dropdown = document.getElementById('courseDropdown');
-  const dropdownBtn = document.getElementById('courseDropdownBtn');
-  if (!dropdown || !dropdownBtn) return;
+function initHeroToggle() {
+  const rawBtn = document.getElementById('heroToggleRawBtn');
+  const htmlBtn = document.getElementById('heroToggleHtmlBtn');
+  const previewBox = document.getElementById('heroPreviewBox');
 
-  dropdownBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('open');
+  if (!rawBtn || !htmlBtn || !previewBox) return;
+
+  const RAW_MARKUP = 'Розмітка суцільним текстом вив-один: DOCTYPE html Форматирование текста страницы заголовки-заголовки Гіперпосилання ссылки кнопки Всеенергетика аккордционная панель Всесвітня павутина';
+
+  const EXPLAINED_MARKUP = `
+    <h2 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.25rem;">Розмітка веб-сторінки</h2>
+    <p style="margin-bottom: 0.5rem;"><strong>Курс:</strong> Вебтехнології (10–11 класи).</p>
+    <ul style="padding-left: 1.2rem; margin-bottom: 0.5rem;">
+      <li>Структура документа <code>&lt;!DOCTYPE html&gt;</code></li>
+      <li>Форматування текста страницы</li>
+      <li>Гіперпосилання <code>&lt;a&gt;</code></li>
+    </ul>
+    <p style="font-size: 0.85rem; color: #64748b;">Результат: чита структура, зручний вигляд!</p>
+  `;
+
+  function setActiveButton(activeBtn, inactiveBtn) {
+    activeBtn.classList.remove('btn-secondary');
+    activeBtn.classList.add('btn-primary');
+    inactiveBtn.classList.remove('btn-primary');
+    inactiveBtn.classList.add('btn-secondary');
+  }
+
+  rawBtn.addEventListener('click', () => {
+    previewBox.innerHTML = RAW_MARKUP;
+    setActiveButton(rawBtn, htmlBtn);
   });
 
-  document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('open');
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      dropdown.classList.remove('open');
-    }
-  });
-}
-
-function initThemeToggle() {
-  const themeBtn = document.getElementById('themeToggleBtn');
-  if (!themeBtn) return;
-
-  const currentTheme = localStorage.getItem('site_theme') || 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  themeBtn.textContent = currentTheme === 'dark' ? 'ДЕНЬ ☀️' : 'НІЧ 🌙';
-
-  themeBtn.addEventListener('click', () => {
-    const active = document.documentElement.getAttribute('data-theme');
-    const newTheme = active === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('site_theme', newTheme);
-    themeBtn.textContent = newTheme === 'dark' ? 'ДЕНЬ ☀️' : 'НІЧ 🌙';
-  });
-}
-
-function initMobileNavigation() {
-  const burgerBtn = document.getElementById('burgerMenuBtn');
-  const navLinks = document.getElementById('navLinks');
-  if (!burgerBtn || !navLinks) return;
-
-  burgerBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('mobile-active');
-    burgerBtn.textContent = navLinks.classList.contains('mobile-active') ? 'ЗАКРИТИ ✕' : 'МЕНЮ ☰';
-  });
-
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('mobile-active');
-      burgerBtn.textContent = 'МЕНЮ ☰';
-    });
-  });
-}
-
-function initActiveNavHighlight() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPos = window.scrollY + 130;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }, { passive: true });
-}
-
-function initScrollProgress() {
-  const progressBar = document.getElementById('scrollProgressBar');
-  if (!progressBar) return;
-
-  window.addEventListener('scroll', () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-    progressBar.style.width = `${progress}%`;
-  }, { passive: true });
-}
-
-function initAccordions() {
-  document.querySelectorAll('.accordion-header').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.accordion-item');
-      if (!item) return;
-      item.classList.toggle('active');
-      const icon = btn.querySelector('.accordion-icon');
-      if (icon) {
-        icon.textContent = item.classList.contains('active') ? '−' : '+';
-      }
-    });
+  htmlBtn.addEventListener('click', () => {
+    previewBox.innerHTML = EXPLAINED_MARKUP;
+    setActiveButton(htmlBtn, rawBtn);
   });
 }
 
@@ -744,8 +671,6 @@ function initLinkSimulator() {
 function initPracticalSandbox() {
   const codeArea = document.getElementById('sandboxCodeArea');
   const iframe = document.getElementById('sandboxIframe');
-  const runBtn = document.getElementById('sandboxRunBtn');
-  const resetBtn = document.getElementById('sandboxResetBtn');
 
   if (!codeArea || !iframe) return;
 
@@ -808,104 +733,39 @@ function initPracticalSandbox() {
 </body>
 </html>`;
 
-  function executeCode() {
-    const htmlContent = codeArea.value;
-    const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-    iframe.src = URL.createObjectURL(blob);
-  }
-
-  codeArea.value = standardCode;
-  executeCode();
-
-  if (runBtn) runBtn.addEventListener('click', executeCode);
-
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      codeArea.value = standardCode;
-      executeCode();
-    });
-  }
-
-  let timeout;
-  codeArea.addEventListener('input', () => {
-    clearTimeout(timeout);
-    timeout = setTimeout(executeCode, 600);
+  // Рендер через спільний SandboxUI (iframe.srcdoc — без витоку Blob URL)
+  SandboxUI.initCodeSandbox({
+    codeAreaId: 'sandboxCodeArea',
+    iframeId: 'sandboxIframe',
+    runBtnId: 'sandboxRunBtn',
+    resetBtnId: 'sandboxResetBtn',
+    defaultHTML: standardCode,
+    debounceMs: 600
   });
 
-  // Логіка повноекранного режиму (Full-page IDE)
-  const container = document.getElementById('sandboxContainer');
-  const fullscreenBtn = document.getElementById('sandboxFullscreenBtn');
-  const launchTopBtn = document.getElementById('launchFullscreenTopBtn');
-  const launchHeaderBtn = document.getElementById('launchFsHeaderBtn');
+  SandboxUI.initFullscreen({ closeIcon: '✖' });
+
+  // Шухляд із переліком завдань практикуму
   const tasksBtn = document.getElementById('sandboxTasksBtn');
   const tasksDrawer = document.getElementById('sandboxTasksDrawer');
   const tasksCloseBtn = document.getElementById('sandboxTasksCloseBtn');
 
-  function toggleFullscreen(forceState) {
-    if (!container) return;
-    const isFs = typeof forceState === 'boolean' ? forceState : !container.classList.contains('is-fullscreen');
-    if (isFs) {
-      container.classList.add('is-fullscreen');
-      document.body.classList.add('sandbox-fullscreen-active');
-      if (fullscreenBtn) {
-        fullscreenBtn.innerHTML = '<span class="fs-icon">🗗</span> <span class="fs-label">Згорнути</span>';
-        fullscreenBtn.title = 'Згорнути у звичайний вигляд (Esc)';
-      }
-      codeArea.focus();
-    } else {
-      container.classList.remove('is-fullscreen');
-      document.body.classList.remove('sandbox-fullscreen-active');
-      if (fullscreenBtn) {
-        fullscreenBtn.innerHTML = '<span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>';
-        fullscreenBtn.title = 'Відкрити практикум на всю сторінку (Esc для виходу)';
-      }
-      if (tasksDrawer) {
-        tasksDrawer.classList.remove('is-open');
-        if (tasksBtn) tasksBtn.classList.remove('active');
-      }
-    }
-  }
-
-  if (fullscreenBtn) {
-    fullscreenBtn.addEventListener('click', () => toggleFullscreen());
-  }
-
-  if (launchTopBtn) {
-    launchTopBtn.addEventListener('click', () => {
-      toggleFullscreen(true);
+  if (tasksBtn && tasksDrawer) {
+    tasksBtn.addEventListener('click', () => {
+      const isOpen = tasksDrawer.classList.toggle('is-open');
+      tasksBtn.classList.toggle('active', isOpen);
     });
-  }
 
-  if (launchHeaderBtn) {
-    launchHeaderBtn.addEventListener('click', () => {
-      toggleFullscreen(true);
+    const closeTasks = () => {
+      tasksDrawer.classList.remove('is-open');
+      tasksBtn.classList.remove('active');
+    };
+
+    if (tasksCloseBtn) tasksCloseBtn.addEventListener('click', closeTasks);
+
+    tasksDrawer.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeTasks();
     });
-  }
-
-  function toggleTasksDrawer() {
-    if (!tasksDrawer) return;
-    const isOpen = tasksDrawer.classList.toggle('is-open');
-    if (tasksBtn) tasksBtn.classList.toggle('active', isOpen);
-  }
-
-  if (tasksBtn) {
-    tasksBtn.addEventListener('click', toggleTasksDrawer);
-  }
-
-  if (tasksCloseBtn) {
-    tasksCloseBtn.addEventListener('click', () => {
-      if (tasksDrawer) tasksDrawer.classList.remove('is-open');
-      if (tasksBtn) tasksBtn.classList.remove('active');
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && container && container.classList.contains('is-fullscreen')) {
-      toggleFullscreen(false);
-    }
-  });
-
-  if (window.location.search.includes('fullscreen=1') || window.location.hash === '#practical-work-fullscreen') {
-    toggleFullscreen(true);
   }
 }
+

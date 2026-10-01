@@ -1,21 +1,19 @@
-/* ==========================================================================
-   ВЕБТЕХНОЛОГІЇ (10–11 КЛАСИ) • ІНТЕРАКТИВНИЙ УРОК
+﻿/* ==========================================================================
+   ВЕБТЕХНОЛОГІЇ (10–11 КЛАСИ) • УРОК 1
    Теми:
    1. Основні тренди у веб-дизайні
    2. Види сайтів та цільова аудиторія
    3. Інформаційна структура сайту
    4. Інструменти веб-розробника
+
+   Спільні системні компоненти (тема, меню уроків, мобільна навігація,
+   підсвітка змісту, смуга прогресу, акордеони) винесено в js/core.js
+   і підключаються окремим <script> на кожній сторінці.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Загальні компоненти
-  initThemeToggle();
-  initCourseDropdown();
-  initMobileNavigation();
-  initActiveNavHighlight();
+  // Лічильник «кількості сайтів у світі» (унікальний для Уроку 1)
   initGlobalStatsCounter();
-  initScrollProgress();
-  initAccordions();
 
   // Тема 1: Основні тренди у веб-дизайні
   initSpeedBenchmark();
@@ -39,125 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /** -------------------------------------------------------------------------
- * БАЗОВІ СИСТЕМНІ ФУНКЦІЇ
+ * ЛІЧИЛЬНИК СТАТИСТИКИ (розділ «Веб-дизайн», підручник рис. 1.11, с. 12)
  * ------------------------------------------------------------------------ */
-function initCourseDropdown() {
-  const dropdown = document.getElementById('courseDropdown');
-  const dropdownBtn = document.getElementById('courseDropdownBtn');
-  if (!dropdown || !dropdownBtn) return;
-
-  dropdownBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('open');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('open');
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      dropdown.classList.remove('open');
-    }
-  });
-}
-
-function initThemeToggle() {
-  const themeBtn = document.getElementById('themeToggleBtn');
-  if (!themeBtn) return;
-
-  const currentTheme = localStorage.getItem('site_theme') || 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  themeBtn.textContent = currentTheme === 'dark' ? 'ДЕНЬ ☀️' : 'НІЧ 🌙';
-
-  themeBtn.addEventListener('click', () => {
-    const active = document.documentElement.getAttribute('data-theme');
-    const newTheme = active === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('site_theme', newTheme);
-    themeBtn.textContent = newTheme === 'dark' ? 'ДЕНЬ ☀️' : 'НІЧ 🌙';
-  });
-}
-
-function initMobileNavigation() {
-  const burgerBtn = document.getElementById('burgerMenuBtn');
-  const navLinks = document.getElementById('navLinks');
-  if (!burgerBtn || !navLinks) return;
-
-  burgerBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('mobile-active');
-    burgerBtn.textContent = navLinks.classList.contains('mobile-active') ? 'ЗАКРИТИ ✕' : 'МЕНЮ ☰';
-  });
-
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('mobile-active');
-      burgerBtn.textContent = 'МЕНЮ ☰';
-    });
-  });
-}
-
-function initActiveNavHighlight() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPos = window.scrollY + 130;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }, { passive: true });
-}
-
 function initGlobalStatsCounter() {
   const counterEl = document.getElementById('liveWebsitesTicker');
   if (!counterEl) return;
-  let count = 1691207347; // Підручник, рис. 1.11, с. 12
+  let count = 1691207347;
   setInterval(() => {
     count += 2; // +2 сайти щосекунди
     counterEl.textContent = count.toLocaleString('uk-UA');
   }, 1000);
 }
 
-function initScrollProgress() {
-  const progressBar = document.getElementById('scrollProgressBar');
-  if (!progressBar) return;
-  window.addEventListener('scroll', () => {
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (docHeight <= 0) return;
-    const progress = (window.scrollY / docHeight) * 100;
-    progressBar.style.width = Math.min(progress, 100) + '%';
-  }, { passive: true });
-}
-
-function initAccordions() {
-  const headers = document.querySelectorAll('.accordion-header');
-  headers.forEach(h => {
-    h.addEventListener('click', () => {
-      const parent = h.closest('.accordion-item');
-      if (parent) {
-        parent.classList.toggle('active');
-        const arrow = h.querySelector('span:last-child');
-        if (arrow) arrow.textContent = parent.classList.contains('active') ? '▲' : '▼';
-      }
-    });
-  });
-}
 
 /** -------------------------------------------------------------------------
  * ТЕМА 1: ОСНОВНІ ТРЕНДИ У ВЕБ-ДИЗАЙНІ

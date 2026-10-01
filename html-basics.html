@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -8,13 +8,14 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="styles/main.css?v=8">
-  <link rel="stylesheet" href="styles/hero.css?v=5">
-  <link rel="stylesheet" href="styles/modules.css?v=5">
-  <link rel="stylesheet" href="styles/responsive.css?v=5">
+  <link rel="stylesheet" href="styles/hero.css?v=6">
+  <link rel="stylesheet" href="styles/modules.css?v=6">
+  <link rel="stylesheet" href="styles/responsive.css?v=6">
   <link rel="stylesheet" href="styles/html-lesson.css?v=4">
 </head>
 <body>
@@ -939,39 +940,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/html-lesson.js?v=5"></script>
-  <script>
-    // Hero interactive teaser
-    const heroToggleRawBtn = document.getElementById('heroToggleRawBtn');
-    const heroToggleHtmlBtn = document.getElementById('heroToggleHtmlBtn');
-    const heroPreviewBox = document.getElementById('heroPreviewBox');
-
-    if (heroToggleRawBtn && heroToggleHtmlBtn && heroPreviewBox) {
-      heroToggleRawBtn.addEventListener('click', () => {
-        heroPreviewBox.innerHTML = `Основи сучасної веб-розробки Курс Вебтехнології та основи інтерфейсів 10 11 класи Структура документа DOCTYPE html Форматування тексту та ієрархія заголовків Гіперпосилання як основа Всесвітньої павутини Результат весь текст злипся в один суцільний рядок без ієрархії відступів та списків`;
-        heroToggleRawBtn.classList.remove('btn-secondary');
-        heroToggleRawBtn.classList.add('btn-primary');
-        heroToggleHtmlBtn.classList.remove('btn-primary');
-        heroToggleHtmlBtn.classList.add('btn-secondary');
-      });
-
-      heroToggleHtmlBtn.addEventListener('click', () => {
-        heroPreviewBox.innerHTML = `
-          <h2 style="color: #1e3a8a; margin-bottom: 0.5rem; font-size: 1.25rem;">Основи сучасної веб-розробки</h2>
-          <p style="margin-bottom: 0.5rem;"><strong>Курс:</strong> Вебтехнології та основи інтерфейсів (10–11 класи).</p>
-          <ul style="padding-left: 1.2rem; margin-bottom: 0.5rem;">
-            <li>Структура документа <code>&lt;!DOCTYPE html&gt;</code></li>
-            <li>Форматування тексту та ієрархія заголовків</li>
-            <li>Гіперпосилання як основа Всесвітньої павутини</li>
-          </ul>
-          <p style="font-size: 0.85rem; color: #64748b;">Результат: чітка структура, візуальна ієрархія та зручність сприйняття!</p>
-        `;
-        heroToggleHtmlBtn.classList.remove('btn-secondary');
-        heroToggleHtmlBtn.classList.add('btn-primary');
-        heroToggleRawBtn.classList.remove('btn-primary');
-        heroToggleRawBtn.classList.add('btn-secondary');
-      });
-    }
-  </script>
-</body>
-</html>
+  <!-- Спільне ядро інтерфейсу -->
+  <script src="js/core.js?v=1"></script>
+  <!-- Спільна логіка практикумів -->
+  <script src="js/sandbox.js?v=1"></script>
+  <!-- Логіка Уроку 2 -->
+  <script src="js/html-lesson.js?v=6"></script>
