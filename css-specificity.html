@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Підручник: Каскад і специфічність у CSS</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  
+  <style>
+    /* Стилі підручника, інтегровані в загальний дизайн сайту */
+    .textbook-wrapper {
+      padding: 60px 20px;
+      background-color: var(--bg-secondary, #f8fafc);
+      min-height: 100vh;
+    }
+    
+    .textbook-page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-primary, #ffffff);
+      padding: 50px 60px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      color: var(--text-primary, #2c3e50);
+      font-family: 'Work Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    /* Адаптація заголовків */
+    .textbook-page h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      border-bottom: 3px solid #3b82f6;
+      padding-bottom: 12px;
+      color: var(--accent-blue, #1e3a8a);
+      margin-top: 0;
+    }
+    .textbook-page h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      color: var(--accent-blue, #1e40af);
+      margin-top: 40px;
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      padding-bottom: 8px;
+    }
+    .textbook-page h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 19px;
+      color: var(--text-primary, #0f172a);
+      margin-top: 24px;
+    }
+    .textbook-page p {
+      margin-bottom: 16px;
+      text-align: justify;
+      font-size: 1.05rem;
+    }
+
+    /* Інформаційні блоки */
+    .textbook-page .rule-box {
+      background-color: #eff6ff;
+      border-left: 5px solid #3b82f6;
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 6px 6px 0;
+      color: #1e3a8a;
+    }
+    .textbook-page .warning-box {
+      background-color: #fffbeb;
+      border-left: 5px solid #f59e0b;
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 6px 6px 0;
+      color: #92400e;
+    }
+
+    /* Код */
+    .textbook-page .code-snippet {
+      background-color: #1e293b;
+      color: #f8fafc;
+      padding: 18px 20px;
+      border-radius: 8px;
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 16px 0 24px 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .textbook-page .code-term {
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+      background-color: var(--bg-secondary, #e2e8f0);
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+    .textbook-page .vector-badge {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+      font-weight: bold;
+      background-color: #dbeafe;
+      color: #1e40af;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.9em;
+    }
+    
+    @media (max-width: 768px) {
+      .textbook-page {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header (Спрощений для підручника) -->
+  <header class="site-header" style="position: sticky; top: 0; z-index: 100;">
+    <div class="container header-container" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
+      <a href="index.html" class="header-logo" title="На головну сторінку курсу" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px; font-weight: bold; font-family: 'Space Grotesk', sans-serif;">
+        <span class="logo-badge" style="background: var(--accent-blue); color: white; padding: 4px 8px; border-radius: 4px;">&lt;/&gt;</span>
+        <span>ВЕБТЕХНОЛОГІЇ</span>
+      </a>
+      <a href="css-basics.html" style="text-decoration: none; font-weight: 600; color: var(--accent-blue);">⬅ Повернутися до Уроку 3</a>
+    </div>
+  </header>
+
+  <main class="textbook-wrapper">
+    <article class="textbook-page">
+
+      <h1>Каскад і специфічність у CSS</h1>
+
+      <!-- РІВЕНЬ 4: ТЕГИ -->
+      <h2>Рівень 4 (Базовий) теги</h2>
+      <p>
+        Рівень 4 каже браузеру: «Знайди ВСІХ представників виду» (усі кнопки, усі посилання чи абзаци)[cite: 3]. Одне посилання має вагу <span class="vector-badge">(0, 0, 0, 1)</span>[cite: 3]. Якщо побудувати ланцюжок предків для уточнення, наприклад <span class="code-term">nav ul li a</span>, браузер підсумує кожен тег, і вага зросте до <span class="vector-badge">(0, 0, 0, 4)</span>, що легко перекриє звичайний селектор[cite: 3].
+      </p>
+
+      <div class="code-snippet">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;style&gt;
+			a { color: red; } /* Вага: (0, 0, 0, 1) */
+			nav ul li a {color: green; } /* Вага: (0, 0, 0, 4) */
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;nav&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Посилання&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</div>
+
+
+      <!-- РІВЕНЬ 4: ПСЕВДОЕЛЕМЕНТИ -->
+      <h2>Рівень 4 (Базовий) псевдоелементи</h2>
+      <p>
+        Головне завдання псевдоелементів — чистота HTML-коду[cite: 3]. Вони дозволяють додавати дизайн, іконки, виділення та спецефекти суто через CSS, не засмічуючи розмітку зайвими пустими тегами[cite: 3]. Псевдоелементи потрібні тоді, коли вам треба оформити шматочок вмісту або додати декорацію, але плодити зайві теги в HTML-розмітці не має сенсу[cite: 3]. Вони є частиною 4-го рівня специфічності й додають +1 до колонки D[cite: 3].
+      </p>
+      
+      <div class="warning-box">
+        <strong>⚠️ Залізне правило:</strong> <span class="code-term">::before</span> та <span class="code-term">::after</span> не працюватимуть без властивості <span class="code-term">content: "";</span> (навіть якщо лапки порожні)[cite: 3].
+      </div>
+
+      <p>
+        <strong><span class="code-term">::selection</span> (Виділення мишкою):</strong> Керує тим, як виглядає текст, коли користувач виділяє його курсором (за замовчуванням у браузерах це синій фон із білим текстом)[cite: 3].
+      </p>
+
+      <div class="code-snippet">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;style&gt;
+			a::after { content: "👉 ";}
+			body::selection {background-color: yellow; color: green;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;nav&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Посилання&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</div>
+
+
+      <!-- РІВЕНЬ 3: КЛАСИ -->
+      <h2>Уся магія Рівня 3: (0, 0, C, 0)</h2>
+      <p>
+        Уся магія Рівня 3 тримається на одній простій ідеї[cite: 3]:<br>
+        Рівень 4 каже браузеру: «Знайди ВСІХ представників виду»[cite: 3].<br>
+        Рівень 3 каже: «Знайди елементи за особливими прикметами або станом»[cite: 3].
+      </p>
+      <p>
+        В HTML усі теги однакові: <span class="code-term">&lt;button&gt;</span> і в Африці <span class="code-term">&lt;button&gt;</span>[cite: 3]. Але на реальному сайті одна кнопка має бути зеленою («Купити»), а інша — червоною («Видалити»)[cite: 3]. Щоб не змінювати всі кнопки одразу, ми вішаємо на конкретний елемент ярлик-наклейку[cite: 3]. Цей ярлик вказується через атрибут <span class="code-term">class="..."</span>, а назву ви вигадуєте самі з голови[cite: 3].
+      </p>
+
+      <div class="code-snippet">&lt;!DOCTYPE html&gt;
+
+		&lt;style&gt;
+			.btn-buy {
+				background-color: green; /* Вага: (0, 0, 1, 0) */
+			}
+
+			.btn-delete {
+				background-color: red;   /* Вага: (0, 0, 1, 0) */
+			}
+		&lt;/style&gt;
+
+			&lt;button class="btn-buy"&gt;Купити&lt;/button&gt;
+			&lt;button class="btn-delete"&gt;Видалити&lt;/button&gt;</div>
+
+
+      <!-- РІВЕНЬ 3: АТРИБУТИ -->
+      <h3>Як АТРИБУТИ тегу пов'язані з CSS?</h3>
+      <p>
+        В HTML у тегів повно рідних службових атрибутів[cite: 3]. CSS вміє вибирати елементи прямо за значенням цих атрибутів без створення зайвих класів[cite: 3]. Для цього в CSS використовують квадратні дужки <span class="code-term">[ ]</span>[cite: 3]:
+      </p>
+
+      <div class="code-snippet">		&lt;style&gt;
+			input[type="password"]{background-color: yellow;}
+		&lt;/style&gt;
+		
+            &lt;input type="text"&gt;
+			&lt;input type="password"&gt;</div>
+
+
+      <!-- РІВЕНЬ 3: ПСЕВДОКЛАСИ -->
+      <h3>Псевдокласи</h3>
+      <p>
+        <strong>Псевдоклас</strong> — це спеціальне слово в CSS, яке позначає тимчасовий стан елемента або його особливе положення, що змінюється саме по собі без переписування HTML[cite: 3]. В CSS псевдоклас завжди позначається однією двокрапкою <span class="code-term">:</span> і пишеться впритул до селектора (без пробілу)[cite: 3]:
+      </p>
+
+      <div class="code-snippet">/* --- ЗВИЧАЙНИЙ СТАН (коли мишка десь в іншій частині екрана) --- */
+.btn-buy {
+  background-color: lightgreen; /* блідо-зелена */
+}
+.btn-delete {
+  background-color: lightcoral; /* блідо-червона */
+}
+/* --- ПСЕВДОКЛАС :hover (вмикається САМ, коли курсор над кнопкою) --- */
+.btn-buy:hover {
+  background-color: darkgreen; /* стає темно-зеленою */
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: darkred;   /* стає темно-червоною */
+  color: white;
+}
+
+&lt;button class="btn-buy"&gt;Купити&lt;/button&gt;
+&lt;button class="btn-delete"&gt;Видалити&lt;/button&gt;</div>
+
+      <div class="rule-box">
+        <strong>Історична довідка:</strong> Раніше, на зорі інтернету (наприкінці 90-х), щоб кнопка змінила колір чи картинку під мишкою, верстальникам доводилося писати JavaScript (так звані onmouseover та onmouseout скрипти)[cite: 3]. Це було повільно, незручно і перевантажувало браузери[cite: 3].<br><br>
+        Творці стандартів вебтехнологій (консорціум W3C) побачили, що[cite: 3]:
+        <ul>
+          <li>Ця дія суто візуальна (це робота CSS, а не логіки сайту)[cite: 3].</li>
+          <li>99% розробників роблять абсолютно одне й те саме: показують стан під курсором, активне поле чи клік[cite: 3].</li>
+        </ul>
+        Тому цю механіку «зашили» глибоко під капот браузера прямо в рушій CSS[cite: 3].
+      </div>
+
+
+      <!-- РІВЕНЬ 2: ID ТА НАВІГАЦІЯ -->
+      <h2>Рівень 2: Ідентифікатори (id) та Навігаційні Якоря</h2>
+      <p>
+        Це ключове залізне правило стандарту HTML: <strong>ідентифікатор (id) на одній сторінці має бути суворо унікальним і існувати лише в одному єдиному екземплярі</strong>[cite: 3].
+      </p>
+
+      <div class="code-snippet">&lt;!DOCTYPE html&gt;
+&lt;html lang="uk"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Приклад якірних посилань&lt;/title&gt;
+  
+  &lt;style&gt;
+    html { scroll-behavior: smooth; font-family: sans-serif; }
+    nav { position: fixed; top: 0; left: 0; width: 100%; background-color: #333; padding: 15px; }
+    nav a { color: white; text-decoration: none; margin-right: 20px; font-weight: bold; }
+    nav a:hover { color: #ffd700; }
+    section { height: 800px; padding: 80px 20px 20px 20px; }
+    #about { background-color: lightcoral; }
+    #services { background-color: lightgreen; }
+    #contacts { background-color: lightblue; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;
+    &lt;a href="#about"&gt;Про нас&lt;/a&gt;
+    &lt;a href="#services"&gt;Послуги&lt;/a&gt;
+    &lt;a href="#contacts"&gt;Контакти&lt;/a&gt;
+  &lt;/nav&gt;
+
+  &lt;section id="about"&gt;
+    &lt;h2&gt;Секція: Про нас&lt;/h2&gt;
+  &lt;/section&gt;
+
+  &lt;section id="services"&gt;
+    &lt;h2&gt;Секція: Наші послуги&lt;/h2&gt;
+  &lt;/section&gt;
+
+  &lt;section id="contacts"&gt;
+    &lt;h2&gt;Секція: Контакти&lt;/h2&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+      <!-- РІВЕНЬ 1: INLINE-СТИЛІ -->
+      <h2>Рівень 1: Інлайн-стилі (Inline Styles)</h2>
+      <p>
+        Атрибут <span class="code-term">style="..."</span> прямо всередині тегу має вагу <span class="vector-badge">(1, 0, 0, 0)</span>[cite: 3]. Він повністю ігнорує зовнішній CSS і «переїжджає» навіть унікальний селектор за ID <span class="code-term">#special-text</span> з вагою <span class="vector-badge">(0, 1, 0, 0)</span>[cite: 3]:
+      </p>
+
+      <div class="code-snippet">&lt;p style="color: red; font-size: 20px;"&gt;Цей текст червоний через inline-стиль.&lt;/p&gt;</div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer" style="margin-top: 0;">
+    <div class="container" style="text-align: center; padding: 20px;">
+      <p>&copy; 2026 Інтерактивний веб-курс. Усі права захищено.</p>
+    </div>
+  </footer>
+</body>
+</html>

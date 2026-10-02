@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -94,7 +94,10 @@
           <li><a href="#topic1" class="nav-link">1. Блочна модель</a></li>
           <li><a href="#topic2" class="nav-link">2. Відступи (Margin, Padding)</a></li>
           <li><a href="#topic3" class="nav-link">3. Рамки (Border)</a></li>
-          <li><a href="#topic4" class="nav-link">4. Box-sizing</a></li>
+          <li><a href="#schema" class="nav-link">4. Схема блоків</a></li>
+          <li><a href="#topic4" class="nav-link">5. Box-sizing</a></li>
+          <li><a href="#interactive-demo" class="nav-link">6. Інтерактивна демо</a></li>
+          <li><a href="#anchor-links" class="nav-link">7. Якірні посилання</a></li>
           <li><a href="#practical-work" class="nav-link nav-link-highlight" style="color: var(--accent-blue) !important;">Практична робота №4 ⚙️</a></li>
         </ul>
       </nav>
@@ -249,8 +252,58 @@ margin: auto;</pre>
       </div>
     </section>
 
+    <!-- SCHEMA: 4 BLOCKS -->
+    <section id="schema" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">СХЕМА</div>
+          <h2 class="section-title">ПРИКЛАД: <span class="text-gradient">БАТЬКІВСЬКИЙ КОНТЕЙНЕР ТА 4 БЛОКИ</span></h2>
+          <p class="section-subtitle">
+            Наочний приклад взаємодії кількох блоків з відступами та рамками.
+          </p>
+        </div>
+
+        <style>
+          .parent-container {
+            max-width: 700px; margin: 0 auto;
+            background-color: #ffffff; border: 3px dashed #64748b; padding: 20px;
+            display: flex; flex-wrap: wrap; justify-content: space-between;
+          }
+          .child-box {
+            width: 48%; margin-bottom: 20px;
+            border: 4px solid #ef4444; background-color: #bbf7d0; padding: 15px; border-radius: 6px;
+          }
+          .child-content {
+            background-color: #bfdbfe; padding: 10px; text-align: center;
+            font-weight: bold; border-radius: 4px; color: #1e293b;
+          }
+          .schema-legend {
+            max-width: 700px; margin: 20px auto 0 auto; font-size: 14px;
+            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;
+          }
+          .schema-legend span {
+            background: #fff; padding: 5px 10px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+          }
+        </style>
+
+        <div class="parent-container">
+          <div class="child-box"><div class="child-content">Блок 1 (Контент)</div></div>
+          <div class="child-box"><div class="child-content">Блок 2 (Контент)</div></div>
+          <div class="child-box"><div class="child-content">Блок 3 (Контент)</div></div>
+          <div class="child-box"><div class="child-content">Блок 4 (Контент)</div></div>
+        </div>
+
+        <div class="schema-legend">
+          <span style="color: #64748b; font-weight: 600;">🔲 Сірий пунктир = Батьківський блок</span>
+          <span style="color: #ef4444; font-weight: 600;">🟥 Червоний = Border</span>
+          <span style="color: #16a34a; font-weight: 600;">🟩 Зелений = Padding</span>
+          <span style="color: #2563eb; font-weight: 600;">🟦 Синій = Content</span>
+        </div>
+      </div>
+    </section>
+
     <!-- TOPIC 4 -->
-    <section id="topic4" class="section" style="background: var(--bg-secondary);">
+    <section id="topic4" class="section">
       <div class="container">
         <div class="section-header">
           <div class="section-badge">ТЕМА 4 · ПОГЛИБЛЕННЯ</div>
@@ -278,6 +331,161 @@ margin: auto;</pre>
               У Практичній роботі №4 (с. 62–63) посібника блок задається лише через <code>width</code>, <code>margin</code>, <code>padding-left</code> та <code>border</code> — без <code>box-sizing</code>. Тому вправи посібника виглядають «ширшими», ніж очікуєш. Це нормально: браузер застосовує <code>content-box</code>.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE DEMO -->
+    <section id="interactive-demo" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">🧪 ЕКСПЕРИМЕНТ</div>
+          <h2 class="section-title">ІНТЕРАКТИВНИЙ <span class="text-gradient">КОНСТРУКТОР БЛОКІВ</span></h2>
+          <p class="section-subtitle">
+            Змінюйте значення повзунків, щоб побачити, як змінюються розміри та відступи блоків.
+          </p>
+        </div>
+
+        <style>
+          .demo-layout {
+            display: flex; gap: 2rem; background: var(--bg-primary); padding: 2rem;
+            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); flex-wrap: wrap;
+          }
+          .demo-controls {
+            flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 1.5rem;
+          }
+          .demo-control-group label {
+            display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-primary);
+          }
+          .demo-control-group input[type=range] {
+            width: 100%; cursor: pointer;
+          }
+          .demo-canvas {
+            flex: 2; min-width: 300px; border: 2px dashed #94a3b8; padding: 20px;
+            border-radius: 8px; background: #f8fafc; overflow: hidden;
+          }
+          .demo-canvas-title {
+            margin-bottom: 1rem; color: #64748b; font-weight: 600; font-size: 14px;
+          }
+          .demo-box {
+            background-color: #bbf7d0;
+            border-style: solid;
+            border-color: #ef4444;
+            transition: all 0.1s ease;
+          }
+          .demo-box-content {
+            background-color: #bfdbfe;
+            height: 100%;
+            text-align: center;
+            font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+          }
+          .demo-legend {
+            margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 15px; font-size: 14px;
+            justify-content: center;
+          }
+          .demo-legend div {
+            display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-weight: 500;
+          }
+          .demo-legend span {
+            display: inline-block; width: 16px; height: 16px; border-radius: 3px;
+          }
+        </style>
+
+        <div class="demo-layout">
+          <div class="demo-controls">
+            <div class="demo-control-group">
+              <label>Ширина контенту (width): <span id="val-width">200</span>px</label>
+              <input type="range" id="input-width" min="100" max="400" value="200">
+            </div>
+            <div class="demo-control-group">
+              <label>Внутрішній відступ (padding): <span id="val-padding">20</span>px</label>
+              <input type="range" id="input-padding" min="0" max="60" value="20">
+            </div>
+            <div class="demo-control-group">
+              <label>Товщина рамки (border): <span id="val-border">6</span>px</label>
+              <input type="range" id="input-border" min="0" max="20" value="6">
+            </div>
+            <div class="demo-control-group">
+              <label>Зовнішній відступ (margin-bottom): <span id="val-margin">20</span>px</label>
+              <input type="range" id="input-margin" min="0" max="80" value="20">
+            </div>
+          </div>
+          <div class="demo-canvas">
+            <div class="demo-canvas-title">Батьківський контейнер</div>
+            <div class="demo-box" id="demo-box1" style="width: 200px; padding: 20px; border-width: 6px; margin-bottom: 20px;">
+              <div class="demo-box-content">Блок 1</div>
+            </div>
+            <div class="demo-box" id="demo-box2" style="width: 200px; padding: 20px; border-width: 6px;">
+              <div class="demo-box-content">Блок 2</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="demo-legend">
+          <div><span style="background: #bfdbfe; border: 1px solid #3b82f6;"></span> Синій = Content</div>
+          <div><span style="background: #bbf7d0; border: 1px solid #22c55e;"></span> Зелений = Padding</div>
+          <div><span style="background: #ef4444;"></span> Червоний = Border</div>
+          <div><span style="background: #f8fafc; border: 1px dashed #64748b;"></span> Сіре поле = Margin</div>
+        </div>
+
+        <script>
+          const dBox1 = document.getElementById('demo-box1');
+          const dBox2 = document.getElementById('demo-box2');
+          const inWidth = document.getElementById('input-width');
+          const inPadding = document.getElementById('input-padding');
+          const inBorder = document.getElementById('input-border');
+          const inMargin = document.getElementById('input-margin');
+          const vWidth = document.getElementById('val-width');
+          const vPadding = document.getElementById('val-padding');
+          const vBorder = document.getElementById('val-border');
+          const vMargin = document.getElementById('val-margin');
+
+          function updateDemo() {
+            vWidth.textContent = inWidth.value;
+            vPadding.textContent = inPadding.value;
+            vBorder.textContent = inBorder.value;
+            vMargin.textContent = inMargin.value;
+
+            const boxes = [dBox1, dBox2];
+            boxes.forEach(b => {
+              b.style.width = inWidth.value + 'px';
+              b.style.padding = inPadding.value + 'px';
+              b.style.borderWidth = inBorder.value + 'px';
+            });
+            dBox1.style.marginBottom = inMargin.value + 'px';
+          }
+          
+          if(inWidth) {
+            inWidth.addEventListener('input', updateDemo);
+            inPadding.addEventListener('input', updateDemo);
+            inBorder.addEventListener('input', updateDemo);
+            inMargin.addEventListener('input', updateDemo);
+          }
+        </script>
+      </div>
+    </section>
+
+    <!-- ANCHOR LINKS BONUS -->
+    <section id="anchor-links" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ДОДАТКОВО</div>
+          <h2 class="section-title">ПЛАВНА НАВІГАЦІЯ: <span class="text-gradient">ЯКІРНІ ПОСИЛАННЯ</span></h2>
+          <p class="section-subtitle">
+            Поза межами блочної моделі, але дуже корисно для створення зручної навігації.
+          </p>
+        </div>
+        <div class="info-card" style="text-align: center; padding: 3rem; border: 2px dashed #cbd5e1;">
+          <h3 style="margin-top: 0;">Демонстрація якірних посилань</h3>
+          <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+            Дізнайтеся, як зробити плавний перехід (скрол) до певного блоку на сторінці за допомогою <code>scroll-behavior: smooth</code> та <code>id</code> секцій.
+          </p>
+          <a href="anchor-links.html" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; display: inline-block;">🔗 Відкрити приклад у новому вікні</a>
         </div>
       </div>
     </section>

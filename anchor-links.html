@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Приклад якірних посилань</title>
+  
+  <style>
+    /* 1. ГОЛОВНА ВЛАСТИВІСТЬ CSS ДЛЯ ЯКОРІВ */
+    html {
+      /* Вмикає плавний скрол замість різкого ривка */
+      scroll-behavior: smooth;
+      font-family: sans-serif;
+    }
+
+    /* Меню навігації закріплюємо зверху */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      padding: 15px;
+    }
+
+    /* Стилі для посилань */
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #ffd700; /* підсвітка при наведенні */
+    }
+
+    /* Стилі для блоків сторінки (секцій) */
+    section {
+      height: 800px; /* робимо їх високими, щоб було куди скролити */
+      padding: 80px 20px 20px 20px;
+    }
+
+    #about { background-color: lightcoral; }
+    #services { background-color: lightgreen; }
+    #contacts { background-color: lightblue; }
+  </style>
+</head>
+<body>
+
+  <!-- НАВІГАЦІЯ: посилання з решіткою # -->
+  <nav>
+    <a href="#about">Про нас</a>
+    <a href="#services">Послуги</a>
+    <a href="#contacts">Контакти</a>
+  </nav>
+
+  <!-- СЕКЦІЇ СТОРІНКИ: мають відповідний унікальний id -->
+  <section id="about">
+    <h2>Секція: Про нас</h2>
+    <p>Тут текст про компанію...</p>
+  </section>
+
+  <section id="services">
+    <h2>Секція: Наші послуги</h2>
+    <p>Тут перелік послуг...</p>
+  </section>
+
+  <section id="contacts">
+    <h2>Секція: Контакти</h2>
+    <p>Наші телефони та адреса...</p>
+  </section>
+
+</body>
+</html>
