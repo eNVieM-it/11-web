@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 5: Адаптивна верстка. Принципи адаптивного дизайну веб-сторінок</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="stylesheet" href="styles/hero.css?v=6">
+  <link rel="stylesheet" href="styles/modules.css?v=6">
+  <link rel="stylesheet" href="styles/responsive.css?v=6">
+  <link rel="stylesheet" href="styles/css-lesson.css?v=5"> <!-- reusing for basic styles -->
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Stats Ribbon -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        Практична робота №5 · Тема «Адаптивна верстка»
+      </div>
+      <div>
+        Інформатика 10–11 класи · Модуль «Вебтехнології»
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
+
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу">
+            <span>📚 Уроки курсу</span>
+            <span class="dropdown-arrow">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu">
+            <div class="course-dropdown-header">Навчальна програма (10–11 класи)</div>
+            <a href="index.html" class="course-dropdown-item">
+              <span>Урок 1: Вебдизайн та структура сайту</span>
+              <span class="lesson-tag">Розділ 1</span>
+            </a>
+            <a href="html-basics.html" class="course-dropdown-item">
+              <span>Урок 2: Основи мови HTML5</span>
+              <span class="lesson-tag">Розділ 2</span>
+            </a>
+            <a href="css-basics.html" class="course-dropdown-item">
+              <span>Урок 3: Каскадні таблиці стилів CSS</span>
+              <span class="lesson-tag">Розділ 3</span>
+            </a>
+            <a href="box-model.html" class="course-dropdown-item">
+              <span>Урок 4: Блочна модель верстки</span>
+              <span class="lesson-tag">Розділ 4</span>
+            </a>
+            <a href="responsive-design.html" class="course-dropdown-item active">
+              <span>Урок 5: Адаптивна верстка</span>
+              <span class="lesson-tag current">Поточний</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зміст поточного уроку (десктоп) та мобільне меню -->
+      <nav class="header-nav" aria-label="Зміст уроку">
+        <ul class="nav-links" id="navLinks">
+          <!-- Мобільний блок списку уроків -->
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item">Урок 2: Основи мови HTML5</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
+              <li><a href="box-model.html" class="mobile-nav-item">Урок 4: Блочна модель верстки</a></li>
+              <li><a href="responsive-design.html" class="mobile-nav-item active">Урок 5: Адаптивна верстка ★</a></li>
+            </ul>
+          </li>
+
+          <!-- Посилання на розділи цього уроку -->
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
+          <li><a href="#topic1" class="nav-link">1. Що таке адаптивність</a></li>
+          <li><a href="#topic2" class="nav-link">2. Viewport</a></li>
+          <li><a href="#topic3" class="nav-link">3. Медіазапити</a></li>
+          <li><a href="#topic4" class="nav-link">4. Гнучкі розміри</a></li>
+          <li><a href="#practical-work" class="nav-link nav-link-highlight" style="color: var(--accent-blue) !important;">Практична робота №5 ⚙️</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему день/ніч">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero-section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="section-badge">🎯 ІНТЕРАКТИВНИЙ ОНЛАЙН-КУРС • УРОК 5</div>
+            <h1 class="hero-title">АДАПТИВНА ВЕРСТКА. <span class="text-gradient">ПРИНЦИПИ ДИЗАЙНУ</span></h1>
+            <p class="hero-description">
+              Дізнайтеся, як робити сайти, що ідеально виглядають на будь-якому пристрої — від смартфонів до великих моніторів.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#topic1" class="btn btn-primary">РОЗПОЧАТИ УРОК 🚀</a>
+              <a href="#practical-work" class="btn btn-secondary">ПРАКТИЧНА РОБОТА №5 ⚙️</a>
+            </div>
+            <div class="hero-highlight-boxes">
+              <div class="highlight-box">
+                <span class="box-value">@media</span>
+                <span class="box-label">МЕДІАЗАПИТИ</span>
+              </div>
+              <div class="highlight-box">
+                <span class="box-value">vw / %</span>
+                <span class="box-label">ГНУЧКІ ОДИНИЦІ</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-interactive-card">
+            <div class="interactive-card-header">
+              <span class="card-badge">📱 АДАПТИВНІСТЬ</span>
+              <h3>БУДЬ-ЯКИЙ ЕКРАН</h3>
+            </div>
+            <div class="interactive-card-body" style="text-align: center; padding: 2rem;">
+              <div style="display: flex; gap: 15px; justify-content: center; align-items: flex-end;">
+                <!-- Смартфон -->
+                <div style="width: 40px; height: 70px; border: 3px solid #333; border-radius: 8px; background: #fff; position: relative;">
+                  <div style="position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; border-radius: 50%; border: 1px solid #333;"></div>
+                </div>
+                <!-- Планшет -->
+                <div style="width: 70px; height: 100px; border: 3px solid #333; border-radius: 8px; background: #fff; position: relative;">
+                  <div style="position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; border-radius: 50%; border: 1px solid #333;"></div>
+                </div>
+                <!-- Монітор -->
+                <div style="width: 120px; height: 80px; border: 3px solid #333; border-radius: 8px; background: #fff; position: relative; margin-bottom: 20px;">
+                  <div style="position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); width: 40px; height: 20px; background: #333;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 1 -->
+    <section id="topic1" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 1</div>
+          <h2 class="section-title">1. ЩО ТАКЕ <span class="text-gradient">АДАПТИВНА ВЕРСТКА?</span></h2>
+          <p class="section-subtitle">
+            Адаптивний веб-дизайн (Responsive Web Design, RWD) — це підхід, при якому веб-сторінка коректно відображається на різних пристроях, автоматично підлаштовуючись під розмір екрану.
+          </p>
+        </div>
+        <div class="info-card" style="margin-bottom: 2.5rem;">
+          <div class="info-card-header">
+            <h3>📖 ПРОСТИМИ СЛОВАМИ: ПРАВИЛО ВОДИ</h3>
+          </div>
+          <div class="info-card-body">
+            <p>Уявіть, що ваш сайт — це вода. Якщо налити її у широку миску (монітор комп'ютера), вона розтікається широко. Якщо перелити ту саму воду у вузьку склянку (смартфон), вона приймає форму склянки, стаючи вищою та вужчою. <strong>Вода не зменшується в об'ємі і не зникає — вона просто адаптується до посудини.</strong></p>
+            <p>Саме так працює адаптивний дизайн. Текст, картинки та блоки самі перешиковуються так, щоб користувачу не доводилося наближати сторінку пальцями.</p>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-bottom: 2.5rem;">
+          <div class="info-card-header">
+            <h3>📱 ПРИНЦИП MOBILE FIRST (СПОЧАТКУ МОБІЛЬНІ)</h3>
+          </div>
+          <div class="info-card-body">
+            <p>Сучасний підхід до дизайну називається <strong>Mobile First</strong> (спочатку мобільні). Це означає, що спочатку ми створюємо базові стилі для смартфонів, а потім додаємо складніші стилі (наприклад, багатоколоночну верстку) для планшетів та комп'ютерів.</p>
+            <ul style="font-size: 1.05rem; line-height: 1.6; padding-left: 1.5rem; margin-top: 1rem;">
+              <li><strong>Зручність:</strong> Більшість користувачів відвідують сайти з мобільних пристроїв.</li>
+              <li><strong>Швидкість:</strong> Мобільні пристрої завантажують менше зайвого CSS-коду, якщо він прихований медіазапитами для великих екранів.</li>
+              <li><strong>Простота:</strong> Простіше розширювати інтерфейс від малого екрану до великого, ніж намагатися "стиснути" складний десктопний дизайн у смартфон.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 2 -->
+    <section id="topic2" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 2</div>
+          <h2 class="section-title">2. МЕТА-ТЕГ <span class="text-gradient">VIEWPORT</span></h2>
+        </div>
+        <div class="info-card">
+          <p>Щоб браузер на телефоні зрозумів, що ваш сайт адаптивний, обов'язково треба додати спеціальний рядок (мета-тег) у розділ <code>&lt;head&gt;</code> HTML-документа.</p>
+          <div class="callout callout-attention" style="margin: 1.5rem 0;">
+            <p style="margin: 0;"><strong>Що буде, якщо цього не зробити?</strong><br>Телефон подумає, що це старий комп'ютерний сайт. Він візьме широку сторінку і штучно її «стисне», щоб вона помістилася на екран. У результаті текст стане настільки дрібним, що його доведеться збільшувати двома пальцями.</p>
+          </div>
+          <p>Ось цей магічний рядок, який вмикає справжню адаптивність:</p>
+          <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 1.1rem; overflow-x: auto;">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</pre>
+          <ul style="font-size: 1.05rem; line-height: 1.6; padding-left: 1.5rem; margin-top: 1rem;">
+            <li><strong>Розбір коду:</strong></li>
+            <li><code>width=device-width</code>: «Скажи сайту, що його ширина має дорівнювати фізичній ширині екрану пристрою» (якщо це телефон шириною 320px, то й сайт буде 320px).</li>
+            <li><code>initial-scale=1.0</code>: «Встанови масштаб 100%» (щоб сайт не був наближений чи віддалений при старті).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 3 -->
+    <section id="topic3" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 3</div>
+          <h2 class="section-title">3. <span class="text-gradient">МЕДІАЗАПИТИ (MEDIA QUERIES)</span></h2>
+        </div>
+        <div class="grid" style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+          <div class="info-card">
+            <p><strong>Медіазапити</strong> (Media Queries) — це своєрідні перемикачі в CSS. Вони кажуть браузеру: «Застосуй ці стилі <em>тільки якщо</em> виконується певна умова (наприклад, якщо екран досить широкий)».</p>
+            <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px;">
+/* 1. БАЗОВІ СТИЛІ (для всіх, але насамперед для смартфонів) */
+body {
+  font-size: 16px;
+  background-color: lightblue;
+}
+
+/* 2. МЕДІАЗАПИТ ДЛЯ ПЛАНШЕТІВ */
+/* Читається як: "Якщо ширина екрану мінімум 768px або більше..." */
+@media (min-width: 768px) {
+  body {
+    /* ...тоді робимо шрифт трохи більшим і змінюємо фон */
+    font-size: 18px;
+    background-color: lightgreen;
+  }
+}
+
+/* 3. МЕДІАЗАПИТ ДЛЯ МОНІТОРІВ */
+/* "Якщо ширина екрану 1024px або більше..." */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+    background-color: lightcoral;
+  }
+}</pre>
+          </div>
+        </div>
+
+        <div class="callout callout-attention" style="margin-top: 1.5rem;">
+          <div class="callout-header">💡 BREAKPOINTS (ТОЧКИ ПЕРЕЛОМУ)</div>
+          <p style="margin: 0;">
+            Значення на кшталт 768px або 1024px називаються <em>breakpoints</em>. Це ширини екрану, при яких дизайн сайту "змінюється", щоб краще пасувати до розміру вікна браузера.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC 4 -->
+    <section id="topic4" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 4</div>
+          <h2 class="section-title">4. <span class="text-gradient">ГНУЧКІ ОДИНИЦІ ВИМІРУ</span></h2>
+        </div>
+        
+        <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <div class="info-card">
+            <h3 style="color: var(--accent-blue);">Відносні розміри (%)</h3>
+            <p><strong>Різниця:</strong> <code>px</code> (пікселі) — це ніби цеглина, її розмір незмінний. <code>%</code> (відсотки) — це ніби гумка, яка розтягується залежно від екрану.</p>
+            <p>Використовуйте відсотки (%), щоб елементи займали частину ширини батьківського блоку, незалежно від того, великий екран чи малий.</p>
+            <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px;">
+.container {
+  width: 100%;       /* Гумка: тягнеться на всю ширину */
+  max-width: 1200px; /* Але не розтягується ширше 1200px */
+}
+
+.column {
+  width: 50%;        /* Рівно половина доступного місця */
+}</pre>
+          </div>
+          <div class="info-card">
+            <h3 style="color: var(--accent-vermilion);">Гнучкі зображення</h3>
+            <p>Якщо завантажити велике фото на сайт (наприклад, шириною 2000px), воно "вилізе" за межі екрану смартфона. Щоб цього уникнути, додають одне просте правило:</p>
+            <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px;">
+img {
+  max-width: 100%;   /* Фото не може бути ширшим за екран */
+  height: auto;      /* Зберігає правильні пропорції */
+  display: block;
+}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRACTICAL WORK -->
+    <section id="practical-work" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge" style="background: var(--accent-blue);">ПРАКТИЧНА РОБОТА №5</div>
+          <h2 class="section-title">⚙️ <span class="text-gradient">АДАПТИВНА КАРТКА</span></h2>
+          <p class="section-subtitle">
+            Завдання: зробіть так, щоб ширина картки була 100% на малих екранах, але за допомогою @media запиту ставала 50% на екранах від 600px.
+          </p>
+        </div>
+        
+        <div class="sandbox-container" id="sandboxContainer">
+          <div class="sandbox-header">
+            <div class="sandbox-title">💻 CSS РЕДАКТОР</div>
+            <div class="sandbox-btn-group">
+              <button class="sandbox-btn" id="sandboxRunBtn" type="button">▶ ВИКОНАТИ КОД</button>
+              <button class="sandbox-btn btn-fullscreen" id="sandboxFullscreenBtn" type="button" title="Відкрити практикум на всю сторінку">
+                <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
+              </button>
+            </div>
+          </div>
+          
+          <details style="margin: 1rem; padding: 1rem; background: #333; color: #fff; border-radius: 8px; cursor: pointer;">
+            <summary style="font-weight: bold; color: var(--accent-yellow);">💡 Не виходить? Натисни сюди, щоб подивитися підказку</summary>
+            <p style="margin-top: 1rem;">Тобі потрібно додати такий код у редактор CSS внизу:</p>
+            <pre style="background: #1e1e1e; color: #fff; padding: 1rem; border-radius: 8px;">@media (min-width: 600px) {
+  .card {
+    width: 50%;
+  }
+}</pre>
+          </details>
+
+          <div class="sandbox-workspace" style="display: flex; gap: 1rem; min-height: 400px; padding: 1rem; background: #1e1e1e;">
+            <div style="flex: 1;">
+              <h3 style="color: #fff; margin-top:0;">CSS:</h3>
+              <textarea id="sandboxCss" style="width: 100%; height: 90%; background: #2d2d2d; color: #0f0; font-family: monospace; padding: 10px; font-size: 14px;">
+.card {
+  background-color: #f1c40f;
+  padding: 20px;
+  box-sizing: border-box;
+  
+  /* Базова ширина для смартфонів (Mobile First) */
+  width: 100%; 
+}
+
+/* Додайте сюди @media запит для min-width: 600px 
+   і встановіть width: 50% для .card */
+   
+</textarea>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="color: #fff; margin-top:0;">HTML (тільки для читання):</h3>
+              <textarea readonly style="width: 100%; height: 20%; background: #2d2d2d; color: #fff; font-family: monospace; padding: 10px; font-size: 14px;">&lt;div class="card"&gt;
+  &lt;h2&gt;Я адаптивна картка&lt;/h2&gt;
+  &lt;p&gt;Зміни ширину вікна результату, щоб побачити магію!&lt;/p&gt;
+&lt;/div&gt;</textarea>
+              <h3 style="color: #fff; margin-top: 1rem;">Результат:</h3>
+              <iframe id="sandboxPreview" style="width: 100%; height: 50%; background: #fff; border: none; transition: width 0.3s ease;"></iframe>
+              <p style="color: #bbb; font-size: 12px; margin-top: 5px;">* Використовуйте кнопки вгорі для повноекранного режиму, щоб перевірити адаптивність.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-badge">&lt;/&gt;</span>
+            <span>Вебтехнології 10–11 класи</span>
+          </div>
+          <p class="footer-text">
+            Інтерактивний онлайн-курс зі створення сучасних сайтів для українських старшокласників.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Уроки курсу</h4>
+          <ul>
+            <li><a href="index.html">Урок 1: Веб-дизайн та структура сайту</a></li>
+            <li><a href="html-basics.html">Урок 2: Основи мови HTML5</a></li>
+            <li><a href="css-basics.html">Урок 3: Каскадні таблиці стилів CSS</a></li>
+            <li><a href="box-model.html">Урок 4: Блочна модель верстки</a></li>
+            <li><a href="responsive-design.html" style="font-weight: 700; color: var(--accent-yellow);">Урок 5: Адаптивна верстка (Поточний)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Корисні посилання</h4>
+          <ul>
+            <li><a href="https://developer.mozilla.org/ru/docs/Learn/CSS/CSS_layout/Responsive_Design" target="_blank" rel="noopener noreferrer">MDN: Адаптивний дизайн</a></li>
+            <li><a href="https://www.w3.org/Style/CSS/" target="_blank" rel="noopener noreferrer">Консорціум W3C CSS</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Інтерактивний веб-курс. Усі права захищено.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Спільне ядро інтерфейсу -->
+  <script src="js/core.js?v=1"></script>
+  <!-- Спільна логіка практикумів -->
+  <script src="js/sandbox.js?v=1"></script>
+  <!-- Логіка Уроку 5 (можемо використовувати спільний файл або створити новий, створимо новий для узгодженості) -->
+  <script src="js/responsive-lesson.js?v=1"></script>
+</body>
+</html>
