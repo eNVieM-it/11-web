@@ -201,4 +201,25 @@ section('9. Hero-тізер Уроку 2');
   dom.window.close();
 }
 
+section('10. Симулятор flex-direction Уроку 5 (responsive-design.html)');
+{
+  const { dom, window } = boot('responsive-design.html');
+  const doc = window.document;
+  const container = doc.getElementById('flexDemoContainer');
+  const codeEl = doc.getElementById('flexDemoActiveCode');
+  const colBtn = doc.querySelector('.flex-dir-btn[data-direction="column"]');
+
+  check('responsive: контейнер flex-direction присутній', !!container);
+  check('responsive: активне правило присутнє', !!codeEl);
+  check('responsive: кнопка column присутня', !!colBtn);
+
+  if (colBtn && container && codeEl) {
+    colBtn.dispatchEvent(new window.Event('click'));
+    check('responsive: клік на column перемикає flexDirection', container.style.flexDirection === 'column');
+    check('responsive: правило оновлюється під column', codeEl.textContent.indexOf('column') !== -1);
+  }
+
+  dom.window.close();
+}
+
 process.exit(report());

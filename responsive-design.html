@@ -303,7 +303,8 @@
           <li><a href="#topic1" class="nav-link">1. Адаптивність</a></li>
           <li><a href="#topic2" class="nav-link">2. Viewport</a></li>
           <li><a href="#topic3" class="nav-link">3. @media</a></li>
-          <li><a href="#topic4" class="nav-link">4. Розміри</a></li>
+          <li><a href="#topic4" class="nav-link">4. flex-direction</a></li>
+          <li><a href="#topic5" class="nav-link">5. Розміри</a></li>
           <li><a href="#practical-work" class="nav-link nav-link-highlight" style="color: var(--accent-blue) !important;">Практикум ⚙️</a></li>
         </ul>
       </nav>
@@ -478,12 +479,168 @@ body {
       </div>
     </section>
 
-    <!-- TOPIC 4 -->
+    <!-- TOPIC 4: FLEX-DIRECTION -->
     <section id="topic4" class="section" style="background: var(--bg-secondary);">
       <div class="container">
         <div class="section-header">
-          <div class="section-badge">ТЕМА 4</div>
-          <h2 class="section-title">4. <span class="text-gradient">ГНУЧКІ ОДИНИЦІ ВИМІРУ</span></h2>
+          <div class="section-badge">ТЕМА 4 • FLEXBOX ДЛЯ АДАПТИВНОСТІ</div>
+          <h2 class="section-title">4. НАПРЯМОК БЛОКІВ: ВЛАСТИВІСТЬ <span class="text-gradient">flex-direction</span></h2>
+          <p class="section-subtitle">
+            Як перемикати вигляд контейнерів: чому на мобільному телефоні вони розміщуються по вертикалі, а на ПК — по горизонталі.
+          </p>
+        </div>
+
+        <!-- Теоретична картка -->
+        <div class="info-card" style="margin-bottom: 2rem;">
+          <div class="info-card-header" style="background: var(--bg-card); border-bottom: var(--border-width) solid var(--border-color); padding: 1.25rem 1.5rem;">
+            <h3 style="margin: 0; font-size: 1.3rem;">📐 Як працює головна вісь у Flexbox</h3>
+          </div>
+          <div class="info-card-body" style="padding: 1.5rem;">
+            <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.25rem;">
+              Властивість <code>flex-direction</code> визначає <strong>головну вісь вирівнювання</strong>: тобто в який бік батьківський контейнер шикуватиме свої дочірні блоки — у горизонтальний рядок чи у вертикальний стовпчик.
+            </p>
+            <div class="callout callout-attention" style="margin-bottom: 1.5rem; background: #fef3c7; border-left: 5px solid #f59e0b; padding: 1rem 1.25rem; border-radius: 4px; color: #92400e;">
+              <strong>⚠️ Обов'язкова умова:</strong> Щоб правило спрацювало, контейнеру обов'язково задається режим <code>display: flex;</code>.
+            </div>
+
+            <h4 style="font-size: 1.15rem; margin-bottom: 1rem; color: var(--text-primary); text-transform: uppercase;">
+              Основні значення:
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+              <div style="background: var(--bg-card); border: var(--border-width) solid var(--border-color); padding: 1.2rem; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                  <strong style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-blue);">row</strong>
+                  <span style="font-size: 0.8rem; background: var(--bg-secondary); padding: 0.2rem 0.5rem; border: 1px solid var(--border-color); font-weight: bold;">За замовчуванням</span>
+                </div>
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">
+                  Розташовує блоки <strong>горизонтально</strong>, зліва направо (стандарт для комп'ютерів).
+                </p>
+              </div>
+
+              <div style="background: var(--bg-card); border: var(--border-width) solid var(--border-color); padding: 1.2rem; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                  <strong style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-vermilion);">column</strong>
+                  <span style="font-size: 0.8rem; background: #fee2e2; color: #991b1b; padding: 0.2rem 0.5rem; border: 1px solid var(--border-color); font-weight: bold;">Для смартфонів 📱</span>
+                </div>
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">
+                  Розташовує блоки <strong>вертикально один під одним</strong>, згори донизу (ідеально для смартфонів).
+                </p>
+              </div>
+
+              <div style="background: var(--bg-card); border: var(--border-width) solid var(--border-color); padding: 1.2rem; box-shadow: var(--shadow-sm);">
+                <strong style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-purple); display: block; margin-bottom: 0.5rem;">row-reverse</strong>
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">
+                  Горизонтально, але у <strong>зворотному порядку</strong> (справа наліво).
+                </p>
+              </div>
+
+              <div style="background: var(--bg-card); border: var(--border-width) solid var(--border-color); padding: 1.2rem; box-shadow: var(--shadow-sm);">
+                <strong style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-green); display: block; margin-bottom: 0.5rem;">column-reverse</strong>
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary);">
+                  Вертикально, але у <strong>зворотному порядку</strong> (знизу догори).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Приклад для адаптивної верстки: HTML & CSS коди поруч -->
+        <div style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.35rem; margin-bottom: 1rem; text-transform: uppercase;">
+            💻 Приклад для адаптивної верстки (Mobile First)
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            <!-- HTML блок -->
+            <div style="background: #1e1e1e; border: var(--border-width) solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md);">
+              <div style="background: #2d2d2d; padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444;">
+                <span style="font-family: var(--font-mono); font-weight: bold; color: #ffd700;">HTML</span>
+                <span style="font-size: 0.8rem; color: #aaa;">батьківський контейнер та дочірні блоки</span>
+              </div>
+              <pre style="margin: 0; padding: 1.25rem; color: #f8fafc; font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.6; overflow-x: auto;"><code><span style="color: #64748b;">&lt;!-- HTML: батьківський контейнер та дочірні блоки --&gt;</span>
+<span style="color: #38bdf8;">&lt;div</span> <span style="color: #a78bfa;">class</span>=<span style="color: #4ade80;">"container"</span><span style="color: #38bdf8;">&gt;</span>
+  <span style="color: #38bdf8;">&lt;div</span> <span style="color: #a78bfa;">class</span>=<span style="color: #4ade80;">"card"</span><span style="color: #38bdf8;">&gt;</span>Блок 1<span style="color: #38bdf8;">&lt;/div&gt;</span>
+  <span style="color: #38bdf8;">&lt;div</span> <span style="color: #a78bfa;">class</span>=<span style="color: #4ade80;">"card"</span><span style="color: #38bdf8;">&gt;</span>Блок 2<span style="color: #38bdf8;">&lt;/div&gt;</span>
+  <span style="color: #38bdf8;">&lt;div</span> <span style="color: #a78bfa;">class</span>=<span style="color: #4ade80;">"card"</span><span style="color: #38bdf8;">&gt;</span>Блок 3<span style="color: #38bdf8;">&lt;/div&gt;</span>
+<span style="color: #38bdf8;">&lt;/div&gt;</span></code></pre>
+            </div>
+
+            <!-- CSS блок -->
+            <div style="background: #1e1e1e; border: var(--border-width) solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md);">
+              <div style="background: #2d2d2d; padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444;">
+                <span style="font-family: var(--font-mono); font-weight: bold; color: #38bdf8;">CSS</span>
+                <span style="font-size: 0.8rem; color: #aaa;">адаптивний перемикач осей</span>
+              </div>
+              <pre style="margin: 0; padding: 1.25rem; color: #f8fafc; font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.6; overflow-x: auto;"><code><span style="color: #64748b;">/* CSS: */</span>
+<span style="color: #f43f5e;">.container</span> {
+  <span style="color: #38bdf8;">display</span>: <span style="color: #4ade80;">flex</span>;
+  <span style="color: #38bdf8;">flex-direction</span>: <span style="color: #facc15;">column</span>; <span style="color: #64748b;">/* 📱 На смартфонах: блоки стоять у стовпчик один під одним */</span>
+  <span style="color: #38bdf8;">gap</span>: <span style="color: #fb923c;">15px</span>;              <span style="color: #64748b;">/* Відстань між блоками */</span>
+}
+
+<span style="color: #64748b;">/* Якщо ширина екрана 768px або більше (планшети та ПК) */</span>
+<span style="color: #c084fc;">@media</span> (<span style="color: #38bdf8;">min-width</span>: <span style="color: #fb923c;">768px</span>) {
+  <span style="color: #f43f5e;">.container</span> {
+    <span style="color: #38bdf8;">flex-direction</span>: <span style="color: #4ade80;">row</span>; <span style="color: #64748b;">/* 💻 Розгортаємо блоки в один горизонтальний рядок */</span>
+  }
+}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Живий інтерактивний симулятор Flexbox -->
+        <div style="background: var(--bg-card); border: var(--border-width) solid var(--border-color); padding: 2rem; box-shadow: var(--shadow-lg);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h3 style="font-size: 1.3rem; margin: 0; text-transform: uppercase;">🎮 Інтерактивний стенд: Спробуй наживо</h3>
+              <p style="margin: 0.25rem 0 0 0; color: var(--text-secondary); font-size: 0.95rem;">
+                Натискай на кнопки режимів, щоб на власні очі побачити перемикання між смартфоном та комп'ютером:
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="btn btn-secondary flex-dir-btn" data-direction="column">
+                📱 Смартфон (column)
+              </button>
+              <button type="button" class="btn btn-primary flex-dir-btn" data-direction="row">
+                💻 ПК (row)
+              </button>
+              <button type="button" class="btn btn-secondary flex-dir-btn" data-direction="row-reverse">
+                🔄 row-reverse
+              </button>
+              <button type="button" class="btn btn-secondary flex-dir-btn" data-direction="column-reverse">
+                🔃 column-reverse
+              </button>
+            </div>
+          </div>
+
+          <!-- Активне CSS-правило -->
+          <div style="background: #1e1e1e; color: #4ade80; font-family: var(--font-mono); padding: 0.8rem 1.2rem; border-radius: 6px; font-size: 0.95rem; margin-bottom: 1.5rem; border: 1px solid #333; overflow-x: auto;">
+            <span style="color: #94a3b8;">Поточне правило: </span>
+            <code id="flexDemoActiveCode" style="color: #facc15; font-weight: bold;">flex-direction: row; /* 💻 На ПК: розгортаємо блоки в один горизонтальний рядок */</code>
+          </div>
+
+          <!-- Демо-контейнер з трьома картками -->
+          <div id="flexDemoContainer" style="display: flex; flex-direction: row; gap: 15px; background: var(--bg-secondary); padding: 25px; border: 2px dashed var(--border-color); border-radius: 8px; min-height: 180px; transition: all 0.3s ease;">
+            <div style="flex: 1; min-height: 80px; background: #3b82f6; color: #ffffff; padding: 20px; font-weight: bold; font-family: var(--font-heading); font-size: 1.15rem; display: flex; align-items: center; justify-content: center; border: 2px solid #121212; box-shadow: 3px 3px 0 #121212; border-radius: 4px; text-align: center;">
+              📦 Блок 1
+            </div>
+            <div style="flex: 1; min-height: 80px; background: #10b981; color: #ffffff; padding: 20px; font-weight: bold; font-family: var(--font-heading); font-size: 1.15rem; display: flex; align-items: center; justify-content: center; border: 2px solid #121212; box-shadow: 3px 3px 0 #121212; border-radius: 4px; text-align: center;">
+              📦 Блок 2
+            </div>
+            <div style="flex: 1; min-height: 80px; background: #f59e0b; color: #121212; padding: 20px; font-weight: bold; font-family: var(--font-heading); font-size: 1.15rem; display: flex; align-items: center; justify-content: center; border: 2px solid #121212; box-shadow: 3px 3px 0 #121212; border-radius: 4px; text-align: center;">
+              📦 Блок 3
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TOPIC 5 -->
+    <section id="topic5" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 5</div>
+          <h2 class="section-title">5. <span class="text-gradient">ГНУЧКІ ОДИНИЦІ ВИМІРУ</span></h2>
         </div>
         
         <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
