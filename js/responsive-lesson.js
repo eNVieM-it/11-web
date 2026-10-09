@@ -22,10 +22,10 @@ function initFlexDirectionSimulator() {
   if (!container || !codeEl || !buttons.length) return;
 
   const descriptions = {
-    'column': 'flex-direction: column; /* 📱 На смартфонах: блоки у стовпчик один під одним */',
-    'row': 'flex-direction: row; /* 💻 На ПК: розгортаємо блоки в один горизонтальний рядок */',
-    'row-reverse': 'flex-direction: row-reverse; /* 🔄 Горизонтально у зворотному порядку (справа наліво) */',
-    'column-reverse': 'flex-direction: column-reverse; /* 🔃 Вертикально у зворотному порядку (знизу догори) */'
+    'column': '<span style="color: #38bdf8; font-weight: 800;">flex-direction: column;</span> <span style="color: #94a3b8; font-weight: normal;">/* 📱 На смартфонах: блоки у стовпчик один під одним */</span>',
+    'row': '<span style="color: #38bdf8; font-weight: 800;">flex-direction: row;</span> <span style="color: #94a3b8; font-weight: normal;">/* 💻 На ПК: розгортаємо блоки в один горизонтальний рядок */</span>',
+    'row-reverse': '<span style="color: #38bdf8; font-weight: 800;">flex-direction: row-reverse;</span> <span style="color: #94a3b8; font-weight: normal;">/* 🔄 Горизонтально у зворотному порядку (справа наліво) */</span>',
+    'column-reverse': '<span style="color: #38bdf8; font-weight: 800;">flex-direction: column-reverse;</span> <span style="color: #94a3b8; font-weight: normal;">/* 🔃 Вертикально у зворотному порядку (знизу догори) */</span>'
   };
 
   buttons.forEach(btn => {
@@ -41,7 +41,7 @@ function initFlexDirectionSimulator() {
       btn.classList.add('btn-primary');
 
       if (descriptions[dir]) {
-        codeEl.textContent = descriptions[dir];
+        codeEl.innerHTML = descriptions[dir];
       }
     });
   });

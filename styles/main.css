@@ -1935,3 +1935,49 @@ body.sandbox-fullscreen-active {
   }
 }
 
+/* Інтерактивний індикатор flex-direction (Урок 5) */
+.flex-rule-display {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  background: #0f172a;
+  color: #f8fafc;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 3px 3px 0 var(--border-color);
+  overflow-x: auto;
+}
+
+.flex-rule-label {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+#flexDemoActiveCode {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #38bdf8 !important;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .flex-rule-display {
+  background: #090d16;
+  border-color: var(--border-color);
+  box-shadow: 3px 3px 0 var(--shadow-color);
+}
+
