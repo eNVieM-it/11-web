@@ -1250,9 +1250,9 @@ pre code {
 .site-footer {
   background: #121216;
   color: #f8f9fa;
-  padding: 4.5rem 0 2.5rem 0;
-  border-top: 8px solid var(--accent-vermilion);
-  margin-top: 4rem;
+  padding: 2.75rem 0 2rem 0;
+  border-top: 6px solid var(--accent-vermilion);
+  margin-top: 0;
 }
 
 [data-theme="dark"] .site-footer {
@@ -1262,15 +1262,16 @@ pre code {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr;
   gap: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 850px) {
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
+    margin-bottom: 1.5rem;
   }
 }
 
