@@ -4,14 +4,14 @@
 
 const { read, check, section, boot, report } = require('./helpers');
 
-const PAGES = ['index.html', 'html-basics.html', 'css-basics.html', 'box-model.html'];
-const LESSON_JS = ['app.js', 'html-lesson.js', 'css-lesson.js'];
+const PAGES = ['index.html', 'html-basics.html', 'css-basics.html', 'box-model.html', 'responsive-design.html'];
+const LESSON_JS = ['app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js'];
 const SYS_FN = ['initThemeToggle', 'initCourseDropdown', 'initMobileNavigation',
   'initActiveNavHighlight', 'initScrollProgress', 'initAccordions'];
 
 section('1. Файли проєкту');
 PAGES.forEach(p => check(p + ' існує', !!read(p).length));
-['core.js', 'sandbox.js', 'app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js']
+['core.js', 'sandbox.js', 'app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js']
   .forEach(f => check('js/' + f + ' існує', read('js/' + f).length > 0));
 
 section('2. Підключення на сторінках');
@@ -44,7 +44,7 @@ SYS_FN.forEach(fn => {
 });
 
 section('4. Єдина механіка рендерингу iframe');
-[...LESSON_JS, 'box-model.js'].forEach(f => {
+LESSON_JS.forEach(f => {
   const code = read('js/' + f);
   check(f + ' не використовує Blob/createObjectURL',
     !code.includes('createObjectURL') && !code.includes('new Blob'));
@@ -61,26 +61,55 @@ PAGES.forEach(page => {
   const doc = window.document;
   const theme = doc.documentElement.getAttribute('data-theme');
   check(page + ': тема застосована', theme === 'light' || theme === 'dark', String(theme));
-  check(page + ': меню уроків має рівно 4 пункти',
-    doc.querySelectorAll('.course-dropdown-item').length === 4,
+  check(page + ': меню уроків має рівно 15 пунктів',
+    doc.querySelectorAll('.course-dropdown-item').length === 15,
     'знайдено ' + doc.querySelectorAll('.course-dropdown-item').length);
 
   const accs = doc.querySelectorAll('.accordion-header');
   accs.forEach((a, i) => check(page + ': акордеон #' + i + ' має aria-expanded', a.hasAttribute('aria-expanded')));
 
   const themeBtn = doc.getElementById('themeToggleBtn');
-  const before = doc.documentElement.getAttribute('data-theme');
-  themeBtn.dispatchEvent(new window.Event('click'));
-  check(page + ': тема перемикається', doc.documentElement.getAttribute('data-theme') !== before,
-    before + ' → ' + doc.documentElement.getAttribute('data-theme'));
+  if (themeBtn) {
+    const before = doc.documentElement.getAttribute('data-theme');
+    themeBtn.dispatchEvent(new window.Event('click'));
+    check(page + ': тема перемикається', doc.documentElement.getAttribute('data-theme') !== before,
+      before + ' → ' + doc.documentElement.getAttribute('data-theme'));
+  }
 
   const ddBtn = doc.getElementById('courseDropdownBtn');
   const dd = doc.getElementById('courseDropdown');
-  ddBtn.dispatchEvent(new window.Event('click'));
-  check(page + ': меню відкривається',
-    dd.classList.contains('open') && ddBtn.getAttribute('aria-expanded') === 'true');
+  if (ddBtn && dd) {
+    ddBtn.dispatchEvent(new window.Event('click'));
+    check(page + ': меню відкривається',
+      dd.classList.contains('open') && ddBtn.getAttribute('aria-expanded') === 'true');
+
+    check(page + ': є кнопка закриття меню', !!doc.getElementById('courseDropdownCloseBtn'));
+    check(page + ': є картка прев\'ю уроків', !!doc.getElementById('menuPreviewBox'));
+
+    const closeBtn = doc.getElementById('courseDropdownCloseBtn');
+    if (closeBtn) {
+      closeBtn.dispatchEvent(new window.Event('click'));
+      check(page + ': кнопка закриття закриває меню',
+        !dd.classList.contains('open') && ddBtn.getAttribute('aria-expanded') === 'false');
+    }
+  }
+
+  // Перевірка нижнього пагінатора уроків
+  check(page + ': є нижній пагінатор уроків', !!doc.querySelector('.lesson-pager-section'));
+  check(page + ': є попередня та наступна навігація',
+    !!doc.querySelector('.lesson-pager-card.prev') && !!doc.querySelector('.lesson-pager-card.next'));
+
+  const pagerBtn = doc.getElementById('pagerAllLessonsBtn');
+  if (pagerBtn && dd && ddBtn) {
+    pagerBtn.dispatchEvent(new window.Event('click'));
+    check(page + ': кнопка пагінатора відкриває меню курсу',
+      dd.classList.contains('open') && ddBtn.getAttribute('aria-expanded') === 'true');
+    const closeBtn = doc.getElementById('courseDropdownCloseBtn');
+    if (closeBtn) closeBtn.dispatchEvent(new window.Event('click'));
+  }
 
   dom.window.close();
+});
 
 section('6. Пісочниця Уроку 4 (box-model.html)');
 {
@@ -173,5 +202,3 @@ section('9. Hero-тізер Уроку 2');
 }
 
 process.exit(report());
-
-});

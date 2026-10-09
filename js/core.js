@@ -77,15 +77,76 @@ function initCourseDropdown() {
   const dropdownBtn = document.getElementById('courseDropdownBtn');
   if (!dropdown || !dropdownBtn) return;
 
+  const closeBtn = document.getElementById('courseDropdownCloseBtn');
+  const previewVisual = document.getElementById('previewLessonVisual');
+  const previewBadge = document.getElementById('previewLessonBadge');
+  const previewNum = document.getElementById('previewLessonNum');
+  const previewTitle = document.getElementById('previewLessonTitle');
+  const previewTopics = document.getElementById('previewLessonTopics');
+  const previewBtn = document.getElementById('previewLessonBtn');
+
+  function updatePreview(item) {
+    if (!item) return;
+    const num = item.dataset.num || '';
+    const title = item.dataset.title || (item.querySelector('.item-title') ? item.querySelector('.item-title').textContent : '');
+    const topics = item.dataset.topics || '';
+    const icon = item.dataset.icon || '📚';
+    const isUpcoming = item.classList.contains('upcoming');
+    const badge = item.dataset.badge || (isUpcoming ? 'Скоро' : 'Доступно');
+    const href = item.getAttribute('href') || '#';
+
+    const imgPath = item.dataset.img || '';
+    if (previewVisual) {
+      if (imgPath) {
+        previewVisual.innerHTML = `<img src="${imgPath}" alt="${title}" class="preview-card-img" />`;
+      } else {
+        previewVisual.innerHTML = `<div class="preview-card-placeholder"><span class="placeholder-icon">${icon}</span><span class="placeholder-text">Тема в розробці ⏳</span></div>`;
+      }
+    }
+    if (previewNum) previewNum.textContent = num ? 'УРОК #' + num : '';
+    if (previewTitle) previewTitle.textContent = title;
+    if (previewTopics) previewTopics.textContent = topics;
+    if (previewBadge) {
+      previewBadge.textContent = badge;
+      previewBadge.className = 'lesson-tag ' + (isUpcoming ? 'upcoming' : 'current');
+    }
+    if (previewBtn) {
+      if (isUpcoming) {
+        previewBtn.textContent = 'Тема готується ⏳';
+        previewBtn.setAttribute('href', '#');
+        previewBtn.style.opacity = '0.6';
+        previewBtn.style.pointerEvents = 'none';
+      } else {
+        previewBtn.textContent = 'Перейти до уроку →';
+        previewBtn.setAttribute('href', href);
+        previewBtn.style.opacity = '1';
+        previewBtn.style.pointerEvents = 'auto';
+      }
+    }
+  }
+
   function setOpen(isOpen) {
     dropdown.classList.toggle('open', isOpen);
     dropdownBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (isOpen) {
+      const activeItem = dropdown.querySelector('.course-dropdown-item.active') ||
+                         dropdown.querySelector('.course-dropdown-item');
+      if (activeItem) updatePreview(activeItem);
+    }
   }
 
   dropdownBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     setOpen(!dropdown.classList.contains('open'));
   });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(false);
+      dropdownBtn.focus();
+    });
+  }
 
   // Клік поза меню закриває його
   document.addEventListener('click', (e) => {
@@ -100,9 +161,41 @@ function initCourseDropdown() {
     }
   });
 
-  // Вибір уроку закриває меню
+  // Обробники для пунктів меню (hover, focus, click)
   dropdown.querySelectorAll('.course-dropdown-item').forEach(item => {
-    item.addEventListener('click', () => setOpen(false));
+    item.addEventListener('mouseenter', () => updatePreview(item));
+    item.addEventListener('focus', () => updatePreview(item));
+
+    item.addEventListener('click', (e) => {
+      if (item.classList.contains('upcoming')) {
+        e.preventDefault();
+        return;
+      }
+      setOpen(false);
+    });
+  });
+
+  // Початкова ініціалізація картки прев'ю
+  const initialItem = dropdown.querySelector('.course-dropdown-item.active') ||
+                      dropdown.querySelector('.course-dropdown-item');
+  if (initialItem) {
+    updatePreview(initialItem);
+  }
+
+  // Обробники для кнопок пагінатора внизу сторінки (Всі уроки / Наступний урок незабаром)
+  document.querySelectorAll('#pagerAllLessonsBtn, #upcomingLessonCard').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(true);
+    });
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        setOpen(true);
+      }
+    });
   });
 }
 

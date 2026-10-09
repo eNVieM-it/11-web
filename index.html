@@ -47,32 +47,236 @@
 
         <!-- Випадаюче меню всіх уроків курсу -->
         <div class="course-dropdown" id="courseDropdown">
-          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу">
-            <span>📚 Уроки курсу</span>
-            <span class="dropdown-arrow">▾</span>
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу (15 тем)">
+            <span class="course-btn-icon" aria-hidden="true">📚</span>
+            <span class="course-btn-text">Уроки курсу</span>
+            <span class="course-btn-badge" aria-label="15 уроків">15</span>
+            <span class="dropdown-arrow" aria-hidden="true">▾</span>
           </button>
-          <div class="course-dropdown-menu" id="courseDropdownMenu">
-            <div class="course-dropdown-header">Навчальна програма (10–11 класи)</div>
-            <a href="index.html" class="course-dropdown-item active">
-              <span>Урок 1: Вебдизайн та структура сайту</span>
+          <div class="course-dropdown-menu" id="courseDropdownMenu" role="dialog" aria-modal="true" aria-label="Навчальна програма курсу">
+            <div class="marquee-menu-topbar">
+              <div class="marquee-menu-title-group">
+                <h2 class="marquee-menu-main-title">📚 Навчальна програма курсу «Вебтехнології»</h2>
+                <span class="marquee-menu-badge">10–11 класи · 15 уроків</span>
+              </div>
+              <button class="marquee-menu-close-btn" id="courseDropdownCloseBtn" type="button" aria-label="Закрити меню">
+                <span>ЗАКРИТИ</span>
+                <span>✕</span>
+              </button>
+            </div>
+
+            <div class="marquee-menu-body">
+              <div class="marquee-menu-items-scroll">
+            <a href="index.html" class="course-dropdown-item active" data-num="01" data-title="Урок 1: Тренди вебдизайну та структура сайту" data-topics="Основні тренди у веб-дизайні. Види сайтів та цільова аудиторія. Інструменти веб-розробника. Інформаційна структура сайту." data-icon="🎨" data-img="img/preview-lesson-1.png" data-badge="Поточний урок" data-status="current">
+              <div class="item-left">
+                <span class="item-num">01</span>
+                <span class="item-title">1. Тренди вебдизайну та структура</span>
+              </div>
               <span class="lesson-tag current">Поточний</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · ЦІЛЬОВА АУДИТОРІЯ · ІНСТРУМЕНТИ РОЗРОБНИКА ·  УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · ЦІЛЬОВА АУДИТОРІЯ · ІНСТРУМЕНТИ РОЗРОБНИКА ·  УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · ЦІЛЬОВА АУДИТОРІЯ · ІНСТРУМЕНТИ РОЗРОБНИКА ·  </span>
+                  <span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · ЦІЛЬОВА АУДИТОРІЯ · ІНСТРУМЕНТИ РОЗРОБНИКА ·  УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · ЦІЛЬОВА АУДИТОРІЯ · ІНСТРУМЕНТИ РОЗРОБНИКА ·  УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · ЦІЛЬОВА АУДИТОРІЯ · ІНСТРУМЕНТИ РОЗРОБНИКА ·  </span>
+                </div>
+              </div>
             </a>
-            <a href="html-basics.html" class="course-dropdown-item">
-              <span>Урок 2: Основи мови HTML5</span>
+            <a href="html-basics.html" class="course-dropdown-item" data-num="02" data-title="Урок 2: Основи мови HTML5" data-topics="Мова гіпертекстової розмітки. Структура HTML-документа, розмітка тексту та гіперпосилання." data-icon="📄" data-img="img/preview-lesson-2.png" data-badge="Розділ 2 · Доступно" data-status="available">
+              <div class="item-left">
+                <span class="item-num">02</span>
+                <span class="item-title">2. Основи мови HTML5</span>
+              </div>
               <span class="lesson-tag">Розділ 2</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · РОЗМІТКА ТЕКСТУ · ГІПЕРПОСИЛАННЯ ·  УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · РОЗМІТКА ТЕКСТУ · ГІПЕРПОСИЛАННЯ ·  УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · РОЗМІТКА ТЕКСТУ · ГІПЕРПОСИЛАННЯ ·  </span>
+                  <span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · РОЗМІТКА ТЕКСТУ · ГІПЕРПОСИЛАННЯ ·  УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · РОЗМІТКА ТЕКСТУ · ГІПЕРПОСИЛАННЯ ·  УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · РОЗМІТКА ТЕКСТУ · ГІПЕРПОСИЛАННЯ ·  </span>
+                </div>
+              </div>
             </a>
-            <a href="css-basics.html" class="course-dropdown-item">
-              <span>Урок 3: Каскадні таблиці стилів CSS</span>
+            <a href="css-basics.html" class="course-dropdown-item" data-num="03" data-title="Урок 3: Каскадні таблиці стилів CSS" data-topics="Каскадні таблиці стилів. Підключення CSS, базові селектори та стилі тексту. Тематичне оцінювання." data-icon="🎯" data-img="img/preview-lesson-3.png" data-badge="Розділ 3 · Доступно" data-status="available">
+              <div class="item-left">
+                <span class="item-num">03</span>
+                <span class="item-title">3. Каскадні таблиці стилів CSS</span>
+              </div>
               <span class="lesson-tag">Розділ 3</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · БАЗОВІ СЕЛЕКТОРИ · ШРИФТИ · СТИЛІ ТЕКСТУ ·  УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · БАЗОВІ СЕЛЕКТОРИ · ШРИФТИ · СТИЛІ ТЕКСТУ ·  УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · БАЗОВІ СЕЛЕКТОРИ · ШРИФТИ · СТИЛІ ТЕКСТУ ·  </span>
+                  <span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · БАЗОВІ СЕЛЕКТОРИ · ШРИФТИ · СТИЛІ ТЕКСТУ ·  УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · БАЗОВІ СЕЛЕКТОРИ · ШРИФТИ · СТИЛІ ТЕКСТУ ·  УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · БАЗОВІ СЕЛЕКТОРИ · ШРИФТИ · СТИЛІ ТЕКСТУ ·  </span>
+                </div>
+              </div>
             </a>
-            <a href="box-model.html" class="course-dropdown-item">
-              <span>Урок 4: Блочна модель верстки</span>
+            <a href="box-model.html" class="course-dropdown-item" data-num="04" data-title="Урок 4: Блочна модель верстки" data-topics="Проектування та верстка веб-сторінок. Блочна модель верстки." data-icon="📦" data-img="img/preview-lesson-4.png" data-badge="Розділ 4 · Доступно" data-status="available">
+              <div class="item-left">
+                <span class="item-num">04</span>
+                <span class="item-title">4. Блочна модель верстки</span>
+              </div>
               <span class="lesson-tag">Розділ 4</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · CONTENT · PADDING · BORDER · MARGIN ·  УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · CONTENT · PADDING · BORDER · MARGIN ·  УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · CONTENT · PADDING · BORDER · MARGIN ·  </span>
+                  <span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · CONTENT · PADDING · BORDER · MARGIN ·  УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · CONTENT · PADDING · BORDER · MARGIN ·  УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · CONTENT · PADDING · BORDER · MARGIN ·  </span>
+                </div>
+              </div>
             </a>
-            <a href="responsive-design.html" class="course-dropdown-item">
-              <span>Урок 5: Адаптивна верстка</span>
+            <a href="responsive-design.html" class="course-dropdown-item" data-num="05" data-title="Урок 5: Адаптивна верстка" data-topics="Адаптивна верстка. Принципи адаптивного дизайну веб-сторінок." data-icon="📱" data-img="img/preview-lesson-5.png" data-badge="Розділ 5 · Доступно" data-status="available">
+              <div class="item-left">
+                <span class="item-num">05</span>
+                <span class="item-title">5. Адаптивна верстка</span>
+              </div>
               <span class="lesson-tag">Розділ 5</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · МЕДІАЗАПИТИ · FLEX-DIRECTION ·  УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · МЕДІАЗАПИТИ · FLEX-DIRECTION ·  УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · МЕДІАЗАПИТИ · FLEX-DIRECTION ·  </span>
+                  <span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · МЕДІАЗАПИТИ · FLEX-DIRECTION ·  УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · МЕДІАЗАПИТИ · FLEX-DIRECTION ·  УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · МЕДІАЗАПИТИ · FLEX-DIRECTION ·  </span>
+                </div>
+              </div>
             </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="06" data-title="Урок 6: Кросбраузерність та оптимізація" data-topics="Кросбраузерність. Тестування та оптимізація відображення веб-сторінок у різних браузерах." data-icon="🌐" data-img="" data-badge="Розділ 6 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">06</span>
+                <span class="item-title">6. Кросбраузерність та оптимізація</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  </span>
+                  <span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="07" data-title="Урок 7: Графіка для веб-середовища" data-topics="Графіка для веб-середовища. Формати зображень, оптимізація та дотримання авторських прав." data-icon="🖼️" data-img="" data-badge="Розділ 7 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">07</span>
+                <span class="item-title">7. Графіка для веб-середовища</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 7 · ВЕБ-ГРАФІКА · SVG · WEBP · AVIF · ОПТИМІЗАЦІЯ · АВТОРСЬКІ ПРАВА ·  УРОК 7 · ВЕБ-ГРАФІКА · SVG · WEBP · AVIF · ОПТИМІЗАЦІЯ · АВТОРСЬКІ ПРАВА ·  УРОК 7 · ВЕБ-ГРАФІКА · SVG · WEBP · AVIF · ОПТИМІЗАЦІЯ · АВТОРСЬКІ ПРАВА ·  </span>
+                  <span>УРОК 7 · ВЕБ-ГРАФІКА · SVG · WEBP · AVIF · ОПТИМІЗАЦІЯ · АВТОРСЬКІ ПРАВА ·  УРОК 7 · ВЕБ-ГРАФІКА · SVG · WEBP · AVIF · ОПТИМІЗАЦІЯ · АВТОРСЬКІ ПРАВА ·  УРОК 7 · ВЕБ-ГРАФІКА · SVG · WEBP · AVIF · ОПТИМІЗАЦІЯ · АВТОРСЬКІ ПРАВА ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="08" data-title="Урок 8: Мультимедіа на веб-сторінках" data-topics="Мультимедіа на веб-сторінках. Додавання аудіо та відеоматеріалів." data-icon="🎬" data-img="" data-badge="Розділ 8 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">08</span>
+                <span class="item-title">8. Мультимедіа на веб-сторінках</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · ЕЛЕМЕНТИ КЕРУВАННЯ · СТРІМІНГ ·  УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · ЕЛЕМЕНТИ КЕРУВАННЯ · СТРІМІНГ ·  УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · ЕЛЕМЕНТИ КЕРУВАННЯ · СТРІМІНГ ·  </span>
+                  <span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · ЕЛЕМЕНТИ КЕРУВАННЯ · СТРІМІНГ ·  УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · ЕЛЕМЕНТИ КЕРУВАННЯ · СТРІМІНГ ·  УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · ЕЛЕМЕНТИ КЕРУВАННЯ · СТРІМІНГ ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="09" data-title="Урок 9: Анімаційні ефекти та переходи" data-topics="Анімаційні ефекти. Використання переходів і трансформацій на веб-сторінках. Тематичне оцінювання." data-icon="✨" data-img="" data-badge="Розділ 9 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">09</span>
+                <span class="item-title">9. Анімаційні ефекти та переходи</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · ОЦІНЮВАННЯ ·  УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · ОЦІНЮВАННЯ ·  УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · ОЦІНЮВАННЯ ·  </span>
+                  <span>УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · ОЦІНЮВАННЯ ·  УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · ОЦІНЮВАННЯ ·  УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · ОЦІНЮВАННЯ ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="10" data-title="Урок 10: Веб-програмування та інтерактивні сторінки" data-topics="Веб-програмування та інтерактивні сторінки. Об’єктна модель документа." data-icon="⚡" data-img="" data-badge="Розділ 10 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">10</span>
+                <span class="item-title">10. Веб-програмування та DOM</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ОБРОБКА ПОДІЙ · ДИНАМІКА ·  УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ОБРОБКА ПОДІЙ · ДИНАМІКА ·  УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ОБРОБКА ПОДІЙ · ДИНАМІКА ·  </span>
+                  <span>УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ОБРОБКА ПОДІЙ · ДИНАМІКА ·  УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ОБРОБКА ПОДІЙ · ДИНАМІКА ·  УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ОБРОБКА ПОДІЙ · ДИНАМІКА ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="11" data-title="Урок 11: Валідація та збереження даних форм" data-topics="Валідація та збереження даних форм. Елементи інтерактивних веб-форм." data-icon="📋" data-img="" data-badge="Розділ 11 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">11</span>
+                <span class="item-title">11. Інтерактивні веб-форми</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ ДАНИХ · LOCALSTORAGE ·  УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ ДАНИХ · LOCALSTORAGE ·  УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ ДАНИХ · LOCALSTORAGE ·  </span>
+                  <span>УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ ДАНИХ · LOCALSTORAGE ·  УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ ДАНИХ · LOCALSTORAGE ·  УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ ДАНИХ · LOCALSTORAGE ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="12" data-title="Урок 12: Клієнт-сервер, бази даних та API" data-topics="Веб-сервер та база даних. Взаємодія клієнт-сервер. Прикладний програмний інтерфейс." data-icon="🗄️" data-img="" data-badge="Розділ 12 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">12</span>
+                <span class="item-title">12. Веб-сервер, бази даних та API</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 12 · ВЕБ-СЕРВЕР ТА БАЗИ ДАНИХ · КЛІЄНТ-СЕРВЕР · HTTP · API · FETCH ·  УРОК 12 · ВЕБ-СЕРВЕР ТА БАЗИ ДАНИХ · КЛІЄНТ-СЕРВЕР · HTTP · API · FETCH ·  УРОК 12 · ВЕБ-СЕРВЕР ТА БАЗИ ДАНИХ · КЛІЄНТ-СЕРВЕР · HTTP · API · FETCH ·  </span>
+                  <span>УРОК 12 · ВЕБ-СЕРВЕР ТА БАЗИ ДАНИХ · КЛІЄНТ-СЕРВЕР · HTTP · API · FETCH ·  УРОК 12 · ВЕБ-СЕРВЕР ТА БАЗИ ДАНИХ · КЛІЄНТ-СЕРВЕР · HTTP · API · FETCH ·  УРОК 12 · ВЕБ-СЕРВЕР ТА БАЗИ ДАНИХ · КЛІЄНТ-СЕРВЕР · HTTP · API · FETCH ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="13" data-title="Урок 13: Ергономіка, юзабіліті та доступність" data-topics="Правила ергономічного розміщення відомостей на веб-сторінці. Оцінка юзабіліті та доступності." data-icon="👁️" data-img="" data-badge="Розділ 13 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">13</span>
+                <span class="item-title">13. Юзабіліті та доступність</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · ДОСТУПНІСТЬ A11Y · UX/UI · ЧИТАБЕЛЬНІСТЬ ·  УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · ДОСТУПНІСТЬ A11Y · UX/UI · ЧИТАБЕЛЬНІСТЬ ·  УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · ДОСТУПНІСТЬ A11Y · UX/UI · ЧИТАБЕЛЬНІСТЬ ·  </span>
+                  <span>УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · ДОСТУПНІСТЬ A11Y · UX/UI · ЧИТАБЕЛЬНІСТЬ ·  УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · ДОСТУПНІСТЬ A11Y · UX/UI · ЧИТАБЕЛЬНІСТЬ ·  УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · ДОСТУПНІСТЬ A11Y · UX/UI · ЧИТАБЕЛЬНІСТЬ ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="14" data-title="Урок 14: Пошукова оптимізація та хостинг" data-topics="Пошукова оптимізація та просування веб-сайтів. Хостинг сайту, публікація в мережі Інтернет." data-icon="🚀" data-img="" data-badge="Розділ 14 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">14</span>
+                <span class="item-title">14. SEO-оптимізація та хостинг</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 14 · SEO-ОПТИМІЗАЦІЯ · МЕТАТЕГИ · ХОСТИНГ · GITHUB PAGES · ДЕПЛОЙ ·  УРОК 14 · SEO-ОПТИМІЗАЦІЯ · МЕТАТЕГИ · ХОСТИНГ · GITHUB PAGES · ДЕПЛОЙ ·  УРОК 14 · SEO-ОПТИМІЗАЦІЯ · МЕТАТЕГИ · ХОСТИНГ · GITHUB PAGES · ДЕПЛОЙ ·  </span>
+                  <span>УРОК 14 · SEO-ОПТИМІЗАЦІЯ · МЕТАТЕГИ · ХОСТИНГ · GITHUB PAGES · ДЕПЛОЙ ·  УРОК 14 · SEO-ОПТИМІЗАЦІЯ · МЕТАТЕГИ · ХОСТИНГ · GITHUB PAGES · ДЕПЛОЙ ·  УРОК 14 · SEO-ОПТИМІЗАЦІЯ · МЕТАТЕГИ · ХОСТИНГ · GITHUB PAGES · ДЕПЛОЙ ·  </span>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="course-dropdown-item upcoming" data-num="15" data-title="Урок 15: Захист учнівських проєктів" data-topics="Захист учнівських проектів. Повторення і систематизація знань. Тематичне та семестрове оцінювання." data-icon="🏆" data-img="" data-badge="Розділ 15 · Скоро" data-status="upcoming">
+              <div class="item-left">
+                <span class="item-num">15</span>
+                <span class="item-title">15. Захист учнівських проєктів</span>
+              </div>
+              <span class="lesson-tag upcoming">Скоро</span>
+              <div class="marquee" aria-hidden="true">
+                <div class="marquee__inner">
+                  <span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · СИСТЕМАТИЗАЦІЯ ЗНАНЬ · ОЦІНЮВАННЯ ·  УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · СИСТЕМАТИЗАЦІЯ ЗНАНЬ · ОЦІНЮВАННЯ ·  УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · СИСТЕМАТИЗАЦІЯ ЗНАНЬ · ОЦІНЮВАННЯ ·  </span>
+                  <span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · СИСТЕМАТИЗАЦІЯ ЗНАНЬ · ОЦІНЮВАННЯ ·  УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · СИСТЕМАТИЗАЦІЯ ЗНАНЬ · ОЦІНЮВАННЯ ·  УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · СИСТЕМАТИЗАЦІЯ ЗНАНЬ · ОЦІНЮВАННЯ ·  </span>
+                </div>
+              </div>
+            </a>
+              </div>
+
+              <div class="marquee-menu-preview-panel">
+                <div class="preview-card-box" id="menuPreviewBox">
+                  <div class="preview-card-visual" id="previewLessonVisual"><img src="img/preview-lesson-1.png" alt="Урок 1: Тренди вебдизайну та структура сайту" class="preview-card-img" /></div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                    <span id="previewLessonBadge" class="lesson-tag current">Поточний урок</span>
+                    <span id="previewLessonNum" style="font-family: var(--font-mono); font-weight: 800;">УРОК #01</span>
+                  </div>
+                  <h3 id="previewLessonTitle" style="margin: 0; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.3;">Урок 1: Тренди вебдизайну та структура сайту</h3>
+                  <p id="previewLessonTopics" style="margin: 0; font-size: 0.92rem; line-height: 1.5;">Основні тренди у веб-дизайні. Види сайтів та цільова аудиторія. Інструменти веб-розробника. Інформаційна структура сайту.</p>
+                  <a id="previewLessonBtn" href="index.html" class="btn btn-primary" style="margin-top: 0.5rem; text-align: center; justify-content: center; width: 100%;">Перейти до уроку →</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -893,6 +1097,29 @@
         </div>
       </div>
     </section>
+
+    <!-- Нижня навігація між уроками -->
+    <section class="lesson-pager-section" aria-label="Навігація між уроками">
+      <div class="container">
+        <nav class="lesson-pager">
+          <div class="lesson-pager-card prev disabled" aria-disabled="true">
+            <span class="lesson-pager-direction">← Початок курсу</span>
+            <span class="lesson-pager-title">Це перший урок навчальної програми</span>
+          </div>
+
+          <button class="lesson-pager-all-btn" type="button" id="pagerAllLessonsBtn" title="Відкрити програму курсу">
+            <span>📚 Всі уроки</span>
+            <span style="font-size: 0.75rem; font-family: var(--font-mono); opacity: 0.85;">15 тем</span>
+          </button>
+
+          <a href="html-basics.html" class="lesson-pager-card next" title="Перейти до Уроку 2">
+            <span class="lesson-pager-direction">Наступний урок →</span>
+            <span class="lesson-pager-title">Урок 2. Мова гіпертекстової розмітки HTML: структура, теги та посилання</span>
+          </a>
+        </nav>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
