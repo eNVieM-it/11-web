@@ -205,6 +205,15 @@ var SandboxUI = (function () {
 
     if (runBtn) runBtn.addEventListener('click', run);
 
+    const copyBtn = opts.copyBtnId ? document.getElementById(opts.copyBtnId) : document.getElementById('sandboxCopyBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        storeCurrentTab();
+        const textToCopy = currentTab === 'html' ? storedHTML : storedCSS;
+        copyToClipboard(textToCopy, copyBtn);
+      });
+    }
+
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
         storedHTML = defaultHTML;
@@ -220,11 +229,74 @@ var SandboxUI = (function () {
     renderIframe();
   }
 
+  /* ---------------------------------------------------------------------
+     Копіювання коду в буфер обміну з візуальним фідбеком.
+     --------------------------------------------------------------------- */
+  function copyToClipboard(text, btn) {
+    function showFeedback() {
+      if (!btn) return;
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<span class="btn-icon">✓</span> Скопійовано!';
+      btn.classList.add('btn-copied');
+      btn.setAttribute('aria-live', 'polite');
+
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('btn-copied');
+      }, 1800);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(showFeedback).catch(() => {
+        fallbackCopy(text, showFeedback);
+      });
+    } else {
+      fallbackCopy(text, showFeedback);
+    }
+  }
+
+  function fallbackCopy(text, callback) {
+    try {
+      const tempArea = document.createElement('textarea');
+      tempArea.value = text;
+      tempArea.style.position = 'fixed';
+      tempArea.style.opacity = '0';
+      tempArea.style.pointerEvents = 'none';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempArea);
+      if (callback) callback();
+    } catch (err) {
+      console.warn('Не вдалося скопіювати код:', err);
+    }
+  }
+
+  function initCopyButton(btnOrId, codeAreaOrGetter) {
+    const btn = typeof btnOrId === 'string' ? document.getElementById(btnOrId) : btnOrId;
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      let text = '';
+      if (typeof codeAreaOrGetter === 'function') {
+        text = codeAreaOrGetter();
+      } else if (typeof codeAreaOrGetter === 'string') {
+        const el = document.getElementById(codeAreaOrGetter);
+        text = el ? (el.value || el.textContent || '') : '';
+      } else if (codeAreaOrGetter && ('value' in codeAreaOrGetter || 'textContent' in codeAreaOrGetter)) {
+        text = codeAreaOrGetter.value || codeAreaOrGetter.textContent || '';
+      }
+      copyToClipboard(text, btn);
+    });
+  }
+
   return {
     renderPreview: renderPreview,
     wrapFragment: wrapFragment,
     initFullscreen: initFullscreen,
-    initCodeSandbox: initCodeSandbox
+    initCodeSandbox: initCodeSandbox,
+    copyToClipboard: copyToClipboard,
+    initCopyButton: initCopyButton
   };
 })();
 

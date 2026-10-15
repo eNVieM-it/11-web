@@ -79,7 +79,20 @@ function initResponsiveSandbox() {
     timer = setTimeout(render, 400);
   });
 
-  render();
+  const resetBtn = document.getElementById('sandboxResetBtn');
+  const copyBtn = document.getElementById('sandboxCopyBtn');
+  const defaultCSS = codeArea.value;
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      codeArea.value = defaultCSS;
+      render();
+    });
+  }
+
+  if (copyBtn) {
+    SandboxUI.initCopyButton(copyBtn, () => codeArea.value);
+  }
 
   // Повноекранний режим практикуму
   SandboxUI.initFullscreen({

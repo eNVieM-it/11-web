@@ -1,74 +1,166 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>Приклад якірних посилань</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Приклад якірних посилань · Вебтехнології</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles/main.css?v=8">
   
   <style>
     /* 1. ГОЛОВНА ВЛАСТИВІСТЬ CSS ДЛЯ ЯКОРІВ */
     html {
       /* Вмикає плавний скрол замість різкого ривка */
       scroll-behavior: smooth;
-      font-family: sans-serif;
+      font-family: var(--font-body, sans-serif);
     }
 
-    /* Меню навігації закріплюємо зверху */
-    nav {
+    /* Верхня плашка повернення до курсу */
+    .course-back-banner {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #333;
-      padding: 15px;
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .course-back-banner a {
+      color: #38bdf8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .course-back-banner a:hover {
+      text-decoration: underline;
+    }
+
+    /* Меню навігації закріплюємо під плашкою */
+    nav.demo-nav {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      width: 100%;
+      background-color: #1e293b;
+      padding: 12px 20px;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     /* Стилі для посилань */
-    nav a {
+    nav.demo-nav a {
       color: white;
       text-decoration: none;
       margin-right: 20px;
       font-weight: bold;
+      transition: color 0.15s;
     }
 
-    nav a:hover {
+    nav.demo-nav a:hover {
       color: #ffd700; /* підсвітка при наведенні */
     }
 
     /* Стилі для блоків сторінки (секцій) */
-    section {
-      height: 800px; /* робимо їх високими, щоб було куди скролити */
-      padding: 80px 20px 20px 20px;
+    section.demo-section {
+      min-height: 80vh;
+      padding: 100px 30px 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    #about { background-color: lightcoral; }
-    #services { background-color: lightgreen; }
-    #contacts { background-color: lightblue; }
+    section.demo-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    #about { background-color: #fca5a5; color: #1e1e1e; }
+    #services { background-color: #86efac; color: #1e1e1e; }
+    #contacts { background-color: #93c5fd; color: #1e1e1e; }
+
+    .demo-footer-nav {
+      background: #0f172a;
+      padding: 30px 20px;
+      text-align: center;
+      color: #ffffff;
+    }
+    .demo-footer-links {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    .demo-footer-links a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .demo-footer-links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Плашка повернення до курсу -->
+  <div class="course-back-banner">
+    <div>
+      <span>📚 Інтерактивний приклад до Уроку 4</span>
+    </div>
+    <div style="display: flex; gap: 15px;">
+      <a href="box-model.html">← До Уроку 4 (Блочна модель)</a>
+      <a href="index.html">🏠 На головну</a>
+      <a href="responsive-design.html">До Уроку 5 →</a>
+    </div>
+  </div>
+
   <!-- НАВІГАЦІЯ: посилання з решіткою # -->
-  <nav>
+  <nav class="demo-nav">
     <a href="#about">Про нас</a>
     <a href="#services">Послуги</a>
     <a href="#contacts">Контакти</a>
   </nav>
 
   <!-- СЕКЦІЇ СТОРІНКИ: мають відповідний унікальний id -->
-  <section id="about">
+  <section id="about" class="demo-section">
     <h2>Секція: Про нас</h2>
-    <p>Тут текст про компанію...</p>
+    <p>Тут текст про компанію. Зверніть увагу: у посиланні вказано <code>href="#about"</code>, а у цієї секції є <code>id="about"</code>.</p>
   </section>
 
-  <section id="services">
+  <section id="services" class="demo-section">
     <h2>Секція: Наші послуги</h2>
-    <p>Тут перелік послуг...</p>
+    <p>Тут перелік послуг. Завдяки властивості <code>scroll-behavior: smooth;</code> перехід відбувається плавно!</p>
   </section>
 
-  <section id="contacts">
+  <section id="contacts" class="demo-section">
     <h2>Секція: Контакти</h2>
-    <p>Наші телефони та адреса...</p>
+    <p>Наші телефони та адреса. Натисніть посилання «Про нас» вгорі, щоб плавно повернутися вгору сторінки.</p>
   </section>
 
+  <footer class="demo-footer-nav">
+    <p>&copy; 2026 Навчальний курс «Вебтехнології». Приклад якірної навігації.</p>
+    <div class="demo-footer-links">
+      <a href="box-model.html">← Повернутися до Уроку 4</a>
+      <a href="index.html">🏠 Головна сторінка курсу</a>
+      <a href="responsive-design.html">Перейти до Уроку 5 (Адаптивна верстка) →</a>
+    </div>
+  </footer>
+
+  <script src="js/core.js?v=2"></script>
 </body>
 </html>

@@ -13,124 +13,29 @@
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="styles/main.css?v=8">
-  
-  <style>
-    /* Стилі підручника, інтегровані в загальний дизайн сайту */
-    .textbook-wrapper {
-      padding: 60px 20px;
-      background-color: var(--bg-secondary, #f8fafc);
-      min-height: 100vh;
-    }
-    
-    .textbook-page {
-      max-width: 900px;
-      margin: 0 auto;
-      background: var(--bg-primary, #ffffff);
-      padding: 50px 60px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      color: var(--text-primary, #2c3e50);
-      font-family: 'Work Sans', sans-serif;
-      line-height: 1.7;
-    }
-
-    /* Адаптація заголовків */
-    .textbook-page h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 32px;
-      border-bottom: 3px solid #3b82f6;
-      padding-bottom: 12px;
-      color: var(--accent-blue, #1e3a8a);
-      margin-top: 0;
-    }
-    .textbook-page h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 24px;
-      color: var(--accent-blue, #1e40af);
-      margin-top: 40px;
-      border-bottom: 1px solid var(--border-color, #e2e8f0);
-      padding-bottom: 8px;
-    }
-    .textbook-page h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 19px;
-      color: var(--text-primary, #0f172a);
-      margin-top: 24px;
-    }
-    .textbook-page p {
-      margin-bottom: 16px;
-      text-align: justify;
-      font-size: 1.05rem;
-    }
-
-    /* Інформаційні блоки */
-    .textbook-page .rule-box {
-      background-color: #eff6ff;
-      border-left: 5px solid #3b82f6;
-      padding: 16px 20px;
-      margin: 20px 0;
-      border-radius: 0 6px 6px 0;
-      color: #1e3a8a;
-    }
-    .textbook-page .warning-box {
-      background-color: #fffbeb;
-      border-left: 5px solid #f59e0b;
-      padding: 16px 20px;
-      margin: 20px 0;
-      border-radius: 0 6px 6px 0;
-      color: #92400e;
-    }
-
-    /* Код */
-    .textbook-page .code-snippet {
-      background-color: #1e293b;
-      color: #f8fafc;
-      padding: 18px 20px;
-      border-radius: 8px;
-      font-family: 'IBM Plex Mono', Consolas, monospace;
-      font-size: 14px;
-      line-height: 1.5;
-      overflow-x: auto;
-      white-space: pre;
-      margin: 16px 0 24px 0;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .textbook-page .code-term {
-      font-family: 'IBM Plex Mono', Consolas, monospace;
-      background-color: var(--bg-secondary, #e2e8f0);
-      color: #b91c1c;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.92em;
-    }
-    .textbook-page .vector-badge {
-      display: inline-block;
-      font-family: 'IBM Plex Mono', Consolas, monospace;
-      font-weight: bold;
-      background-color: #dbeafe;
-      color: #1e40af;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 0.9em;
-    }
-    
-    @media (max-width: 768px) {
-      .textbook-page {
-        padding: 30px 20px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles/modules.css?v=6">
+  <link rel="stylesheet" href="styles/css-lesson.css?v=6">
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
   <!-- Site Header (Спрощений для підручника) -->
-  <header class="site-header" style="position: sticky; top: 0; z-index: 100;">
-    <div class="container header-container" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
-      <a href="index.html" class="header-logo" title="На головну сторінку курсу" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px; font-weight: bold; font-family: 'Space Grotesk', sans-serif;">
-        <span class="logo-badge" style="background: var(--accent-blue); color: white; padding: 4px 8px; border-radius: 4px;">&lt;/&gt;</span>
-        <span>ВЕБТЕХНОЛОГІЇ</span>
-      </a>
-      <a href="css-basics.html" style="text-decoration: none; font-weight: 600; color: var(--accent-blue);">⬅ Повернутися до Уроку 3</a>
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
+      </div>
+      <div class="header-actions">
+        <a href="css-basics.html" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.4rem 0.8rem; text-decoration: none;">← До Уроку 3</a>
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему">НІЧ 🌙</button>
+      </div>
     </div>
   </header>
 
@@ -327,6 +232,28 @@
       <div class="code-snippet">&lt;p style="color: red; font-size: 20px;"&gt;Цей текст червоний через inline-стиль.&lt;/p&gt;</div>
 
     </article>
+
+    <!-- Нижня навігація між уроками -->
+    <section class="lesson-pager-section" aria-label="Навігація між уроками" style="padding-top: 1.5rem;">
+      <div class="container">
+        <nav class="lesson-pager">
+          <a href="css-basics.html" class="lesson-pager-card prev" title="Повернутися до Уроку 3">
+            <span class="lesson-pager-direction">← Попередній розділ</span>
+            <span class="lesson-pager-title">Урок 3. Каскадні таблиці стилів CSS: підключення та селектори</span>
+          </a>
+
+          <a href="index.html" class="lesson-pager-all-btn" title="Повернутися на головну сторінку курсу" style="text-decoration: none;">
+            <span>🏠 На головну</span>
+            <span style="font-size: 0.75rem; font-family: var(--font-mono); opacity: 0.85;">Всі уроки</span>
+          </a>
+
+          <a href="box-model.html" class="lesson-pager-card next" title="Перейти до Уроку 4">
+            <span class="lesson-pager-direction">Наступний урок →</span>
+            <span class="lesson-pager-title">Урок 4. Проектування та верстка: блочна модель Box Model</span>
+          </a>
+        </nav>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer" style="margin-top: 0;">
@@ -334,5 +261,8 @@
       <p>&copy; 2026 Інтерактивний веб-курс. Усі права захищено.</p>
     </div>
   </footer>
+
+  <!-- Спільне ядро інтерфейсу -->
+  <script src="js/core.js?v=2"></script>
 </body>
 </html>

@@ -532,3 +532,61 @@
   font-size: 0.8rem;
   font-weight: 700;
 }
+
+/* --------------------------------------------------------------------------
+   СПІЛЬНІ СТИЛІ КНОПОК ПІСОЧНИЦЬ (КОПІЮВАННЯ, СКИДАННЯ, ФУЛСКРИН)
+   -------------------------------------------------------------------------- */
+.sandbox-btn-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sandbox-btn {
+  background: var(--accent-green, #22c55e);
+  color: #000000;
+  border: 2px solid var(--border-color, #121212);
+  padding: 0.4rem 0.85rem;
+  font-family: var(--font-heading, sans-serif);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--border-color, #121212);
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 4px;
+}
+
+.sandbox-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--border-color, #121212);
+}
+
+.sandbox-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--border-color, #121212);
+}
+
+.sandbox-btn.btn-reset {
+  background: var(--bg-card, #ffffff);
+  color: var(--text-primary, #121212);
+}
+
+.sandbox-btn.btn-copy {
+  background: var(--accent-blue, #2563eb);
+  color: #ffffff;
+}
+
+.sandbox-btn.btn-copy:hover {
+  filter: brightness(1.1);
+}
+
+.sandbox-btn.btn-copied {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #047857 !important;
+  transform: scale(1.03);
+}

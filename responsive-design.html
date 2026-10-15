@@ -134,12 +134,12 @@
                 </div>
               </div>
             </a>
-            <a href="#" class="course-dropdown-item upcoming" data-num="06" data-title="Урок 6: Кросбраузерність та оптимізація" data-topics="Кросбраузерність. Тестування та оптимізація відображення веб-сторінок у різних браузерах." data-icon="🌐" data-img="" data-badge="Розділ 6 · Скоро" data-status="upcoming">
+            <a href="cross-browser-optimization.html" class="course-dropdown-item" data-num="06" data-title="Урок 6: Кросбраузерність та оптимізація" data-topics="Кросбраузерність. Тестування та оптимізація відображення веб-сторінок у різних браузерах." data-icon="🌐" data-img="img/preview-lesson-6.svg" data-badge="Розділ 6 · Доступно" data-status="available">
               <div class="item-left">
                 <span class="item-num">06</span>
                 <span class="item-title">6. Кросбраузерність та оптимізація</span>
               </div>
-              <span class="lesson-tag upcoming">Скоро</span>
+              <span class="lesson-tag">Розділ 6</span>
               <div class="marquee" aria-hidden="true">
                 <div class="marquee__inner">
                   <span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ТЕСТУВАННЯ · ВЕНДОРНІ ПРЕФІКСИ · ОПТИМІЗАЦІЯ ·  </span>
@@ -268,7 +268,7 @@
 
               <div class="marquee-menu-preview-panel">
                 <div class="preview-card-box" id="menuPreviewBox">
-                  <div class="preview-card-visual" id="previewLessonVisual"><img src="img/preview-lesson-5.png" alt="Урок 5: Адаптивна верстка" class="preview-card-img" /></div>
+                  <div class="preview-card-visual" id="previewLessonVisual"><img src="img/preview-lesson-5.png" alt="Урок 5: Адаптивна верстка" class="preview-card-img" loading="lazy" decoding="async" /></div>
                   <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
                     <span id="previewLessonBadge" class="lesson-tag current">Поточний урок</span>
                     <span id="previewLessonNum" style="font-family: var(--font-mono); font-weight: 800;">УРОК #05</span>
@@ -295,6 +295,7 @@
               <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
               <li><a href="box-model.html" class="mobile-nav-item">Урок 4: Блочна модель верстки</a></li>
               <li><a href="responsive-design.html" class="mobile-nav-item active">Урок 5: Адаптивна верстка ★</a></li>
+              <li><a href="cross-browser-optimization.html" class="mobile-nav-item">Урок 6: Кросбраузерність та оптимізація</a></li>
             </ul>
           </li>
 
@@ -387,7 +388,7 @@
             <p>Саме так працює адаптивний дизайн. Текст, картинки та блоки самі перешиковуються так, щоб користувачу не доводилося наближати сторінку пальцями.</p>
             
             <div style="margin: 2rem 0; text-align: center;">
-              <img src="img/responsive-comparison.jpg" alt="Порівняння неадаптивного та адаптивного сайту" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <img src="img/responsive-comparison.jpg" alt="Порівняння неадаптивного та адаптивного сайту" loading="lazy" decoding="async" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
               <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;"><strong>Зліва:</strong> старий неадаптивний сайт (дрібний текст, горизонтальний скрол). <strong>Справа:</strong> адаптивний сайт (зручне меню, великий текст, один стовпець).</p>
             </div>
           </div>
@@ -688,6 +689,8 @@ img {
             <div class="sandbox-title">💻 CSS РЕДАКТОР</div>
             <div class="sandbox-btn-group">
               <button class="sandbox-btn" id="sandboxRunBtn" type="button">▶ ВИКОНАТИ КОД</button>
+              <button class="sandbox-btn btn-copy" id="sandboxCopyBtn" type="button" title="Скопіювати поточний CSS">📋 Скопіювати</button>
+              <button class="sandbox-btn btn-reset" id="sandboxResetBtn" type="button" title="Відновити початковий шаблон">↺ Скинути</button>
               <button class="sandbox-btn btn-fullscreen" id="sandboxFullscreenBtn" type="button" title="Відкрити практикум на всю сторінку">
                 <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
               </button>
@@ -751,10 +754,10 @@ img {
             <span style="font-size: 0.75rem; font-family: var(--font-mono); opacity: 0.85;">15 тем</span>
           </button>
 
-          <div class="lesson-pager-card next upcoming-next" id="upcomingLessonCard" role="button" tabindex="0" title="Натисніть, щоб переглянути програму наступних тем">
-            <span class="lesson-pager-direction" style="color: var(--accent-blue);">Наступний урок ⏳</span>
+          <a href="cross-browser-optimization.html" class="lesson-pager-card next" title="Перейти до Уроку 6">
+            <span class="lesson-pager-direction">Наступний урок →</span>
             <span class="lesson-pager-title">Урок 6. Кросбраузерність: тестування та оптимізація сайтів</span>
-          </div>
+          </a>
         </nav>
       </div>
     </section>

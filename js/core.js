@@ -98,7 +98,7 @@ function initCourseDropdown() {
     const imgPath = item.dataset.img || '';
     if (previewVisual) {
       if (imgPath) {
-        previewVisual.innerHTML = `<img src="${imgPath}" alt="${title}" class="preview-card-img" />`;
+        previewVisual.innerHTML = `<img src="${imgPath}" alt="${title}" class="preview-card-img" loading="lazy" decoding="async" />`;
       } else {
         previewVisual.innerHTML = `<div class="preview-card-placeholder"><span class="placeholder-icon">${icon}</span><span class="placeholder-text">Тема в розробці ⏳</span></div>`;
       }
@@ -339,7 +339,62 @@ function initAccordions() {
 }
 
 /* --------------------------------------------------------------------------
-   7. ТОЧКА ВХОДУ — спільне ядро ініціалізується на всіх сторінках
+   7. РЕЄСТРАЦІЯ УРОКІВ ТА ЗАГАЛЬНИЙ ПРОГРЕС КУРСУ
+   -------------------------------------------------------------------------- */
+var COURSE_LESSONS = [
+  { num: '01', title: 'Урок 1: Тренди вебдизайну та структура сайту', file: 'index.html', available: true },
+  { num: '02', title: 'Урок 2: Основи мови HTML5', file: 'html-basics.html', available: true },
+  { num: '03', title: 'Урок 3: Каскадні таблиці стилів CSS', file: 'css-basics.html', available: true },
+  { num: '04', title: 'Урок 4: Блочна модель верстки', file: 'box-model.html', available: true },
+  { num: '05', title: 'Урок 5: Адаптивна верстка', file: 'responsive-design.html', available: true },
+  { num: '06', title: 'Урок 6: Кросбраузерність та оптимізація', file: 'cross-browser-optimization.html', available: true },
+  { num: '07', title: 'Урок 7: Графіка для веб-середовища', file: '', available: false },
+  { num: '08', title: 'Урок 8: Мультимедіа на веб-сторінках', file: '', available: false },
+  { num: '09', title: 'Урок 9: Інтерактивні форми', file: '', available: false },
+  { num: '10', title: 'Урок 10: CSS-анімації та мікровзаємодії', file: '', available: false },
+  { num: '11', title: 'Урок 11: Основи JavaScript та маніпуляції з DOM', file: '', available: false },
+  { num: '12', title: 'Урок 12: Клієнт-серверна взаємодія та API', file: '', available: false },
+  { num: '13', title: 'Урок 13: Юзабіліті та доступність (a11y)', file: '', available: false },
+  { num: '14', title: 'Урок 14: Базове SEO та публікація сайту', file: '', available: false },
+  { num: '15', title: 'Урок 15: Захист учнівських проєктів', file: '', available: false }
+];
+
+function initCourseProgress() {
+  const STORAGE_KEY = 'veb_course_completed_lessons';
+  let completed = [];
+
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    completed = raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    completed = [];
+  }
+
+  // Визначаємо поточну сторінку
+  const currentPath = window.location.pathname;
+  const currentFileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+
+  const matched = COURSE_LESSONS.find(l => l.file === currentFileName);
+  if (matched && !completed.includes(matched.num)) {
+    completed.push(matched.num);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    } catch (e) {}
+  }
+
+  const availableCount = COURSE_LESSONS.filter(l => l.available).length;
+  const totalCount = COURSE_LESSONS.length;
+  const progressPercent = Math.round((completed.length / totalCount) * 100);
+
+  // Оновлюємо бейдж у випадаючому меню, якщо є
+  const menuBadge = document.querySelector('.marquee-menu-badge');
+  if (menuBadge) {
+    menuBadge.textContent = `10–11 класи · ${availableCount} з ${totalCount} доступно · Пройдено: ${progressPercent}%`;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. ТОЧКА ВХОДУ — спільне ядро ініціалізується на всіх сторінках
    -------------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
@@ -348,5 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNavHighlight();
   initScrollProgress();
   initAccordions();
+  initCourseProgress();
 });
+
 

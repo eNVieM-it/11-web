@@ -4,14 +4,14 @@
 
 const { read, check, section, boot, report } = require('./helpers');
 
-const PAGES = ['index.html', 'html-basics.html', 'css-basics.html', 'box-model.html', 'responsive-design.html'];
-const LESSON_JS = ['app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js'];
+const PAGES = ['index.html', 'html-basics.html', 'css-basics.html', 'box-model.html', 'responsive-design.html', 'cross-browser-optimization.html'];
+const LESSON_JS = ['app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js', 'optimization-lesson.js'];
 const SYS_FN = ['initThemeToggle', 'initCourseDropdown', 'initMobileNavigation',
   'initActiveNavHighlight', 'initScrollProgress', 'initAccordions'];
 
 section('1. Файли проєкту');
 PAGES.forEach(p => check(p + ' існує', !!read(p).length));
-['core.js', 'sandbox.js', 'app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js']
+['core.js', 'sandbox.js', 'app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js', 'optimization-lesson.js']
   .forEach(f => check('js/' + f + ' існує', read('js/' + f).length > 0));
 
 section('2. Підключення на сторінках');
@@ -217,6 +217,102 @@ section('10. Симулятор flex-direction Уроку 5 (responsive-design.h
     colBtn.dispatchEvent(new window.Event('click'));
     check('responsive: клік на column перемикає flexDirection', container.style.flexDirection === 'column');
     check('responsive: правило оновлюється під column', codeEl.textContent.indexOf('column') !== -1);
+  }
+
+  dom.window.close();
+}
+
+section('11. Інтерактиви Уроку 6 (cross-browser-optimization.html)');
+{
+  const { dom, window } = boot('cross-browser-optimization.html');
+  const doc = window.document;
+
+  // 1. Browser Lab
+  const btnReset = doc.getElementById('btnResetStyles');
+  const btnRaw = doc.getElementById('btnRawStyles');
+  const viewport = doc.getElementById('browserLabViewport');
+  check('optimization: кнопка Normalize/Reset присутня', !!btnReset);
+  check('optimization: кнопка Raw присутня', !!btnRaw);
+  if (btnReset && btnRaw && viewport) {
+    btnReset.dispatchEvent(new window.Event('click'));
+    check('optimization: клік на Reset активує нормалізований режим', viewport.classList.contains('mode-reset'));
+    btnRaw.dispatchEvent(new window.Event('click'));
+    check('optimization: клік на Raw повертає сирі стилі', viewport.classList.contains('mode-raw'));
+  }
+
+  // 2. Glassmorphism / @supports Simulator
+  const supportToggle = doc.getElementById('supportToggle');
+  const fallbackToggle = doc.getElementById('fallbackToggle');
+  const demoCard = doc.getElementById('demoGlassCard');
+  const explainBox = doc.getElementById('supportsExplainBox');
+  check('optimization: симулятор @supports присутній', !!supportToggle && !!fallbackToggle && !!demoCard);
+  if (supportToggle && fallbackToggle && demoCard) {
+    supportToggle.checked = false;
+    supportToggle.dispatchEvent(new window.Event('change'));
+    check('optimization: вимкнення підтримки перемикає симулятор', demoCard.classList.contains('no-support-fallback'));
+    fallbackToggle.checked = false;
+    fallbackToggle.dispatchEvent(new window.Event('change'));
+    check('optimization: вимкнення fallback показує попередження', demoCard.classList.contains('no-support-broken') && explainBox.textContent.includes('нечитабельним'));
+  }
+
+  // 3. Performance Calculator
+  const calcImg = doc.getElementById('calcImgFormat');
+  const calcScore = doc.getElementById('calcScoreVal');
+  const calcWeight = doc.getElementById('calcTotalWeight');
+  check('optimization: калькулятор швидкості присутній', !!calcImg && !!calcScore && !!calcWeight);
+  if (calcImg && calcScore) {
+    calcImg.value = 'webp';
+    calcImg.dispatchEvent(new window.Event('change'));
+    check('optimization: вибір WebP підвищує оцінку', parseInt(calcScore.textContent, 10) >= 90);
+  }
+
+  // 4. Code Minifier
+  const minInput = doc.getElementById('minifierInput');
+  const minBtn = doc.getElementById('minifyRunBtn');
+  const minOutput = doc.getElementById('minifierOutput');
+  const minSavings = doc.getElementById('savingsPercent');
+  check('optimization: мініфікатор присутній', !!minInput && !!minBtn && !!minOutput);
+  if (minInput && minBtn && minOutput) {
+    minInput.value = '/* коментар */\nbody {\n  margin: 0;\n  padding: 0;\n}';
+    minBtn.dispatchEvent(new window.Event('click'));
+    check('optimization: мініфікатор стискає код', minOutput.value.includes('body{margin:0;padding:0;}') || !minOutput.value.includes('\n'));
+    check('optimization: розрахунок економії розміру виконано', !!minSavings && minSavings.textContent.includes('%'));
+  }
+
+  // 5. Sandbox & Checklist
+  const area = doc.getElementById('sandboxCodeArea');
+  const frame = doc.getElementById('sandboxIframe');
+  const runBtn = doc.getElementById('sandboxRunBtn');
+  const resetBtn = doc.getElementById('sandboxResetBtn');
+  const copyBtn = doc.getElementById('sandboxCopyBtn');
+  check('optimization: пісочниця присутня з усіма елементами', !!area && !!frame && !!runBtn && !!resetBtn && !!copyBtn);
+  check('optimization: початковий код пісочниці завантажено', frame.srcdoc.includes('Оптимізована') || area.value.includes('Оптимізована'));
+
+  if (area && runBtn) {
+    area.value = `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * { box-sizing: border-box; }
+    .banner { background-color: #3b82f6; background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <img src="img/test.png" width="600" height="300" loading="lazy" alt="Тест">
+  </div>
+</body>
+</html>`;
+    runBtn.dispatchEvent(new window.Event('click'));
+    check('optimization: iframe оновлюється новим кодом', frame.srcdoc.includes('img/test.png'));
+    const chkLazy = doc.getElementById('chkItemLazy');
+    const chkSizes = doc.getElementById('chkItemDimensions');
+    const chkBorder = doc.getElementById('chkItemBoxSizing');
+    const chkFallback = doc.getElementById('chkItemFallback');
+    check('optimization: чек-ліст розпізнає loading="lazy"', chkLazy && chkLazy.classList.contains('passed'));
+    check('optimization: чек-ліст розпізнає розміри картинок', chkSizes && chkSizes.classList.contains('passed'));
+    check('optimization: чек-ліст розпізнає box-sizing: border-box', chkBorder && chkBorder.classList.contains('passed'));
+    check('optimization: чек-ліст розпізнає fallback background-color', chkFallback && chkFallback.classList.contains('passed'));
   }
 
   dom.window.close();

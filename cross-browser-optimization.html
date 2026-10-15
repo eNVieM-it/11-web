@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 6: Кросбраузерність та оптимізація · Вебтехнології 10–11 класи</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="stylesheet" href="styles/hero.css?v=6">
+  <link rel="stylesheet" href="styles/modules.css?v=6">
+  <link rel="stylesheet" href="styles/responsive.css?v=6">
+  <link rel="stylesheet" href="styles/css-lesson.css?v=6">
+  <link rel="stylesheet" href="styles/optimization-lesson.css?v=1">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Stats Ribbon -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        Практична робота №6 · Тема «Кросбраузерність та оптимізація сайтів»
+      </div>
+      <div>
+        Інформатика 10–11 класи · Модуль «Вебтехнології»
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
+
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу (15 тем)">
+            <span class="course-btn-icon" aria-hidden="true">📚</span>
+            <span class="course-btn-text">Уроки курсу</span>
+            <span class="course-btn-badge" aria-label="15 уроків">15</span>
+            <span class="dropdown-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu" role="dialog" aria-modal="true" aria-label="Навчальна програма курсу">
+            <div class="marquee-menu-topbar">
+              <div class="marquee-menu-title-group">
+                <h2 class="marquee-menu-main-title">📚 Навчальна програма курсу «Вебтехнології»</h2>
+                <span class="marquee-menu-badge">10–11 класи · 15 уроків</span>
+              </div>
+              <button class="marquee-menu-close-btn" id="courseDropdownCloseBtn" type="button" aria-label="Закрити меню">
+                <span>ЗАКРИТИ</span>
+                <span>✕</span>
+              </button>
+            </div>
+
+            <div class="marquee-menu-body">
+              <div class="marquee-menu-items-scroll">
+                <a href="index.html" class="course-dropdown-item" data-num="01" data-title="Урок 1: Тренди вебдизайну та структура сайту" data-topics="Основні тренди у веб-дизайні. Види сайтів та цільова аудиторія. Інструменти веб-розробника." data-icon="🎨" data-img="img/preview-lesson-1.png" data-badge="Розділ 1 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">01</span>
+                    <span class="item-title">1. Тренди вебдизайну та структура</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 1</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span></div></div>
+                </a>
+                <a href="html-basics.html" class="course-dropdown-item" data-num="02" data-title="Урок 2: Основи мови HTML5" data-topics="Мова гіпертекстової розмітки. Структура HTML-документа, розмітка тексту та гіперпосилання." data-icon="📄" data-img="img/preview-lesson-2.png" data-badge="Розділ 2 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">02</span>
+                    <span class="item-title">2. Основи мови HTML5</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 2</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span></div></div>
+                </a>
+                <a href="css-basics.html" class="course-dropdown-item" data-num="03" data-title="Урок 3: Каскадні таблиці стилів CSS" data-topics="Каскадні таблиці стилів. Підключення CSS, базові селектори та стилі тексту." data-icon="🎯" data-img="img/preview-lesson-3.png" data-badge="Розділ 3 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">03</span>
+                    <span class="item-title">3. Каскадні таблиці стилів CSS</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 3</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span></div></div>
+                </a>
+                <a href="box-model.html" class="course-dropdown-item" data-num="04" data-title="Урок 4: Блочна модель верстки" data-topics="Проектування та верстка веб-сторінок. Блочна модель верстки (Box Model)." data-icon="📦" data-img="img/preview-lesson-4.png" data-badge="Розділ 4 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">04</span>
+                    <span class="item-title">4. Блочна модель верстки</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 4</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span></div></div>
+                </a>
+                <a href="responsive-design.html" class="course-dropdown-item" data-num="05" data-title="Урок 5: Адаптивна верстка" data-topics="Адаптивна верстка. Viewport, медіазапити @media та flex-direction." data-icon="📱" data-img="img/preview-lesson-5.png" data-badge="Розділ 5 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">05</span>
+                    <span class="item-title">5. Адаптивна верстка</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 5</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span></div></div>
+                </a>
+                <a href="cross-browser-optimization.html" class="course-dropdown-item active" data-num="06" data-title="Урок 6: Кросбраузерність та оптимізація" data-topics="Кросбраузерність. Рушії браузерів, вендорні префікси, @supports, формати WebP/AVIF, lazy loading та мініфікація." data-icon="🌐" data-img="img/preview-lesson-6.svg" data-badge="Поточний урок" data-status="current">
+                  <div class="item-left">
+                    <span class="item-num">06</span>
+                    <span class="item-title">6. Кросбраузерність та оптимізація</span>
+                  </div>
+                  <span class="lesson-tag current">Поточний</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · LIGHTHOUSE · </span><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · LIGHTHOUSE · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="07" data-title="Урок 7: Графіка для веб-середовища" data-topics="Графіка для веб-середовища. Формати зображень, SVG, оптимізація та авторські права." data-icon="🖼️" data-img="" data-badge="Розділ 7 · Скоро" data-status="upcoming">
+                  <div class="item-left">
+                    <span class="item-num">07</span>
+                    <span class="item-title">7. Графіка для веб-середовища</span>
+                  </div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · </span><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="08" data-title="Урок 8: Мультимедіа на веб-сторінках" data-topics="Аудіо та відео на веб-сторінках. Теги audio та video." data-icon="🎬" data-img="" data-badge="Розділ 8 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">08</span><span class="item-title">8. Мультимедіа на веб-сторінках</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="09" data-title="Урок 9: Інтерактивні форми" data-topics="Форми на веб-сторінках. Елементи input, select, textarea." data-icon="📋" data-img="" data-badge="Розділ 9 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">09</span><span class="item-title">9. Інтерактивні форми</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 9 · ФОРМИ ТА ВАЛІДАЦІЯ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="10" data-title="Урок 10: CSS-анімації" data-topics="Анімація та динамічні ефекти в CSS. Transitions та keyframes." data-icon="✨" data-img="" data-badge="Розділ 10 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">10</span><span class="item-title">10. CSS-анімації</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 10 · АНІМАЦІЇ · KEYFRAMES · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="11" data-title="Урок 11: Основи JavaScript" data-topics="Основи JavaScript. DOM-дерево, події та маніпуляції." data-icon="⚡" data-img="" data-badge="Розділ 11 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">11</span><span class="item-title">11. Основи JavaScript та DOM</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 11 · JAVASCRIPT · DOM · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="12" data-title="Урок 12: Клієнт-серверна взаємодія" data-topics="Клієнт-серверна взаємодія. Fetch API, JSON, асинхронні запити." data-icon="🔄" data-img="" data-badge="Розділ 12 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">12</span><span class="item-title">12. Клієнт-сервер та API</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 12 · КЛІЄНТ-СЕРВЕР · FETCH · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="13" data-title="Урок 13: Юзабіліті та a11y" data-topics="Юзабіліті та доступність веб-ресурсів. WCAG, семантика та контраст." data-icon="♿" data-img="" data-badge="Розділ 13 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">13</span><span class="item-title">13. Юзабіліті та доступність</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 13 · A11Y · ДОСТУПНІСТЬ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="14" data-title="Урок 14: Базове SEO" data-topics="Базове SEO та публікація сайту. Метатеги, Sitemap, хостинг." data-icon="🚀" data-img="" data-badge="Розділ 14 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">14</span><span class="item-title">14. Базове SEO та публікація</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 14 · SEO · ОПТИМІЗАЦІЯ ДЛЯ ПОШУКУ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="15" data-title="Урок 15: Захист проєктів" data-topics="Захист учнівських проектів. Презентація та підсумкове оцінювання." data-icon="🏆" data-img="" data-badge="Розділ 15 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">15</span><span class="item-title">15. Захист учнівських проєктів</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · </span></div></div>
+                </a>
+              </div>
+
+              <div class="marquee-menu-preview-panel">
+                <div class="preview-card-box" id="menuPreviewBox">
+                  <div class="preview-card-visual" id="previewLessonVisual">
+                    <img src="img/preview-lesson-6.svg" alt="Урок 6: Кросбраузерність та оптимізація" class="preview-card-img" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                    <span id="previewLessonBadge" class="lesson-tag current">Поточний урок</span>
+                    <span id="previewLessonNum" style="font-family: var(--font-mono); font-weight: 800;">УРОК #06</span>
+                  </div>
+                  <h3 id="previewLessonTitle" style="margin: 0; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.3;">Урок 6: Кросбраузерність та оптимізація</h3>
+                  <p id="previewLessonTopics" style="margin: 0; font-size: 0.92rem; line-height: 1.5;">Кросбраузерність. Рушії браузерів, вендорні префікси, @supports, формати WebP/AVIF, lazy loading та мініфікація.</p>
+                  <a id="previewLessonBtn" href="cross-browser-optimization.html" class="btn btn-primary" style="margin-top: 0.5rem; text-align: center; justify-content: center; width: 100%;">Перейти до уроку →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зміст поточного уроку (десктоп) та мобільне меню -->
+      <nav class="header-nav" aria-label="Зміст уроку">
+        <ul class="nav-links" id="navLinks">
+          <!-- Мобільний блок списку уроків -->
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item">Урок 2: Основи мови HTML5</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
+              <li><a href="box-model.html" class="mobile-nav-item">Урок 4: Блочна модель верстки</a></li>
+              <li><a href="responsive-design.html" class="mobile-nav-item">Урок 5: Адаптивна верстка</a></li>
+              <li><a href="cross-browser-optimization.html" class="mobile-nav-item active">Урок 6: Кросбраузерність та оптимізація ★</a></li>
+            </ul>
+          </li>
+
+          <!-- Посилання на розділи цього уроку -->
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
+          <li><a href="#hero" class="nav-link active">Вступ</a></li>
+          <li><a href="#topic1" class="nav-link">1. Рушії &amp; Reset</a></li>
+          <li><a href="#topic2" class="nav-link">2. @supports &amp; Префікси</a></li>
+          <li><a href="#topic3" class="nav-link">3. Оптимізація медіа</a></li>
+          <li><a href="#topic4" class="nav-link">4. Мініфікація</a></li>
+          <li><a href="#practical-work" class="nav-link">Практикум ⚙️</a></li>
+          <li><a href="#test" class="nav-link nav-link-highlight">Тест уроку ★</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="badge-group" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+              <span class="badge badge-yellow">МОДУЛЬ 6</span>
+              <span class="badge badge-blue">КРОСБРАУЗЕРНІСТЬ</span>
+              <span class="badge badge-green">LIGHTHOUSE 99+</span>
+            </div>
+            <h1 class="hero-title">
+              КРОСБРАУЗЕРНІСТЬ ТА <span class="text-gradient">ОПТИМІЗАЦІЯ САЙТІВ</span>
+            </h1>
+            <p class="hero-desc">
+              Чому один і той самий сайт може бездоганно виглядати в Google Chrome, але ламатися в Safari або Firefox? Як змусити сторінку завантажуватися за частки секунди навіть на слабкому мобільному інтернеті? На цьому уроці ми розкриємо таємниці браузерних рушіїв та сучасних веб-технологій оптимізації!
+            </p>
+            <div class="hero-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="#topic1" class="btn btn-primary">Почати навчання 🚀</a>
+              <a href="#practical-work" class="btn btn-secondary">До Практикуму ⚙️</a>
+            </div>
+          </div>
+
+          <div class="hero-visual" style="display: flex; align-items: center; justify-content: center;">
+            <div style="width: 100%; max-width: 440px; background: var(--bg-card); border: 3px solid var(--border-color); border-radius: 12px; box-shadow: 6px 6px 0 var(--border-color); overflow: hidden;">
+              <div style="background: #0f172a; padding: 0.75rem 1rem; color: #f8fafc; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center;">
+                <span>🌐 BROWSERS &amp; SPEED</span>
+                <span style="color: #22c55e;">● 99 SCORE</span>
+              </div>
+              <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: 6px; border: 1px solid var(--border-color);">
+                  <span style="font-weight: 700;">Blink (Chrome/Edge)</span>
+                  <span style="font-family: var(--font-mono); color: #0284c7; font-weight: 700;">-webkit-</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: 6px; border: 1px solid var(--border-color);">
+                  <span style="font-weight: 700;">WebKit (Safari/iOS)</span>
+                  <span style="font-family: var(--font-mono); color: #0284c7; font-weight: 700;">-webkit-</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--bg-secondary); border-radius: 6px; border: 1px solid var(--border-color);">
+                  <span style="font-weight: 700;">Gecko (Firefox)</span>
+                  <span style="font-family: var(--font-mono); color: #e11d48; font-weight: 700;">-moz-</span>
+                </div>
+                <div style="padding: 0.75rem; background: #dcfce7; color: #166534; border-radius: 6px; font-weight: 700; font-size: 0.88rem; text-align: center;">
+                  ⚡ WebP + lazy loading + defer = блискавичний сайт!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТОПІК 1: БРАУЗЕРНІ РУШІЇ ТА CSS RESET -->
+    <section id="topic1" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 1 · ФУНДАМЕНТ</div>
+          <h2 class="section-title">1. <span class="text-gradient">БРАУЗЕРНІ РУШІЇ ТА СКИДАННЯ СТИЛІВ</span></h2>
+          <p class="section-subtitle">
+            Як різні браузери обробляють один і той самий код та навіщо потрібен Normalize.css / CSS Reset.
+          </p>
+        </div>
+
+        <!-- Картки 3 головних рушіїв -->
+        <div class="engine-cards-grid">
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <span class="engine-icon">⚡</span>
+              <div>
+                <h3 class="engine-name">Blink</h3>
+                <span class="engine-browsers">Google Chrome, Edge, Opera, Brave</span>
+              </div>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
+              Найпопулярніший рушій у світі (понад 70% ринку). Створений Google на основі WebKit у 2013 році. Використовує високопродуктивний компілятор JavaScript V8.
+            </p>
+            <span class="engine-prefix-badge">-webkit- префікс</span>
+          </div>
+
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <span class="engine-icon">🧭</span>
+              <div>
+                <h3 class="engine-name">WebKit</h3>
+                <span class="engine-browsers">Apple Safari (macOS, iOS, iPadOS)</span>
+              </div>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
+              Рідний рушій компанії Apple. За правилами App Store, <strong>усі без винятку браузери на iPhone та iPad</strong> зобов'язані використовувати WebKit під капотом!
+            </p>
+            <span class="engine-prefix-badge">-webkit- префікс</span>
+          </div>
+
+          <div class="engine-card">
+            <div class="engine-card-header">
+              <span class="engine-icon">🦊</span>
+              <div>
+                <h3 class="engine-name">Gecko</h3>
+                <span class="engine-browsers">Mozilla Firefox, Tor Browser</span>
+              </div>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
+              Повністю незалежний відкритий рушій від Mozilla. Відомий суворим дотриманням стандартів W3C та потужними інструментами розробника (DevTools).
+            </p>
+            <span class="engine-prefix-badge" style="color: #e11d48; background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.4);">-moz- префікс</span>
+          </div>
+        </div>
+
+        <!-- Теоретичний блок: User Agent Stylesheet -->
+        <div class="accordion-item active" style="margin-bottom: 2rem;">
+          <button class="accordion-header" type="button" aria-expanded="true">
+            <span>📖 Що таке User Agent Stylesheet і чому він створює проблеми?</span>
+            <span class="accordion-icon">−</span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Коли ви створюєте абсолютно порожній HTML-документ без жодного рядка CSS, браузер все одно відображає заголовки великими, списки — з крапками, а сторінку — з білими полями по краях.
+            </p>
+            <p>
+              Це відбувається тому, що кожен браузер має власну вбудовану таблицю стилів — <strong>User Agent Stylesheet</strong>. Але біда в тому, що у Chrome, Safari та Firefox ці стилі відрізняються:
+            </p>
+            <ul>
+              <li><strong>Відступи body:</strong> більшість браузерів за замовчуванням ставлять <code>margin: 8px;</code>, через що елементи не прилягають до країв вікна.</li>
+              <li><strong>Списки &lt;ul&gt;:</strong> одні браузери задають відступ зліва через <code>padding-left: 40px;</code>, а старі рушії робили це через <code>margin-left</code>.</li>
+              <li><strong>Форми та кнопки:</strong> кнопки в Safari на macOS мають характерні закруглення та градієнти операційної системи, тоді як у Windows вони виглядають інакше.</li>
+            </ul>
+            <div class="rule-box">
+              <strong>💡 Рішення індустрії:</strong> використання <code>Normalize.css</code> або сучасного <code>CSS Reset</code>. Скидання прибирає небажані розбіжності та створює «чисте полотно», на якому ваш дизайн виглядає передбачувано у будь-якому куточку планети.
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 1: ЛАБОРАТОРІЯ БРАУЗЕРІВ -->
+        <div class="browser-lab-box">
+          <div class="browser-lab-toolbar">
+            <div style="font-family: var(--font-heading); font-weight: 700;">
+              🧪 ІНТЕРАКТИВ 1: ЛАБОРАТОРІЯ БРАУЗЕРНИХ СТИЛІВ
+            </div>
+            <div class="browser-lab-tabs">
+              <button class="lab-mode-btn active" id="btnRawStyles" type="button" aria-pressed="true">Без Reset (User Agent)</button>
+              <button class="lab-mode-btn" id="btnResetStyles" type="button" aria-pressed="false">З Normalize / CSS Reset</button>
+            </div>
+          </div>
+
+          <div class="browser-lab-viewport mode-raw" id="browserLabViewport">
+            <h1>Головний заголовок сторінки</h1>
+            <p>Звичайний параграф тексту. Зверніть увагу на шрифт та відступи навколо контейнера.</p>
+            <ul>
+              <li>Маркований елемент списку №1</li>
+              <li>Маркований елемент списку №2</li>
+            </ul>
+            <div style="display: flex; gap: 10px; align-items: center; margin-top: 15px;">
+              <input type="text" value="Поле введення" />
+              <button type="button">Надіслати форму</button>
+            </div>
+          </div>
+
+          <div class="browser-lab-info" id="browserLabInfoText">
+            ⚠️ <strong>Сирі стилі рушія (User Agent):</strong> відступ <code>body: 8px</code> створює щілини по краях, шрифт за замовчуванням — <code>Times New Roman</code>, кнопка має сіру рельєфну рамку 90-х років, списки мають відступи <code>40px</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТОПІК 2: КРОСБРАУЗЕРНИЙ CSS, ПРЕФІКСИ ТА @SUPPORTS -->
+    <section id="topic2" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 2 · СУМІСНІСТЬ</div>
+          <h2 class="section-title">2. <span class="text-gradient">ВЕНДОРНІ ПРЕФІКСИ ТА ДИРЕКТИВА @SUPPORTS</span></h2>
+          <p class="section-subtitle">
+            Прогресивне покращення, перевірка сумісності на Can I Use та створення надійних фолбеків.
+          </p>
+        </div>
+
+        <div class="accordion-item active" style="margin-bottom: 2rem;">
+          <button class="accordion-header" type="button" aria-expanded="true">
+            <span>🛡️ Навіщо потрібні префікси і як працює правило каскаду Fallback?</span>
+            <span class="accordion-icon">−</span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Коли консорціум W3C розробляє нову експериментальну властивість CSS (наприклад, <code>backdrop-filter</code> чи складні градієнти), браузери спочатку впроваджують її під своїм персональним «прізвищем» — <strong>вендорним префіксом</strong>:
+            </p>
+            <ul>
+              <li><code>-webkit-</code> — для браузерів на рушіях Blink та WebKit (Chrome, Safari, Edge);</li>
+              <li><code>-moz-</code> — для рушія Gecko (Mozilla Firefox).</li>
+            </ul>
+            <p>
+              <strong>Залізне правило верстки:</strong> спочатку пишуться властивості з префіксами, а в самому кінці — офіційна стандартна властивість W3C без префіксу! Браузер застосує стандартне правило, якщо воно йому відоме, або скористається префіксом.
+            </p>
+            <div class="rule-box">
+              <strong>Директива @supports (CSS Feature Queries):</strong> дозволяє верстальнику запитати браузер: «Ти підтримуєш цю властивість?». Якщо так — застосовуються ультрасучасні ефекти. Якщо ні — браузер спокійно використовує простий надійний фолбек, не ламаючи сторінку.
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 2: СИМУЛЯТОР ПІДТРИМКИ CSS -->
+        <div class="supports-simulator-box">
+          <div class="supports-controls-bar">
+            <div style="font-family: var(--font-heading); font-weight: 700;">
+              🎛️ ІНТЕРАКТИВ 2: СИМУЛЯТОР ПІДТРИМКИ CSS ТА FALLBACK
+            </div>
+            <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+              <div class="switch-label-group">
+                <span>Підтримка backdrop-filter:</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="supportToggle" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <div class="switch-label-group">
+                <span>Прописано Fallback-фон:</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="fallbackToggle" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="supports-stage">
+            <div class="demo-glass-card has-support" id="demoGlassCard">
+              <span class="badge badge-blue" style="margin-bottom: 0.5rem; display: inline-block;">GLASSMORPHISM</span>
+              <h3 style="margin: 0 0 0.5rem 0; font-family: var(--font-heading);">Преміум Картка Користувача</h3>
+              <p style="margin: 0 0 1rem 0; font-size: 0.95rem; line-height: 1.5;">
+                Ця картка використовує ультрасучасне розмиття фону. Перемикайте тумблери вгорі, щоб побачити, що трапиться у старому браузері, якщо верстальник забув написати fallback!
+              </p>
+              <button type="button" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Детальніше →</button>
+            </div>
+          </div>
+
+          <div class="supports-code-preview" id="supportsCodeBox"></div>
+          <div class="browser-lab-info" id="supportsExplainBox">
+            🌟 <strong>Сучасний браузер:</strong> рушій підтримує <code>backdrop-filter: blur(14px)</code>. Картка має ефект матового скла (Glassmorphism), текст чудово читається завдяки розмиттю фону позаду.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ТОПІК 3: ОПТИМІЗАЦІЯ ЗОБРАЖЕНЬ ТА МЕДІА -->
+    <section id="topic3" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 3 · ШВИДКОДІЯ</div>
+          <h2 class="section-title">3. <span class="text-gradient">ОПТИМІЗАЦІЯ ЗОБРАЖЕНЬ ТА МЕДІА</span></h2>
+          <p class="section-subtitle">
+            Формати WebP та AVIF, адаптивні картинки, атрибут loading="lazy" та боротьба зі стрибками верстки (CLS).
+          </p>
+        </div>
+
+        <div class="accordion-item active" style="margin-bottom: 2rem;">
+          <button class="accordion-header" type="button" aria-expanded="true">
+            <span>🖼️ Чому картинки — це 70% ваги сайту і як їх оптимізувати?</span>
+            <span class="accordion-icon">−</span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Зображення — це найважча частина сучасного вебу. Якщо завантажити на сайт фотографію прямо з камери смартфона (розміром 5–8 МБ), користувач на мобільному 3G чекатиме пів хвилини, злиться і піде геть.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+              <div style="padding: 1rem; border: 2px solid var(--border-color); border-radius: 6px; background: var(--bg-primary);">
+                <strong style="color: #ef4444;">PNG / JPEG (Класика)</strong>
+                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Великий розмір файлів. PNG потрібен для прозорості, JPEG — для фото. Застарілі алгоритми стиснення.</p>
+              </div>
+              <div style="padding: 1rem; border: 2px solid var(--border-color); border-radius: 6px; background: var(--bg-primary);">
+                <strong style="color: #3b82f6;">WebP (Сучасний стандарт)</strong>
+                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Розроблений Google. На 30–80% легший за JPEG та PNG при тій самій якості! Підтримує і прозорість, і анімацію.</p>
+              </div>
+              <div style="padding: 1rem; border: 2px solid var(--border-color); border-radius: 6px; background: var(--bg-primary);">
+                <strong style="color: #10b981;">AVIF (Майбутнє вебу)</strong>
+                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Революційний формат на базі відеокодека AV1. Ще на 20–30% компактніший за WebP при фантастичній деталізації.</p>
+              </div>
+            </div>
+
+            <h4>🛡️ Як уникнути стрибків контенту (CLS — Cumulative Layout Shift)?</h4>
+            <p>
+              Чи бувало у вас, що ви заходите на сайт, збираєтесь натиснути кнопку, і раптом зверху завантажується картинка, весь текст різко стрибає вниз, і ви натискаєте рекламу?
+            </p>
+            <p>
+              Це називається <strong>стрибком макета (CLS)</strong>. Щоб браузер заздалегідь зарезервував точне місце для картинки ще ДО її завантаження з мережі, <strong>завжди прописуйте атрибути ширини та висоти</strong>:
+            </p>
+            <div class="code-snippet">&lt;!-- ✅ ПРАВИЛЬНО: браузер знає пропорції і не смикає сторінку! --&gt;
+&lt;img src="hero.webp" alt="Головний банер" width="800" height="400" loading="lazy" decoding="async"&gt;</div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 3: КАЛЬКУЛЯТОР ВАГИ ТА ШВИДКОДІЇ -->
+        <div class="perf-calc-box">
+          <div class="perf-calc-controls">
+            <h3 style="margin-top: 0; font-family: var(--font-heading);">🧮 Налаштування сторінки сайту</h3>
+
+            <div class="calc-field-group">
+              <label for="calcImgFormat">1. Формат зображень на сайті:</label>
+              <select id="calcImgFormat" class="calc-select">
+                <option value="png">Нестиснутий PNG (4.2 МБ — важко і повільно)</option>
+                <option value="jpeg">Класичний JPEG (1.6 МБ — середній розмір)</option>
+                <option value="webp" selected>Сучасний WebP (220 КБ — рекомендовано Google)</option>
+                <option value="avif">Ультра-стиснений AVIF (110 КБ — максимальне стиснення)</option>
+              </select>
+            </div>
+
+            <div class="calc-field-group">
+              <label for="calcLazy">2. Ліниве завантаження картинок (loading="lazy"):</label>
+              <select id="calcLazy" class="calc-select">
+                <option value="off">Вимкнено (браузер вантажить всі 20 картинок одразу)</option>
+                <option value="on" selected>Увімкнено (вантажаться лише ті, які учень бачить на екрані)</option>
+              </select>
+            </div>
+
+            <div class="calc-field-group">
+              <label for="calcScripts">3. Підключення JavaScript скриптів:</label>
+              <select id="calcScripts" class="calc-select">
+                <option value="head">У &lt;head&gt; без атрибутів (блокує відображення тексту на 1.4 с!)</option>
+                <option value="async">З атрибутом async (виконується хаотично під час скачування)</option>
+                <option value="defer" selected>З атрибутом defer (парсить HTML і запускає після готовності DOM)</option>
+              </select>
+            </div>
+
+            <div class="calc-field-group">
+              <label for="calcMinify">4. Мініфікація та стиснення коду (CSS / HTML):</label>
+              <select id="calcMinify" class="calc-select">
+                <option value="off">Вимкнено (багато коментарів, пробілів, відступів: ~320 КБ)</option>
+                <option value="on" selected>Увімкнено (стиснуто в один рядок + Gzip: ~45 КБ)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="perf-results-card">
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #94a3b8; font-weight: 700;">GOOGLE LIGHTHOUSE SCORE</span>
+            
+            <div class="lighthouse-gauge-wrapper">
+              <svg class="gauge-svg" viewBox="0 0 100 100">
+                <circle class="gauge-circle-bg" cx="50" cy="50" r="45"></circle>
+                <circle class="gauge-circle-val" id="calcGaugeVal" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="15"></circle>
+              </svg>
+              <span class="gauge-text-val" id="calcScoreVal">98</span>
+            </div>
+
+            <div class="perf-stats-row">
+              <div class="perf-stat-item">
+                <span class="stat-label">Загальна вага</span>
+                <span class="stat-val" id="calcTotalWeight">100 КБ</span>
+              </div>
+              <div class="perf-stat-item">
+                <span class="stat-label">Швидкість 4G</span>
+                <span class="stat-val" id="calcSpeed4G">0.15 c</span>
+              </div>
+              <div class="perf-stat-item">
+                <span class="stat-label">Швидкість 3G</span>
+                <span class="stat-val" id="calcSpeed3G">0.65 c</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ТОПІК 4: МІНІФІКАЦІЯ ТА ПІДКЛЮЧЕННЯ РЕСУРСІВ -->
+    <section id="topic4" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">ТЕМА 4 · ОПТИМІЗАЦІЯ КОДУ</div>
+          <h2 class="section-title">4. <span class="text-gradient">МІНІФІКАЦІЯ ТА ЗАВАНТАЖЕННЯ СКРИПТІВ</span></h2>
+          <p class="section-subtitle">
+            Як працюють атрибути async і defer та як мініфікація економить трафік користувачів.
+          </p>
+        </div>
+
+        <div class="accordion-item active" style="margin-bottom: 2rem;">
+          <button class="accordion-header" type="button" aria-expanded="true">
+            <span>⚡ Битва атрибутів: звичайний &lt;script&gt;, async чи defer?</span>
+            <span class="accordion-icon">−</span>
+          </button>
+          <div class="accordion-content">
+            <p>
+              Коли браузер читає HTML-файл зверху вниз і натрапляє на тег <code>&lt;script src="..."&gt;</code> у шапці <code>&lt;head&gt;</code>, він <strong>повністю зупиняє побудову сторінки</strong>, чекає скачування скрипту з сервера та його виконання. Користувач у цей час бачить білий екран.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
+              <div style="padding: 1rem; border-left: 4px solid #ef4444; background: var(--bg-primary); border-radius: 0 6px 6px 0;">
+                <strong>1. Звичайний &lt;script src="app.js"&gt;:</strong><br>
+                Зупиняє парсинг HTML ❌. Сайт «зависає». Використовувати у &lt;head&gt; категорично заборонено!
+              </div>
+              <div style="padding: 1rem; border-left: 4px solid #f59e0b; background: var(--bg-primary); border-radius: 0 6px 6px 0;">
+                <strong>2. Асинхронний &lt;script async src="analytics.js"&gt;:</strong><br>
+                Завантажується у фоні, але як тільки скачався — негайно перериває HTML і виконується. Порядок виконання не гарантується! Ідеально підходить для лічильників аналітики та реклами.
+              </div>
+              <div style="padding: 1rem; border-left: 4px solid #22c55e; background: var(--bg-primary); border-radius: 0 6px 6px 0;">
+                <strong>3. Відкладений &lt;script defer src="main.js"&gt;:</strong><br>
+                Завантажується у фоні, <strong>ніколи не блокує HTML</strong>, і виконується суворо по черзі рівно тоді, коли весь DOM-документ побудований! Це найкращий вибір для сайтів.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ 4: РЕАЛ-ТАЙМ МІНІФІКАТОР КОДУ -->
+        <div class="minifier-box">
+          <div style="background: #0f172a; color: #ffffff; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="font-family: var(--font-heading); font-weight: 700;">
+              ⚡ ІНТЕРАКТИВ 4: МІНІФІКАТОР КОДУ В РЕАЛЬНОМУ ЧАСІ
+            </div>
+            <div class="saving-badge" id="savingsBadge">
+              <span>Економія ваги:</span>
+              <span id="savingsPercent">-45%</span>
+            </div>
+          </div>
+
+          <div class="minifier-grid">
+            <div class="minifier-pane">
+              <div class="minifier-pane-header">
+                <span>📝 ОРИГІНАЛЬНИЙ CSS (З ВІДСТУПАМИ Й КОМЕНТАРЯМИ)</span>
+                <span id="origBytes">480 Б</span>
+              </div>
+              <textarea class="minifier-textarea" id="minifierInput" spellcheck="false"></textarea>
+            </div>
+
+            <div class="minifier-pane">
+              <div class="minifier-pane-header">
+                <span>🚀 МІНІФІКОВАНИЙ КОД (ДЛЯ ПРОДАКШЕНУ)</span>
+                <span id="minifiedBytes">260 Б</span>
+              </div>
+              <textarea class="minifier-textarea" id="minifierOutput" readonly spellcheck="false" style="color: #4ade80;"></textarea>
+            </div>
+          </div>
+
+          <div class="minifier-actions-bar">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="sandbox-btn" id="minifyRunBtn" type="button">⚡ Мініфікувати код</button>
+              <button class="sandbox-btn btn-reset" id="minifyResetBtn" type="button">↺ Відновити зразок</button>
+            </div>
+            <button class="sandbox-btn btn-copy" id="minifyCopyBtn" type="button">📋 Скопіювати мініфікований код</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ПРАКТИКУМ: ПІСОЧНИЦЯ З ОПТИМІЗАЦІЇ -->
+    <section id="practical-work" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge" style="background: var(--accent-blue);">ПРАКТИЧНА РОБОТА №6</div>
+          <h2 class="section-title">⚙️ <span class="text-gradient">ОПТИМІЗАЦІЯ ШВИДКОДІЇ ТА КРОСБРАУЗЕРНОСТІ</span></h2>
+          <p class="section-subtitle">
+            Усуньте 4 типові помилки початківців у коді нижче, щоб зробити сторінку кросбраузерною та швидкою.
+          </p>
+        </div>
+
+        <!-- Інтерактивний чек-лист завдань -->
+        <div class="practical-checklist-card">
+          <h3 class="checklist-title">📋 Чек-лист оптимізації (виконуйте завдання у редакторі):</h3>
+          <ul class="opt-checklist">
+            <li class="opt-checklist-item" id="chkItemBoxSizing">
+              <span class="opt-checklist-status">1</span>
+              <span><strong>Універсальний Box-Sizing:</strong> додайте у селектор <code>* { ... }</code> правило <code>box-sizing: border-box;</code> для однакового розрахунку розмірів блоків.</span>
+            </li>
+            <li class="opt-checklist-item" id="chkItemFallback">
+              <span class="opt-checklist-status">2</span>
+              <span><strong>Безпечний Fallback:</strong> у класі <code>.banner</code> додайте фолбек-колір (наприклад, <code>background-color: #3b82f6;</code>) перед градієнтом.</span>
+            </li>
+            <li class="opt-checklist-item" id="chkItemLazy">
+              <span class="opt-checklist-status">3</span>
+              <span><strong>Ліниве завантаження:</strong> додайте тегу <code>&lt;img&gt;</code> атрибут <code>loading="lazy"</code>, щоб економити трафік учня.</span>
+            </li>
+            <li class="opt-checklist-item" id="chkItemDimensions">
+              <span class="opt-checklist-status">4</span>
+              <span><strong>Запобігання стрибкам CLS:</strong> вкажіть для картинки <code>width="600"</code> та <code>height="300"</code> прямо в тезі HTML.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Пісочниця -->
+        <div class="sandbox-container" id="sandboxContainer">
+          <div class="sandbox-header">
+            <div class="sandbox-title">💻 ІНТЕРАКТИВНИЙ РЕДАКТОР ОПТИМІЗАЦІЇ</div>
+            <div class="sandbox-btn-group">
+              <button class="sandbox-btn" id="sandboxRunBtn" type="button">▶ ВИКОНАТИ КОД</button>
+              <button class="sandbox-btn btn-copy" id="sandboxCopyBtn" type="button" title="Скопіювати код у буфер обміну">📋 Скопіювати</button>
+              <button class="sandbox-btn btn-reset" id="sandboxResetBtn" type="button" title="Відновити початковий шаблон">↺ Скинути</button>
+              <button class="sandbox-btn btn-fullscreen" id="sandboxFullscreenBtn" type="button" title="Відкрити практикум на всю сторінку (Esc для виходу)">
+                <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="sandbox-workspace" style="display: flex; gap: 1rem; min-height: 440px; padding: 1rem; background: #1e1e1e;">
+            <div style="flex: 1.1; display: flex; flex-direction: column;">
+              <h3 style="color: #fff; margin-top:0; font-size: 1rem;">HTML &amp; CSS Редактор:</h3>
+              <textarea id="sandboxCodeArea" style="flex: 1; width: 100%; min-height: 380px; background: #2d2d2d; color: #38bdf8; font-family: var(--font-mono); padding: 12px; font-size: 13.5px; border: 1px solid #444; border-radius: 4px; line-height: 1.5; resize: none;" spellcheck="false"></textarea>
+            </div>
+
+            <div style="flex: 0.9; display: flex; flex-direction: column;">
+              <h3 style="color: #fff; margin-top: 0; font-size: 1rem;">Живий результат:</h3>
+              <iframe id="sandboxIframe" style="flex: 1; width: 100%; min-height: 380px; background: #ffffff; border: 1px solid #444; border-radius: 4px;"></iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ПІДСУМКОВИЙ ТЕСТ ЗНАНЬ (12 БАЛІВ) -->
+    <section id="test" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge" style="background: var(--accent-vermilion); color: #fff;">ОЦІНЮВАННЯ</div>
+          <h2 class="section-title">🎓 <span class="text-gradient">ПІДСУМКОВИЙ ТЕСТ ЗНАНЬ (12 БАЛІВ)</span></h2>
+          <p class="section-subtitle">
+            Перевірте свої знання з кросбраузерності, вендорних префіксів та оптимізації швидкодії.
+          </p>
+        </div>
+
+        <div class="quiz-card" style="background: var(--bg-card); border: 3px solid var(--border-color); border-radius: 8px; padding: 2rem; box-shadow: 6px 6px 0 var(--border-color); max-width: 860px; margin: 0 auto;">
+          <form id="lessonQuizForm">
+            <!-- 1 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>1. Який браузерний рушій використовують сучасні Google Chrome та Microsoft Edge?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q1" value="1" required> Blink</label>
+                <label class="quiz-option"><input type="radio" name="q1" value="0"> Gecko</label>
+                <label class="quiz-option"><input type="radio" name="q1" value="0"> Trident</label>
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>2. Який браузерний рушій зобов'язані використовувати всі браузери на Apple iOS (iPhone/iPad)?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q2" value="1" required> WebKit</label>
+                <label class="quiz-option"><input type="radio" name="q2" value="0"> Blink</label>
+                <label class="quiz-option"><input type="radio" name="q2" value="0"> Gecko</label>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>3. Що таке User Agent Stylesheet?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q3" value="1" required> Вбудована за замовчуванням у браузер таблиця базових стилів для тегів</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="0"> Файл, що містить віруси</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="0"> Мова програмування бази даних</label>
+              </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>4. Для чого верстальники підключають Normalize.css або CSS Reset?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q4" value="1" required> Щоб скинути та уніфікувати відмінності дефолтних стилів різних браузерів</label>
+                <label class="quiz-option"><input type="radio" name="q4" value="0"> Щоб збільшити розмір сайту вдвічі</label>
+                <label class="quiz-option"><input type="radio" name="q4" value="0"> Щоб заблокувати користувачів смартфонів</label>
+              </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>5. Який вендорний префікс належить рушію Gecko (Mozilla Firefox)?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q5" value="1" required> -moz-</label>
+                <label class="quiz-option"><input type="radio" name="q5" value="0"> -webkit-</label>
+                <label class="quiz-option"><input type="radio" name="q5" value="0"> -ms-</label>
+              </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>6. Яка директива в CSS дозволяє перевірити, чи підтримує браузер певну технологію?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q6" value="1" required> @supports</label>
+                <label class="quiz-option"><input type="radio" name="q6" value="0"> @media</label>
+                <label class="quiz-option"><input type="radio" name="q6" value="0"> @import</label>
+              </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>7. Який сучасний формат зображень є легшим за PNG/JPEG на 30–80% і рекомендований Google?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q7" value="1" required> WebP</label>
+                <label class="quiz-option"><input type="radio" name="q7" value="0"> BMP</label>
+                <label class="quiz-option"><input type="radio" name="q7" value="0"> TIFF</label>
+              </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>8. Що робить атрибут loading="lazy" у тезі &lt;img&gt;?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q8" value="1" required> Завантажує картинку лише тоді, коли користувач доскролює до неї</label>
+                <label class="quiz-option"><input type="radio" name="q8" value="0"> Видаляє картинку з сервера</label>
+                <label class="quiz-option"><input type="radio" name="q8" value="0"> Робить картинку чорно-білою</label>
+              </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>9. Навіщо обов'язково вказувати атрибути width та height у тегах &lt;img&gt;?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q9" value="1" required> Щоб зарезервувати місце під картинку та запобігти стрибкам верстки (CLS)</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="0"> Щоб змінити колір фону</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="0"> Це заборонено стандартом HTML5</label>
+              </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>10. Який атрибут підключення скрипта &lt;script defer&gt; є найбільш рекомендованим?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q10" value="1" required> defer (не блокує HTML та виконується суворо по черзі після побудови DOM)</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="0"> sync (зупиняє рендер сторінки)</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="0"> freeze (заморожує процесор)</label>
+              </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>11. Що таке мініфікація коду (CSS / JS / HTML)?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q11" value="1" required> Видалення зайвих пробілів, коментарів та переносів рядків для зменшення ваги файлу</label>
+                <label class="quiz-option"><input type="radio" name="q11" value="0"> Зміна кольору тексту на менший</label>
+                <label class="quiz-option"><input type="radio" name="q11" value="0"> Переклад коду англійською мовою</label>
+              </div>
+            </div>
+
+            <!-- 12 -->
+            <div class="quiz-question" style="margin-bottom: 1.5rem;">
+              <strong>12. Який популярний інструмент Google вимірює продуктивність сайту за шкалою від 0 до 100?</strong>
+              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <label class="quiz-option"><input type="radio" name="q12" value="1" required> Google Lighthouse</label>
+                <label class="quiz-option"><input type="radio" name="q12" value="0"> Google Translate</label>
+                <label class="quiz-option"><input type="radio" name="q12" value="0"> Google Maps</label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.15rem; padding: 1rem; margin-top: 1.5rem;">
+              ПЕРЕВІРИТИ РЕЗУЛЬТАТ ТА ОТРИМАТИ ОЦІНКУ 🎓
+            </button>
+          </form>
+
+          <div id="quizResultDisplay" class="quiz-result-score" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-secondary); border: 2px solid var(--accent-green); border-radius: 8px; text-align: center;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Нижня навігація між уроками -->
+    <section class="lesson-pager-section" aria-label="Навігація між уроками">
+      <div class="container">
+        <nav class="lesson-pager">
+          <a href="responsive-design.html" class="lesson-pager-card prev" title="Повернутися до Уроку 5">
+            <span class="lesson-pager-direction">← Попередній урок</span>
+            <span class="lesson-pager-title">Урок 5. Адаптивна верстка: viewport, @media та flex-direction</span>
+          </a>
+
+          <button class="lesson-pager-all-btn" type="button" id="pagerAllLessonsBtn" title="Відкрити програму курсу">
+            <span>📚 Всі уроки</span>
+            <span style="font-size: 0.75rem; font-family: var(--font-mono); opacity: 0.85;">15 тем</span>
+          </button>
+
+          <div class="lesson-pager-card next upcoming-next" id="upcomingLessonCard" role="button" tabindex="0" title="Натисніть, щоб переглянути програму наступних тем">
+            <span class="lesson-pager-direction" style="color: var(--accent-blue);">Наступний урок ⏳</span>
+            <span class="lesson-pager-title">Урок 7. Графіка для веб-середовища: формати та оптимізація</span>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-badge">&lt;/&gt;</span>
+            <span>Вебтехнології 10–11 класи</span>
+          </div>
+          <p class="footer-text">
+            Інтерактивний онлайн-курс зі створення сучасних сайтів для українських старшокласників.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Корисні посилання</h4>
+          <ul>
+            <li><a href="https://caniuse.com" target="_blank" rel="noopener noreferrer">Can I Use: Таблиця сумісності CSS/JS</a></li>
+            <li><a href="https://pagespeed.web.dev" target="_blank" rel="noopener noreferrer">PageSpeed Insights &amp; Lighthouse</a></li>
+            <li><a href="https://developer.mozilla.org/ru/docs/Web/Performance" target="_blank" rel="noopener noreferrer">MDN: Веб-продуктивність</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Інтерактивний веб-курс. Усі права захищено.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Спільне ядро інтерфейсу -->
+  <script src="js/core.js?v=2"></script>
+  <!-- Спільна логіка практикумів -->
+  <script src="js/sandbox.js?v=2"></script>
+  <!-- Логіка Уроку 6 -->
+  <script src="js/optimization-lesson.js?v=1"></script>
+</body>
+</html>

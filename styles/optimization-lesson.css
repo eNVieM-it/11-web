@@ -1,0 +1,664 @@
+/* ==========================================================================
+   УРОК 6: КРОСБРАУЗЕРНІСТЬ ТА ОПТИМІЗАЦІЯ • СТИЛІ ІНТЕРАКТИВІВ
+   Архітектура відповідає нео-бруталістському та модульному стилю курсу:
+     - Лабораторія браузерних рушіїв (Blink, WebKit, Gecko, User Agent CSS)
+     - Симулятор @supports та вендорних префіксів
+     - Калькулятор ваги сторінки та швидкодії (Lighthouse Score)
+     - Мініфікатор коду в реальному часі
+     - Практична пісочниця з валідатором чеклиста
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. ЗАГАЛЬНІ ЕЛЕМЕНТИ УРОКУ 6 ТА КАРТКИ РУШІЇВ
+   -------------------------------------------------------------------------- */
+.engine-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 860px) {
+  .engine-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.engine-card {
+  background: var(--bg-card, #ffffff);
+  border: 2px solid var(--border-color, #121212);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0 var(--border-color, #121212);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.15s ease;
+}
+
+.engine-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--border-color, #121212);
+}
+
+.engine-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.engine-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.engine-name {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.engine-browsers {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.engine-prefix-badge {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #0284c7;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  width: fit-content;
+}
+
+[data-theme="dark"] .engine-prefix-badge {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   2. ІНТЕРАКТИВ 1: ЛАБОРАТОРІЯ БРАУЗЕРІВ (RAW USER-AGENT VS RESET)
+   -------------------------------------------------------------------------- */
+.browser-lab-box {
+  background: var(--bg-card, #ffffff);
+  border: 3px solid var(--border-color, #121212);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--border-color, #121212);
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.browser-lab-toolbar {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 2px solid var(--border-color, #121212);
+}
+
+.browser-lab-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lab-mode-btn {
+  background: #334155;
+  color: #f8fafc;
+  border: 2px solid #475569;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-heading, sans-serif);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lab-mode-btn:hover {
+  background: #475569;
+}
+
+.lab-mode-btn.active {
+  background: var(--accent-blue, #2563eb);
+  border-color: #60a5fa;
+  color: #ffffff;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.browser-lab-viewport {
+  padding: 2rem;
+  min-height: 320px;
+  background: #ffffff;
+  color: #000000;
+  transition: all 0.2s ease;
+}
+
+/* Режими симулятора рушіїв */
+.browser-lab-viewport.mode-raw {
+  /* Симуляція розбіжностей сирих стилів */
+  margin: 8px; /* дефолтний margin body у WebKit/Blink */
+  font-family: "Times New Roman", Times, serif;
+}
+
+.browser-lab-viewport.mode-raw h1,
+.browser-lab-viewport.mode-raw h2 {
+  font-family: serif;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+}
+
+.browser-lab-viewport.mode-raw ul {
+  padding-inline-start: 40px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+.browser-lab-viewport.mode-raw button {
+  appearance: auto;
+  border: 2px outset #767676;
+  background-color: #efefef;
+  padding: 1px 6px;
+  font-family: sans-serif;
+  font-size: 13.3333px;
+  cursor: default;
+}
+
+.browser-lab-viewport.mode-raw input {
+  border: 2px inset #767676;
+  padding: 1px 2px;
+}
+
+.browser-lab-viewport.mode-reset {
+  /* Нормалізовані уніфіковані стилі */
+  margin: 0;
+  font-family: var(--font-body, 'Work Sans', sans-serif);
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.browser-lab-viewport.mode-reset h1,
+.browser-lab-viewport.mode-reset h2 {
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.browser-lab-viewport.mode-reset ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.browser-lab-viewport.mode-reset button {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.browser-lab-viewport.mode-reset input {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 0.45rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.browser-lab-info {
+  background: var(--bg-secondary, #f1f5f9);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-color, #cbd5e1);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. ІНТЕРАКТИВ 2: СИМУЛЯТОР @SUPPORTS ТА FALLBACK
+   -------------------------------------------------------------------------- */
+.supports-simulator-box {
+  background: var(--bg-card, #ffffff);
+  border: 3px solid var(--border-color, #121212);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--border-color, #121212);
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.supports-controls-bar {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.switch-label-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #475569;
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #22c55e;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
+
+.supports-stage {
+  padding: 3rem 2rem;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M0 0h20v20H0zM20 20h20v20H20z" fill="%23e2e8f0" opacity="0.4"/></svg>') repeat, #cbd5e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
+  position: relative;
+}
+
+[data-theme="dark"] .supports-stage {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M0 0h20v20H0zM20 20h20v20H20z" fill="%23334155" opacity="0.3"/></svg>') repeat, #1e293b;
+}
+
+.demo-glass-card {
+  max-width: 420px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Стан з підтримкою backdrop-filter */
+.demo-glass-card.has-support {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #0f172a;
+}
+
+/* Стан без підтримки з fallback */
+.demo-glass-card.no-support-fallback {
+  background: #ffffff; /* Безпечний непрозорий фолбек */
+  border: 1px solid #94a3b8;
+  color: #0f172a;
+}
+
+/* Стан без підтримки БЕЗ fallback — демонстрація проблеми! */
+.demo-glass-card.no-support-broken {
+  background: transparent; /* Фолбека немає, скло прозоре без розмиття! */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+}
+
+.supports-code-preview {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 1.25rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  border-top: 2px solid var(--border-color, #121212);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* --------------------------------------------------------------------------
+   4. ІНТЕРАКТИВ 3: КАЛЬКУЛЯТОР ВАГИ ТА ШВИДКОДІЇ (LIGHTHOUSE SCORE)
+   -------------------------------------------------------------------------- */
+.perf-calc-box {
+  background: var(--bg-card, #ffffff);
+  border: 3px solid var(--border-color, #121212);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--border-color, #121212);
+  padding: 2rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 860px) {
+  .perf-calc-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+.perf-calc-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.calc-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.calc-field-group label {
+  font-family: var(--font-heading, sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.calc-select {
+  padding: 0.65rem 0.85rem;
+  border: 2px solid var(--border-color, #121212);
+  border-radius: 6px;
+  background: var(--bg-primary, #ffffff);
+  color: var(--text-primary);
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.perf-results-card {
+  background: #0b1329;
+  color: #f8fafc;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 2px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.lighthouse-gauge-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg {
+  transform: rotate(-90deg);
+  width: 120px;
+  height: 120px;
+}
+
+.gauge-circle-bg {
+  fill: none;
+  stroke: #1e293b;
+  stroke-width: 8;
+}
+
+.gauge-circle-val {
+  fill: none;
+  stroke: #22c55e;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease, stroke 0.3s ease;
+}
+
+.gauge-text-val {
+  position: absolute;
+  font-family: var(--font-heading, sans-serif);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #22c55e;
+}
+
+.perf-stats-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-top: 1px solid #1e293b;
+  padding-top: 1.25rem;
+}
+
+.perf-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.stat-val {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   5. ІНТЕРАКТИВ 4: РЕАЛ-ТАЙМ МІНІФІКАТОР КОДУ
+   -------------------------------------------------------------------------- */
+.minifier-box {
+  background: var(--bg-card, #ffffff);
+  border: 3px solid var(--border-color, #121212);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--border-color, #121212);
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.minifier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 280px;
+  background: #1e293b;
+}
+
+@media (max-width: 768px) {
+  .minifier-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.minifier-pane {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #334155;
+}
+
+.minifier-pane:last-child {
+  border-right: none;
+}
+
+.minifier-pane-header {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+}
+
+.minifier-textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 220px;
+  background: #1e1e1e;
+  color: #38bdf8;
+  border: none;
+  padding: 1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.minifier-textarea:focus {
+  outline: none;
+  background: #181818;
+}
+
+.minifier-actions-bar {
+  background: var(--bg-secondary, #f8fafc);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 2px solid var(--border-color, #121212);
+}
+
+.saving-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .saving-badge {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+/* --------------------------------------------------------------------------
+   6. ЧЕК-ЛИСТ ПРАКТИКУМУ ДЛЯ ПІСОЧНИЦІ
+   -------------------------------------------------------------------------- */
+.practical-checklist-card {
+  background: var(--bg-card, #ffffff);
+  border: 2px solid var(--border-color, #121212);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 4px 4px 0 var(--border-color, #121212);
+}
+
+.checklist-title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.opt-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.opt-checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.opt-checklist-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+
+.opt-checklist-item.passed .opt-checklist-status {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.opt-checklist-item.passed {
+  color: #166534;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .opt-checklist-item.passed {
+  color: #86efac;
+}
