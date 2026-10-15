@@ -20,9 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Блок 5: Практикум у пісочниці з живим чек-листом
   initOptimizationSandbox();
 
-  // Підсумковий тест знань уроку
-  initOptimizationQuiz();
-
   console.log('🚀 Урок 6 (Кросбраузерність та оптимізація) успішно ініціалізовано!');
 });
 
@@ -441,6 +438,19 @@ function initOptimizationSandbox() {
       const icon = chkBoxSizing.querySelector('.opt-checklist-status');
       if (icon) icon.textContent = hasBoxSizing ? '✓' : '4';
     }
+
+    // Якщо всі 4 завдання виконано — зараховуємо Урок 6 у прогрес курсу
+    if (hasLazy && hasDimensions && hasFallback && hasBoxSizing) {
+      try {
+        const STORAGE_KEY = 'veb_course_completed_lessons';
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const list = raw ? JSON.parse(raw) : [];
+        if (!list.includes('06')) {
+          list.push('06');
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        }
+      } catch (err) {}
+    }
   }
 
   function render() {
@@ -476,56 +486,5 @@ function initOptimizationSandbox() {
     closeIcon: '✖',
     closeLabel: 'Закрити',
     hasTasksDrawer: false
-  });
-}
-
-/** -------------------------------------------------------------------------
- * БЛОК 6: ПІДСУМКОВИЙ ТЕСТ ЗНАНЬ (12 БАЛІВ)
- * ------------------------------------------------------------------------ */
-function initOptimizationQuiz() {
-  const form = document.getElementById('lessonQuizForm');
-  const resultDisplay = document.getElementById('quizResultDisplay');
-
-  if (!form || !resultDisplay) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let score = 0;
-
-    for (let i = 1; i <= 12; i++) {
-      const selected = form.querySelector(`input[name="q${i}"]:checked`);
-      if (selected && selected.value === '1') {
-        score++;
-      }
-    }
-
-    resultDisplay.style.display = 'block';
-    let gradeMsg = '';
-
-    if (score >= 10) {
-      gradeMsg = '🏆 ВІДМІННО! Ви блискуче опанували кросбраузерність та сучасні методи оптимізації вебсайтів!';
-    } else if (score >= 7) {
-      gradeMsg = '👍 ДОБРЕ! Достатній рівень знань. Повторіть роботу атрибутів defer/async та форматів зображень.';
-    } else {
-      gradeMsg = '📖 ПОТРІБНО ПОВТОРИТИ! Перечитайте теоретичні блоки уроку та спробуйте пройти тест ще раз.';
-    }
-
-    resultDisplay.innerHTML = `
-      <div>ВАША ОЦІНКА ЗА УРОК 6: <strong>${score} / 12 БАЛІВ</strong></div>
-      <div style="font-size: 1.1rem; font-family: var(--font-sans); margin-top: 0.5rem; font-weight: 500;">${gradeMsg}</div>
-    `;
-
-    resultDisplay.scrollIntoView({ behavior: 'smooth' });
-
-    // Позначаємо урок 6 як пройдений у системі прогресу курсу
-    try {
-      const STORAGE_KEY = 'veb_course_completed_lessons';
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const list = raw ? JSON.parse(raw) : [];
-      if (!list.includes('06')) {
-        list.push('06');
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-      }
-    } catch (err) {}
   });
 }

@@ -210,8 +210,7 @@
           <li><a href="#topic2" class="nav-link">2. @supports &amp; Префікси</a></li>
           <li><a href="#topic3" class="nav-link">3. Оптимізація медіа</a></li>
           <li><a href="#topic4" class="nav-link">4. Мініфікація</a></li>
-          <li><a href="#practical-work" class="nav-link">Практикум ⚙️</a></li>
-          <li><a href="#test" class="nav-link nav-link-highlight">Тест уроку ★</a></li>
+          <li><a href="#practical-work" class="nav-link nav-link-highlight">Практикум ⚙️</a></li>
         </ul>
       </nav>
 
@@ -302,7 +301,7 @@
             </div>
             <div class="self-study-step-item">
               <span class="self-study-step-num">4</span>
-              <span><strong>Пройди тест</strong> наприкінці сторінки та отримай оцінку до 12 балів.</span>
+              <span><strong>Отримай 4 зелених галочки</strong> у Практикумі та перевір сторінку в живому прев'ю!</span>
             </div>
           </div>
         </div>
@@ -820,149 +819,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ПІДСУМКОВИЙ ТЕСТ ЗНАНЬ (12 БАЛІВ) -->
-    <section id="test" class="section" style="background: var(--bg-secondary);">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-badge" style="background: var(--accent-vermilion); color: #fff;">ОЦІНЮВАННЯ</div>
-          <h2 class="section-title">🎓 <span class="text-gradient">ПІДСУМКОВИЙ ТЕСТ ЗНАНЬ (12 БАЛІВ)</span></h2>
-          <p class="section-subtitle">
-            Перевірте свої знання з кросбраузерності, вендорних префіксів та оптимізації швидкодії.
-          </p>
-        </div>
-
-        <div class="quiz-card" style="background: var(--bg-card); border: 3px solid var(--border-color); border-radius: 8px; padding: 2rem; box-shadow: 6px 6px 0 var(--border-color); max-width: 860px; margin: 0 auto;">
-          <form id="lessonQuizForm">
-            <!-- 1 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>1. Який браузерний рушій (двигун) працює у Google Chrome та Microsoft Edge?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q1" value="1" required> Blink</label>
-                <label class="quiz-option"><input type="radio" name="q1" value="0"> Gecko</label>
-                <label class="quiz-option"><input type="radio" name="q1" value="0"> Trident</label>
-              </div>
-            </div>
-
-            <!-- 2 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>2. Який двигун обов'язково використовують абсолютно всі браузери на iPhone та iPad?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q2" value="1" required> WebKit</label>
-                <label class="quiz-option"><input type="radio" name="q2" value="0"> Blink</label>
-                <label class="quiz-option"><input type="radio" name="q2" value="0"> Gecko</label>
-              </div>
-            </div>
-
-            <!-- 3 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>3. Що таке User Agent Stylesheet («заводські налаштування браузера»)?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q3" value="1" required> Вбудовані за замовчуванням у браузер початкові стилі для тегів</label>
-                <label class="quiz-option"><input type="radio" name="q3" value="0"> Файл, що містить комп'ютерні віруси</label>
-                <label class="quiz-option"><input type="radio" name="q3" value="0"> Програма для зламу сайтів</label>
-              </div>
-            </div>
-
-            <!-- 4 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>4. Навіщо верстальники використовують скидання стилів (CSS Reset або Normalize)?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q4" value="1" required> Щоб стерти відмінності «заводських налаштувань» і зробити вигляд елементів однаковим у всіх браузерах</label>
-                <label class="quiz-option"><input type="radio" name="q4" value="0"> Щоб збільшити розмір сайту вдвічі</label>
-                <label class="quiz-option"><input type="radio" name="q4" value="0"> Щоб заблокувати користувачів смартфонів</label>
-              </div>
-            </div>
-
-            <!-- 5 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>5. Яка спеціальна позначка (вендорний префікс) належить браузеру Mozilla Firefox?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q5" value="1" required> -moz-</label>
-                <label class="quiz-option"><input type="radio" name="q5" value="0"> -webkit-</label>
-                <label class="quiz-option"><input type="radio" name="q5" value="0"> -ms-</label>
-              </div>
-            </div>
-
-            <!-- 6 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>6. Яке CSS-правило перевіряє, чи вміє браузер відображати потрібний ефект?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q6" value="1" required> @supports</label>
-                <label class="quiz-option"><input type="radio" name="q6" value="0"> @media</label>
-                <label class="quiz-option"><input type="radio" name="q6" value="0"> @import</label>
-              </div>
-            </div>
-
-            <!-- 7 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>7. Який сучасний формат картинок зменшує їхню вагу у 3–5 разів без втрати якості?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q7" value="1" required> WebP</label>
-                <label class="quiz-option"><input type="radio" name="q7" value="0"> BMP</label>
-                <label class="quiz-option"><input type="radio" name="q7" value="0"> TIFF</label>
-              </div>
-            </div>
-
-            <!-- 8 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>8. Як працює атрибут loading="lazy" (ліниве завантаження) у тезі &lt;img&gt;?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q8" value="1" required> Завантажує картинку лише тоді, коли учень догортає екран до неї</label>
-                <label class="quiz-option"><input type="radio" name="q8" value="0"> Видаляє картинку з сервера</label>
-                <label class="quiz-option"><input type="radio" name="q8" value="0"> Робить картинку чорно-білою</label>
-              </div>
-            </div>
-
-            <!-- 9 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>9. Чому картинці обов'язково вказувати width та height (метафора «вільного крісла»)?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q9" value="1" required> Щоб браузер заздалегідь залишив місце під картинку і текст не стрибав на екрані</label>
-                <label class="quiz-option"><input type="radio" name="q9" value="0"> Щоб змінити колір фону сторінки</label>
-                <label class="quiz-option"><input type="radio" name="q9" value="0"> Це заборонено стандартом HTML5</label>
-              </div>
-            </div>
-
-            <!-- 10 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>10. Чому для підключення скриптів найкраще додавати слово defer?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q10" value="1" required> Скрипт завантажується тихо у фоні й запускається лише тоді, коли вся сторінка вже готова і текст можна читати</label>
-                <label class="quiz-option"><input type="radio" name="q10" value="0"> Скрипт повністю заморожує процесор комп'ютера</label>
-                <label class="quiz-option"><input type="radio" name="q10" value="0"> Скрипт видаляє всі картинки</label>
-              </div>
-            </div>
-
-            <!-- 11 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>11. Що таке мініфікація коду (CSS / HTML)?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q11" value="1" required> Видалення зайвих пробілів, коментарів та переносів рядків для зменшення ваги файлу</label>
-                <label class="quiz-option"><input type="radio" name="q11" value="0"> Зміна кольору тексту на менший</label>
-                <label class="quiz-option"><input type="radio" name="q11" value="0"> Переклад коду англійською мовою</label>
-              </div>
-            </div>
-
-            <!-- 12 -->
-            <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>12. Який популярний інструмент Google вимірює продуктивність сайту за шкалою від 0 до 100?</strong>
-              <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q12" value="1" required> Google Lighthouse</label>
-                <label class="quiz-option"><input type="radio" name="q12" value="0"> Google Translate</label>
-                <label class="quiz-option"><input type="radio" name="q12" value="0"> Google Maps</label>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.15rem; padding: 1rem; margin-top: 1.5rem;">
-              ПЕРЕВІРИТИ РЕЗУЛЬТАТ ТА ОТРИМАТИ ОЦІНКУ 🎓
-            </button>
-          </form>
-
-          <div id="quizResultDisplay" class="quiz-result-score" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-secondary); border: 2px solid var(--accent-green); border-radius: 8px; text-align: center;"></div>
-        </div>
       </div>
     </section>
 
