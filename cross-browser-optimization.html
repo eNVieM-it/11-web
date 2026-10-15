@@ -277,11 +277,51 @@
     <!-- ТОПІК 1: БРАУЗЕРНІ РУШІЇ ТА CSS RESET -->
     <section id="topic1" class="section">
       <div class="container">
+
+        <!-- Пам'ятка: Як опрацьовувати урок самостійно -->
+        <div class="self-study-guide-card">
+          <div class="self-study-title">
+            <span>🧭</span>
+            <span>Як працювати з цим уроком вдома (якщо навчаєшся самостійно):</span>
+          </div>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary);">
+            Не хвилюйся, якщо ти пропустив заняття чи вивчаєш тему на дистанційці! Матеріал побудований так, щоб ти легко впорався сам крок за кроком:
+          </p>
+          <div class="self-study-steps">
+            <div class="self-study-step-item">
+              <span class="self-study-step-num">1</span>
+              <span><strong>Прочитай теорію</strong> із простими життєвими прикладами та метафорами.</span>
+            </div>
+            <div class="self-study-step-item">
+              <span class="self-study-step-num">2</span>
+              <span><strong>Поклацай 4 тренажери</strong> — перемикай тумблери та спостерігай за змінами.</span>
+            </div>
+            <div class="self-study-step-item">
+              <span class="self-study-step-num">3</span>
+              <span><strong>Виконай 4 кроки</strong> у Практикумі (під кожним завданням є готова підказка!).</span>
+            </div>
+            <div class="self-study-step-item">
+              <span class="self-study-step-num">4</span>
+              <span><strong>Пройди тест</strong> наприкінці сторінки та отримай оцінку до 12 балів.</span>
+            </div>
+          </div>
+        </div>
+
         <div class="section-header">
           <div class="section-badge">ТЕМА 1 · ФУНДАМЕНТ</div>
           <h2 class="section-title">1. <span class="text-gradient">БРАУЗЕРНІ РУШІЇ ТА СКИДАННЯ СТИЛІВ</span></h2>
           <p class="section-subtitle">
-            Як різні браузери обробляють один і той самий код та навіщо потрібен Normalize.css / CSS Reset.
+            Чому браузери показують сайти по-різному та як «витерти дошку начисто» за допомогою CSS Reset.
+          </p>
+        </div>
+
+        <!-- Пояснення через метафору рецепта -->
+        <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; box-shadow: 4px 4px 0 var(--border-color);">
+          <h3 style="margin: 0 0 0.5rem 0; font-family: var(--font-heading); font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🍳</span> <span>Проста аналогія: Рецепт та три Шеф-кухарі</span>
+          </h3>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6;">
+            Уяви, що <strong>HTML та CSS — це кулінарний рецепт</strong> (наприклад, приготування піци), де написано: <em>«взяти тісто, додати соус, запекти до золотистої скоринки»</em>. А <strong>браузерний рушій</strong> — це шеф-кухар на кухні, який цей рецепт читає та готує страву на екрані вашого пристрою. Рецепт один і той самий, але кожен кухар готує його трохи по-своєму: один зробить бортики товстішими, інший покладе більше сиру. Саме тому один і той самий сайт може мати дрібні відмінності в різних браузерах!
           </p>
         </div>
 
@@ -296,7 +336,7 @@
               </div>
             </div>
             <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
-              Найпопулярніший рушій у світі (понад 70% ринку). Створений Google на основі WebKit у 2013 році. Використовує високопродуктивний компілятор JavaScript V8.
+              Найпоширеніший двигун у світі. Працює у більшості браузерів на комп'ютерах та на смартфонах з Android.
             </p>
             <span class="engine-prefix-badge">-webkit- префікс</span>
           </div>
@@ -306,11 +346,11 @@
               <span class="engine-icon">🧭</span>
               <div>
                 <h3 class="engine-name">WebKit</h3>
-                <span class="engine-browsers">Apple Safari (macOS, iOS, iPadOS)</span>
+                <span class="engine-browsers">Apple Safari (macOS, iPhone, iPad)</span>
               </div>
             </div>
             <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
-              Рідний рушій компанії Apple. За правилами App Store, <strong>усі без винятку браузери на iPhone та iPad</strong> зобов'язані використовувати WebKit під капотом!
+              Рідний двигун компанії Apple. За правилами компанії, <strong>абсолютно всі браузери на iPhone та iPad</strong> використовують саме WebKit.
             </p>
             <span class="engine-prefix-badge">-webkit- префікс</span>
           </div>
@@ -320,11 +360,11 @@
               <span class="engine-icon">🦊</span>
               <div>
                 <h3 class="engine-name">Gecko</h3>
-                <span class="engine-browsers">Mozilla Firefox, Tor Browser</span>
+                <span class="engine-browsers">Mozilla Firefox</span>
               </div>
             </div>
             <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
-              Повністю незалежний відкритий рушій від Mozilla. Відомий суворим дотриманням стандартів W3C та потужними інструментами розробника (DevTools).
+              Повністю незалежний двигун браузера Firefox. Не підпорядковується гігантам на кшталт Google чи Apple та ретельно захищає приватність.
             </p>
             <span class="engine-prefix-badge" style="color: #e11d48; background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.4);">-moz- префікс</span>
           </div>
@@ -333,23 +373,24 @@
         <!-- Теоретичний блок: User Agent Stylesheet -->
         <div class="accordion-item active" style="margin-bottom: 2rem;">
           <button class="accordion-header" type="button" aria-expanded="true">
-            <span>📖 Що таке User Agent Stylesheet і чому він створює проблеми?</span>
+            <span>📖 Що таке «заводські налаштування» браузера і чому їх треба скидати?</span>
             <span class="accordion-icon">−</span>
           </button>
           <div class="accordion-content">
             <p>
-              Коли ви створюєте абсолютно порожній HTML-документ без жодного рядка CSS, браузер все одно відображає заголовки великими, списки — з крапками, а сторінку — з білими полями по краях.
+              Коли ви створюєте абсолютно порожній файл без жодного рядка стилів, браузер все одно показує заголовки жирними, текст — чорним, а навколо сторінки залишає білі щілини.
             </p>
             <p>
-              Це відбувається тому, що кожен браузер має власну вбудовану таблицю стилів — <strong>User Agent Stylesheet</strong>. Але біда в тому, що у Chrome, Safari та Firefox ці стилі відрізняються:
+              Це називається <strong>User Agent Stylesheet</strong> — вбудовані заводські налаштування браузера. Але проблема в тому, що в різних браузерів ці «заводські звички» трохи відрізняються:
             </p>
             <ul>
-              <li><strong>Відступи body:</strong> більшість браузерів за замовчуванням ставлять <code>margin: 8px;</code>, через що елементи не прилягають до країв вікна.</li>
-              <li><strong>Списки &lt;ul&gt;:</strong> одні браузери задають відступ зліва через <code>padding-left: 40px;</code>, а старі рушії робили це через <code>margin-left</code>.</li>
-              <li><strong>Форми та кнопки:</strong> кнопки в Safari на macOS мають характерні закруглення та градієнти операційної системи, тоді як у Windows вони виглядають інакше.</li>
+              <li><strong>Відступи від країв:</strong> за замовчуванням браузер додає <code>margin: 8px</code> навколо всього сайту, через що шапка сайту не прилягає щільно до країв вікна.</li>
+              <li><strong>Списки &lt;ul&gt;:</strong> браузери самі додають великий відступ зліва (близько <code>40px</code>) для крапок списку.</li>
+              <li><strong>Кнопки:</strong> у старих налаштуваннях кнопки виглядають як сірі опуклі прямокутники з 90-х років.</li>
             </ul>
             <div class="rule-box">
-              <strong>💡 Рішення індустрії:</strong> використання <code>Normalize.css</code> або сучасного <code>CSS Reset</code>. Скидання прибирає небажані розбіжності та створює «чисте полотно», на якому ваш дизайн виглядає передбачувано у будь-якому куточку планети.
+              <strong>💡 Рішення: Скидання стилів (CSS Reset / Normalize):</strong><br>
+              Уявіть, що ви прийшли на урок, а на шкільній дошці залишилися старі крейдяні написи. Перше, що ви робите — <strong>витираєте дошку начисто</strong>! Скидання стилів (наприклад, файл <code>normalize.css</code> або простий рядок <code>* { margin: 0; padding: 0; box-sizing: border-box; }</code>) витирає всі браузерні розбіжності та створює чисте полотно для вашого дизайну.
             </div>
           </div>
         </div>
@@ -393,28 +434,36 @@
           <div class="section-badge">ТЕМА 2 · СУМІСНІСТЬ</div>
           <h2 class="section-title">2. <span class="text-gradient">ВЕНДОРНІ ПРЕФІКСИ ТА ДИРЕКТИВА @SUPPORTS</span></h2>
           <p class="section-subtitle">
-            Прогресивне покращення, перевірка сумісності на Can I Use та створення надійних фолбеків.
+            Як запускати нові візуальні ефекти без ризику зламати сайт для старих пристроїв.
           </p>
         </div>
 
         <div class="accordion-item active" style="margin-bottom: 2rem;">
           <button class="accordion-header" type="button" aria-expanded="true">
-            <span>🛡️ Навіщо потрібні префікси і як працює правило каскаду Fallback?</span>
+            <span>🛡️ Навіщо потрібні префікси і чому важливе «запасне колесо» (Fallback)?</span>
             <span class="accordion-icon">−</span>
           </button>
           <div class="accordion-content">
             <p>
-              Коли консорціум W3C розробляє нову експериментальну властивість CSS (наприклад, <code>backdrop-filter</code> чи складні градієнти), браузери спочатку впроваджують її під своїм персональним «прізвищем» — <strong>вендорним префіксом</strong>:
+              Коли інженери вигадують нову стильну властивість (наприклад, матове розмите скло <code>backdrop-filter</code> або складні градієнти), вони спершу запускають її в <strong>«тестовому режимі»</strong> і додають перед назвою свій фірмовий префікс:
             </p>
             <ul>
-              <li><code>-webkit-</code> — для браузерів на рушіях Blink та WebKit (Chrome, Safari, Edge);</li>
-              <li><code>-moz-</code> — для рушія Gecko (Mozilla Firefox).</li>
+              <li><code>-webkit-</code> — для браузерів на двигунах Blink та WebKit (Google Chrome, Apple Safari, Microsoft Edge);</li>
+              <li><code>-moz-</code> — для браузера Mozilla Firefox.</li>
             </ul>
+
+            <div style="background: var(--bg-card); border-left: 4px solid var(--accent-blue); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 6px 6px 0;">
+              <strong>🚗 Метафора «Запасного колеса» (Fallback):</strong><br>
+              Уяви, що у тебе в авто є ультрасучасний автопілот, але ти все одно возиш у багажнику запасне колесо. У веброзробці <strong>Fallback</strong> — це саме таке запасне колесо! Якщо учень відкриє сайт із красивим розмитим склом на старенькому телефоні чи телевізорі, який не вміє розмивати фон, і ти <em>не прописав</em> звичайний фоновий колір — картка стане повністю прозорою, а білий текст зіллється з картинкою позаду і зникне.
+            </div>
+
             <p>
-              <strong>Залізне правило верстки:</strong> спочатку пишуться властивості з префіксами, а в самому кінці — офіційна стандартна властивість W3C без префіксу! Браузер застосує стандартне правило, якщо воно йому відоме, або скористається префіксом.
+              <strong>Директива @supports:</strong> це проста умова для браузера — <em>«Якщо ти підтримуєш цей модний ефект — увімкни його! А якщо ні — покажи надійний запасний варіант»</em>.
             </p>
+
             <div class="rule-box">
-              <strong>Директива @supports (CSS Feature Queries):</strong> дозволяє верстальнику запитати браузер: «Ти підтримуєш цю властивість?». Якщо так — застосовуються ультрасучасні ефекти. Якщо ні — браузер спокійно використовує простий надійний фолбек, не ламаючи сторінку.
+              <strong>🔍 Головна шпаргалка вебдизайнера — сайт Can I Use (caniuse.com):</strong><br>
+              Тобі не потрібно тримати в голові сотні правил! Просто введи на сайті <code>caniuse.com</code> назву будь-якої CSS-властивості (наприклад, <code>backdrop-filter</code> чи <code>flexbox</code>), і таблиця одразу зеленим та червоним кольором покаже, у яких браузерах вона вже працює, а де потрібен запасний варіант.
             </div>
           </div>
         </div>
@@ -471,42 +520,48 @@
           <div class="section-badge">ТЕМА 3 · ШВИДКОДІЯ</div>
           <h2 class="section-title">3. <span class="text-gradient">ОПТИМІЗАЦІЯ ЗОБРАЖЕНЬ ТА МЕДІА</span></h2>
           <p class="section-subtitle">
-            Формати WebP та AVIF, адаптивні картинки, атрибут loading="lazy" та боротьба зі стрибками верстки (CLS).
+            Формати WebP та AVIF, розумне завантаження картинок і захист від стрибків тексту.
           </p>
         </div>
 
         <div class="accordion-item active" style="margin-bottom: 2rem;">
           <button class="accordion-header" type="button" aria-expanded="true">
-            <span>🖼️ Чому картинки — це 70% ваги сайту і як їх оптимізувати?</span>
+            <span>🖼️ Чому картинки займають 70% ваги сайту і як зробити їх невагомими?</span>
             <span class="accordion-icon">−</span>
           </button>
           <div class="accordion-content">
             <p>
-              Зображення — це найважча частина сучасного вебу. Якщо завантажити на сайт фотографію прямо з камери смартфона (розміром 5–8 МБ), користувач на мобільному 3G чекатиме пів хвилини, злиться і піде геть.
+              Картинки — це найважча частина будь-якого сайту. Якщо вставити фото просто з камери смартфона (воно важить 5–8 Мегабайтів!), користувач зі слабким мобільним інтернетом чекатиме пів хвилини, злиться і закриє сайт.
             </p>
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
               <div style="padding: 1rem; border: 2px solid var(--border-color); border-radius: 6px; background: var(--bg-primary);">
-                <strong style="color: #ef4444;">PNG / JPEG (Класика)</strong>
-                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Великий розмір файлів. PNG потрібен для прозорості, JPEG — для фото. Застарілі алгоритми стиснення.</p>
+                <strong style="color: #ef4444;">JPEG (Класика для фото)</strong>
+                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Старий формат для фотографій. Не вміє робити прозорий фон. Файли часто завеликі.</p>
               </div>
               <div style="padding: 1rem; border: 2px solid var(--border-color); border-radius: 6px; background: var(--bg-primary);">
-                <strong style="color: #3b82f6;">WebP (Сучасний стандарт)</strong>
-                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Розроблений Google. На 30–80% легший за JPEG та PNG при тій самій якості! Підтримує і прозорість, і анімацію.</p>
+                <strong style="color: #f59e0b;">PNG (Для прозорості)</strong>
+                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Ідеальний для логотипів та іконок з прозорим фоном, але фотографії в ньому виходять гігантськими.</p>
               </div>
               <div style="padding: 1rem; border: 2px solid var(--border-color); border-radius: 6px; background: var(--bg-primary);">
-                <strong style="color: #10b981;">AVIF (Майбутнє вебу)</strong>
-                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Революційний формат на базі відеокодека AV1. Ще на 20–30% компактніший за WebP при фантастичній деталізації.</p>
+                <strong style="color: #10b981;">WebP та AVIF (Сучасні розумні формати)</strong>
+                <p style="font-size: 0.88rem; margin-top: 0.5rem; margin-bottom: 0;">Зменшують вагу картинки <strong>у 3–5 разів</strong> без втрати якості! Підтримують і прозорість, і анімацію.</p>
               </div>
             </div>
 
-            <h4>🛡️ Як уникнути стрибків контенту (CLS — Cumulative Layout Shift)?</h4>
+            <div style="background: var(--bg-card); border-left: 4px solid var(--accent-green); padding: 1rem 1.25rem; margin: 1.25rem 0; border-radius: 0 6px 6px 0;">
+              <strong>📱 Метафора стрічки в Instagram / TikTok (loading="lazy"):</strong><br>
+              Коли ти гортаєш соцмережі, телефон не завантажує одразу всі 1000 фото з профілю, а підвантажує їх по черзі, коли ти скролиш униз. В HTML для цього є чарівний атрибут <code>loading="lazy"</code> — він каже браузеру: <em>«Не скачуй цю картинку, поки учень не докрутить екран до неї»</em>. Це економить купу мегабайтів!
+            </div>
+
+            <h4>🪑 Метафора «Вільного крісла»: як зупинити стрибки тексту на екрані?</h4>
             <p>
-              Чи бувало у вас, що ви заходите на сайт, збираєтесь натиснути кнопку, і раптом зверху завантажується картинка, весь текст різко стрибає вниз, і ви натискаєте рекламу?
+              Чи бувало у тебе: відкриваєш сайт, хочеш натиснути кнопку «Детальніше», і раптом зверху довантажується велика картинка, текст різко стрибає вниз, і ти випадково тиснеш на рекламу?
             </p>
             <p>
-              Це називається <strong>стрибком макета (CLS)</strong>. Щоб браузер заздалегідь зарезервував точне місце для картинки ще ДО її завантаження з мережі, <strong>завжди прописуйте атрибути ширини та висоти</strong>:
+              Щоб сторінка стояла як вкопана, картинці в тезі <code>&lt;img&gt;</code> завжди вказують атрибути ширини <code>width</code> та висоти <code>height</code>. Браузер ще ДО скачування картинки заздалегідь бронює для неї <strong>«вільне крісло»</strong> точного розміру, і текст більше нікуди не стрибає!
             </p>
-            <div class="code-snippet">&lt;!-- ✅ ПРАВИЛЬНО: браузер знає пропорції і не смикає сторінку! --&gt;
+            <div class="code-snippet">&lt;!-- ✅ ПРАВИЛЬНО: браузер заздалегідь бронює місце 800x400 і не смикає текст! --&gt;
 &lt;img src="hero.webp" alt="Головний банер" width="800" height="400" loading="lazy" decoding="async"&gt;</div>
           </div>
         </div>
@@ -535,11 +590,11 @@
             </div>
 
             <div class="calc-field-group">
-              <label for="calcScripts">3. Підключення JavaScript скриптів:</label>
+              <label for="calcScripts">3. Підключення додаткових програм-скриптів:</label>
               <select id="calcScripts" class="calc-select">
-                <option value="head">У &lt;head&gt; без атрибутів (блокує відображення тексту на 1.4 с!)</option>
-                <option value="async">З атрибутом async (виконується хаотично під час скачування)</option>
-                <option value="defer" selected>З атрибутом defer (парсить HTML і запускає після готовності DOM)</option>
+                <option value="head">У &lt;head&gt; без атрибутів (зупиняє появу тексту на 1.4 с!)</option>
+                <option value="async">З атрибутом async (виконується несподівано під час завантаження)</option>
+                <option value="defer" selected>З атрибутом defer (скачується тихо у фоні й не заважає читати текст)</option>
               </select>
             </div>
 
@@ -547,7 +602,7 @@
               <label for="calcMinify">4. Мініфікація та стиснення коду (CSS / HTML):</label>
               <select id="calcMinify" class="calc-select">
                 <option value="off">Вимкнено (багато коментарів, пробілів, відступів: ~320 КБ)</option>
-                <option value="on" selected>Увімкнено (стиснуто в один рядок + Gzip: ~45 КБ)</option>
+                <option value="on" selected>Увімкнено (стиснуто в один щільний рядок: ~45 КБ)</option>
               </select>
             </div>
           </div>
@@ -588,34 +643,39 @@
       <div class="container">
         <div class="section-header">
           <div class="section-badge">ТЕМА 4 · ОПТИМІЗАЦІЯ КОДУ</div>
-          <h2 class="section-title">4. <span class="text-gradient">МІНІФІКАЦІЯ ТА ЗАВАНТАЖЕННЯ СКРИПТІВ</span></h2>
+          <h2 class="section-title">4. <span class="text-gradient">МІНІФІКАЦІЯ ТА ШВИДКЕ ЗАВАНТАЖЕННЯ</span></h2>
           <p class="section-subtitle">
-            Як працюють атрибути async і defer та як мініфікація економить трафік користувачів.
+            Як розвантажити інтернет-канал та чому браузер любить щільний код без пробілів.
           </p>
         </div>
 
         <div class="accordion-item active" style="margin-bottom: 2rem;">
           <button class="accordion-header" type="button" aria-expanded="true">
-            <span>⚡ Битва атрибутів: звичайний &lt;script&gt;, async чи defer?</span>
+            <span>⚡ Метафора будівництва: чому сайт чекає скрипти і як допомагає слово defer?</span>
             <span class="accordion-icon">−</span>
           </button>
           <div class="accordion-content">
             <p>
-              Коли браузер читає HTML-файл зверху вниз і натрапляє на тег <code>&lt;script src="..."&gt;</code> у шапці <code>&lt;head&gt;</code>, він <strong>повністю зупиняє побудову сторінки</strong>, чекає скачування скрипту з сервера та його виконання. Користувач у цей час бачить білий екран.
+              Браузер читає HTML-файл згори донизу і будує сторінку <strong>цеглинка за цеглинкою</strong>. Уяви будівництво будинку: якщо муляри раптом натрапляють на звичайний тег <code>&lt;script src="..."&gt;</code> у шапці сайту, робота миттєво зупиняється!
             </p>
             <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
               <div style="padding: 1rem; border-left: 4px solid #ef4444; background: var(--bg-primary); border-radius: 0 6px 6px 0;">
-                <strong>1. Звичайний &lt;script src="app.js"&gt;:</strong><br>
-                Зупиняє парсинг HTML ❌. Сайт «зависає». Використовувати у &lt;head&gt; категорично заборонено!
+                <strong>1. Звичайний &lt;script src="app.js"&gt; (Без атрибутів):</strong><br>
+                Кричить «Стоп будівництво!». Браузер завмирає, чекає скачування файлу, а учень у цей час дивиться на білий екран ❌. Ставити такий тег у шапку &lt;head&gt; не можна!
               </div>
               <div style="padding: 1rem; border-left: 4px solid #f59e0b; background: var(--bg-primary); border-radius: 0 6px 6px 0;">
-                <strong>2. Асинхронний &lt;script async src="analytics.js"&gt;:</strong><br>
-                Завантажується у фоні, але як тільки скачався — негайно перериває HTML і виконується. Порядок виконання не гарантується! Ідеально підходить для лічильників аналітики та реклами.
+                <strong>2. Асинхронний &lt;script async src="counter.js"&gt;:</strong><br>
+                Качається у фоні, але щойно завантажився — раптово перериває будівництво сторінки і виконується. Добре підходить для лічильників відвідувачів або реклами.
               </div>
               <div style="padding: 1rem; border-left: 4px solid #22c55e; background: var(--bg-primary); border-radius: 0 6px 6px 0;">
-                <strong>3. Відкладений &lt;script defer src="main.js"&gt;:</strong><br>
-                Завантажується у фоні, <strong>ніколи не блокує HTML</strong>, і виконується суворо по черзі рівно тоді, коли весь DOM-документ побудований! Це найкращий вибір для сайтів.
+                <strong>3. Відкладений &lt;script defer src="main.js"&gt; (Найкращий вибір!):</strong><br>
+                Каже скрипту: <em>«Завантажуйся тихо у фоні й не заважай мулярам! Запустишся лише тоді, коли вся сторінка буде готова і текст уже з'явиться на екрані»</em> ✅.
               </div>
+            </div>
+
+            <div class="rule-box">
+              <strong>🧹 Що таке мініфікація коду?</strong><br>
+              Людям зручно писати код з акуратними відступами з 2–4 пробілів, переносами рядків і коментарями-підказками. Але комп'ютеру (браузеру) ці пробіли та коментарі не потрібні взагалі! А кожен зайвий символ — це байти, які передаються через мобільну мережу. <strong>Мініфікатор</strong> викидає з коду всі коментарі та пробіли, стискаючи його в один суцільний рядок. Це зменшує розмір файлу на <strong>20–50%</strong> без жодної шкоди для сайту!
             </div>
           </div>
         </div>
@@ -635,7 +695,7 @@
           <div class="minifier-grid">
             <div class="minifier-pane">
               <div class="minifier-pane-header">
-                <span>📝 ОРИГІНАЛЬНИЙ CSS (З ВІДСТУПАМИ Й КОМЕНТАРЯМИ)</span>
+                <span>📝 ОРИГІНАЛЬНИЙ КОД (ДЛЯ ЛЮДЕЙ — З КОМЕНТАРЯМИ Й ВІДСТУПАМИ)</span>
                 <span id="origBytes">480 Б</span>
               </div>
               <textarea class="minifier-textarea" id="minifierInput" spellcheck="false"></textarea>
@@ -643,7 +703,7 @@
 
             <div class="minifier-pane">
               <div class="minifier-pane-header">
-                <span>🚀 МІНІФІКОВАНИЙ КОД (ДЛЯ ПРОДАКШЕНУ)</span>
+                <span>🚀 МІНІФІКОВАНИЙ КОД (ДЛЯ БРАУЗЕРА — В ОДИН РЯДОК)</span>
                 <span id="minifiedBytes">260 Б</span>
               </div>
               <textarea class="minifier-textarea" id="minifierOutput" readonly spellcheck="false" style="color: #4ade80;"></textarea>
@@ -679,19 +739,56 @@
           <ul class="opt-checklist">
             <li class="opt-checklist-item" id="chkItemBoxSizing">
               <span class="opt-checklist-status">1</span>
-              <span><strong>Універсальний Box-Sizing:</strong> додайте у селектор <code>* { ... }</code> правило <code>box-sizing: border-box;</code> для однакового розрахунку розмірів блоків.</span>
+              <div style="flex: 1;">
+                <div><strong>1. Універсальний розмір блоків:</strong> додайте у селектор <code>* { ... }</code> правило <code>box-sizing: border-box;</code>, щоб рамки та внутрішні відступи не роздували блоки.</div>
+                <details class="checklist-hint">
+                  <summary>💡 Показати підказку, як це написати</summary>
+                  <div class="checklist-hint-content">
+                    Знайдіть на початку CSS селектор <code>* { }</code> і додайте всередину фігурних дужок:<br>
+                    <code>* {<br>&nbsp;&nbsp;box-sizing: border-box;<br>}</code>
+                  </div>
+                </details>
+              </div>
             </li>
             <li class="opt-checklist-item" id="chkItemFallback">
               <span class="opt-checklist-status">2</span>
-              <span><strong>Безпечний Fallback:</strong> у класі <code>.banner</code> додайте фолбек-колір (наприклад, <code>background-color: #3b82f6;</code>) перед градієнтом.</span>
+              <div style="flex: 1;">
+                <div><strong>2. Запасний колір (Fallback):</strong> у класі <code>.banner</code> додайте звичайний фоновий колір <code>background-color: #3b82f6;</code> прямо перед рядком з градієнтом.</div>
+                <details class="checklist-hint">
+                  <summary>💡 Показати підказку, як це написати</summary>
+                  <div class="checklist-hint-content">
+                    Усередині правила <code>.banner { ... }</code> перед рядком <code>background: linear-gradient(...);</code> додайте рядок:<br>
+                    <code>background-color: #3b82f6;</code>
+                  </div>
+                </details>
+              </div>
             </li>
             <li class="opt-checklist-item" id="chkItemLazy">
               <span class="opt-checklist-status">3</span>
-              <span><strong>Ліниве завантаження:</strong> додайте тегу <code>&lt;img&gt;</code> атрибут <code>loading="lazy"</code>, щоб економити трафік учня.</span>
+              <div style="flex: 1;">
+                <div><strong>3. Ліниве завантаження:</strong> додайте тегу <code>&lt;img&gt;</code> атрибут <code>loading="lazy"</code>, щоб заощадити мобільний трафік.</div>
+                <details class="checklist-hint">
+                  <summary>💡 Показати підказку, як це написати</summary>
+                  <div class="checklist-hint-content">
+                    У нижній частині коду знайдіть тег <code>&lt;img ...&gt;</code> і допишіть всередину:<br>
+                    <code>loading="lazy"</code>
+                  </div>
+                </details>
+              </div>
             </li>
             <li class="opt-checklist-item" id="chkItemDimensions">
               <span class="opt-checklist-status">4</span>
-              <span><strong>Запобігання стрибкам CLS:</strong> вкажіть для картинки <code>width="600"</code> та <code>height="300"</code> прямо в тезі HTML.</span>
+              <div style="flex: 1;">
+                <div><strong>4. Бронювання «вільного крісла»:</strong> вкажіть для картинки атрибути <code>width="600"</code> та <code>height="300"</code> прямо в тезі HTML, щоб текст не смикався.</div>
+                <details class="checklist-hint">
+                  <summary>💡 Показати підказку, як це написати</summary>
+                  <div class="checklist-hint-content">
+                    Допишіть у той самий тег <code>&lt;img ...&gt;</code> ширину та висоту:<br>
+                    <code>width="600" height="300"</code><br>
+                    <em>(У підсумку тег виглядатиме так: <code>&lt;img src="..." alt="..." width="600" height="300" loading="lazy"&gt;</code>)</em>
+                  </div>
+                </details>
+              </div>
             </li>
           </ul>
         </div>
@@ -741,7 +838,7 @@
           <form id="lessonQuizForm">
             <!-- 1 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>1. Який браузерний рушій використовують сучасні Google Chrome та Microsoft Edge?</strong>
+              <strong>1. Який браузерний рушій (двигун) працює у Google Chrome та Microsoft Edge?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                 <label class="quiz-option"><input type="radio" name="q1" value="1" required> Blink</label>
                 <label class="quiz-option"><input type="radio" name="q1" value="0"> Gecko</label>
@@ -751,7 +848,7 @@
 
             <!-- 2 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>2. Який браузерний рушій зобов'язані використовувати всі браузери на Apple iOS (iPhone/iPad)?</strong>
+              <strong>2. Який двигун обов'язково використовують абсолютно всі браузери на iPhone та iPad?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                 <label class="quiz-option"><input type="radio" name="q2" value="1" required> WebKit</label>
                 <label class="quiz-option"><input type="radio" name="q2" value="0"> Blink</label>
@@ -761,19 +858,19 @@
 
             <!-- 3 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>3. Що таке User Agent Stylesheet?</strong>
+              <strong>3. Що таке User Agent Stylesheet («заводські налаштування браузера»)?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q3" value="1" required> Вбудована за замовчуванням у браузер таблиця базових стилів для тегів</label>
-                <label class="quiz-option"><input type="radio" name="q3" value="0"> Файл, що містить віруси</label>
-                <label class="quiz-option"><input type="radio" name="q3" value="0"> Мова програмування бази даних</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="1" required> Вбудовані за замовчуванням у браузер початкові стилі для тегів</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="0"> Файл, що містить комп'ютерні віруси</label>
+                <label class="quiz-option"><input type="radio" name="q3" value="0"> Програма для зламу сайтів</label>
               </div>
             </div>
 
             <!-- 4 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>4. Для чого верстальники підключають Normalize.css або CSS Reset?</strong>
+              <strong>4. Навіщо верстальники використовують скидання стилів (CSS Reset або Normalize)?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q4" value="1" required> Щоб скинути та уніфікувати відмінності дефолтних стилів різних браузерів</label>
+                <label class="quiz-option"><input type="radio" name="q4" value="1" required> Щоб стерти відмінності «заводських налаштувань» і зробити вигляд елементів однаковим у всіх браузерах</label>
                 <label class="quiz-option"><input type="radio" name="q4" value="0"> Щоб збільшити розмір сайту вдвічі</label>
                 <label class="quiz-option"><input type="radio" name="q4" value="0"> Щоб заблокувати користувачів смартфонів</label>
               </div>
@@ -781,7 +878,7 @@
 
             <!-- 5 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>5. Який вендорний префікс належить рушію Gecko (Mozilla Firefox)?</strong>
+              <strong>5. Яка спеціальна позначка (вендорний префікс) належить браузеру Mozilla Firefox?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                 <label class="quiz-option"><input type="radio" name="q5" value="1" required> -moz-</label>
                 <label class="quiz-option"><input type="radio" name="q5" value="0"> -webkit-</label>
@@ -791,7 +888,7 @@
 
             <!-- 6 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>6. Яка директива в CSS дозволяє перевірити, чи підтримує браузер певну технологію?</strong>
+              <strong>6. Яке CSS-правило перевіряє, чи вміє браузер відображати потрібний ефект?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                 <label class="quiz-option"><input type="radio" name="q6" value="1" required> @supports</label>
                 <label class="quiz-option"><input type="radio" name="q6" value="0"> @media</label>
@@ -801,7 +898,7 @@
 
             <!-- 7 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>7. Який сучасний формат зображень є легшим за PNG/JPEG на 30–80% і рекомендований Google?</strong>
+              <strong>7. Який сучасний формат картинок зменшує їхню вагу у 3–5 разів без втрати якості?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                 <label class="quiz-option"><input type="radio" name="q7" value="1" required> WebP</label>
                 <label class="quiz-option"><input type="radio" name="q7" value="0"> BMP</label>
@@ -811,9 +908,9 @@
 
             <!-- 8 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>8. Що робить атрибут loading="lazy" у тезі &lt;img&gt;?</strong>
+              <strong>8. Як працює атрибут loading="lazy" (ліниве завантаження) у тезі &lt;img&gt;?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q8" value="1" required> Завантажує картинку лише тоді, коли користувач доскролює до неї</label>
+                <label class="quiz-option"><input type="radio" name="q8" value="1" required> Завантажує картинку лише тоді, коли учень догортає екран до неї</label>
                 <label class="quiz-option"><input type="radio" name="q8" value="0"> Видаляє картинку з сервера</label>
                 <label class="quiz-option"><input type="radio" name="q8" value="0"> Робить картинку чорно-білою</label>
               </div>
@@ -821,27 +918,27 @@
 
             <!-- 9 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>9. Навіщо обов'язково вказувати атрибути width та height у тегах &lt;img&gt;?</strong>
+              <strong>9. Чому картинці обов'язково вказувати width та height (метафора «вільного крісла»)?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q9" value="1" required> Щоб зарезервувати місце під картинку та запобігти стрибкам верстки (CLS)</label>
-                <label class="quiz-option"><input type="radio" name="q9" value="0"> Щоб змінити колір фону</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="1" required> Щоб браузер заздалегідь залишив місце під картинку і текст не стрибав на екрані</label>
+                <label class="quiz-option"><input type="radio" name="q9" value="0"> Щоб змінити колір фону сторінки</label>
                 <label class="quiz-option"><input type="radio" name="q9" value="0"> Це заборонено стандартом HTML5</label>
               </div>
             </div>
 
             <!-- 10 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>10. Який атрибут підключення скрипта &lt;script defer&gt; є найбільш рекомендованим?</strong>
+              <strong>10. Чому для підключення скриптів найкраще додавати слово defer?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label class="quiz-option"><input type="radio" name="q10" value="1" required> defer (не блокує HTML та виконується суворо по черзі після побудови DOM)</label>
-                <label class="quiz-option"><input type="radio" name="q10" value="0"> sync (зупиняє рендер сторінки)</label>
-                <label class="quiz-option"><input type="radio" name="q10" value="0"> freeze (заморожує процесор)</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="1" required> Скрипт завантажується тихо у фоні й запускається лише тоді, коли вся сторінка вже готова і текст можна читати</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="0"> Скрипт повністю заморожує процесор комп'ютера</label>
+                <label class="quiz-option"><input type="radio" name="q10" value="0"> Скрипт видаляє всі картинки</label>
               </div>
             </div>
 
             <!-- 11 -->
             <div class="quiz-question" style="margin-bottom: 1.5rem;">
-              <strong>11. Що таке мініфікація коду (CSS / JS / HTML)?</strong>
+              <strong>11. Що таке мініфікація коду (CSS / HTML)?</strong>
               <div class="quiz-options" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
                 <label class="quiz-option"><input type="radio" name="q11" value="1" required> Видалення зайвих пробілів, коментарів та переносів рядків для зменшення ваги файлу</label>
                 <label class="quiz-option"><input type="radio" name="q11" value="0"> Зміна кольору тексту на менший</label>
@@ -912,7 +1009,7 @@
           <ul>
             <li><a href="https://caniuse.com" target="_blank" rel="noopener noreferrer">Can I Use: Таблиця сумісності CSS/JS</a></li>
             <li><a href="https://pagespeed.web.dev" target="_blank" rel="noopener noreferrer">PageSpeed Insights &amp; Lighthouse</a></li>
-            <li><a href="https://developer.mozilla.org/ru/docs/Web/Performance" target="_blank" rel="noopener noreferrer">MDN: Веб-продуктивність</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Performance" target="_blank" rel="noopener noreferrer">MDN: Посібник із веб-продуктивності (Performance)</a></li>
           </ul>
         </div>
       </div>

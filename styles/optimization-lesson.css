@@ -662,3 +662,104 @@ input:checked + .toggle-slider:before {
 [data-theme="dark"] .opt-checklist-item.passed {
   color: #86efac;
 }
+
+/* --------------------------------------------------------------------------
+   7. ПІДКАЗКИ ДО ПРАКТИКУМУ ТА КАРТКА САМОСТІЙНОЇ РОБОТИ
+   -------------------------------------------------------------------------- */
+.self-study-guide-card {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(16, 185, 129, 0.06));
+  border: 2px solid var(--accent-blue, #2563eb);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+  box-shadow: 4px 4px 0 var(--border-color, #121212);
+}
+
+.self-study-title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.self-study-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.self-study-step-item {
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 6px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.self-study-step-num {
+  background: var(--accent-blue, #2563eb);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.8rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checklist-hint {
+  margin-top: 0.4rem;
+  background: var(--bg-secondary, #f8fafc);
+  border: 1px dashed var(--border-color, #cbd5e1);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.88rem;
+  width: 100%;
+}
+
+.checklist-hint summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--accent-blue, #2563eb);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.checklist-hint summary:hover {
+  text-decoration: underline;
+}
+
+.checklist-hint-content {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+[data-theme="dark"] .checklist-hint-content {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.checklist-hint-content code {
+  background: #1e1e1e;
+  color: #38bdf8;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+}
