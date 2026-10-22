@@ -4,14 +4,14 @@
 
 const { read, check, section, boot, report } = require('./helpers');
 
-const PAGES = ['index.html', 'html-basics.html', 'css-basics.html', 'box-model.html', 'responsive-design.html', 'cross-browser-optimization.html'];
-const LESSON_JS = ['app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js', 'optimization-lesson.js'];
+const PAGES = ['index.html', 'html-basics.html', 'css-basics.html', 'box-model.html', 'responsive-design.html', 'cross-browser-optimization.html', 'web-graphics.html'];
+const LESSON_JS = ['app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js', 'optimization-lesson.js', 'graphics-lesson.js'];
 const SYS_FN = ['initThemeToggle', 'initCourseDropdown', 'initMobileNavigation',
   'initActiveNavHighlight', 'initScrollProgress', 'initAccordions'];
 
 section('1. Файли проєкту');
 PAGES.forEach(p => check(p + ' існує', !!read(p).length));
-['core.js', 'sandbox.js', 'app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js', 'optimization-lesson.js']
+['core.js', 'sandbox.js', 'app.js', 'html-lesson.js', 'css-lesson.js', 'box-model.js', 'responsive-lesson.js', 'optimization-lesson.js', 'graphics-lesson.js']
   .forEach(f => check('js/' + f + ' існує', read('js/' + f).length > 0));
 
 section('2. Підключення на сторінках');

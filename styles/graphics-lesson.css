@@ -1,0 +1,1106 @@
+/* ==========================================================================
+   УРОК 7: ГРАФІКА ДЛЯ ВЕБ-СЕРЕДОВИЩА • СТИЛІ ІНТЕРАКТИВІВ ТА ЛАБОРАТОРІЇ
+   Neo-Brutalist Design System & Accessible Educational Components
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. ГЛОБАЛЬНІ АКЦЕНТИ ТА КАРТКИ УРОКУ 7
+   -------------------------------------------------------------------------- */
+:root {
+  --gl-vector: #8b5cf6;
+  --gl-raster: #f97316;
+  --gl-modern: #06b6d4;
+  --gl-license: #10b981;
+  --gl-danger: #ef4444;
+}
+
+.gl-hero-card {
+  background: var(--bg-card);
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 var(--border-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.gl-card-header {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.85rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.gl-badge-purple {
+  background: #8b5cf6;
+  color: #ffffff;
+}
+
+.gl-badge-cyan {
+  background: #06b6d4;
+  color: #042f2e;
+}
+
+.gl-badge-orange {
+  background: #f97316;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   2. ТЕОРЕТИЧНІ БЛОКИ: РАСТР VS ВЕКТОР ТА ІНТЕРАКТИВНІ КАРТКИ
+   -------------------------------------------------------------------------- */
+.concept-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .concept-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.concept-card {
+  background: var(--bg-card);
+  border: 3px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.concept-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--border-color);
+}
+
+.concept-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.concept-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.concept-features li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.concept-features li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: 800;
+}
+
+.concept-features li.pro::before {
+  content: "✦";
+  color: var(--accent-blue);
+}
+
+.concept-features li.con::before {
+  content: "✖";
+  color: var(--gl-danger);
+}
+
+/* --------------------------------------------------------------------------
+   3. ІНТЕРАКТИВНА ШПАРГАЛКА ФОРМАТІВ ТА МАТРИЦЯ ПОРІВНЯННЯ
+   -------------------------------------------------------------------------- */
+.matrix-container {
+  background: var(--bg-card);
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 var(--border-color);
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.matrix-toolbar {
+  background: var(--bg-secondary);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.matrix-filter-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.matrix-filter-btn {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.45rem 0.85rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.matrix-filter-btn:hover {
+  background: var(--accent-yellow);
+}
+
+.matrix-filter-btn.active {
+  background: var(--accent-blue);
+  color: #ffffff;
+  border-color: var(--border-color);
+  box-shadow: 2px 2px 0 var(--border-color);
+}
+
+.matrix-table-wrap {
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  text-align: left;
+}
+
+.matrix-table th {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.matrix-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--bg-secondary);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.matrix-table tr:hover td {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+[data-theme="dark"] .matrix-table tr:hover td {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.fmt-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1.5px solid var(--border-color);
+}
+
+.fmt-svg { background: #f3e8ff; color: #6b21a8; }
+.fmt-webp { background: #e0f2fe; color: #0369a1; }
+.fmt-avif { background: #dcfce7; color: #15803d; }
+.fmt-jpeg { background: #ffedd5; color: #c2410c; }
+.fmt-png { background: #fef08a; color: #854d0e; }
+.fmt-gif { background: #f1f5f9; color: #475569; }
+
+[data-theme="dark"] .fmt-svg { background: #581c87; color: #e9d5ff; border-color: #a855f7; }
+[data-theme="dark"] .fmt-webp { background: #075985; color: #bae6fd; border-color: #38bdf8; }
+[data-theme="dark"] .fmt-avif { background: #166534; color: #bbf7d0; border-color: #4ade80; }
+[data-theme="dark"] .fmt-jpeg { background: #9a3412; color: #fed7aa; border-color: #fb923c; }
+[data-theme="dark"] .fmt-png { background: #854d0e; color: #fef08a; border-color: #fde047; }
+[data-theme="dark"] .fmt-gif { background: #334155; color: #cbd5e1; border-color: #64748b; }
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+.status-yes { background: rgba(16, 185, 129, 0.15); color: #059669; }
+.status-no { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
+.status-warn { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+
+[data-theme="dark"] .status-yes { color: #34d399; }
+[data-theme="dark"] .status-no { color: #f87171; }
+[data-theme="dark"] .status-warn { color: #fbbf24; }
+
+/* --------------------------------------------------------------------------
+   4. БЛОК АВТОРСЬКИХ ПРАВ: КАРТКИ CREATIVE COMMONS ТА СТОКИ
+   -------------------------------------------------------------------------- */
+.cc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.cc-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 4px 4px 0 var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.cc-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--border-color);
+  border-color: var(--accent-blue);
+}
+
+.cc-card.active {
+  border-color: var(--accent-vermilion);
+  background: var(--bg-secondary);
+}
+
+.cc-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-pill {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.cc-badge-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.cc-rules-list {
+  font-size: 0.88rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cc-rule-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  line-height: 1.35;
+}
+
+.stock-resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stock-resource-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: 3px 3px 0 var(--border-color);
+  transition: transform 0.12s ease;
+}
+
+.stock-resource-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--border-color);
+}
+
+.stock-resource-card .title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stock-resource-card .desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   5. ПРАКТИЧНА ЛАБОРАТОРІЯ (WEB GRAPHICS LAB)
+   -------------------------------------------------------------------------- */
+.lab-main-box {
+  background: var(--bg-card);
+  border: 4px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 8px 8px 0 var(--border-color);
+  overflow: hidden;
+  margin: 3rem 0;
+}
+
+.lab-header-bar {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 3px solid var(--border-color);
+}
+
+.lab-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.lab-fullscreen-btn {
+  background: var(--accent-yellow);
+  color: #121212;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.55rem 0.95rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 2px 2px 0 var(--border-color);
+  transition: all 0.12s ease;
+}
+
+.lab-fullscreen-btn:hover {
+  background: #fde047;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--border-color);
+}
+
+/* Fullscreen mode for Web Graphics Lab */
+.lab-main-box.is-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  z-index: 100000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: var(--bg-primary) !important;
+  overflow: hidden !important;
+}
+
+.lab-main-box.is-fullscreen .lab-header-bar {
+  flex: 0 0 auto !important;
+  border-radius: 0 !important;
+  padding: 0.85rem 1.5rem !important;
+  z-index: 10;
+}
+
+.lab-main-box.is-fullscreen .lab-panel {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  max-height: calc(100vh - 75px) !important;
+  max-height: calc(100dvh - 75px) !important;
+}
+
+.lab-main-box.is-fullscreen .lab-fullscreen-btn {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.lab-main-box.is-fullscreen .lab-fullscreen-btn:hover {
+  background: #dc2626;
+}
+
+.lab-title-group h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.5px;
+}
+
+.lab-title-group p {
+  color: #94a3b8;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.lab-nav-tabs {
+  display: flex;
+  background: #1e293b;
+  padding: 0.35rem;
+  border-radius: 8px;
+  gap: 0.35rem;
+  border: 1px solid #334155;
+}
+
+.lab-tab-btn {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lab-tab-btn:hover {
+  color: #ffffff;
+}
+
+.lab-tab-btn.active {
+  background: var(--accent-blue);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.lab-panel {
+  display: none;
+  padding: 2rem;
+}
+
+.lab-panel.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .lab-panel {
+    padding: 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5.1. МОДУЛЬ 1: СИМУЛЯТОР «РАСТР VS ВЕКТОР ТА СТИСНЕННЯ»
+   -------------------------------------------------------------------------- */
+.sim-controls-panel {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sim-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.sim-slider-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-width: 170px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sim-range-input {
+  flex: 1;
+  min-width: 180px;
+  height: 8px;
+  border-radius: 4px;
+  background: #cbd5e1;
+  outline: none;
+  cursor: pointer;
+  accent-color: var(--accent-blue);
+}
+
+.sim-slider-value {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--accent-blue);
+  min-width: 65px;
+  text-align: right;
+}
+
+.sim-format-btns {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sim-fmt-btn {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.sim-fmt-btn:hover {
+  background: var(--accent-yellow);
+}
+
+.sim-fmt-btn.active {
+  background: #0f172a;
+  color: #38bdf8;
+  border-color: #38bdf8;
+  box-shadow: 2px 2px 0 var(--border-color);
+}
+
+/* Dual View: Raster vs Vector Zoom Split */
+.zoom-split-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .zoom-split-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.zoom-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.zoom-card-topbar {
+  padding: 0.65rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.zoom-card-topbar.raster {
+  background: #fff7ed;
+  color: #c2410c;
+}
+.zoom-card-topbar.vector {
+  background: #f5f3ff;
+  color: #6d28d9;
+}
+
+[data-theme="dark"] .zoom-card-topbar.raster {
+  background: #431407;
+  color: #fdba74;
+}
+[data-theme="dark"] .zoom-card-topbar.vector {
+  background: #2e1065;
+  color: #c4b5fd;
+}
+
+.zoom-viewport {
+  height: 260px;
+  background: repeating-conic-gradient(#e2e8f0 0% 25%, #ffffff 0% 50%) 50% / 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+[data-theme="dark"] .zoom-viewport {
+  background: repeating-conic-gradient(#1e293b 0% 25%, #0f172a 0% 50%) 50% / 16px 16px;
+}
+
+.zoom-viewport-raster-view {
+  width: 140px;
+  height: 140px;
+  transition: transform 0.05s ease-out;
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoom-viewport-vector-view {
+  width: 140px;
+  height: 140px;
+  transition: transform 0.05s ease-out;
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Metrics Dashboard */
+.compression-dashboard {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 3px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 6px 6px 0 var(--border-color);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 860px) {
+  .compression-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .compression-dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #38bdf8;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.metric-unit {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.metric-desc {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------------
+   5.2. МОДУЛЬ 2: КЕЙС-ТРЕНАЖЕР «АРХІТЕКТОР ФОРМАТІВ»
+   -------------------------------------------------------------------------- */
+.scenario-box {
+  background: var(--bg-card);
+  border: 3px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--border-color);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.scenario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px dashed var(--bg-secondary);
+  padding-bottom: 0.75rem;
+}
+
+.scenario-badge {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  background: var(--accent-yellow);
+  color: #121212;
+  border: 1.5px solid var(--border-color);
+}
+
+.scenario-progress {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.scenario-question {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.scenario-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.scenario-opt-btn {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 3px 3px 0 var(--border-color);
+  transition: all 0.12s ease;
+}
+
+.scenario-opt-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--border-color);
+  background: #fef08a;
+}
+
+.scenario-opt-btn.selected {
+  background: var(--accent-blue);
+  color: #ffffff;
+  border-color: var(--border-color);
+}
+
+.scenario-feedback {
+  display: none;
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 2px solid;
+  margin-top: 1rem;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.scenario-feedback.show {
+  display: block;
+}
+
+.scenario-feedback.correct {
+  background: #f0fdf4;
+  border-color: #10b981;
+  color: #064e3b;
+}
+
+.scenario-feedback.wrong {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #7f1d1d;
+}
+
+[data-theme="dark"] .scenario-feedback.correct {
+  background: #064e3b;
+  border-color: #34d399;
+  color: #d1fae5;
+}
+
+[data-theme="dark"] .scenario-feedback.wrong {
+  background: #450a0a;
+  border-color: #f87171;
+  color: #fee2e2;
+}
+
+.feedback-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feedback-explanation {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.scenario-nav-btn {
+  background: #0f172a;
+  color: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.6rem 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--border-color);
+  transition: all 0.12s ease;
+}
+
+.scenario-nav-btn:hover {
+  background: var(--accent-blue);
+}
+
+/* --------------------------------------------------------------------------
+   5.3. МОДУЛЬ 3: КОНСТРУКТОР БЕЗПЕЧНОГО HTML-КОДУ ТА ЛІЦЕНЗІЙ
+   -------------------------------------------------------------------------- */
+.generator-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 860px) {
+  .generator-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gen-controls-box {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gen-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.gen-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.gen-input, .gen-select {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.55rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.gen-input:focus, .gen-select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.gen-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.gen-checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-blue);
+}
+
+.gen-output-box {
+  background: #0f172a;
+  border: 3px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gen-output-topbar {
+  background: #1e293b;
+  padding: 0.65rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+}
+
+.gen-output-topbar span {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.gen-copy-btn {
+  background: #334155;
+  color: #38bdf8;
+  border: 1px solid #475569;
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.gen-copy-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.gen-code-area {
+  padding: 1.25rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #f8fafc;
+  background: #0f172a;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  flex: 1;
+}
+
+.gen-code-area .tag { color: #f43f5e; }
+.gen-code-area .attr { color: #38bdf8; }
+.gen-code-area .val { color: #facc15; }
+.gen-code-area .comment { color: #64748b; font-style: italic; }
+
+.gen-preview-section {
+  background: var(--bg-card);
+  border-top: 2px solid var(--border-color);
+  padding: 1.25rem;
+}
+
+.gen-preview-title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.gen-live-figure {
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gen-live-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background: #e2e8f0;
+}
+
+.gen-live-caption {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

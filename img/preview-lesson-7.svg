@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+    <linearGradient id="vectorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="optGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <pattern id="gridPattern7" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#334155" stroke-width="0.7" opacity="0.35"/>
+    </pattern>
+    <filter id="shadow7" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="3" dy="3" stdDeviation="0" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="240" fill="url(#bgGrad7)" rx="8"/>
+  <rect width="400" height="240" fill="url(#gridPattern7)" rx="8"/>
+  <rect x="2" y="2" width="396" height="236" fill="none" stroke="#8b5cf6" stroke-width="2" rx="7" opacity="0.4"/>
+
+  <!-- Top bar with badges -->
+  <rect x="18" y="16" width="76" height="24" rx="4" fill="#8b5cf6" filter="url(#shadow7)"/>
+  <text x="56" y="32" fill="#ffffff" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="1">УРОК 07</text>
+
+  <rect x="102" y="16" width="136" height="24" rx="4" fill="#1e293b" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="170" y="32" fill="#a5b4fc" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">SVG · WebP · AVIF</text>
+
+  <rect x="246" y="16" width="136" height="24" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="314" y="32" fill="#34d399" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">⚖️ CREATIVE COMMONS</text>
+
+  <!-- Format Badges Row -->
+  <g transform="translate(18, 54)">
+    <!-- SVG Vector Badge -->
+    <g transform="translate(0, 0)">
+      <rect width="84" height="50" rx="6" fill="#1e293b" stroke="#ec4899" stroke-width="2" filter="url(#shadow7)"/>
+      <text x="42" y="24" fill="#f472b6" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">SVG</text>
+      <text x="42" y="39" fill="#94a3b8" font-family="'IBM Plex Mono', monospace" font-size="8.5" text-anchor="middle">Вектор ∞</text>
+    </g>
+
+    <!-- WebP Badge -->
+    <g transform="translate(93, 0)">
+      <rect width="84" height="50" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow7)"/>
+      <text x="42" y="24" fill="#38bdf8" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">WebP</text>
+      <text x="42" y="39" fill="#94a3b8" font-family="'IBM Plex Mono', monospace" font-size="8.5" text-anchor="middle">-30% Вага</text>
+    </g>
+
+    <!-- AVIF Badge -->
+    <g transform="translate(186, 0)">
+      <rect width="84" height="50" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="2" filter="url(#shadow7)"/>
+      <text x="42" y="24" fill="#34d399" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">AVIF</text>
+      <text x="42" y="39" fill="#94a3b8" font-family="'IBM Plex Mono', monospace" font-size="8.5" text-anchor="middle">-50% HDR</text>
+    </g>
+
+    <!-- PNG / JPG Badge -->
+    <g transform="translate(280, 0)">
+      <rect width="84" height="50" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="2" filter="url(#shadow7)"/>
+      <text x="42" y="24" fill="#fcd34d" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">JPG·PNG</text>
+      <text x="42" y="39" fill="#94a3b8" font-family="'IBM Plex Mono', monospace" font-size="8.5" text-anchor="middle">Класика</text>
+    </g>
+  </g>
+
+  <!-- Interactive Lab Card representation -->
+  <g transform="translate(18, 118)">
+    <rect width="364" height="66" rx="8" fill="#0b1329" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Visual icon on left: Raster vs Vector split -->
+    <g transform="translate(16, 12)">
+      <rect width="42" height="42" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <!-- Raster pixels left half -->
+      <rect x="5" y="8" width="6" height="6" fill="#ef4444"/>
+      <rect x="11" y="8" width="6" height="6" fill="#f97316"/>
+      <rect x="5" y="14" width="6" height="6" fill="#f59e0b"/>
+      <rect x="11" y="14" width="6" height="6" fill="#eab308"/>
+      <!-- Vector curve right half -->
+      <path d="M 21 34 C 21 16, 36 12, 36 10" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="36" cy="10" r="3" fill="#ec4899"/>
+      <line x1="21" y1="5" x2="21" y2="37" stroke="#64748b" stroke-width="1" stroke-dasharray="2 2"/>
+    </g>
+
+    <!-- Middle text -->
+    <text x="72" y="26" fill="#f8fafc" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700">Web Graphics Lab &amp; Оптимізація</text>
+    <text x="72" y="44" fill="#94a3b8" font-family="'IBM Plex Mono', monospace" font-size="10">&lt;picture&gt; · lazy load · CLS 0.00 · CC BY 4.0</text>
+
+    <!-- Code pill tag -->
+    <rect x="72" y="50" width="70" height="13" rx="3" fill="#1e293b"/>
+    <text x="107" y="60" fill="#c084fc" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">srcset 2x</text>
+
+    <rect x="148" y="50" width="76" height="13" rx="3" fill="#1e293b"/>
+    <text x="186" y="60" fill="#67e8f9" font-family="'IBM Plex Mono', monospace" font-size="8" text-anchor="middle">loading="lazy"</text>
+
+    <!-- Right badge -->
+    <rect x="274" y="16" width="78" height="34" rx="6" fill="#4c1d95" stroke="#a855f7" stroke-width="1"/>
+    <text x="313" y="30" fill="#e9d5ff" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="700" text-anchor="middle">ЯКІСТЬ / ВАГА</text>
+    <text x="313" y="44" fill="#ffffff" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="800" text-anchor="middle">-85% KB ⚡</text>
+  </g>
+
+  <!-- Bottom micro status line -->
+  <text x="200" y="214" fill="#64748b" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="middle">10–11 КЛАСИ · МОДУЛЬ 3.1 «ВЕБТЕХНОЛОГІЇ» · ЛАБОРАТОРІЯ ГРАФІКИ</text>
+</svg>

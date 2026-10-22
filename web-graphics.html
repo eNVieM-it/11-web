@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 7: Графіка для веб-середовища. Формати зображень, оптимізація та авторські права · Вебтехнології 10–11 класи</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="stylesheet" href="styles/hero.css?v=6">
+  <link rel="stylesheet" href="styles/modules.css?v=6">
+  <link rel="stylesheet" href="styles/responsive.css?v=6">
+  <link rel="stylesheet" href="styles/css-lesson.css?v=6">
+  <link rel="stylesheet" href="styles/graphics-lesson.css?v=1">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Stats Ribbon -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        Урок №7 · Тема «Графіка для веб-середовища: формати, оптимізація та авторські права»
+      </div>
+      <div>
+        Інформатика 10–11 класи · Модуль 3 «Графіка та мультимедіа»
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
+
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу (15 тем)">
+            <span class="course-btn-icon" aria-hidden="true">📚</span>
+            <span class="course-btn-text">Уроки курсу</span>
+            <span class="course-btn-badge" aria-label="15 уроків">15</span>
+            <span class="dropdown-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu" role="dialog" aria-modal="true" aria-label="Навчальна програма курсу">
+            <div class="marquee-menu-topbar">
+              <div class="marquee-menu-title-group">
+                <h2 class="marquee-menu-main-title">📚 Навчальна програма курсу «Вебтехнології»</h2>
+                <span class="marquee-menu-badge">10–11 класи · 15 уроків</span>
+              </div>
+              <button class="marquee-menu-close-btn" id="courseDropdownCloseBtn" type="button" aria-label="Закрити меню">
+                <span>ЗАКРИТИ</span>
+                <span>✕</span>
+              </button>
+            </div>
+
+            <div class="marquee-menu-body">
+              <div class="marquee-menu-items-scroll">
+                <a href="index.html" class="course-dropdown-item" data-num="01" data-title="Урок 1: Тренди вебдизайну та структура сайту" data-topics="Основні тренди у веб-дизайні. Види сайтів та цільова аудиторія. Інструменти веб-розробника." data-icon="🎨" data-img="img/preview-lesson-1.png" data-badge="Розділ 1 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">01</span>
+                    <span class="item-title">1. Тренди вебдизайну та структура</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 1</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span></div></div>
+                </a>
+                <a href="html-basics.html" class="course-dropdown-item" data-num="02" data-title="Урок 2: Основи мови HTML5" data-topics="Мова гіпертекстової розмітки. Структура HTML-документа, розмітка тексту та гіперпосилання." data-icon="📄" data-img="img/preview-lesson-2.png" data-badge="Розділ 2 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">02</span>
+                    <span class="item-title">2. Основи мови HTML5</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 2</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span></div></div>
+                </a>
+                <a href="css-basics.html" class="course-dropdown-item" data-num="03" data-title="Урок 3: Каскадні таблиці стилів CSS" data-topics="Каскадні таблиці стилів. Підключення CSS, базові селектори та стилі тексту." data-icon="🎯" data-img="img/preview-lesson-3.png" data-badge="Розділ 3 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">03</span>
+                    <span class="item-title">3. Каскадні таблиці стилів CSS</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 3</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span></div></div>
+                </a>
+                <a href="box-model.html" class="course-dropdown-item" data-num="04" data-title="Урок 4: Блочна модель верстки" data-topics="Проектування та верстка веб-сторінок. Блочна модель верстки (Box Model)." data-icon="📦" data-img="img/preview-lesson-4.png" data-badge="Розділ 4 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">04</span>
+                    <span class="item-title">4. Блочна модель верстки</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 4</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span></div></div>
+                </a>
+                <a href="responsive-design.html" class="course-dropdown-item" data-num="05" data-title="Урок 5: Адаптивна верстка" data-topics="Адаптивна верстка. Viewport, медіазапити @media та flex-direction." data-icon="📱" data-img="img/preview-lesson-5.png" data-badge="Розділ 5 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">05</span>
+                    <span class="item-title">5. Адаптивна верстка</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 5</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span></div></div>
+                </a>
+                <a href="cross-browser-optimization.html" class="course-dropdown-item" data-num="06" data-title="Урок 6: Кросбраузерність та оптимізація" data-topics="Кросбраузерність. Рушії браузерів, вендорні префікси, @supports, формати WebP/AVIF, lazy loading та мініфікація." data-icon="🌐" data-img="img/preview-lesson-6.svg" data-badge="Розділ 6 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">06</span>
+                    <span class="item-title">6. Кросбраузерність та оптимізація</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 6</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · LIGHTHOUSE · </span><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · LIGHTHOUSE · </span></div></div>
+                </a>
+                <a href="web-graphics.html" class="course-dropdown-item active" data-num="07" data-title="Урок 7: Графіка для веб-середовища" data-topics="Графіка для веб-середовища. Формати зображень, SVG, WebP, AVIF, оптимізація та авторські права." data-icon="🖼️" data-img="img/preview-lesson-7.svg" data-badge="Поточний урок" data-status="current">
+                  <div class="item-left">
+                    <span class="item-num">07</span>
+                    <span class="item-title">7. Графіка для веб-середовища</span>
+                  </div>
+                  <span class="lesson-tag current">Поточний</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · WEBP · AVIF · ЛІЦЕНЗІЇ CC · </span><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · WEBP · AVIF · ЛІЦЕНЗІЇ CC · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="08" data-title="Урок 8: Мультимедіа на веб-сторінках" data-topics="Аудіо та відео на веб-сторінках. Теги audio та video." data-icon="🎬" data-img="" data-badge="Розділ 8 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">08</span><span class="item-title">8. Мультимедіа на веб-сторінках</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="09" data-title="Урок 9: Інтерактивні форми" data-topics="Форми на веб-сторінках. Елементи input, select, textarea." data-icon="📋" data-img="" data-badge="Розділ 9 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">09</span><span class="item-title">9. Інтерактивні форми</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 9 · ФОРМИ ТА ВАЛІДАЦІЯ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="10" data-title="Урок 10: CSS-анімації" data-topics="Анімація та динамічні ефекти в CSS. Transitions та keyframes." data-icon="✨" data-img="" data-badge="Розділ 10 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">10</span><span class="item-title">10. CSS-анімації</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 10 · АНІМАЦІЇ · KEYFRAMES · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="11" data-title="Урок 11: Основи JavaScript" data-topics="Основи JavaScript. DOM-дерево, події та маніпуляції." data-icon="⚡" data-img="" data-badge="Розділ 11 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">11</span><span class="item-title">11. Основи JavaScript та DOM</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 11 · JAVASCRIPT · DOM · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="12" data-title="Урок 12: Клієнт-серверна взаємодія" data-topics="Клієнт-серверна взаємодія. Fetch API, JSON, асинхронні запити." data-icon="🔄" data-img="" data-badge="Розділ 12 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">12</span><span class="item-title">12. Клієнт-сервер та API</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 12 · КЛІЄНТ-СЕРВЕР · FETCH · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="13" data-title="Урок 13: Юзабіліті та a11y" data-topics="Юзабіліті та доступність веб-ресурсів. WCAG, семантика та контраст." data-icon="♿" data-img="" data-badge="Розділ 13 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">13</span><span class="item-title">13. Юзабіліті та доступність</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 13 · A11Y · ДОСТУПНІСТЬ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="14" data-title="Урок 14: Базове SEO" data-topics="Базове SEO та публікація сайту. Метатеги, Sitemap, хостинг." data-icon="🚀" data-img="" data-badge="Розділ 14 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">14</span><span class="item-title">14. Базове SEO та публікація</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 14 · SEO · ОПТИМІЗАЦІЯ ДЛЯ ПОШУКУ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="15" data-title="Урок 15: Захист проєктів" data-topics="Захист учнівських проектів. Презентація та підсумкове оцінювання." data-icon="🏆" data-img="" data-badge="Розділ 15 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">15</span><span class="item-title">15. Захист учнівських проєктів</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · </span></div></div>
+                </a>
+              </div>
+
+              <div class="marquee-menu-preview-panel">
+                <div class="preview-card-box" id="menuPreviewBox">
+                  <div class="preview-card-visual" id="previewLessonVisual">
+                    <img src="img/preview-lesson-7.svg" alt="Урок 7: Графіка для веб-середовища" class="preview-card-img" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                    <span id="previewLessonBadge" class="lesson-tag current">Поточний урок</span>
+                    <span id="previewLessonNum" style="font-family: var(--font-mono); font-weight: 800;">УРОК #07</span>
+                  </div>
+                  <h3 id="previewLessonTitle" style="margin: 0; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.3;">Урок 7: Графіка для веб-середовища</h3>
+                  <p id="previewLessonTopics" style="margin: 0; font-size: 0.92rem; line-height: 1.5;">Графіка для веб-середовища. Формати зображень, SVG, WebP, AVIF, оптимізація та авторські права.</p>
+                  <a id="previewLessonBtn" href="web-graphics.html" class="btn btn-primary" style="margin-top: 0.5rem; text-align: center; justify-content: center; width: 100%;">Перейти до уроку →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зміст поточного уроку (десктоп) та мобільне меню -->
+      <nav class="header-nav" aria-label="Зміст уроку">
+        <ul class="nav-links" id="navLinks">
+          <!-- Мобільний блок списку уроків -->
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item">Урок 2: Основи мови HTML5</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
+              <li><a href="box-model.html" class="mobile-nav-item">Урок 4: Блочна модель верстки</a></li>
+              <li><a href="responsive-design.html" class="mobile-nav-item">Урок 5: Адаптивна верстка</a></li>
+              <li><a href="cross-browser-optimization.html" class="mobile-nav-item">Урок 6: Кросбраузерність та оптимізація</a></li>
+              <li><a href="web-graphics.html" class="mobile-nav-item active">Урок 7: Графіка для веб-середовища ★</a></li>
+            </ul>
+          </li>
+
+          <!-- Посилання на розділи цього уроку -->
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
+          <li><a href="#hero" class="nav-link active">Вступ</a></li>
+          <li><a href="#topic1" class="nav-link">1. Растр vs Вектор</a></li>
+          <li><a href="#topic2" class="nav-link">2. Формати файлів</a></li>
+          <li><a href="#topic3" class="nav-link">3. Оптимізація</a></li>
+          <li><a href="#topic4" class="nav-link">4. Авторське право</a></li>
+          <li><a href="#practical-lab" class="nav-link nav-link-highlight">Web Graphics Lab 🔬</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="badge-group" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+              <span class="badge badge-yellow">МОДУЛЬ 3.1</span>
+              <span class="badge gl-badge-purple">SVG · WEBP · AVIF</span>
+              <span class="badge badge-green">CORE WEB VITALS</span>
+              <span class="badge gl-badge-cyan">CREATIVE COMMONS</span>
+            </div>
+            <h1 class="hero-title">
+              ГРАФІКА ДЛЯ ВЕБ: <span class="text-gradient">ФОРМАТИ, ОПТИМІЗАЦІЯ ТА АВТОРСЬКЕ ПРАВО</span>
+            </h1>
+            <p class="hero-desc">
+              Понад <strong>65% загальної ваги сучасного сайту</strong> припадає на графічні зображення. Якщо вставити на сторінку «сирі» фотографії з камери смартфона по 8–10 МБ, мобільні користувачі закриють сайт ще до його завантаження. На цьому уроці ти дізнаєшся, чим пікселі відрізняються від математичних кривих, чому формат SVG став стандартом сучасного UI, як новітні алгоритми WebP та AVIF зберігають мегабайти трафіку і де легально брати безкоштовні ілюстрації без порушення закону про авторське право.
+            </p>
+            <div class="hero-actions" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+              <a href="#topic1" class="btn btn-primary">Розпочати навчання 🚀</a>
+              <a href="#practical-lab" class="btn btn-secondary">Web Graphics Lab 🔬</a>
+              <a href="#topic2" class="btn btn-practical-highlight">Шпаргалка форматів 📊</a>
+            </div>
+          </div>
+
+          <div class="hero-visual" style="display: flex; align-items: center; justify-content: center;">
+            <div class="gl-hero-card" style="width: 100%; max-width: 440px;">
+              <div class="gl-card-header">
+                <span>🎨 GRAPHICS ARCHITECTURE</span>
+                <span style="color: #38bdf8;">10–11 КЛАСИ</span>
+              </div>
+              <div style="padding: 1.5rem; background: var(--bg-card); display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed var(--bg-secondary); padding-bottom: 0.75rem;">
+                  <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">ВЕКТОРНИЙ ЛОГОТИП</div>
+                    <strong style="font-family: var(--font-heading); font-size: 1.1rem; color: #8b5cf6;">SVG Format</strong>
+                  </div>
+                  <span class="badge badge-green" style="font-size: 0.75rem;">∞ Масштаб · 4 КБ</span>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed var(--bg-secondary); padding-bottom: 0.75rem;">
+                  <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">ФОТОГРАФІЯ HERO</div>
+                    <strong style="font-family: var(--font-heading); font-size: 1.1rem; color: #0284c7;">AVIF / WebP</strong>
+                  </div>
+                  <span class="badge badge-blue" style="font-size: 0.75rem;">-65% ваги vs JPEG</span>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed var(--bg-secondary); padding-bottom: 0.75rem;">
+                  <div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">ПРОЗОРИЙ UI / ТЕКСТ</div>
+                    <strong style="font-family: var(--font-heading); font-size: 1.1rem; color: #f59e0b;">PNG-24 Lossless</strong>
+                  </div>
+                  <span class="badge badge-yellow" style="font-size: 0.75rem;">Чіткі краї · Alpha</span>
+                </div>
+
+                <div style="background: var(--bg-secondary); border-radius: 6px; padding: 0.75rem; font-size: 0.85rem; line-height: 1.4; border-left: 4px solid var(--accent-green);">
+                  💡 <strong>Золоте правило веброзробника:</strong> «Усі інтерфейси, іконки та логотипи — векторні (SVG). Усі фотографії — стиснений сучасний растр (WebP / AVIF).»
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТЕМА 1: РАСТРОВА VS ВЕКТОРНА ГРАФІКА -->
+    <section id="topic1" class="section">
+      <div class="container">
+        <div class="section-badge">ТЕМА 1 · ФУНДАМЕНТАЛЬНІ ОСНОВИ</div>
+        <h2 class="section-title">Растрова vs Векторна графіка у вебі</h2>
+        <p class="section-subtitle">
+          Усе різноманіття веб-графіки поділяється на два принципово різних світи: <strong>растровий</strong> (піксельна сітка) та <strong>векторний</strong> (математичні координати). Розуміння цієї різниці вберігає від фатальних помилок у верстці.
+        </p>
+
+        <div class="concept-grid-2col">
+          <!-- Растрова графіка -->
+          <div class="concept-card" style="border-top: 6px solid var(--gl-raster);">
+            <div class="concept-card-title">
+              <span style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1.5rem;">🟦</span>
+                <strong>Растрова графіка (Raster)</strong>
+              </span>
+              <span class="badge gl-badge-orange">Пікселі</span>
+            </div>
+            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary);">
+              <strong>Принцип побудови:</strong> Зображення складається з прямокутної матриці крихітних кольорових точок — <strong>пікселів (px)</strong>. Кожен піксель має фіксовані координати та точний колір (наприклад, у моделі RGB: Червоний, Зелений, Синій).
+            </p>
+            <ul class="concept-features">
+              <li class="pro"><strong>Ідеально для фотографій:</strong> передає мільйони відтінків, плавні світлотіні, складні текстури (шкіра, листя, вода, хмари).</li>
+              <li class="con"><strong>Втрата якості при масштабуванні:</strong> якщо збільшити растрову картинку, браузер вимушений розтягувати готові пікселі, виникає ефект драбинки (пікселізація) та сильне розмиття.</li>
+              <li class="con"><strong>Великий обсяг файлу:</strong> браузер повинен завантажити інформацію про кожен із мільйонів пікселів.</li>
+              <li><strong>Основні формати:</strong> JPEG, PNG, WebP, AVIF, GIF.</li>
+            </ul>
+            <div style="background: var(--bg-secondary); border-radius: 6px; padding: 0.75rem; font-size: 0.88rem;">
+              🔍 <strong>Аналогія:</strong> Мозаїка з керамічної плитки або вишивка хрестиком. Якщо дивитися здалеку — все чудово, але якщо підійти впритул — видно грубі квадратики.
+            </div>
+          </div>
+
+          <!-- Векторна графіка -->
+          <div class="concept-card" style="border-top: 6px solid var(--gl-vector);">
+            <div class="concept-card-title">
+              <span style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1.5rem;">📐</span>
+                <strong>Векторна графіка (Vector)</strong>
+              </span>
+              <span class="badge gl-badge-purple">Формули</span>
+            </div>
+            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary);">
+              <strong>Принцип побудови:</strong> Зображення описується за допомогою <strong>математичних геометричних примітивів</strong>: точок, ліній, кіл, полігонів та кривих Безьє (Bézier curves). У файлі зберігаються не пікселі, а інструкції, як їх намалювати.
+            </p>
+            <ul class="concept-features">
+              <li class="pro"><strong>Нескінченна чіткість:</strong> можна збільшити картинку в 1000 разів або роздрукувати на величезному білборді — лінії залишаться ідеально гладкими.</li>
+              <li class="pro"><strong>Мізерна вага файлу:</strong> проста іконка чи логотип описується кількома рядками тексту і важить усього 1–5 КБ.</li>
+              <li class="pro"><strong>Керування через CSS та JS:</strong> оскільки SVG є частиною DOM, колір, товщину та анімацію ліній можна змінювати кодом у реальному часі!</li>
+              <li class="con"><strong>Не підходить для фотографій:</strong> математичний опис кожної деталі реального пейзажу перетворив би файл на гігабайти складних формул.</li>
+              <li><strong>Головний веб-формат:</strong> SVG (Scalable Vector Graphics).</li>
+            </ul>
+            <div style="background: var(--bg-secondary); border-radius: 6px; padding: 0.75rem; font-size: 0.88rem;">
+              📐 <strong>Аналогія:</strong> Циркуль та лінійка або креслення архітектора. Скільки б ви не наближали коло, накреслене циркулем, воно залишається ідеально круглим.
+            </div>
+          </div>
+        </div>
+
+        <!-- Takeaway Banner -->
+        <div style="background: #0f172a; color: #f8fafc; border: 3px solid var(--border-color); border-radius: 10px; padding: 1.25rem 1.75rem; box-shadow: 4px 4px 0 var(--border-color); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3 style="color: #38bdf8; margin-bottom: 0.3rem; font-size: 1.15rem;">Як вибрати тип графіки за 1 секунду?</h3>
+            <p style="margin: 0; color: #cbd5e1; font-size: 0.92rem;">
+              Це фотографія з камери чи реалістичний живопис? ➔ <strong>Растр (WebP / AVIF / JPEG)</strong>.<br>
+              Це логотип, кнопка, іконка, діаграма, прапор чи декоративний орнамент? ➔ <strong>Вектор (SVG)</strong>.
+            </p>
+          </div>
+          <a href="#practical-lab" class="btn btn-primary" style="white-space: nowrap;">Спробувати в симуляторі 🔬</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТЕМА 2: АНАТОМІЯ СУЧАСНИХ ФОРМАТІВ ЗОБРАЖЕНЬ -->
+    <section id="topic2" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-badge">ТЕМА 2 · ГЛИБОКИЙ РОЗБІР</div>
+        <h2 class="section-title">Анатомія сучасних форматів зображень</h2>
+        <p class="section-subtitle">
+          У шкільному підручнику розглядаються класичні формати (JPEG, PNG, GIF). Проте сучасний веб зробив гігантський стрибок уперед! Познайомимося як із перевіреною класикою, так і з сучасними стандартами нового покоління.
+        </p>
+
+        <!-- Інтерактивна шпаргалка-матриця -->
+        <div class="matrix-container" id="formatsTable">
+          <div class="matrix-toolbar">
+            <div>
+              <h3 style="margin: 0; font-size: 1.2rem;">📊 Інтерактивна матриця форматів</h3>
+              <p style="margin: 0.2rem 0 0; font-size: 0.85rem; color: var(--text-secondary);">Порівняння ваги, стиснення, підтримки прозорості та сценаріїв застосування</p>
+            </div>
+            <div class="matrix-filter-group">
+              <button class="matrix-filter-btn active" data-filter="all" type="button">Всі формати (6)</button>
+              <button class="matrix-filter-btn" data-filter="modern" type="button">Сучасні стандарти ⚡</button>
+              <button class="matrix-filter-btn" data-filter="raster" type="button">Растрові</button>
+              <button class="matrix-filter-btn" data-filter="vector" type="button">Векторні</button>
+            </div>
+          </div>
+
+          <div class="matrix-table-wrap">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th>Формат</th>
+                  <th>Тип</th>
+                  <th>Прозорість (Alpha)</th>
+                  <th>Анімація</th>
+                  <th>Тип стиснення</th>
+                  <th>Середня вага</th>
+                  <th>Головне призначення</th>
+                  <th>Підтримка браузерами</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- SVG -->
+                <tr data-type="vector" data-modern="true">
+                  <td><span class="fmt-badge fmt-svg">SVG</span></td>
+                  <td>Векторний (XML)</td>
+                  <td><span class="status-tag status-yes">✔ Повна (векторна)</span></td>
+                  <td><span class="status-tag status-yes">✔ CSS / JS / SMIL</span></td>
+                  <td>Без втрат (Gzip / Brotli)</td>
+                  <td><strong>1 – 15 КБ</strong></td>
+                  <td>Логотипи, UI-іконки, схеми, кнопки, графіка Retina</td>
+                  <td><span class="status-tag status-yes">100% (усі браузери)</span></td>
+                </tr>
+
+                <!-- AVIF -->
+                <tr data-type="raster" data-modern="true">
+                  <td><span class="fmt-badge fmt-avif">AVIF</span></td>
+                  <td>Растровий (AV1)</td>
+                  <td><span class="status-tag status-yes">✔ Повноцінна 8/10-bit</span></td>
+                  <td><span class="status-tag status-yes">✔ Анімований AVIFS</span></td>
+                  <td>З втратами / Без втрат</td>
+                  <td><strong>30 – 80 КБ</strong> <span style="color:#10b981; font-weight:700;">(-50% vs JPG)</span></td>
+                  <td>Найсучасніший формат для фотографій, HDR-контент</td>
+                  <td><span class="status-tag status-yes">94%+ (Chrome, Safari, FF)</span></td>
+                </tr>
+
+                <!-- WebP -->
+                <tr data-type="raster" data-modern="true">
+                  <td><span class="fmt-badge fmt-webp">WebP</span></td>
+                  <td>Растровий (VP8)</td>
+                  <td><span class="status-tag status-yes">✔ 8-бітний альфа-канал</span></td>
+                  <td><span class="status-tag status-yes">✔ Анімований WebP</span></td>
+                  <td>З втратами / Без втрат</td>
+                  <td><strong>40 – 110 КБ</strong> <span style="color:#0284c7; font-weight:700;">(-30% vs JPG)</span></td>
+                  <td>Універсальний стандарт для фото та ілюстрацій з прозорістю</td>
+                  <td><span class="status-tag status-yes">97%+ (Усі сучасні)</span></td>
+                </tr>
+
+                <!-- JPEG -->
+                <tr data-type="raster" data-modern="false">
+                  <td><span class="fmt-badge fmt-jpeg">JPEG / JPG</span></td>
+                  <td>Растровий (DCT)</td>
+                  <td><span class="status-tag status-no">✖ Не підтримує</span></td>
+                  <td><span class="status-tag status-no">✖ Немає</span></td>
+                  <td>З втратами (Lossy)</td>
+                  <td><strong>120 – 350 КБ</strong></td>
+                  <td>Класичні фотографії без прозорості (надійний fallback)</td>
+                  <td><span class="status-tag status-yes">100% (з 1992 року)</span></td>
+                </tr>
+
+                <!-- PNG -->
+                <tr data-type="raster" data-modern="false">
+                  <td><span class="fmt-badge fmt-png">PNG</span></td>
+                  <td>Растровий (Deflate)</td>
+                  <td><span class="status-tag status-yes">✔ Прозорість без втрат</span></td>
+                  <td><span class="status-tag status-no">✖ Стандартний ні</span></td>
+                  <td>Без втрат (Lossless)</td>
+                  <td><strong>200 – 900 КБ</strong></td>
+                  <td>Скріншоти з текстом, складна графіка з чіткими лініями</td>
+                  <td><span class="status-tag status-yes">100%</span></td>
+                </tr>
+
+                <!-- GIF -->
+                <tr data-type="raster" data-modern="false">
+                  <td><span class="fmt-badge fmt-gif">GIF</span></td>
+                  <td>Растровий (LZW)</td>
+                  <td><span class="status-tag status-warn">⚠ Тільки 1-біт (зубці)</span></td>
+                  <td><span class="status-tag status-yes">✔ Кадрова</span></td>
+                  <td>Без втрат (але max 256 кол.)</td>
+                  <td><strong>500 – 3000 КБ</strong> <span style="color:#ef4444; font-weight:700;">(Дуже важкий!)</span></td>
+                  <td>Застарілі анімовані меми (краще замінювати на WebP/MP4)</td>
+                  <td><span class="status-tag status-yes">100%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3 Детальні інженерні картки -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+          <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.25rem; box-shadow: 4px 4px 0 var(--border-color);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span class="badge fmt-svg">SVG у коді сторінки</span>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #8b5cf6;">Inline vs External</span>
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.45; color: var(--text-secondary);">
+              SVG можна вставляти як звичайну картинку <code>&lt;img src="logo.svg"&gt;</code>, а можна вставляти прямо в HTML як тег <code>&lt;svg&gt;...&lt;/svg&gt;</code>. Перевага другого варіанту — можливість стилізувати внутрішні елементи через CSS: наприклад, змінювати колір при ховері <code>svg:hover path { fill: #ff4732; }</code> без надсилання додаткових HTTP-запитів до сервера.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.25rem; box-shadow: 4px 4px 0 var(--border-color);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span class="badge fmt-webp">WebP проти JPEG</span>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #0284c7;">Створено Google</span>
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.45; color: var(--text-secondary);">
+              WebP використовує передовий алгоритм предиктивного кодування кадрів VP8. При однаковій візуальній якості файл WebP на <strong>26–34% легший за JPEG</strong>. Крім того, WebP вирішує головний недолік JPEG: він підтримує 8-бітну прозорість! Тобто одне фото у WebP поєднує фотореалістичність JPEG та прозорість PNG.
+            </p>
+          </div>
+
+          <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.25rem; box-shadow: 4px 4px 0 var(--border-color);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span class="badge fmt-avif">AVIF — Король стиснення</span>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #15803d;">AOMedia Alliance</span>
+            </div>
+            <p style="font-size: 0.92rem; line-height: 1.45; color: var(--text-secondary);">
+              Формат AVIF базується на відеокодеку AV1, розробленому гігантами Google, Apple, Microsoft, Netflix та Mozilla. Він здатний стискати зображення ще на <strong>20–30% сильніше за WebP</strong>, зберігаючи дрібні деталі, та підтримує 10- і 12-бітний колірний простір HDR (High Dynamic Range) з розширеним колірним охопленням Rec. 2020.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТЕМА 3: ОПТИМІЗАЦІЯ ТА ВЕРСТКА В HTML5 -->
+    <section id="topic3" class="section">
+      <div class="container">
+        <div class="section-badge">ТЕМА 3 · ВЕБ-ПРОДУКТИВНІСТЬ ТА A11Y</div>
+        <h2 class="section-title">Оптимізація графіки та швидкість сайту</h2>
+        <p class="section-subtitle">
+          Чому Google зменшує позицію сайту в пошуку за «повільні» картинки, як зберегти 80% трафіку без видимих втрат якості та як правильно верстати тег <code>&lt;img&gt;</code> за сучасними стандартами.
+        </p>
+
+        <!-- 4 правила верстки зображень -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+          <!-- Правило 1: alt -->
+          <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 4px 4px 0 var(--border-color);">
+            <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; color: var(--accent-vermilion); margin-bottom: 0.5rem;">01 · Атрибут alt</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Доступність (a11y) та SEO</h3>
+            <p style="font-size: 0.92rem; line-height: 1.45; color: var(--text-secondary);">
+              Атрибут <code>alt</code> є обов'язковим за стандартом W3C! Його озвучують <strong>скрін-рідери</strong> (програми для незрячих користувачів), і саме його зчитують пошукові роботи Google. Якщо картинка не завантажиться через поганий інтернет, користувач побачить текст з <code>alt</code>.
+            </p>
+            <div style="margin-top: 0.75rem; font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-secondary); padding: 0.5rem; border-radius: 4px;">
+              <span style="color:#ef4444;">✖ alt="картинка1"</span><br>
+              <span style="color:#10b981;">✔ alt="Учні 11 класу проводять дослід у кабінеті фізики"</span>
+            </div>
+          </div>
+
+          <!-- Правило 2: width / height & CLS -->
+          <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 4px 4px 0 var(--border-color);">
+            <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; color: var(--accent-blue); margin-bottom: 0.5rem;">02 · width &amp; height</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Захист від зсуву макета (CLS)</h3>
+            <p style="font-size: 0.92rem; line-height: 1.45; color: var(--text-secondary);">
+              Як зазначається у шкільному посібнику (§3.1), якщо не вказати розміри, браузер не знає геометрію зображення до його завантаження. Коли картинка нарешті з'являється, весь текст різко підстрибує донизу (<strong>Cumulative Layout Shift — CLS</strong>). Вказуйте реальні <code>width="800" height="500"</code> — тоді браузер зарезервує точне місце ще до завантаження байтів!
+            </p>
+          </div>
+
+          <!-- Правило 3: loading="lazy" -->
+          <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 4px 4px 0 var(--border-color);">
+            <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; color: var(--accent-green); margin-bottom: 0.5rem;">03 · loading="lazy"</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Відкладене завантаження</h3>
+            <p style="font-size: 0.92rem; line-height: 1.45; color: var(--text-secondary);">
+              Навіщо завантажувати 20 фотографій у футері сторінки, якщо користувач ще навіть не почав скролити? Атрибут <code>loading="lazy"</code> наказує браузеру завантажувати зображення лише тоді, коли воно наближається до зони видимості екрана. Це економить до 70% стартового інтернет-трафіку!
+            </p>
+          </div>
+
+          <!-- Правило 4: <picture> & srcset -->
+          <div style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.5rem; box-shadow: 4px 4px 0 var(--border-color);">
+            <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.2rem; color: #8b5cf6; margin-bottom: 0.5rem;">04 · &lt;picture&gt; Fallback</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Сучасні формати без ризику</h3>
+            <p style="font-size: 0.92rem; line-height: 1.45; color: var(--text-secondary);">
+              Що робити, якщо старий браузер не вміє читати AVIF? Використовувати контейнер <code>&lt;picture&gt;</code>! Браузер сам перевірить: якщо він підтримує AVIF — завантажить його; якщо ні — візьме WebP; якщо й WebP не підтримується — відкриє старий надійний JPEG.
+            </p>
+          </div>
+        </div>
+
+        <!-- Зразок сучасного HTML коду -->
+        <div style="background: #0f172a; border: 3px solid var(--border-color); border-radius: 10px; padding: 1.5rem; box-shadow: 6px 6px 0 var(--border-color); color: #f8fafc;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 0.75rem; margin-bottom: 1rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #38bdf8; font-weight: 700;">HTML5 MASTERPIECE · ЕТАЛОН СУЧАСНОЇ ВЕРСТКИ ЗОБРАЖЕННЯ</span>
+            <span class="badge badge-green">Zero CLS · Max Speed</span>
+          </div>
+          <pre style="margin: 0; font-family: var(--font-mono); font-size: 0.88rem; line-height: 1.5; overflow-x: auto;"><code>&lt;<span style="color:#f43f5e;">figure</span>&gt;
+  &lt;<span style="color:#f43f5e;">picture</span>&gt;
+    <span style="color:#64748b;">&lt;!-- Сучасний браузер обере ультралегкий AVIF --&gt;</span>
+    &lt;<span style="color:#f43f5e;">source</span> <span style="color:#38bdf8;">type</span>=<span style="color:#facc15;">"image/avif"</span> <span style="color:#38bdf8;">srcset</span>=<span style="color:#facc15;">"photo.avif 1x, photo@2x.avif 2x"</span>&gt;
+    
+    <span style="color:#64748b;">&lt;!-- Фолбек для браузерів без підтримки AVIF --&gt;</span>
+    &lt;<span style="color:#f43f5e;">source</span> <span style="color:#38bdf8;">type</span>=<span style="color:#facc15;">"image/webp"</span> <span style="color:#38bdf8;">srcset</span>=<span style="color:#facc15;">"photo.webp 1x, photo@2x.webp 2x"</span>&gt;
+    
+    <span style="color:#64748b;">&lt;!-- Базовий тег img з обов'язковими розмірами для резервування місця --&gt;</span>
+    &lt;<span style="color:#f43f5e;">img</span> <span style="color:#38bdf8;">src</span>=<span style="color:#facc15;">"photo.jpg"</span>
+         <span style="color:#38bdf8;">alt</span>=<span style="color:#facc15;">"Студенти інженерного факультету працюють за комп'ютерами в лабораторії"</span>
+         <span style="color:#38bdf8;">width</span>=<span style="color:#facc15;">"1200"</span> <span style="color:#38bdf8;">height</span>=<span style="color:#facc15;">"675"</span>
+         <span style="color:#38bdf8;">loading</span>=<span style="color:#facc15;">"lazy"</span>
+         <span style="color:#38bdf8;">decoding</span>=<span style="color:#facc15;">"async"</span>&gt;
+  &lt;/<span style="color:#f43f5e;">picture</span>&gt;
+  &lt;<span style="color:#f43f5e;">figcaption</span>&gt;Практичні заняття з веб-розробки. Фото: Сергій Коваленко (CC BY 4.0)&lt;/<span style="color:#f43f5e;">figcaption</span>&gt;
+&lt;/<span style="color:#f43f5e;">figure</span>&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ТЕМА 4: АВТОРСЬКЕ ПРАВО ТА ЛЕГАЛЬНИЙ КОНТЕНТ -->
+    <section id="topic4" class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-badge">ТЕМА 4 · ПРАВОВІ ОСНОВИ ТА ЕТИКА</div>
+        <h2 class="section-title">Авторське право та легальний контент</h2>
+        <p class="section-subtitle">
+          Чому фраза «я просто знайшов це в Google» не звільняє від юридичної відповідальності, як працюють вільні ліцензії <strong>Creative Commons</strong> та де брати якісні графічні ресурси безкоштовно.
+        </p>
+
+        <!-- Міф про Google -->
+        <div style="background: var(--bg-card); border-left: 6px solid var(--accent-vermilion); border: 2px solid var(--border-color); border-left-width: 6px; border-radius: 8px; padding: 1.5rem; box-shadow: 4px 4px 0 var(--border-color); margin-bottom: 2rem;">
+          <h3 style="font-size: 1.25rem; color: var(--accent-vermilion); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>⚖️</span> Головна юридична аксіома Інтернету
+          </h3>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: var(--text-primary); margin: 0;">
+            Відповідно до <strong>Закону України «Про авторське право і суміжні права»</strong> та міжнародної <strong>Бернської конвенції</strong>, будь-яка фотографія, малюнок або 3D-модель отримує правовий захист у момент її створення. Той факт, що картинка відображається у Google Зображеннях, означає лише те, що пошуковий робот її проіндексував, але це <strong>не дає права копіювати її на власний сайт</strong>! Використання чужої графіки без письмового дозволу автора є порушенням прав інтелектуальної власності.
+          </p>
+        </div>
+
+        <!-- Інтерактивні картки ліцензій Creative Commons -->
+        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem;">Ліцензійна родина Creative Commons (CC)</h3>
+        <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+          Організація Creative Commons створила зручні публічні ліцензії, які дозволяють авторам ділитися своїми творами зі світом на чітких умовах. Натисніть на картку ліцензії, щоб дізнатися всі правила:
+        </p>
+
+        <div class="cc-grid">
+          <!-- CC0 -->
+          <div class="cc-card" data-cc="cc0">
+            <div class="cc-card-header">
+              <span class="cc-pill" style="background:#10b981;">CC0 1.0</span>
+              <span class="cc-badge-status status-yes">Суспільне надбання</span>
+            </div>
+            <strong style="font-size: 1.05rem;">Public Domain Dedication</strong>
+            <ul class="cc-rules-list">
+              <li class="cc-rule-item"><span>✔</span> <span>Вільне комерційне та некомерційне використання</span></li>
+              <li class="cc-rule-item"><span>✔</span> <span>Можна змінювати, кадрувати та поєднувати</span></li>
+              <li class="cc-rule-item"><span>✔</span> <span>Вказівка автора не є обов'язковою</span></li>
+            </ul>
+          </div>
+
+          <!-- CC BY -->
+          <div class="cc-card active" data-cc="cc-by">
+            <div class="cc-card-header">
+              <span class="cc-pill" style="background:#2563eb;">CC BY 4.0</span>
+              <span class="cc-badge-status status-yes">Із зазначенням</span>
+            </div>
+            <strong style="font-size: 1.05rem;">Attribution (Вказівка автора)</strong>
+            <ul class="cc-rules-list">
+              <li class="cc-rule-item"><span>✔</span> <span>Будь-яке використання (в т.ч. комерційне)</span></li>
+              <li class="cc-rule-item"><span>✔</span> <span>Дозволено змінювати та модифікувати</span></li>
+              <li class="cc-rule-item"><span style="color:#2563eb;">★</span> <span><strong>Обов'язково:</strong> вказати автора та джерело</span></li>
+            </ul>
+          </div>
+
+          <!-- CC BY-SA -->
+          <div class="cc-card" data-cc="cc-by-sa">
+            <div class="cc-card-header">
+              <span class="cc-pill" style="background:#8b5cf6;">CC BY-SA</span>
+              <span class="cc-badge-status status-yes">ShareAlike</span>
+            </div>
+            <strong style="font-size: 1.05rem;">На тих самих умовах</strong>
+            <ul class="cc-rules-list">
+              <li class="cc-rule-item"><span>✔</span> <span>Вільне поширення та копіювання</span></li>
+              <li class="cc-rule-item"><span style="color:#8b5cf6;">★</span> <span>Обов'язкова вказівка автора</span></li>
+              <li class="cc-rule-item"><span style="color:#8b5cf6;">★</span> <span>Новий похідний твір має таку саму ліцензію</span></li>
+            </ul>
+          </div>
+
+          <!-- CC BY-NC -->
+          <div class="cc-card" data-cc="cc-by-nc">
+            <div class="cc-card-header">
+              <span class="cc-pill" style="background:#f59e0b;">CC BY-NC</span>
+              <span class="cc-badge-status status-warn">Тільки некомерційне</span>
+            </div>
+            <strong style="font-size: 1.05rem;">NonCommercial</strong>
+            <ul class="cc-rules-list">
+              <li class="cc-rule-item"><span>✔</span> <span>Ідеально для школи, навчання та некомерції</span></li>
+              <li class="cc-rule-item"><span style="color:#ef4444;">✖</span> <span><strong>Заборонено:</strong> комерційне використання</span></li>
+              <li class="cc-rule-item"><span style="color:#f59e0b;">★</span> <span>Обов'язкова вказівка автора</span></li>
+            </ul>
+          </div>
+
+          <!-- CC BY-ND -->
+          <div class="cc-card" data-cc="cc-by-nd">
+            <div class="cc-card-header">
+              <span class="cc-pill" style="background:#ef4444;">CC BY-ND</span>
+              <span class="cc-badge-status status-no">Без змін</span>
+            </div>
+            <strong style="font-size: 1.05rem;">NoDerivatives</strong>
+            <ul class="cc-rules-list">
+              <li class="cc-rule-item"><span>✔</span> <span>Вільне копіювання оригінального твору</span></li>
+              <li class="cc-rule-item"><span style="color:#ef4444;">✖</span> <span><strong>Заборонено:</strong> редагувати, кадрувати, міняти</span></li>
+              <li class="cc-rule-item"><span style="color:#ef4444;">★</span> <span>Обов'язкова вказівка автора</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Інтерактивне вікно розбору ліцензії -->
+        <div id="ccDetailDisplay" style="background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 8px; padding: 1.25rem 1.5rem; box-shadow: 4px 4px 0 var(--border-color); margin-bottom: 2.5rem;">
+          <h4 id="ccDetailTitle" style="margin-top: 0; color: var(--accent-blue); font-size: 1.15rem;">CC BY (Attribution / Зазначення авторства)</h4>
+          <p id="ccDetailBody" style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary);">
+            <strong>Золотий стандарт відкритих знань!</strong> Ви можете робити з файлом що завгодно (змінювати, використовувати у комерційних проєктах, поєднувати з іншими роботами). <strong>Єдина вимога:</strong> ви зобов'язані вказати ім'я автора, назву твору, дати посилання на джерело та саму ліцензію CC BY.
+          </p>
+        </div>
+
+        <!-- Перевірені стоки для учнів -->
+        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">📁 Безкоштовні легальні джерела для учнівських сайтів</h3>
+        <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Закладіть ці ресурси у закладки — тут можна легально завантажувати якісну графіку без порушення авторських прав:
+        </p>
+
+        <div class="stock-resources-grid">
+          <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="stock-resource-card">
+            <span class="title">Unsplash ↗</span>
+            <span class="desc">Мільйони професійних фотографій у високій якості. Вільна ліцензія Unsplash License.</span>
+          </a>
+
+          <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer" class="stock-resource-card">
+            <span class="title">Pexels ↗</span>
+            <span class="desc">Безкоштовні фотографії та короткі відео для фонових блоків. Дозволена будь-яка некомерція.</span>
+          </a>
+
+          <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" class="stock-resource-card">
+            <span class="title">Pixabay ↗</span>
+            <span class="desc">Величезна база фотографій, вектору та ілюстрацій. Проста ліцензія Pixabay Content License.</span>
+          </a>
+
+          <a href="https://www.svgrepo.com" target="_blank" rel="noopener noreferrer" class="stock-resource-card">
+            <span class="title">SVG Repo ↗</span>
+            <span class="desc">Понад 500,000 безкоштовних векторних SVG-іконок та UI-елементів. Ідеально для верстки.</span>
+          </a>
+
+          <a href="https://lucide.dev" target="_blank" rel="noopener noreferrer" class="stock-resource-card">
+            <span class="title">Lucide Icons ↗</span>
+            <span class="desc">Сучасний відкритий набір векторних іконок за ліцензією ISC (відкрито для будь-яких проєктів).</span>
+          </a>
+        </div>
+
+        <!-- AI-генерації -->
+        <div style="background: #0f172a; color: #f8fafc; border: 3px solid var(--border-color); border-radius: 10px; padding: 1.5rem; margin-top: 2rem; box-shadow: 5px 5px 0 var(--border-color);">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 1.3rem;">🤖</span>
+            <h4 style="color: #38bdf8; margin: 0; font-size: 1.15rem;">А як щодо зображень, згенерованих ШІ (Midjourney, DALL-E, Recraft)?</h4>
+          </div>
+          <p style="font-size: 0.92rem; line-height: 1.5; color: #cbd5e1; margin: 0;">
+            Згідно з міжнародною практикою та рішеннями Бюро авторського права США, твори, повністю згенеровані штучним інтелектом без суттєвого творчого вкладу людини, <strong>не підлягають традиційному захисту авторським правом і переходять у суспільне надбання (Public Domain)</strong>. Ви можете вільно використовувати такі зображення на своєму сайті, проте згідно з академічною доброчесністю у підписі <code>&lt;figcaption&gt;</code> завжди рекомендується вказувати інструмент: <em>«Зображення згенеровано за допомогою Recraft AI»</em>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ПРАКТИЧНА ЛАБОРАТОРІЯ (WEB GRAPHICS LAB) -->
+    <section id="practical-lab" class="section">
+      <div class="container">
+        <div class="section-badge" style="background: var(--accent-yellow); color: #121212;">ПРАКТИЧНИЙ БЛОК · ІНТЕРАКТИВНИЙ ТРЕНАЖЕР</div>
+        <h2 class="section-title">Web Graphics Lab: Практична лабораторія</h2>
+        <p class="section-subtitle">
+          Тренажер дозволяє на практиці дослідити поведінку растру й вектору при наближенні, протестувати рівень стиснення графіки та згенерувати еталонний доступний HTML-код для свого сайту.
+        </p>
+
+        <!-- Лабораторний контейнер з табами -->
+        <div class="lab-main-box" id="graphicsLabBox">
+          <div class="lab-header-bar">
+            <div class="lab-title-group">
+              <h2>🔬 Web Graphics Lab</h2>
+              <p>Інтерактивний дослідницький модуль веб-графіки та оптимізації</p>
+            </div>
+            <div class="lab-actions-group">
+              <div class="lab-nav-tabs">
+                <button class="lab-tab-btn active" data-target="panelSimulator" type="button">1. Симулятор стиснення</button>
+                <button class="lab-tab-btn" data-target="panelArchitect" type="button">2. Кейс-тренажер (5)</button>
+                <button class="lab-tab-btn" data-target="panelGenerator" type="button">3. HTML-конструктор</button>
+              </div>
+              <button class="lab-fullscreen-btn" id="labFullscreenBtn" type="button" title="Розгорнути лабораторію на весь екран (Esc для виходу)">
+                <span class="fs-icon">⛶</span>
+                <span class="fs-label">На весь екран</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ПАНЕЛЬ 1: СИМУЛЯТОР РАСТР VS ВЕКТОР ТА СТИСНЕННЯ -->
+          <div class="lab-panel active" id="panelSimulator">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Модуль 1: Дослідження масштабу (Zoom) та алгоритмів стиснення</h3>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+              Керуйте повзунком збільшення, щоб побачити руйнування растрових пікселів проти бездоганної математичної чіткості SVG. Змінюйте формат і якість для розрахунку ваги файлу та швидкості передачі даних.
+            </p>
+
+            <div class="sim-controls-panel">
+              <!-- Рядок 1: Масштаб Zoom -->
+              <div class="sim-slider-row">
+                <div class="sim-slider-label">
+                  <span>🔍 Масштаб (Zoom):</span>
+                </div>
+                <input type="range" class="sim-range-input" id="zoomRange" min="100" max="800" step="25" value="100">
+                <div class="sim-slider-value" id="zoomVal">100%</div>
+              </div>
+
+              <!-- Рядок 2: Формат -->
+              <div class="sim-slider-row">
+                <div class="sim-slider-label">
+                  <span>📦 Графічний формат:</span>
+                </div>
+                <div class="sim-format-btns">
+                  <button class="sim-fmt-btn" data-format="png" type="button">PNG-24</button>
+                  <button class="sim-fmt-btn" data-format="jpeg" type="button">JPEG</button>
+                  <button class="sim-fmt-btn active" data-format="webp" type="button">WebP</button>
+                  <button class="sim-fmt-btn" data-format="avif" type="button">AVIF</button>
+                </div>
+              </div>
+
+              <!-- Рядок 3: Якість / Стиснення -->
+              <div class="sim-slider-row">
+                <div class="sim-slider-label">
+                  <span>🎚️ Рівень якості:</span>
+                </div>
+                <input type="range" class="sim-range-input" id="qualityRange" min="10" max="100" step="5" value="80">
+                <div class="sim-slider-value" id="qualityVal">80%</div>
+              </div>
+            </div>
+
+            <!-- Вікна перегляду Растр vs Вектор при зумі -->
+            <div class="zoom-split-container">
+              <!-- Растрове вікно -->
+              <div class="zoom-card">
+                <div class="zoom-card-topbar raster">
+                  <span>РАСТРОВИЙ ЕЛЕМЕНТ (Піксельна сітка)</span>
+                  <span style="font-size: 0.75rem;">Пікселізація при зумі</span>
+                </div>
+                <div class="zoom-viewport" id="simVisualPreview">
+                  <div class="zoom-viewport-raster-view" id="rasterZoomView">
+                    <!-- Растрова імітація іконки школи -->
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #f97316, #ea580c); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-family: var(--font-heading); font-weight: 800; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                      <span style="font-size: 2.2rem;">🎓</span>
+                      <span style="font-size: 0.75rem; letter-spacing: 0.5px;">ЛІЦЕЙ</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding: 0.75rem 1rem; font-size: 0.82rem; color: var(--text-secondary); background: var(--bg-card); border-top: 1px solid var(--border-color);">
+                  ⚠️ Зверніть увагу: при наближенні понад 200% краї стають східчастими («зубчасті драбинки»).
+                </div>
+              </div>
+
+              <!-- Векторне вікно -->
+              <div class="zoom-card">
+                <div class="zoom-card-topbar vector">
+                  <span>ВЕКТОРНИЙ SVG (Математичні криві)</span>
+                  <span style="font-size: 0.75rem; color:#8b5cf6;">Ідеальна чіткість ∞</span>
+                </div>
+                <div class="zoom-viewport">
+                  <div class="zoom-viewport-vector-view" id="vectorZoomView">
+                    <!-- Чистий SVG елемент -->
+                    <svg viewBox="0 0 100 100" width="100" height="100">
+                      <rect width="100" height="100" rx="12" fill="url(#vectorIconGrad)"/>
+                      <defs>
+                        <linearGradient id="vectorIconGrad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stop-color="#8b5cf6"/>
+                          <stop offset="100%" stop-color="#6d28d9"/>
+                        </linearGradient>
+                      </defs>
+                      <path d="M 50 25 L 82 42 L 50 59 L 18 42 Z" fill="#ffffff"/>
+                      <path d="M 30 52 L 30 70 Q 50 82 70 70 L 70 52" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+                      <circle cx="82" cy="54" r="3" fill="#facc15"/>
+                      <line x1="82" y1="42" x2="82" y2="54" stroke="#facc15" stroke-width="2"/>
+                    </svg>
+                  </div>
+                </div>
+                <div style="padding: 0.75rem 1rem; font-size: 0.82rem; color: var(--text-secondary); background: var(--bg-card); border-top: 1px solid var(--border-color);">
+                  ✔ Математичні криві Безьє рендеряться заново для кожного масштабу — завжди 100% різкість!
+                </div>
+              </div>
+            </div>
+
+            <!-- Панель показників оптимізації -->
+            <div class="compression-dashboard">
+              <div class="metric-item">
+                <span class="metric-label">Орієнтовна вага файлу</span>
+                <span class="metric-value" id="metricFileSize">120 <span class="metric-unit">КБ</span></span>
+                <span class="metric-desc" id="metricSavings">-95% від вихідного Raw</span>
+              </div>
+
+              <div class="metric-item">
+                <span class="metric-label">Час на 3G (200 КБ/с)</span>
+                <span class="metric-value" id="metricTime3G" style="color: #facc15;">0.60 <span class="metric-unit">сек</span></span>
+                <span class="metric-desc">Мобільна мережа в дорозі</span>
+              </div>
+
+              <div class="metric-item">
+                <span class="metric-label">Час на 4G (3 МБ/с)</span>
+                <span class="metric-value" id="metricTime4G" style="color: #34d399;">0.04 <span class="metric-unit">сек</span></span>
+                <span class="metric-desc">Миттєве відтворення (LCP)</span>
+              </div>
+
+              <div class="metric-item">
+                <span class="metric-label">Оцінка якості</span>
+                <span class="metric-value" id="metricQualityRating" style="font-size: 1.25rem;">Відмінна ⚡</span>
+                <span class="metric-desc">Баланс ваги та різкості</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ПАНЕЛЬ 2: КЕЙС-ТРЕНАЖЕР «АРХІТЕКТОР ФОРМАТІВ» -->
+          <div class="lab-panel" id="panelArchitect">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Модуль 2: Кейс-тренажер «Архітектор форматів»</h3>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+              Виступайте в ролі провідного веб-архітектора! Оберіть оптимальний графічний формат для 5 реальних практичних ситуацій та отримайте моментальний інженерний розбір кожного рішення.
+            </p>
+
+            <div class="scenario-box">
+              <div class="scenario-header">
+                <span class="scenario-badge" id="scBadge">КЕЙС 1 · ШАПКА САЙТУ</span>
+                <span class="scenario-progress" id="scProgress">Кейс 1 з 5 · Рахунок: 0</span>
+              </div>
+
+              <div class="scenario-question" id="scQuestion">
+                Завантаження запитання...
+              </div>
+
+              <div class="scenario-options-grid" id="scOptionsGrid">
+                <!-- Кнопки варіантів генеруються скриптом -->
+              </div>
+
+              <div class="scenario-feedback" id="scFeedback">
+                <div class="feedback-title" id="scFeedbackTitle">Результат перевірки</div>
+                <div class="feedback-explanation" id="scFeedbackText">Текст розбору...</div>
+                <button class="scenario-nav-btn" id="scNextBtn" type="button">Наступний кейс →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ПАНЕЛЬ 3: HTML-КОНСТРУКТОР ТА ПЕРЕВІРКА ЛІЦЕНЗІЙ -->
+          <div class="lab-panel" id="panelGenerator">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Модуль 3: Генератор безпечного коду &lt;picture&gt; та ліцензій</h3>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+              Налаштуйте параметри зображення за допомогою форми — праворуч автоматично згенерується чистий валідний HTML5-код з усіма атрибутами доступності (a11y), захистом від CLS та офіційним посиланням на автора за ліцензією.
+            </p>
+
+            <div class="generator-workspace">
+              <!-- Ліва колонка: Форма керування -->
+              <div class="gen-controls-box">
+                <div class="gen-control-group">
+                  <label class="gen-label" for="genImgUrl">
+                    <span>Шлях до зображення (URL / src):</span>
+                  </label>
+                  <input type="text" id="genImgUrl" class="gen-input" value="img/school-project.jpg">
+                </div>
+
+                <div class="gen-control-group">
+                  <label class="gen-label" for="genImgAlt">
+                    <span>Текст опису (alt для скрін-рідерів):</span>
+                  </label>
+                  <input type="text" id="genImgAlt" class="gen-input" value="Учні 11 класу презентують власний веб-сайт на науковому ярмарку">
+                  <div id="genAltWarning" style="font-size: 0.78rem; margin-top: 0.2rem;"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="gen-control-group">
+                    <label class="gen-label" for="genImgWidth">Ширина (width, px):</label>
+                    <input type="number" id="genImgWidth" class="gen-input" value="800">
+                  </div>
+                  <div class="gen-control-group">
+                    <label class="gen-label" for="genImgHeight">Висота (height, px):</label>
+                    <input type="number" id="genImgHeight" class="gen-input" value="500">
+                  </div>
+                </div>
+
+                <!-- Чекбокси оптимізації -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+                  <label class="gen-checkbox-row">
+                    <input type="checkbox" id="genCheckPicture" checked>
+                    <span>Використовувати &lt;picture&gt; (сучасний фолбек AVIF + WebP)</span>
+                  </label>
+
+                  <label class="gen-checkbox-row">
+                    <input type="checkbox" id="genCheckRetina" checked>
+                    <span>Генерувати Retina srcset (1x та 2x роздільність)</span>
+                  </label>
+
+                  <label class="gen-checkbox-row">
+                    <input type="checkbox" id="genCheckLazy" checked>
+                    <span>Відкладене завантаження (loading="lazy")</span>
+                  </label>
+
+                  <label class="gen-checkbox-row">
+                    <input type="checkbox" id="genCheckAsync" checked>
+                    <span>Асинхронне декодування (decoding="async")</span>
+                  </label>
+                </div>
+
+                <!-- Блок ліцензії та авторства -->
+                <div style="border-top: 1px solid var(--border-color); padding-top: 0.75rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                  <div class="gen-control-group">
+                    <label class="gen-label" for="genSelectLicense">Тип ліцензії зображення:</label>
+                    <select id="genSelectLicense" class="gen-select">
+                      <option value="CC BY 4.0">Creative Commons Attribution (CC BY 4.0)</option>
+                      <option value="CC0 1.0">CC0 (Public Domain / Суспільне надбання)</option>
+                      <option value="CC BY-SA 4.0">CC BY-SA 4.0 (ShareAlike)</option>
+                      <option value="CC BY-NC 4.0">CC BY-NC 4.0 (NonCommercial)</option>
+                      <option value="Unsplash License">Unsplash License (Free to use)</option>
+                    </select>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                    <div class="gen-control-group">
+                      <label class="gen-label" for="genInputAuthor">Ім'я автора / Фотографа:</label>
+                      <input type="text" id="genInputAuthor" class="gen-input" value="Олена Мельник">
+                    </div>
+                    <div class="gen-control-group">
+                      <label class="gen-label" for="genInputSourceUrl">Посилання на профіль/джерело:</label>
+                      <input type="text" id="genInputSourceUrl" class="gen-input" value="https://unsplash.com/@photographer">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Права колонка: Згенерований код + Прев'ю -->
+              <div class="gen-output-box">
+                <div class="gen-output-topbar">
+                  <span>ЗГЕНЕРОВАНИЙ СЕМАНТИЧНИЙ КОД</span>
+                  <button class="gen-copy-btn" id="genCopyBtn" type="button">📋 Скопіювати HTML</button>
+                </div>
+
+                <pre class="gen-code-area" id="genCodeDisplay">Генерація коду...</pre>
+
+                <div class="gen-preview-section">
+                  <div class="gen-preview-title">Живий результат рендеру в браузері:</div>
+                  <figure class="gen-live-figure" style="margin: 0;">
+                    <!-- Імітація фото в прев'ю -->
+                    <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #1e293b, #334155); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-family: var(--font-mono); font-size: 0.85rem;">
+                      <span>📷 Зразок оптимізованого медіа-блоку</span>
+                    </div>
+                    <figcaption class="gen-live-caption">
+                      <span id="genLiveAuthor">Фото: <a href="https://unsplash.com" target="_blank" rel="noopener">Олена Мельник</a></span>
+                      <span class="badge badge-blue" id="genLiveLicenseBadge" style="font-size: 0.72rem;">CC BY 4.0</span>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Нижня навігація між уроками -->
+    <section class="lesson-pager-section" aria-label="Навігація між уроками">
+      <div class="container">
+        <nav class="lesson-pager">
+          <a href="cross-browser-optimization.html" class="lesson-pager-card prev" title="Повернутися до Уроку 6">
+            <span class="lesson-pager-direction">← Попередній урок</span>
+            <span class="lesson-pager-title">Урок 6. Кросбраузерність та оптимізація сайтів</span>
+          </a>
+
+          <button class="lesson-pager-all-btn" type="button" id="pagerAllLessonsBtn" title="Відкрити програму курсу">
+            <span>📚 Всі уроки</span>
+            <span style="font-size: 0.75rem; font-family: var(--font-mono); opacity: 0.85;">15 тем</span>
+          </button>
+
+          <div class="lesson-pager-card next upcoming-next" id="upcomingLessonCard" role="button" tabindex="0" title="Натисніть, щоб переглянути програму наступних тем">
+            <span class="lesson-pager-direction" style="color: var(--accent-blue);">Наступний урок ⏳</span>
+            <span class="lesson-pager-title">Урок 8. Мультимедіа на веб-сторінках: аудіо та відео</span>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-badge">&lt;/&gt;</span>
+            <span>Вебтехнології 10–11 класи</span>
+          </div>
+          <p class="footer-text">
+            Інтерактивний навчальний онлайн-курс зі створення сучасних та доступних веб-сайтів для українських старшокласників.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Інструменти веб-оптимізації</h4>
+          <ul>
+            <li><a href="https://squoosh.app" target="_blank" rel="noopener noreferrer">Squoosh.app: Візуальний конвертер у WebP / AVIF від Google</a></li>
+            <li><a href="https://jakearchibald.github.io/svgomg" target="_blank" rel="noopener noreferrer">SVGOMG: Оптимізатор та мініфікатор SVG-файлів</a></li>
+            <li><a href="https://creativecommons.org/choose" target="_blank" rel="noopener noreferrer">Creative Commons: Офіційний генератор ліцензій</a></li>
+            <li><a href="https://caniuse.com/?search=avif" target="_blank" rel="noopener noreferrer">Can I Use: Таблиця глобальної підтримки AVIF та WebP</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank" rel="noopener noreferrer">MDN: Повний посібник з чуйних зображень &lt;picture&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Інтерактивний веб-курс. Усі права захищено. Створено згідно з програмою МОН України.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Спільне ядро інтерфейсу -->
+  <script src="js/core.js?v=2"></script>
+  <!-- Логіка Уроку 7 -->
+  <script src="js/graphics-lesson.js?v=1"></script>
+</body>
+</html>
