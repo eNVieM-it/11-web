@@ -368,9 +368,9 @@ function initHtmlCodeGenerator() {
 
   const codeDisplay = document.getElementById('genCodeDisplay');
   const copyBtn = document.getElementById('genCopyBtn');
+  const livePicture = document.getElementById('genLivePicture');
   const liveImg = document.getElementById('genLiveImg');
-  const liveSourceAvif = document.getElementById('genLiveSourceAvif');
-  const liveSourceWebp = document.getElementById('genLiveSourceWebp');
+  const errBadge = document.getElementById('genImgLoadError');
   const liveAuthor = document.getElementById('genLiveAuthor');
   const liveLicenseBadge = document.getElementById('genLiveLicenseBadge');
   const altWarning = document.getElementById('genAltWarning');
@@ -443,32 +443,47 @@ function initHtmlCodeGenerator() {
     if (codeDisplay) codeDisplay.innerHTML = code;
 
     // Оновлення живого прев'ю
-    if (liveImg) {
+    if (livePicture && liveImg) {
       liveImg.alt = alt || 'Зразок фотографії';
+      liveImg.loading = 'eager';
+
+      const isLocalSchool = url.includes('school-project');
+      let sAvif = document.getElementById('genLiveSourceAvif');
+      let sWebp = document.getElementById('genLiveSourceWebp');
+
+      if (isLocalSchool && usePicture) {
+        if (!sAvif) {
+          sAvif = document.createElement('source');
+          sAvif.id = 'genLiveSourceAvif';
+          sAvif.type = 'image/avif';
+          livePicture.insertBefore(sAvif, liveImg);
+        }
+        if (!sWebp) {
+          sWebp = document.createElement('source');
+          sWebp.id = 'genLiveSourceWebp';
+          sWebp.type = 'image/webp';
+          livePicture.insertBefore(sWebp, liveImg);
+        }
+        sAvif.srcset = useRetina ? 'img/school-project.avif 1x, img/school-project@2x.avif 2x' : 'img/school-project.avif';
+        sWebp.srcset = useRetina ? 'img/school-project.webp 1x, img/school-project@2x.webp 2x' : 'img/school-project.webp';
+      } else {
+        // Для сторонніх посилань або без picture видаляємо джерела з прев'ю DOM, щоб браузер рендерив img.src
+        if (sAvif) sAvif.remove();
+        if (sWebp) sWebp.remove();
+      }
+
       const targetSrc = url || 'img/school-project.jpg';
       if (liveImg.getAttribute('src') !== targetSrc) {
         liveImg.src = targetSrc;
       }
-      liveImg.onerror = function() {
-        if (!this.src.endsWith('img/school-project.jpg')) {
-          this.src = 'img/school-project.jpg';
-        }
-      };
-    }
 
-    if (liveSourceAvif && liveSourceWebp) {
-      if (usePicture) {
-        if (url.includes('school-project')) {
-          liveSourceAvif.srcset = useRetina ? 'img/school-project.avif 1x, img/school-project@2x.avif 2x' : 'img/school-project.avif';
-          liveSourceWebp.srcset = useRetina ? 'img/school-project.webp 1x, img/school-project@2x.webp 2x' : 'img/school-project.webp';
-        } else {
-          liveSourceAvif.removeAttribute('srcset');
-          liveSourceWebp.removeAttribute('srcset');
-        }
-      } else {
-        liveSourceAvif.removeAttribute('srcset');
-        liveSourceWebp.removeAttribute('srcset');
-      }
+      liveImg.onload = function() {
+        if (errBadge) errBadge.style.display = 'none';
+      };
+
+      liveImg.onerror = function() {
+        if (errBadge) errBadge.style.display = 'block';
+      };
     }
 
     if (liveAuthor) {

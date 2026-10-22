@@ -1018,8 +1018,11 @@
                     <picture id="genLivePicture">
                       <source id="genLiveSourceAvif" type="image/avif" srcset="img/school-project.avif 1x, img/school-project@2x.avif 2x">
                       <source id="genLiveSourceWebp" type="image/webp" srcset="img/school-project.webp 1x, img/school-project@2x.webp 2x">
-                      <img id="genLiveImg" src="img/school-project.jpg" alt="Учні 11 класу презентують власний веб-сайт на науковому ярмарку" width="800" height="500" loading="lazy" decoding="async" class="gen-live-img">
+                      <img id="genLiveImg" src="img/school-project.jpg" alt="Учні 11 класу презентують власний веб-сайт на науковому ярмарку" width="800" height="500" loading="eager" decoding="async" class="gen-live-img">
                     </picture>
+                    <div id="genImgLoadError" class="gen-img-error-badge" style="display: none;">
+                      ⚠️ Не вдалося завантажити зображення за цим посиланням. Перевірте правильність URL або спробуйте інше зображення.
+                    </div>
                     <figcaption class="gen-live-caption">
                       <span id="genLiveAuthor">Фото: <a href="https://unsplash.com/@photographer" target="_blank" rel="noopener">Олена Мельник</a></span>
                       <span class="badge badge-blue" id="genLiveLicenseBadge" style="font-size: 0.72rem;">CC BY 4.0</span>

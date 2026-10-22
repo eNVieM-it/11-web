@@ -114,10 +114,24 @@ if (genImgAlt && genCode) {
   const liveImg = doc.getElementById('genLiveImg');
   const liveSourceAvif = doc.getElementById('genLiveSourceAvif');
   const liveSourceWebp = doc.getElementById('genLiveSourceWebp');
+  const errBadge = doc.getElementById('genImgLoadError');
   check('Живе зображення genLiveImg присутнє та має валідний src', !!liveImg && liveImg.getAttribute('src').includes('school-project.jpg'));
   check('Джерело AVIF присутнє та посилається на avif', !!liveSourceAvif && liveSourceAvif.getAttribute('srcset').includes('.avif'));
   check('Джерело WebP присутнє та посилається на webp', !!liveSourceWebp && liveSourceWebp.getAttribute('srcset').includes('.webp'));
   check('Оновлення alt синхронізується з liveImg.alt', liveImg.alt === 'Школярі пишуть код у кабінеті інформатики');
+  check('Бейдж помилки завантаження genImgLoadError присутній', !!errBadge);
+
+  // Тест введення стороннього URL (Unsplash)
+  const unsplashUrl = 'https://images.unsplash.com/photo-1792208900103-cd3088eec006?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D';
+  genImgUrl.value = unsplashUrl;
+  genImgUrl.dispatchEvent(new window.Event('input'));
+  check('Стороннє посилання Unsplash успішно застосовується до liveImg.src', liveImg.src === unsplashUrl);
+  check('Для сторонніх URL зайві джерела <source> прибираються з прев\'ю', !doc.getElementById('genLiveSourceAvif') && !doc.getElementById('genLiveSourceWebp'));
+
+  // Повернення до шкільного проєкту відновлює <source>
+  genImgUrl.value = 'img/school-project.jpg';
+  genImgUrl.dispatchEvent(new window.Event('input'));
+  check('Повернення до шкільного зразка відновлює джерела <source>', !!doc.getElementById('genLiveSourceAvif') && !!doc.getElementById('genLiveSourceWebp'));
 }
 
 // 5. Фільтрація шпаргалки форматів
