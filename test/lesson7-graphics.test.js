@@ -95,13 +95,14 @@ const genImgUrl = doc.getElementById('genImgUrl');
 const genImgAlt = doc.getElementById('genImgAlt');
 const genWidth = doc.getElementById('genImgWidth');
 const genHeight = doc.getElementById('genImgHeight');
+const genCheckResponsive = doc.getElementById('genCheckResponsive');
 const genCheckPicture = doc.getElementById('genCheckPicture');
 const genCheckLazy = doc.getElementById('genCheckLazy');
 const genCode = doc.getElementById('genCodeDisplay');
 const genCopy = doc.getElementById('genCopyBtn');
 const altWarning = doc.getElementById('genAltWarning');
 
-check('Поля HTML-конструктора присутні', !!genImgUrl && !!genImgAlt && !!genWidth && !!genHeight && !!genCheckPicture && !!genCheckLazy && !!genCode && !!genCopy);
+check('Поля HTML-конструктора присутні', !!genImgUrl && !!genImgAlt && !!genWidth && !!genHeight && !!genCheckResponsive && !!genCheckPicture && !!genCheckLazy && !!genCode && !!genCopy);
 
 if (genImgAlt && genCode) {
   genImgAlt.value = 'Школярі пишуть код у кабінеті інформатики';
@@ -109,6 +110,7 @@ if (genImgAlt && genCode) {
   check('Валідатор alt хвалить змістовний опис', altWarning.textContent.includes('Чудово'));
   check('Згенерований код містить <picture>', genCode.textContent.includes('<picture>'));
   check('Згенерований код містить loading="lazy"', genCode.textContent.includes('loading="lazy"'));
+  check('Згенерований код містить style="max-width: 100%; height: auto;" для адаптивності', genCode.textContent.includes('max-width: 100%'));
   check('Згенерований код містить <figcaption> з ліцензією', genCode.textContent.includes('<figcaption>'));
 
   const liveImg = doc.getElementById('genLiveImg');
@@ -116,10 +118,27 @@ if (genImgAlt && genCode) {
   const liveSourceWebp = doc.getElementById('genLiveSourceWebp');
   const errBadge = doc.getElementById('genImgLoadError');
   check('Живе зображення genLiveImg присутнє та має валідний src', !!liveImg && liveImg.getAttribute('src').includes('school-project.jpg'));
+  check('Живий результат має квадратні пропорції за замовчуванням (600x600)', genWidth.value === '600' && genHeight.value === '600');
   check('Джерело AVIF присутнє та посилається на avif', !!liveSourceAvif && liveSourceAvif.getAttribute('srcset').includes('.avif'));
   check('Джерело WebP присутнє та посилається на webp', !!liveSourceWebp && liveSourceWebp.getAttribute('srcset').includes('.webp'));
   check('Оновлення alt синхронізується з liveImg.alt', liveImg.alt === 'Школярі пишуть код у кабінеті інформатики');
   check('Бейдж помилки завантаження genImgLoadError присутній', !!errBadge);
+
+  // Кнопки співвідношення сторін (пропорцій)
+  const ratioBtns = doc.querySelectorAll('.gen-ratio-btn');
+  check('Є 3 кнопки вибору форми (1:1, 4:3, 16:9)', ratioBtns.length === 3);
+
+  const btn43 = doc.querySelector('.gen-ratio-btn[data-ratio="4:3"]');
+  if (btn43) {
+    btn43.dispatchEvent(new window.Event('click'));
+    check('Клік на 4:3 перемикає розміри на 800x600', genWidth.value === '800' && genHeight.value === '600');
+  }
+
+  const btn11 = doc.querySelector('.gen-ratio-btn[data-ratio="1:1"]');
+  if (btn11) {
+    btn11.dispatchEvent(new window.Event('click'));
+    check('Клік на 1:1 повертає квадратні розміри 600x600', genWidth.value === '600' && genHeight.value === '600');
+  }
 
   // Тест введення стороннього URL (Unsplash)
   const unsplashUrl = 'https://images.unsplash.com/photo-1792208900103-cd3088eec006?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D';

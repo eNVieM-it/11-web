@@ -358,6 +358,7 @@ function initHtmlCodeGenerator() {
   const inputAlt = document.getElementById('genImgAlt');
   const inputWidth = document.getElementById('genImgWidth');
   const inputHeight = document.getElementById('genImgHeight');
+  const checkResponsive = document.getElementById('genCheckResponsive');
   const checkPicture = document.getElementById('genCheckPicture');
   const checkRetina = document.getElementById('genCheckRetina');
   const checkLazy = document.getElementById('genCheckLazy');
@@ -365,6 +366,7 @@ function initHtmlCodeGenerator() {
   const selectLicense = document.getElementById('genSelectLicense');
   const inputAuthor = document.getElementById('genInputAuthor');
   const inputSourceUrl = document.getElementById('genInputSourceUrl');
+  const ratioBtns = document.querySelectorAll('.gen-ratio-btn');
 
   const codeDisplay = document.getElementById('genCodeDisplay');
   const copyBtn = document.getElementById('genCopyBtn');
@@ -378,8 +380,9 @@ function initHtmlCodeGenerator() {
   function updateGenerator() {
     const url = inputUrl ? inputUrl.value.trim() || 'img/school-project.jpg' : 'img/school-project.jpg';
     const alt = inputAlt ? inputAlt.value.trim() : '';
-    const width = inputWidth ? inputWidth.value.trim() || '800' : '800';
-    const height = inputHeight ? inputHeight.value.trim() || '500' : '500';
+    const width = inputWidth ? inputWidth.value.trim() || '600' : '600';
+    const height = inputHeight ? inputHeight.value.trim() || '600' : '600';
+    const isResponsive = checkResponsive ? checkResponsive.checked : true;
     const usePicture = checkPicture ? checkPicture.checked : true;
     const useRetina = checkRetina ? checkRetina.checked : true;
     const isLazy = checkLazy ? checkLazy.checked : true;
@@ -387,6 +390,12 @@ function initHtmlCodeGenerator() {
     const license = selectLicense ? selectLicense.value : 'CC BY 4.0';
     const author = inputAuthor ? inputAuthor.value.trim() || 'Олена Мельник' : 'Олена Мельник';
     const sourceLink = inputSourceUrl ? inputSourceUrl.value.trim() || 'https://unsplash.com/@photographer' : 'https://unsplash.com/@photographer';
+
+    // Оновлення активної кнопки пропорцій
+    ratioBtns.forEach(btn => {
+      const match = (btn.dataset.w === width && btn.dataset.h === height);
+      btn.classList.toggle('active', match);
+    });
 
     // Валідація alt тексту для a11y
     if (altWarning) {
@@ -420,6 +429,9 @@ function initHtmlCodeGenerator() {
       code += `    &lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="val">"${url}"</span>\n`;
       code += `         <span class="attr">alt</span>=<span class="val">"${escapeHtml(alt)}"</span>\n`;
       code += `         <span class="attr">width</span>=<span class="val">"${width}"</span> <span class="attr">height</span>=<span class="val">"${height}"</span>`;
+      if (isResponsive) {
+        code += `\n         <span class="attr">style</span>=<span class="val">"max-width: 100%; height: auto;"</span>`;
+      }
       if (isLazy) code += `\n         <span class="attr">loading</span>=<span class="val">"lazy"</span>`;
       if (isAsync) code += `\n         <span class="attr">decoding</span>=<span class="val">"async"</span>`;
       code += `&gt;\n`;
@@ -428,6 +440,9 @@ function initHtmlCodeGenerator() {
       code += `  &lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="val">"${url}"</span>\n`;
       code += `       <span class="attr">alt</span>=<span class="val">"${escapeHtml(alt)}"</span>\n`;
       code += `       <span class="attr">width</span>=<span class="val">"${width}"</span> <span class="attr">height</span>=<span class="val">"${height}"</span>`;
+      if (isResponsive) {
+        code += `\n       <span class="attr">style</span>=<span class="val">"max-width: 100%; height: auto;"</span>`;
+      }
       if (isLazy) code += `\n       <span class="attr">loading</span>=<span class="val">"lazy"</span>`;
       if (isAsync) code += `\n       <span class="attr">decoding</span>=<span class="val">"async"</span>`;
       code += `&gt;\n`;
@@ -446,6 +461,21 @@ function initHtmlCodeGenerator() {
     if (livePicture && liveImg) {
       liveImg.alt = alt || 'Зразок фотографії';
       liveImg.loading = 'eager';
+
+      // Адаптивність та форма (aspect-ratio)
+      const wNum = parseFloat(width) || 600;
+      const hNum = parseFloat(height) || 600;
+      liveImg.style.aspectRatio = `${wNum} / ${hNum}`;
+
+      if (isResponsive) {
+        liveImg.style.maxWidth = '380px';
+        liveImg.style.width = '100%';
+        liveImg.style.height = 'auto';
+      } else {
+        liveImg.style.maxWidth = 'none';
+        liveImg.style.width = width + 'px';
+        liveImg.style.height = 'auto';
+      }
 
       const isLocalSchool = url.includes('school-project');
       let sAvif = document.getElementById('genLiveSourceAvif');
@@ -502,7 +532,17 @@ function initHtmlCodeGenerator() {
                .replace(/'/g, '&#039;');
   }
 
-  const inputs = [inputUrl, inputAlt, inputWidth, inputHeight, checkPicture, checkRetina, checkLazy, checkAsync, selectLicense, inputAuthor, inputSourceUrl];
+  ratioBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      ratioBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (inputWidth) inputWidth.value = btn.dataset.w;
+      if (inputHeight) inputHeight.value = btn.dataset.h;
+      updateGenerator();
+    });
+  });
+
+  const inputs = [inputUrl, inputAlt, inputWidth, inputHeight, checkResponsive, checkPicture, checkRetina, checkLazy, checkAsync, selectLicense, inputAuthor, inputSourceUrl];
   inputs.forEach(el => {
     if (el) {
       el.addEventListener('input', updateGenerator);

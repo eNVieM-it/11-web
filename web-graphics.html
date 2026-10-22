@@ -943,19 +943,34 @@
                   <div id="genAltWarning" style="font-size: 0.78rem; margin-top: 0.2rem;"></div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-                  <div class="gen-control-group">
-                    <label class="gen-label" for="genImgWidth">Ширина (width, px):</label>
-                    <input type="number" id="genImgWidth" class="gen-input" value="800">
-                  </div>
-                  <div class="gen-control-group">
-                    <label class="gen-label" for="genImgHeight">Висота (height, px):</label>
-                    <input type="number" id="genImgHeight" class="gen-input" value="500">
+                <!-- Форма та пропорції -->
+                <div class="gen-control-group" style="margin-bottom: 0.25rem;">
+                  <label class="gen-label">Форма та пропорції (Aspect Ratio):</label>
+                  <div class="gen-ratio-buttons" id="genRatioButtons">
+                    <button type="button" class="gen-ratio-btn active" data-ratio="1:1" data-w="600" data-h="600">⏹️ 1:1 Квадрат</button>
+                    <button type="button" class="gen-ratio-btn" data-ratio="4:3" data-w="800" data-h="600">🖼️ 4:3 Фото</button>
+                    <button type="button" class="gen-ratio-btn" data-ratio="16:9" data-w="800" data-h="450">🖥️ 16:9 Широкий</button>
                   </div>
                 </div>
 
-                <!-- Чекбокси оптимізації -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                  <div class="gen-control-group">
+                    <label class="gen-label" for="genImgWidth">Ширина (width, px):</label>
+                    <input type="number" id="genImgWidth" class="gen-input" value="600">
+                  </div>
+                  <div class="gen-control-group">
+                    <label class="gen-label" for="genImgHeight">Висота (height, px):</label>
+                    <input type="number" id="genImgHeight" class="gen-input" value="600">
+                  </div>
+                </div>
+
+                <!-- Чекбокси оптимізації та адаптивності -->
                 <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+                  <label class="gen-checkbox-row">
+                    <input type="checkbox" id="genCheckResponsive" checked>
+                    <span>Адаптивність зображення (style="max-width: 100%; height: auto;")</span>
+                  </label>
+
                   <label class="gen-checkbox-row">
                     <input type="checkbox" id="genCheckPicture" checked>
                     <span>Використовувати &lt;picture&gt; (сучасний фолбек AVIF + WebP)</span>
@@ -1018,7 +1033,7 @@
                     <picture id="genLivePicture">
                       <source id="genLiveSourceAvif" type="image/avif" srcset="img/school-project.avif 1x, img/school-project@2x.avif 2x">
                       <source id="genLiveSourceWebp" type="image/webp" srcset="img/school-project.webp 1x, img/school-project@2x.webp 2x">
-                      <img id="genLiveImg" src="img/school-project.jpg" alt="Учні 11 класу презентують власний веб-сайт на науковому ярмарку" width="800" height="500" loading="eager" decoding="async" class="gen-live-img">
+                      <img id="genLiveImg" src="img/school-project.jpg" alt="Учні 11 класу презентують власний веб-сайт на науковому ярмарку" width="600" height="600" loading="eager" decoding="async" class="gen-live-img" style="max-width: 100%; height: auto; aspect-ratio: 1 / 1;">
                     </picture>
                     <div id="genImgLoadError" class="gen-img-error-badge" style="display: none;">
                       ⚠️ Не вдалося завантажити зображення за цим посиланням. Перевірте правильність URL або спробуйте інше зображення.
