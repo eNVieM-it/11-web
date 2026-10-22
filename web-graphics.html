@@ -1014,13 +1014,14 @@
 
                 <div class="gen-preview-section">
                   <div class="gen-preview-title">Живий результат рендеру в браузері:</div>
-                  <figure class="gen-live-figure" style="margin: 0;">
-                    <!-- Імітація фото в прев'ю -->
-                    <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #1e293b, #334155); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-family: var(--font-mono); font-size: 0.85rem;">
-                      <span>📷 Зразок оптимізованого медіа-блоку</span>
-                    </div>
+                  <figure class="gen-live-figure" id="genLiveFigure" style="margin: 0;">
+                    <picture id="genLivePicture">
+                      <source id="genLiveSourceAvif" type="image/avif" srcset="img/school-project.avif 1x, img/school-project@2x.avif 2x">
+                      <source id="genLiveSourceWebp" type="image/webp" srcset="img/school-project.webp 1x, img/school-project@2x.webp 2x">
+                      <img id="genLiveImg" src="img/school-project.jpg" alt="Учні 11 класу презентують власний веб-сайт на науковому ярмарку" width="800" height="500" loading="lazy" decoding="async" class="gen-live-img">
+                    </picture>
                     <figcaption class="gen-live-caption">
-                      <span id="genLiveAuthor">Фото: <a href="https://unsplash.com" target="_blank" rel="noopener">Олена Мельник</a></span>
+                      <span id="genLiveAuthor">Фото: <a href="https://unsplash.com/@photographer" target="_blank" rel="noopener">Олена Мельник</a></span>
                       <span class="badge badge-blue" id="genLiveLicenseBadge" style="font-size: 0.72rem;">CC BY 4.0</span>
                     </figcaption>
                   </figure>

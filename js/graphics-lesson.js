@@ -369,12 +369,14 @@ function initHtmlCodeGenerator() {
   const codeDisplay = document.getElementById('genCodeDisplay');
   const copyBtn = document.getElementById('genCopyBtn');
   const liveImg = document.getElementById('genLiveImg');
+  const liveSourceAvif = document.getElementById('genLiveSourceAvif');
+  const liveSourceWebp = document.getElementById('genLiveSourceWebp');
   const liveAuthor = document.getElementById('genLiveAuthor');
   const liveLicenseBadge = document.getElementById('genLiveLicenseBadge');
   const altWarning = document.getElementById('genAltWarning');
 
   function updateGenerator() {
-    const url = inputUrl ? inputUrl.value.trim() || 'img/photo-sample.jpg' : 'img/photo-sample.jpg';
+    const url = inputUrl ? inputUrl.value.trim() || 'img/school-project.jpg' : 'img/school-project.jpg';
     const alt = inputAlt ? inputAlt.value.trim() : '';
     const width = inputWidth ? inputWidth.value.trim() || '800' : '800';
     const height = inputHeight ? inputHeight.value.trim() || '500' : '500';
@@ -382,9 +384,9 @@ function initHtmlCodeGenerator() {
     const useRetina = checkRetina ? checkRetina.checked : true;
     const isLazy = checkLazy ? checkLazy.checked : true;
     const isAsync = checkAsync ? checkAsync.checked : true;
-    const license = selectLicense ? selectLicense.value : 'CC-BY-4.0';
-    const author = inputAuthor ? inputAuthor.value.trim() || 'Фотограф' : 'Фотограф';
-    const sourceLink = inputSourceUrl ? inputSourceUrl.value.trim() || 'https://unsplash.com' : 'https://unsplash.com';
+    const license = selectLicense ? selectLicense.value : 'CC BY 4.0';
+    const author = inputAuthor ? inputAuthor.value.trim() || 'Олена Мельник' : 'Олена Мельник';
+    const sourceLink = inputSourceUrl ? inputSourceUrl.value.trim() || 'https://unsplash.com/@photographer' : 'https://unsplash.com/@photographer';
 
     // Валідація alt тексту для a11y
     if (altWarning) {
@@ -443,9 +445,34 @@ function initHtmlCodeGenerator() {
     // Оновлення живого прев'ю
     if (liveImg) {
       liveImg.alt = alt || 'Зразок фотографії';
+      const targetSrc = url || 'img/school-project.jpg';
+      if (liveImg.getAttribute('src') !== targetSrc) {
+        liveImg.src = targetSrc;
+      }
+      liveImg.onerror = function() {
+        if (!this.src.endsWith('img/school-project.jpg')) {
+          this.src = 'img/school-project.jpg';
+        }
+      };
     }
+
+    if (liveSourceAvif && liveSourceWebp) {
+      if (usePicture) {
+        if (url.includes('school-project')) {
+          liveSourceAvif.srcset = useRetina ? 'img/school-project.avif 1x, img/school-project@2x.avif 2x' : 'img/school-project.avif';
+          liveSourceWebp.srcset = useRetina ? 'img/school-project.webp 1x, img/school-project@2x.webp 2x' : 'img/school-project.webp';
+        } else {
+          liveSourceAvif.removeAttribute('srcset');
+          liveSourceWebp.removeAttribute('srcset');
+        }
+      } else {
+        liveSourceAvif.removeAttribute('srcset');
+        liveSourceWebp.removeAttribute('srcset');
+      }
+    }
+
     if (liveAuthor) {
-      liveAuthor.innerHTML = `Фото: <a href="${sourceLink}" target="_blank" rel="noopener">${author}</a>`;
+      liveAuthor.innerHTML = `Фото: <a href="${sourceLink}" target="_blank" rel="noopener">${escapeHtml(author)}</a>`;
     }
     if (liveLicenseBadge) {
       liveLicenseBadge.textContent = license;

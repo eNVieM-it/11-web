@@ -110,6 +110,14 @@ if (genImgAlt && genCode) {
   check('Згенерований код містить <picture>', genCode.textContent.includes('<picture>'));
   check('Згенерований код містить loading="lazy"', genCode.textContent.includes('loading="lazy"'));
   check('Згенерований код містить <figcaption> з ліцензією', genCode.textContent.includes('<figcaption>'));
+
+  const liveImg = doc.getElementById('genLiveImg');
+  const liveSourceAvif = doc.getElementById('genLiveSourceAvif');
+  const liveSourceWebp = doc.getElementById('genLiveSourceWebp');
+  check('Живе зображення genLiveImg присутнє та має валідний src', !!liveImg && liveImg.getAttribute('src').includes('school-project.jpg'));
+  check('Джерело AVIF присутнє та посилається на avif', !!liveSourceAvif && liveSourceAvif.getAttribute('srcset').includes('.avif'));
+  check('Джерело WebP присутнє та посилається на webp', !!liveSourceWebp && liveSourceWebp.getAttribute('srcset').includes('.webp'));
+  check('Оновлення alt синхронізується з liveImg.alt', liveImg.alt === 'Школярі пишуть код у кабінеті інформатики');
 }
 
 // 5. Фільтрація шпаргалки форматів
