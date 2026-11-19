@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 8: Мультимедіа на веб-сторінках — Аудіо, відео, MIME-типи та HTML5 Плеєр</title>
+  <meta name="description" content="Інтерактивний освітній модуль для 10–11 класів: класифікація мультимедіа, MIME-типи, контейнер проти кодека, теги video, audio, source, track (WebVTT) та практична робота з верстки відеогалереї.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Google Fonts: Space Grotesk, Work Sans, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Space+Grotesk:wght@700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Таблиці стилів -->
+  <link rel="stylesheet" href="styles/main.css?v=9">
+  <link rel="stylesheet" href="styles/hero.css?v=9">
+  <link rel="stylesheet" href="styles/modules.css?v=9">
+  <link rel="stylesheet" href="styles/multimedia-lesson.css?v=2">
+  <link rel="stylesheet" href="styles/responsive.css?v=9">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Stats Ribbon -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        Урок №8 · Тема «Мультимедіа на веб-сторінках: аудіо, відео, MIME-типи та кодеки»
+      </div>
+      <div>
+        Інформатика 10–11 класи · Модуль 3 «Графіка та мультимедіа» (§ 3.3 + Практична №9)
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
+
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу (15 тем)">
+            <span class="course-btn-icon" aria-hidden="true">📚</span>
+            <span class="course-btn-text">Уроки курсу</span>
+            <span class="course-btn-badge" aria-label="15 уроків">15</span>
+            <span class="dropdown-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu" role="dialog" aria-modal="true" aria-label="Навчальна програма курсу">
+            <div class="marquee-menu-topbar">
+              <div class="marquee-menu-title-group">
+                <h2 class="marquee-menu-main-title">📚 Навчальна програма курсу «Вебтехнології»</h2>
+                <span class="marquee-menu-badge">10–11 класи · 15 уроків</span>
+              </div>
+              <button class="marquee-menu-close-btn" id="courseDropdownCloseBtn" type="button" aria-label="Закрити меню">
+                <span>ЗАКРИТИ</span>
+                <span>✕</span>
+              </button>
+            </div>
+
+            <div class="marquee-menu-body">
+              <div class="marquee-menu-items-scroll">
+                <a href="index.html" class="course-dropdown-item" data-num="01" data-title="Урок 1: Тренди вебдизайну та структура сайту" data-topics="Основні тренди у веб-дизайні. Види сайтів та цільова аудиторія. Інструменти веб-розробника." data-icon="🎨" data-img="img/preview-lesson-1.png" data-badge="Розділ 1 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">01</span>
+                    <span class="item-title">1. Тренди вебдизайну та структура</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 1</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span></div></div>
+                </a>
+                <a href="html-basics.html" class="course-dropdown-item" data-num="02" data-title="Урок 2: Основи мови HTML5" data-topics="Мова гіпертекстової розмітки. Структура HTML-документа, розмітка тексту та гіперпосилання." data-icon="📄" data-img="img/preview-lesson-2.png" data-badge="Розділ 2 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">02</span>
+                    <span class="item-title">2. Основи мови HTML5</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 2</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span></div></div>
+                </a>
+                <a href="css-basics.html" class="course-dropdown-item" data-num="03" data-title="Урок 3: Каскадні таблиці стилів CSS" data-topics="Каскадні таблиці стилів. Підключення CSS, базові селектори та стилі тексту." data-icon="🎯" data-img="img/preview-lesson-3.png" data-badge="Розділ 3 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">03</span>
+                    <span class="item-title">3. Каскадні таблиці стилів CSS</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 3</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span></div></div>
+                </a>
+                <a href="box-model.html" class="course-dropdown-item" data-num="04" data-title="Урок 4: Блочна модель верстки" data-topics="Проектування та верстка веб-сторінок. Блочна модель верстки (Box Model)." data-icon="📦" data-img="img/preview-lesson-4.png" data-badge="Розділ 4 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">04</span>
+                    <span class="item-title">4. Блочна модель верстки</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 4</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span></div></div>
+                </a>
+                <a href="responsive-design.html" class="course-dropdown-item" data-num="05" data-title="Урок 5: Адаптивна верстка" data-topics="Адаптивна верстка. Viewport, медіазапити @media та flex-direction." data-icon="📱" data-img="img/preview-lesson-5.png" data-badge="Розділ 5 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">05</span>
+                    <span class="item-title">5. Адаптивна верстка</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 5</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span></div></div>
+                </a>
+                <a href="cross-browser-optimization.html" class="course-dropdown-item" data-num="06" data-title="Урок 6: Кросбраузерність та оптимізація" data-topics="Кросбраузерність. Рушії браузерів, вендорні префікси, @supports, формати WebP/AVIF, lazy loading та мініфікація." data-icon="🌐" data-img="img/preview-lesson-6.svg" data-badge="Розділ 6 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">06</span>
+                    <span class="item-title">6. Кросбраузерність та оптимізація</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 6</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · LIGHTHOUSE · </span><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · LIGHTHOUSE · </span></div></div>
+                </a>
+                <a href="web-graphics.html" class="course-dropdown-item" data-num="07" data-title="Урок 7: Графіка для веб-середовища" data-topics="Графіка для веб-середовища. Формати зображень, SVG, WebP, AVIF, оптимізація та авторські права." data-icon="🖼️" data-img="img/preview-lesson-7.svg" data-badge="Розділ 7 · Доступно" data-status="available">
+                  <div class="item-left">
+                    <span class="item-num">07</span>
+                    <span class="item-title">7. Графіка для веб-середовища</span>
+                  </div>
+                  <span class="lesson-tag">Розділ 7</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · WEBP · AVIF · ЛІЦЕНЗІЇ CC · </span><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · WEBP · AVIF · ЛІЦЕНЗІЇ CC · </span></div></div>
+                </a>
+                <a href="web-multimedia.html" class="course-dropdown-item active" data-num="08" data-title="Урок 8: Мультимедіа на веб-сторінках" data-topics="Аудіо та відео в HTML5 (теги audio, video, source, track), MIME-типи, кодеки, Autoplay Policy та інтерактивна студія мультимедіа." data-icon="🎬" data-img="img/preview-lesson-8.svg" data-badge="Поточний урок" data-status="current">
+                  <div class="item-left"><span class="item-num">08</span><span class="item-title">8. Мультимедіа на веб-сторінках</span></div>
+                  <span class="lesson-tag current">Поточний</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · MIME · WEBVTT · </span><span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · MIME · WEBVTT · </span></div></div>
+                </a>
+                <a href="css-animations.html" class="course-dropdown-item" data-num="09" data-title="Урок 9: Анімаційні ефекти та переходи" data-topics="Анімаційні ефекти. CSS-переходи (transition), трансформації (transform) та ключові кадри (@keyframes)." data-icon="✨" data-img="img/preview-lesson-9.svg" data-badge="Розділ 9 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">09</span><span class="item-title">9. Анімаційні ефекти та переходи</span></div>
+                  <span class="lesson-tag">Розділ 9</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · </span><span>УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="10" data-title="Урок 10: Веб-програмування та інтерактивні сторінки" data-topics="Веб-програмування та інтерактивні сторінки. Об’єктна модель документа (DOM)." data-icon="⚡" data-img="" data-badge="Розділ 10 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">10</span><span class="item-title">10. Веб-програмування та DOM</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ПОДІЇ · </span><span>УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ПОДІЇ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="11" data-title="Урок 11: Валідація та збереження даних форм" data-topics="Валідація та збереження даних форм. Елементи інтерактивних веб-форм." data-icon="📋" data-img="" data-badge="Розділ 11 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">11</span><span class="item-title">11. Інтерактивні веб-форми</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ · </span><span>УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="12" data-title="Урок 12: Клієнт-сервер, бази даних та API" data-topics="Веб-сервер та база даних. Взаємодія клієнт-сервер. Прикладний програмний інтерфейс (API)." data-icon="🗄️" data-img="" data-badge="Розділ 12 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">12</span><span class="item-title">12. Веб-сервер, бази даних та API</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 12 · ВЕБ-СЕРВЕР · БАЗИ ДАНИХ · HTTP · API · FETCH · </span><span>УРОК 12 · ВЕБ-СЕРВЕР · БАЗИ ДАНИХ · HTTP · API · FETCH · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="13" data-title="Урок 13: Ергономіка, юзабіліті та доступність" data-topics="Правила ергономічного розміщення відомостей на веб-сторінці. Оцінка юзабіліті та доступності." data-icon="👁️" data-img="" data-badge="Розділ 13 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">13</span><span class="item-title">13. Юзабіліті та доступність</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · A11Y · ДОСТУПНІСТЬ · </span><span>УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · A11Y · ДОСТУПНІСТЬ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="14" data-title="Урок 14: Пошукова оптимізація та хостинг" data-topics="Пошукова оптимізація та просування веб-сайтів. Хостинг сайту, публікація в мережі Інтернет." data-icon="🚀" data-img="" data-badge="Розділ 14 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">14</span><span class="item-title">14. SEO-оптимізація та хостинг</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 14 · SEO-ОПТИМІЗАЦІЯ · ХОСТИНГ · GITHUB PAGES · </span><span>УРОК 14 · SEO-ОПТИМІЗАЦІЯ · ХОСТИНГ · GITHUB PAGES · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="15" data-title="Урок 15: Захист учнівських проєктів" data-topics="Захист учнівських проектів. Повторення і систематизація знань. Тематичне та семестрове оцінювання." data-icon="🏆" data-img="" data-badge="Розділ 15 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">15</span><span class="item-title">15. Захист учнівських проєктів</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · ОЦІНЮВАННЯ · </span><span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · ОЦІНЮВАННЯ · </span></div></div>
+                </a>
+              </div>
+
+              <div class="marquee-menu-preview-panel">
+                <div class="preview-card-box" id="menuPreviewBox">
+                  <div class="preview-card-visual" id="previewLessonVisual">
+                    <img src="img/preview-lesson-8.svg" alt="Урок 8: Мультимедіа на веб-сторінках" class="preview-card-img" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                    <span id="previewLessonBadge" class="lesson-tag current">Поточний урок</span>
+                    <span id="previewLessonNum" style="font-family: var(--font-mono); font-weight: 800;">УРОК #08</span>
+                  </div>
+                  <h3 id="previewLessonTitle" style="margin: 0; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.3;">Урок 8: Мультимедіа на веб-сторінках</h3>
+                  <p id="previewLessonTopics" style="margin: 0; font-size: 0.92rem; line-height: 1.5;">Аудіо та відео в HTML5 (теги audio, video, source, track), MIME-типи, кодеки, Autoplay Policy та інтерактивна студія мультимедіа.</p>
+                  <a id="previewLessonBtn" href="web-multimedia.html" class="btn btn-primary" style="margin-top: 0.5rem; text-align: center; justify-content: center; width: 100%;">Перейти до уроку →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зміст поточного уроку (десктоп) та мобільне меню -->
+      <nav class="header-nav" aria-label="Зміст уроку">
+        <ul class="nav-links" id="navLinks">
+          <!-- Мобільний блок списку уроків -->
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item">Урок 2: Основи мови HTML5</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
+              <li><a href="box-model.html" class="mobile-nav-item">Урок 4: Блочна модель верстки</a></li>
+              <li><a href="responsive-design.html" class="mobile-nav-item">Урок 5: Адаптивна верстка</a></li>
+              <li><a href="cross-browser-optimization.html" class="mobile-nav-item">Урок 6: Кросбраузерність та оптимізація</a></li>
+              <li><a href="web-graphics.html" class="mobile-nav-item">Урок 7: Графіка для веб-середовища</a></li>
+              <li><a href="web-multimedia.html" class="mobile-nav-item active">Урок 8: Мультимедіа на веб-сторінках ★</a></li>
+              <li><a href="css-animations.html" class="mobile-nav-item">Урок 9: Анімаційні ефекти та переходи</a></li>
+            </ul>
+          </li>
+
+          <!-- Посилання на розділи цього уроку -->
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
+          <li><a href="#hero" class="nav-link active">Вступ</a></li>
+          <li><a href="#multimedia-types" class="nav-link">1. Види медіа</a></li>
+          <li><a href="#mime-codecs" class="nav-link">2. MIME та Кодеки</a></li>
+          <li><a href="#html5-media-tags" class="nav-link">3. Теги &lt;video&gt; й &lt;audio&gt;</a></li>
+          <li><a href="#multimedia-lab" class="nav-link nav-link-highlight">🎬 Медіа-Студія</a></li>
+          <li><a href="#self-study-practicum" class="nav-link">5. Практикум</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#multimedia-lab" class="header-quick-prac-btn" title="Перейти до практичної медіа-студії">⚡ Лабораторія</a>
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         HERO SECTION: МУЛЬТИМЕДІА НА ВЕБ-СТОРІНКАХ
+         ===================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-pulse"></span>
+            <span>Урок 8 · Аудіо, Відео та HTML5 Медіа (§ 3.3 + Практична №9)</span>
+          </div>
+
+          <h1 class="hero-title">
+            Мультимедіа у Вебі: <span class="text-gradient">&lt;video&gt;</span>, <span class="text-gradient">&lt;audio&gt;</span> та Кодеки
+          </h1>
+
+          <p class="hero-description">
+            Сучасний веб-сайт — це синтез тексту, графіки, живого звуку та відеопотоків високої чіткості. Дізнайтеся, як браузер розпізнає медіафайли через <strong>MIME-типи</strong>, чим медіаконтейнер відрізняється від кодека, чому браузери блокують гучний <code>autoplay</code> і як створити адаптивну відеогалерею без сторонніх плагінів.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#multimedia-types" class="btn btn-primary btn-lg">
+              <span>Почати вивчення</span>
+              <span class="btn-arrow">↓</span>
+            </a>
+            <a href="#multimedia-lab" class="btn btn-practical-highlight btn-lg">
+              <span>🎬 Відкрити Медіа-Студію</span>
+            </a>
+          </div>
+
+          <div class="hero-highlight-boxes">
+            <div class="highlight-box">
+              <span class="box-value">HTML5</span>
+              <span class="box-label">Нативні &lt;video&gt; й &lt;audio&gt; без Flash</span>
+            </div>
+            <div class="highlight-box">
+              <span class="box-value">MIME</span>
+              <span class="box-label">Точна ідентифікація медіапотоку</span>
+            </div>
+            <div class="highlight-box">
+              <span class="box-value">WebVTT</span>
+              <span class="box-label">Субтитри &lt;track&gt; та доступність</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Права колонка: Ілюстрація з Canva AI + Метрики HTML5 потоку -->
+        <div class="media-hero-card">
+          <div class="media-hero-topbar">
+            <div class="media-hero-dots">
+              <span style="background: #ff4732;"></span>
+              <span style="background: #facc15;"></span>
+              <span style="background: #10b981;"></span>
+            </div>
+            <span>HTML5 MEDIA ENGINE · CANVA STUDIO</span>
+          </div>
+
+          <div class="media-hero-body">
+            <div class="canva-illustration-frame">
+              <img src="img/canva-multimedia-hero.png" alt="Нео-бруталістична ілюстрація HTML5 мультимедійної студії (Canva AI)" width="800" height="500">
+              <span class="canva-credit-pill">✨ Ілюстрація: Canva AI Studio</span>
+            </div>
+
+            <div class="media-hero-badges">
+              <div class="media-hero-mini-stat">
+                <strong>video/webm</strong>
+                <span>AV1 / VP9 · Відео</span>
+              </div>
+              <div class="media-hero-mini-stat">
+                <strong>audio/ogg</strong>
+                <span>Opus / Vorbis · Звук</span>
+              </div>
+              <div class="media-hero-mini-stat">
+                <strong>text/vtt</strong>
+                <span>Субтитри &lt;track&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Інформаційна стрічка фактів -->
+    <div class="stats-ribbon">
+      <div class="container stats-ribbon-grid">
+        <div class="stat-item">
+          <span class="stat-num">82%</span>
+          <span class="stat-text">світового інтернет-трафіку припадає на потокове відео (HTTP Live Streaming, WebM та MP4)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">0 плагінів</span>
+          <span class="stat-text">потрібно в HTML5 для відтворення медіа — застарілий Adobe Flash (<code>&lt;embed&gt;</code>) повністю вимкнено</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5–10×</span>
+          <span class="stat-text">менше важить короткий ролик <code>&lt;video autoplay muted loop&gt;</code> порівняно зі старим анімованим GIF</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================================
+         РОЗДІЛ 1: ПОНЯТТЯ ТА КЛАСИФІКАЦІЯ МУЛЬТИМЕДІА (§ 3.3)
+         ===================================================================== -->
+    <section class="section" id="multimedia-types">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 1 · § 3.3 Підручника</span>
+          <h2 class="section-title">Що таке <span class="text-gradient">мультимедіа</span> у веб-середовищі?</h2>
+          <p class="section-subtitle">
+            Термін походить від латинських слів <em>multum</em> («багато») та <em>media</em> («носій, середовище») — це одночасне використання різних форм подання інформації в єдиному цифровому інтерфейсі.
+          </p>
+        </div>
+
+        <div class="callout callout-definition">
+          <div class="callout-header">📖 Означення з підручника</div>
+          <p style="margin-bottom: 0;">
+            <strong>Мультимедіа</strong> — це поєднання різних видів мультимедійних даних на одній сторінці. Мультимедіа об’єднує в одному об’єкті-контейнері дані різних типів: текстову, графічну, аудіо-, відеоінформацію та анімацію, а також засоби інтерактивної взаємодії з ними.
+          </p>
+        </div>
+
+        <div class="media-types-grid">
+          <article class="media-type-card">
+            <div class="media-type-icon" style="background: #dbeafe;">📝</div>
+            <h3>1. Текстові об’єкти</h3>
+            <p>Основа змістового наповнення та індексації пошуковими системами: заголовки, статті, підписи та текстові доріжки субтитрів.</p>
+            <div class="media-type-tags">
+              <span class="media-type-tag">text/html</span>
+              <span class="media-type-tag">text/css</span>
+              <span class="media-type-tag">text/vtt</span>
+            </div>
+          </article>
+
+          <article class="media-type-card">
+            <div class="media-type-icon" style="background: #fef3c7;">🖼️</div>
+            <h3>2. Графічні об’єкти</h3>
+            <p>Фотографії, ілюстрації, піктограми інтерфейсу та кадри-заставки (<code>poster</code>) для відеоплеєрів.</p>
+            <div class="media-type-tags">
+              <span class="media-type-tag">image/webp</span>
+              <span class="media-type-tag">image/avif</span>
+              <span class="media-type-tag">image/svg+xml</span>
+            </div>
+          </article>
+
+          <article class="media-type-card">
+            <div class="media-type-icon" style="background: #d1fae5;">🎧</div>
+            <h3>3. Аудіодані</h3>
+            <p>Записи голосу (подкасти, аудіогіди), музичний супровід та звукові ефекти інтерфейсу без візуального відеоряду.</p>
+            <div class="media-type-tags">
+              <span class="media-type-tag">audio/mpeg</span>
+              <span class="media-type-tag">audio/ogg</span>
+              <span class="media-type-tag">audio/wav</span>
+            </div>
+          </article>
+
+          <article class="media-type-card">
+            <div class="media-type-icon" style="background: #fee2e2;">🎬</div>
+            <h3>4. Відеодані</h3>
+            <p>Навчальні лекції, презентації продуктів, репортажі та високочіткі фонові відеопотоки зі синхронізованим звуком.</p>
+            <div class="media-type-tags">
+              <span class="media-type-tag">video/webm</span>
+              <span class="media-type-tag">video/mp4</span>
+              <span class="media-type-tag">video/ogg</span>
+            </div>
+          </article>
+
+          <article class="media-type-card">
+            <div class="media-type-icon" style="background: #ede9fe;">✨</div>
+            <h3>5. Анімація та 3D</h3>
+            <p>Динамічний рух елементів: CSS-переходи, SVG-анімації, інтерактивні сцени на <code>&lt;canvas&gt;</code> / WebGL та сінемаграфи.</p>
+            <div class="media-type-tags">
+              <span class="media-type-tag">CSS @keyframes</span>
+              <span class="media-type-tag">Canvas 2D / WebGL</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         РОЗДІЛ 2: MIME-ТИПИ, КОНТЕЙНЕРИ ТА КОДЕКИ
+         ===================================================================== -->
+    <section class="section" id="mime-codecs">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 2 · Технічна архітектура медіа</span>
+          <h2 class="section-title">Як браузер розпізнає медіа: <span class="text-gradient">MIME-типи</span> та Кодеки</h2>
+          <p class="section-subtitle">
+            Розширення файлу (наприклад, <code>.mp4</code>) — це лише підказка для людини. Браузер орієнтується на заголовок <strong>MIME-типу</strong>, який надсилає веб-сервер або вказує розробник в атрибуті <code>type="..."</code>.
+          </p>
+        </div>
+
+        <div class="container-codec-grid">
+          <div class="cc-box">
+            <div class="cc-box-header">
+              <h3 style="margin:0;">📦 1. Медіаконтейнер (Файл)</h3>
+              <span class="badge badge-blue">.mp4 / .webm / .ogg</span>
+            </div>
+            <p>
+              <strong>Контейнер</strong> — це «цифрова коробка», яка об’єднує в одному файлі кілька доріжок: стиснене відео, одну або декілька аудіодоріжок (різними мовами), субтитри та метадані (тривалість, авторство, обкладинку).
+            </p>
+            <p style="margin-bottom:0; font-size:0.92rem; color:var(--text-secondary);">
+              Наприклад, контейнер <code>.webm</code> створено спеціально для відкритого вебу (Google), а <code>.mp4</code> (MPEG-4 Part 14) є універсальним стандартом для всіх мобільних і настільних ОС.
+            </p>
+          </div>
+
+          <div class="cc-box">
+            <div class="cc-box-header">
+              <h3 style="margin:0;">⚙️ 2. Кодек (Алгоритм)</h3>
+              <span class="badge badge-green">H.264 / VP9 / AV1 / Opus</span>
+            </div>
+            <p>
+              <strong>Кодек</strong> (від англ. <em>Coder/Decoder</em>) — це математичний алгоритм, який стискає «сирий» відео- чи аудіопотік у десятки разів під час збереження та розпаковує його на екрані глядача.
+            </p>
+            <p style="margin-bottom:0; font-size:0.92rem; color:var(--text-secondary);">
+              Незжата хвилина FullHD-відео важила б <strong>~3,5 ГБ</strong>! Сучасні веб-кодеки <strong>VP9</strong> та <strong>AV1</strong> зменшують цей обсяг до <strong>5–12 МБ</strong> без помітної втрати чіткості.
+            </p>
+          </div>
+        </div>
+
+        <!-- Наочна схема-аналогія для самостійного розуміння -->
+        <div class="container-anatomy-visual">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <h3 style="margin:0; font-size:1.15rem;">🧠 Запам’ятай за 10 секунд: Посилка (Контейнер) + Упаковка (Кодек)</h3>
+            <span class="badge badge-yellow">Наочна схема</span>
+          </div>
+          <p style="margin:0.5rem 0 0; font-size:0.95rem; color:var(--text-secondary);">
+            Уявіть відеофайл як <strong>картонну посилку</strong> з наліпкою <code>.mp4</code> або <code>.webm</code>. Усередині лежать окремі доріжки, кожна з яких «стиснута» своїм кодеком (як вакуумний пакет для одягу):
+          </p>
+
+          <div class="parcel-diagram">
+            <div class="parcel-box">
+              <div class="parcel-box-label">
+                <span>📦 КОНТЕЙНЕР: lesson.webm</span>
+                <span>MIME: video/webm</span>
+              </div>
+              <div class="parcel-tracks">
+                <div class="parcel-track-pill" style="background: rgba(37, 99, 235, 0.35);">
+                  🎬 Відео
+                  <small>Кодек VP9 / AV1</small>
+                </div>
+                <div class="parcel-track-pill" style="background: rgba(16, 185, 129, 0.35);">
+                  🔊 Аудіо
+                  <small>Кодек Opus</small>
+                </div>
+                <div class="parcel-track-pill" style="background: rgba(250, 204, 21, 0.28); color: #fef08a;">
+                  💬 Текст
+                  <small>Субтитри .vtt</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="parcel-arrow" aria-hidden="true">➔</div>
+
+            <div class="codec-unpack-box">
+              <strong style="display:block; margin-bottom:0.35rem;">🌐 Браузер отримує файл:</strong>
+              <p style="margin:0; font-size:0.88rem; color:var(--text-secondary);">
+                1) Читає <code>type="video/webm"</code>.<br>
+                2) Відкриває коробку-контейнер.<br>
+                3) Розпаковує відео, звук і субтитри та синхронно показує на екрані!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Інтерактивна таблиця MIME-типів із фільтрацією -->
+        <div style="margin-top: 2.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+            <h3 style="margin:0;">Інтерактивна матриця MIME-типів та кодеків для вебу</h3>
+            <div class="mime-filter-bar" role="group" aria-label="Фільтр MIME-типів">
+              <button type="button" class="mime-filter-btn active" data-filter="all">Усі формати (6)</button>
+              <button type="button" class="mime-filter-btn" data-filter="video">Тільки Відео</button>
+              <button type="button" class="mime-filter-btn" data-filter="audio">Тільки Аудіо</button>
+              <button type="button" class="mime-filter-btn" data-filter="modern">Рекомендовані 2026</button>
+            </div>
+          </div>
+
+          <div class="mime-table-wrap">
+            <table class="mime-matrix-table">
+              <thead>
+                <tr>
+                  <th>Формат / Розширення</th>
+                  <th>Офіційний MIME-тип</th>
+                  <th>Типові кодеки всередині</th>
+                  <th>Підтримка браузерами</th>
+                  <th>Інженерний вердикт</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="mime-row" data-category="video modern">
+                  <td><strong>WebM Video</strong> (<code>.webm</code>)</td>
+                  <td><code>video/webm</code></td>
+                  <td>Відео: <strong>VP9, AV1</strong> · Звук: <strong>Opus, Vorbis</strong></td>
+                  <td>Chrome, Firefox, Edge, Safari 16+</td>
+                  <td><span class="badge badge-green">№1 Основне джерело (найменша вага)</span></td>
+                </tr>
+                <tr class="mime-row" data-category="video modern">
+                  <td><strong>MPEG-4</strong> (<code>.mp4</code>)</td>
+                  <td><code>video/mp4</code></td>
+                  <td>Відео: <strong>H.264 (AVC), HEVC</strong> · Звук: <strong>AAC</strong></td>
+                  <td>100% усіх пристроїв і старих iOS</td>
+                  <td><span class="badge badge-blue">Обов’язковий fallback (резерв)</span></td>
+                </tr>
+                <tr class="mime-row" data-category="video">
+                  <td><strong>Ogg Video</strong> (<code>.ogv</code> / <code>.ogg</code>)</td>
+                  <td><code>video/ogg</code></td>
+                  <td>Відео: <strong>Theora</strong> · Звук: <strong>Vorbis</strong></td>
+                  <td>Firefox, Chrome, Opera (без Safari)</td>
+                  <td><span class="badge badge-yellow">Вільний формат (поступається WebM)</span></td>
+                </tr>
+                <tr class="mime-row" data-category="audio modern">
+                  <td><strong>Ogg / Opus Audio</strong> (<code>.ogg</code> / <code>.opus</code>)</td>
+                  <td><code>audio/ogg</code></td>
+                  <td>Звук: <strong>Opus, Vorbis</strong></td>
+                  <td>Chrome, Firefox, Edge, Safari 15+</td>
+                  <td><span class="badge badge-green">Найкраща якість голосу й музики</span></td>
+                </tr>
+                <tr class="mime-row" data-category="audio modern">
+                  <td><strong>MP3 Audio</strong> (<code>.mp3</code>)</td>
+                  <td><code>audio/mpeg</code></td>
+                  <td>Звук: <strong>MPEG-1 Audio Layer III</strong></td>
+                  <td>100% усіх браузерів та ОС</td>
+                  <td><span class="badge badge-blue">Універсальний аудіо-стандарт</span></td>
+                </tr>
+                <tr class="mime-row" data-category="video">
+                  <td><strong>AVI Контейнер</strong> (<code>.avi</code>)</td>
+                  <td><code>video/x-msvideo</code></td>
+                  <td>DivX, XviD або нестиснене відео</td>
+                  <td>❌ Не підтримується нативно в HTML5</td>
+                  <td><span class="badge badge-red">Заборонено для веб-сторінок!</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="callout callout-attention" style="margin-top: 2rem;">
+          <div class="callout-header">⚠️ Увага: чому в підручнику згадано тег &lt;embed&gt; та формат .avi, але ми їх не використовуємо?</div>
+          <p style="margin-bottom: 0.5rem;">
+            У старих версіях HTML4 для вставки відео використовували тег <code>&lt;embed&gt;</code> або <code>&lt;object&gt;</code>, які викликали зовнішній плагін Adobe Flash Player, а відео часто зберігали у форматі <code>.avi</code>.
+          </p>
+          <p style="margin-bottom: 0;">
+            <strong>Сучасний стандарт HTML5:</strong> підтримку Flash остаточно вимкнено в усіх браузерах з міркувань безпеки та енергоефективності, а файли <code>.avi</code> браузери не відтворюють. Сьогодні використовуються виключно семантичні теги <code>&lt;video&gt;</code> та <code>&lt;audio&gt;</code> з каскадом джерел <code>&lt;source&gt;</code> у форматах <strong>WebM</strong> та <strong>MP4</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         РОЗДІЛ 3: СЕМАНТИЧНІ ТЕГИ <video>, <audio>, <source> ТА <track>
+         ===================================================================== -->
+    <section class="section" id="html5-media-tags">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 3 · Синтаксис HTML5</span>
+          <h2 class="section-title">Анатомія тегів <span class="text-gradient">&lt;video&gt;</span> та <span class="text-gradient">&lt;audio&gt;</span></h2>
+          <p class="section-subtitle">
+            Обидва теги є парними контейнерами. Між їхніми відкривальним і закривальним тегами розміщують альтернативні джерела <code>&lt;source&gt;</code>, доріжки субтитрів <code>&lt;track&gt;</code> та резервний текст для дуже старих програм.
+          </p>
+        </div>
+
+        <!-- Інтерактивний довідник атрибутів -->
+        <div class="attr-explorer-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+            <h3 style="margin:0;">🔍 Інтерактивний довідник атрибутів медіа-плеєра</h3>
+            <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">Натисніть на атрибут, щоб дослідити його дію:</span>
+          </div>
+
+          <div class="attr-chips-row" role="tablist" aria-label="Атрибути тегів video та audio">
+            <button type="button" class="attr-chip-btn active" data-attr="controls">controls</button>
+            <button type="button" class="attr-chip-btn" data-attr="src">src / &lt;source&gt;</button>
+            <button type="button" class="attr-chip-btn" data-attr="autoplay">autoplay</button>
+            <button type="button" class="attr-chip-btn" data-attr="muted">muted</button>
+            <button type="button" class="attr-chip-btn" data-attr="loop">loop</button>
+            <button type="button" class="attr-chip-btn" data-attr="poster">poster</button>
+            <button type="button" class="attr-chip-btn" data-attr="preload">preload</button>
+            <button type="button" class="attr-chip-btn" data-attr="track">&lt;track&gt; (WebVTT)</button>
+          </div>
+
+          <div class="attr-detail-panel" id="attrLiveDetailCard">
+            <div>
+              <span class="badge badge-yellow" id="attrDetailBadge" style="margin-bottom:0.65rem;">Булевий атрибут · Обов’язковий для UX</span>
+              <h4 id="attrDetailTitle" style="font-size:1.25rem; margin-bottom:0.5rem;">controls — Панель керування плеєром</h4>
+              <p id="attrDetailDesc" style="margin-bottom:0; color:var(--text-secondary);">
+                Додає стандартну панель керування браузера: кнопки пуску/паузи, смугу прокрутки часу, регулятор гучності та перемикач повноекранного режиму. Без нього користувач не зможе запустити чи зупинити медіафайл.
+              </p>
+            </div>
+            <div>
+              <pre style="margin:0;"><code id="attrDetailCode">&lt;video src="video/lesson.mp4" controls width="640" height="360"&gt;&lt;/video&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-fact">
+          <div class="callout-header">💡 Як працює каскад &lt;source&gt; (Перший підтримуваний перемагає)</div>
+          <p style="margin-bottom:0;">
+            Коли всередині <code>&lt;video&gt;</code> або <code>&lt;audio&gt;</code> вказано кілька тегів <code>&lt;source&gt;</code>, браузер читає їх <strong>згори донизу</strong>. Він перевіряє атрибут <code>type="video/webm"</code>: якщо цей формат підтримується, браузер завантажує лише перший файл і ігнорує всі наступні <code>&lt;source&gt;</code>! Тому першим завжди ставлять найсучасніший і найлегший формат (<strong>WebM</strong> для відео, <strong>Ogg/Opus</strong> для аудіо), а другим — універсальний резерв (<strong>MP4</strong> або <strong>MP3</strong>).
+          </p>
+        </div>
+
+        <!-- Розбір коду рядок за рядком + Живий <audio> плеєр для самостійного опрацювання -->
+        <div class="code-anatomy-grid">
+          <div class="anatomy-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem;">
+              <h3 style="margin:0; font-size:1.15rem;">🎬 Як читати тег &lt;video&gt; (рядок за рядком)</h3>
+              <span class="badge badge-blue">Приклад 1</span>
+            </div>
+            <pre style="margin:0;"><code>&lt;video controls poster="img/cover.webp" preload="metadata"&gt;
+  &lt;source src="video/movie.webm" type="video/webm"&gt;
+  &lt;source src="video/movie.mp4" type="video/mp4"&gt;
+  Ваш браузер не підтримує HTML5 відео.
+&lt;/video&gt;</code></pre>
+            <ul class="anatomy-list">
+              <li><strong>Рядок 1:</strong> Відкриваємо плеєр, показуємо кнопки (<code>controls</code>), ставимо заставку (<code>poster</code>) та економимо трафік (<code>preload="metadata"</code>).</li>
+              <li><strong>Рядок 2:</strong> Перший вибір браузера — легкий формат <code>.webm</code>.</li>
+              <li><strong>Рядок 3:</strong> Резервний файл <code>.mp4</code>, якщо браузер не підтримав WebM.</li>
+              <li><strong>Рядок 4:</strong> Запасний текст — показується тільки в дуже старих браузерах.</li>
+            </ul>
+          </div>
+
+          <div class="anatomy-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem;">
+              <h3 style="margin:0; font-size:1.15rem;">🎧 Живий приклад тегу &lt;audio&gt;</h3>
+              <span class="badge badge-green">Спробуй натиснути ▶</span>
+            </div>
+            <pre style="margin:0;"><code>&lt;audio controls preload="metadata"&gt;
+  &lt;source src="audio/melody.ogg" type="audio/ogg"&gt;
+  &lt;source src="audio/melody.mp3" type="audio/mpeg"&gt;
+  Ваш браузер не підтримує HTML5 аудіо.
+&lt;/audio&gt;</code></pre>
+
+            <div class="live-audio-demo-box">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.84rem; font-weight:700;">
+                <span>🔊 Реальний нативний HTML5 <code>&lt;audio controls&gt;</code>:</span>
+                <span style="font-family:var(--font-mono); color:var(--accent-blue);">4 ноти (C-E-G-C)</span>
+              </div>
+              <audio id="liveAudioDemoPlayer" controls preload="metadata">
+                Ваш браузер не підтримує відтворення аудіо.
+              </audio>
+              <p style="margin:0; font-size:0.82rem; color:var(--text-secondary);">
+                Натисніть <strong>▶</strong> вище — це справжній вбудований плеєр вашого браузера, створений одним тегом <code>&lt;audio controls&gt;</code>!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Бонус: Як вставити відео з YouTube -->
+        <div class="callout callout-definition" style="margin-top: 1.5rem;">
+          <div class="callout-header">📺 Бонус для шкільного проєкту: як адаптивно вставити відео з YouTube?</div>
+          <p style="margin-bottom: 0.75rem;">
+            Якщо відео дуже велике (наприклад, 200 МБ), його краще не зберігати у папці сайту, а завантажити на YouTube і вбудувати через тег <code>&lt;iframe&gt;</code> (кнопка <em>Поділитися → Вбудувати</em>). Щоб відео красиво масштабувалося на телефонах, додайте у CSS <code>width: 100%; aspect-ratio: 16 / 9;</code>:
+          </p>
+          <pre style="margin:0;"><code>&lt;iframe
+  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+  title="Навчальне відео з проєкту"
+  style="width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 8px;"
+  loading="lazy"
+  allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         РОЗДІЛ 4: WEB MULTIMEDIA STUDIO — ІНТЕРАКТИВНА ЛАБОРАТОРІЯ
+         ===================================================================== -->
+    <section class="section" id="multimedia-lab">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 4 · Практична робота №9 + Тренажери</span>
+          <h2 class="section-title">Лабораторія: <span class="text-gradient">Web Multimedia Studio</span></h2>
+          <p class="section-subtitle">
+            Протестуйте поведінку атрибутів HTML5 плеєра та політику автозапуску браузерів, виконайте <strong>Практичну роботу №9</strong> з верстки багатоколонкової відеогалереї (<code>.multimedia</code>) і зберіть власний семантичний медіа-код.
+          </p>
+        </div>
+
+        <div class="multimedia-lab-box" id="multimediaLabBox">
+          <!-- Верхня панель керування лабораторією -->
+          <div class="mlab-header-bar">
+            <div class="mlab-tabs-nav" role="tablist" aria-label="Інструменти мультимедійної лабораторії">
+              <button type="button" class="mlab-tab-btn active" data-tab="panelPlayerSim" role="tab" aria-selected="true">
+                1. 🎛️ Симулятор Плеєра й Autoplay
+              </button>
+              <button type="button" class="mlab-tab-btn" data-tab="panelGalleryGrid" role="tab" aria-selected="false">
+                2. 📐 Відеогалерея (Практична №9)
+              </button>
+              <button type="button" class="mlab-tab-btn" data-tab="panelCodeBuilder" role="tab" aria-selected="false">
+                3. 🛠️ Конструктор &lt;video&gt; / &lt;audio&gt;
+              </button>
+            </div>
+
+            <button type="button" class="mlab-fullscreen-btn" id="labFullscreenBtn" aria-pressed="false" title="Розгорнути лабораторію на весь екран (Esc для виходу)">
+              <span>⛶</span>
+              <span id="labFullscreenLabel">На весь екран</span>
+            </button>
+          </div>
+
+          <!-- ВКЛАДКА 1: Симулятор HTML5 Плеєра та Autoplay Policy -->
+          <div class="mlab-panel active" id="panelPlayerSim" role="tabpanel">
+            <div class="player-sim-grid">
+              <!-- Ліва частина: Екран віртуального плеєра -->
+              <div>
+                <div class="sim-stage-wrapper">
+                  <div class="sim-video-screen" id="simVideoScreen">
+                    <!-- Заставка Poster -->
+                    <div class="sim-poster-overlay" id="simPosterOverlay">
+                      <span class="badge badge-yellow">Атрибут poster="img/poster-16x9.webp"</span>
+                      <h4 style="color:#ffffff; font-size:1.35rem; margin:0;">Орбітальна місія «Глибокий Космос»</h4>
+                      <p style="font-size:0.88rem; color:#e2e8f0; max-width:380px; margin:0;">
+                        Кадр-обкладинка миттєво відображається до початку завантаження самого відеопотоку.
+                      </p>
+                      <button type="button" class="btn btn-primary btn-sm" id="simPosterPlayBtn" style="margin-top:0.5rem;">
+                        ▶ Натиснути Play на плеєрі
+                      </button>
+                    </div>
+
+                    <!-- Візуалізатор під час відтворення -->
+                    <div class="sim-equalizer-bars" aria-hidden="true">
+                      <div class="sim-eq-bar"></div>
+                      <div class="sim-eq-bar"></div>
+                      <div class="sim-eq-bar"></div>
+                      <div class="sim-eq-bar"></div>
+                      <div class="sim-eq-bar"></div>
+                      <div class="sim-eq-bar"></div>
+                      <div class="sim-eq-bar"></div>
+                      <div class="sim-eq-bar"></div>
+                    </div>
+                    <div id="simPlaybackStateLabel" style="font-family:var(--font-mono); font-size:0.88rem; font-weight:700; color:#38bdf8;">
+                      Очікування дії користувача (Paused)
+                    </div>
+
+                    <!-- Доріжка субтитрів WebVTT -->
+                    <div class="sim-subtitles-caption" id="simSubtitlesCaption">
+                      [Субтитри uk.vtt]: Телескоп фіксує спектр далеких галактик...
+                    </div>
+                  </div>
+
+                  <!-- Панель controls -->
+                  <div class="sim-controls-bar" id="simControlsBar">
+                    <button type="button" class="sim-play-btn" id="simPlayToggleBtn">▶ Play</button>
+                    <span>00:42 / 02:15</span>
+                    <div class="sim-progress-track">
+                      <div class="sim-progress-fill"></div>
+                    </div>
+                    <span>🔊 HD · CC</span>
+                  </div>
+                </div>
+
+                <!-- Вердикт Autoplay Policy -->
+                <div class="autoplay-verdict-box status-ok" id="simAutoplayVerdict">
+                  <strong>✅ Стандартний режим:</strong> Плеєр очікує свідомого кліку користувача на панель <code>controls</code>, заощаджуючи трафік.
+                </div>
+
+                <!-- Згенерований тег у реальному часі -->
+                <div style="margin-top:1rem;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-family:var(--font-mono); font-size:0.8rem; font-weight:700;">Поточна HTML5-розмітка плеєра:</span>
+                    <span style="font-family:var(--font-mono); font-size:0.8rem;">Трафік при відкритті сторінки: <strong id="simTrafficEstimate" style="color:var(--accent-vermilion);">106 КБ</strong></span>
+                  </div>
+                  <pre style="margin:0;"><code id="simLiveTagPreview"></code></pre>
+                </div>
+              </div>
+
+              <!-- Права частина: Пульт перемикачів атрибутів -->
+              <div class="sim-Switches-card">
+                <h3 style="margin:0 0 0.25rem 0; font-size:1.15rem;">Пульт керування атрибутами</h3>
+                <p style="font-size:0.88rem; color:var(--text-secondary); margin:0 0 0.5rem 0;">
+                  Спробуйте увімкнути <code>autoplay</code> без <code>muted</code> і подивіться, як зреагує система безпеки браузера:
+                </p>
+
+                <label class="sim-toggle-row" for="simToggleControls">
+                  <span><code>controls</code> (Панель кнопок плеєра)</span>
+                  <input type="checkbox" id="simToggleControls" checked>
+                </label>
+
+                <label class="sim-toggle-row" for="simToggleAutoplay">
+                  <span><code>autoplay</code> (Автозапуск при відкритті)</span>
+                  <input type="checkbox" id="simToggleAutoplay">
+                </label>
+
+                <label class="sim-toggle-row" for="simToggleMuted">
+                  <span><code>muted</code> (Без звуку за замовчуванням)</span>
+                  <input type="checkbox" id="simToggleMuted">
+                </label>
+
+                <label class="sim-toggle-row" for="simToggleLoop">
+                  <span><code>loop</code> (Безкінечний цикл відтворення)</span>
+                  <input type="checkbox" id="simToggleLoop">
+                </label>
+
+                <label class="sim-toggle-row" for="simTogglePoster">
+                  <span><code>poster</code> (Зображення-обкладинка)</span>
+                  <input type="checkbox" id="simTogglePoster" checked>
+                </label>
+
+                <label class="sim-toggle-row" for="simToggleSubtitles">
+                  <span><code>&lt;track kind="subtitles"&gt;</code> (Субтитри .vtt)</span>
+                  <input type="checkbox" id="simToggleSubtitles" checked>
+                </label>
+
+                <div class="sim-toggle-row">
+                  <label for="simSelectPreload"><code>preload</code> (Завантаження):</label>
+                  <select id="simSelectPreload" style="font-family:var(--font-mono); font-weight:700; padding:0.3rem 0.5rem; border:1.5px solid var(--border-color); border-radius:4px;">
+                    <option value="metadata" selected>metadata (Рекомендовано)</option>
+                    <option value="none">none (0 КБ до кліку)</option>
+                    <option value="auto">auto (Весь файл одразу)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ВКЛАДКА 2: Тренажер відеогалереї (Практична робота №9 з підручника) -->
+          <div class="mlab-panel" id="panelGalleryGrid" role="tabpanel">
+            <div class="callout callout-practice" style="margin-top:0;">
+              <div class="callout-header">📋 Завдання Практичної роботи №9 (за підручником Н. В. Речич, с. 102–104)</div>
+              <p style="margin-bottom:0;">
+                Розмістіть на сторінці контейнер <code>&lt;div class="multimedia"&gt;</code> із кількома блоками <code>&lt;div class="multimedia-video"&gt;</code> у ряд. Порівняйте класичний метод верстки з підручника (<code>width: 33.33%; float: left; box-sizing: border-box;</code>) із сучасним стандартом <strong>CSS Grid</strong>.
+              </p>
+            </div>
+
+            <div class="gallery-trainer-controls">
+              <div>
+                <label for="galleryCountSelect" style="display:block; font-family:var(--font-mono); font-size:0.8rem; font-weight:700; margin-bottom:0.35rem;">Кількість відео в рядку:</label>
+                <select id="galleryCountSelect" style="width:100%; padding:0.5rem; font-family:var(--font-mono); font-weight:700; border:2px solid var(--border-color); border-radius:4px;">
+                  <option value="2">2 відео в ряд (по 50%)</option>
+                  <option value="3" selected>3 відео в ряд (по 33.33% — як у підручнику)</option>
+                  <option value="4">4 відео в ряд (по 25%)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="galleryModeSelect" style="display:block; font-family:var(--font-mono); font-size:0.8rem; font-weight:700; margin-bottom:0.35rem;">Технологія CSS-верстки:</label>
+                <select id="galleryModeSelect" style="width:100%; padding:0.5rem; font-family:var(--font-mono); font-weight:700; border:2px solid var(--border-color); border-radius:4px;">
+                  <option value="grid" selected>Сучасний CSS Grid (repeat + gap)</option>
+                  <option value="float">Класичний Float із підручника (float: left)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="galleryAspectSelect" style="display:block; font-family:var(--font-mono); font-size:0.8rem; font-weight:700; margin-bottom:0.35rem;">Пропорції кадру (aspect-ratio):</label>
+                <select id="galleryAspectSelect" style="width:100%; padding:0.5rem; font-family:var(--font-mono); font-weight:700; border:2px solid var(--border-color); border-radius:4px;">
+                  <option value="16 / 9" selected>16 : 9 (Widescreen HD)</option>
+                  <option value="4 / 3">4 : 3 (Класичний екран)</option>
+                  <option value="9 / 16">9 : 16 (Вертикальні Shorts / Reels)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="galleryGapRange" style="display:block; font-family:var(--font-mono); font-size:0.8rem; font-weight:700; margin-bottom:0.35rem;">
+                  Відступ між плеєрами: <strong id="galleryGapValue">12px</strong>
+                </label>
+                <input type="range" id="galleryGapRange" min="0" max="28" step="2" value="12" style="width:100%;">
+              </div>
+            </div>
+
+            <!-- Живе прев'ю ряду .multimedia -->
+            <div class="multimedia-preview-row" id="multimediaPreviewRow"></div>
+
+            <!-- Згенерований CSS-код для класів .multimedia та .multimedia-video -->
+            <div>
+              <div style="font-family:var(--font-mono); font-size:0.8rem; font-weight:700; margin-bottom:0.4rem;">
+                Згенерований CSS-код для файлу <code>style.css</code>:
+              </div>
+              <pre style="margin:0;"><code id="galleryLiveCssCode"></code></pre>
+            </div>
+          </div>
+
+          <!-- ВКЛАДКА 3: Конструктор семантичного HTML5 медіа-коду -->
+          <div class="mlab-panel" id="panelCodeBuilder" role="tabpanel">
+            <div class="builder-layout-grid">
+              <div class="builder-form-group">
+                <h3 style="margin:0; font-size:1.15rem;">Налаштування медіа-компонента</h3>
+
+                <div>
+                  <label for="builderMediaType" style="display:block; font-family:var(--font-mono); font-size:0.8rem; font-weight:700; margin-bottom:0.3rem;">Тип HTML5 елемента:</label>
+                  <select id="builderMediaType" style="width:100%; padding:0.5rem; font-family:var(--font-mono); font-weight:700; border:2px solid var(--border-color); border-radius:4px;">
+                    <option value="video" selected>&lt;video&gt; — Відеоплеєр у &lt;figure&gt;</option>
+                    <option value="audio">&lt;audio&gt; — Аудіоплеєр / Подкаст</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="builderSlugInput" style="display:block; font-family:var(--font-mono); font-size:0.8rem; font-weight:700; margin-bottom:0.3rem;">Базова назва файлу (без розширення):</label>
+                  <input type="text" id="builderSlugInput" value="school-science-lab" style="width:100%; padding:0.5rem; font-family:var(--font-mono); font-weight:700; border:2px solid var(--border-color); border-radius:4px;">
+                </div>
+
+                <label class="sim-toggle-row" for="builderFormatWebm">
+                  <span>Сучасний формат (<code>.webm</code> / <code>.ogg</code>)</span>
+                  <input type="checkbox" id="builderFormatWebm" checked>
+                </label>
+
+                <label class="sim-toggle-row" for="builderFormatMp4">
+                  <span>Універсальний резерв (<code>.mp4</code> / <code>.mp3</code>)</span>
+                  <input type="checkbox" id="builderFormatMp4" checked>
+                </label>
+
+                <label class="sim-toggle-row" for="builderControlsChk">
+                  <span>Додати панель керування <code>controls</code></span>
+                  <input type="checkbox" id="builderControlsChk" checked>
+                </label>
+
+                <label class="sim-toggle-row" for="builderLazyPreloadChk">
+                  <span>Економія трафіку <code>preload="metadata"</code> + <code>poster</code></span>
+                  <input type="checkbox" id="builderLazyPreloadChk" checked>
+                </label>
+
+                <label class="sim-toggle-row" for="builderDimensionsChk">
+                  <span>Вказати <code>width="1280" height="720"</code> (проти стрибків CLS)</span>
+                  <input type="checkbox" id="builderDimensionsChk" checked>
+                </label>
+
+                <label class="sim-toggle-row" for="builderSubtitlesChk">
+                  <span>Підключити українські субтитри <code>&lt;track srclang="uk"&gt;</code></span>
+                  <input type="checkbox" id="builderSubtitlesChk" checked>
+                </label>
+              </div>
+
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                  <span class="badge badge-green" id="mediaScoreBadge">Оцінка коду: 5/5</span>
+                  <button type="button" class="btn btn-sm btn-secondary" id="copyMediaCodeBtn">📋 Копіювати HTML</button>
+                </div>
+
+                <pre style="margin:0;"><code id="mediaCodeOutput"></code></pre>
+
+                <h4 style="margin:1.25rem 0 0.5rem 0; font-size:0.95rem;">Чек-ліст якості та доступності медіа-коду:</h4>
+                <ul class="builder-checklist" id="mediaValidationChecklist"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         РОЗДІЛ 5: ПОКРОКОВИЙ ПРАКТИКУМ ДЛЯ САМОСТІЙНОЇ РОБОТИ (ПРАКТИЧНА №9)
+         ===================================================================== -->
+    <section class="section" id="self-study-practicum">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 5 · Самостійний практикум</span>
+          <h2 class="section-title">Покрокова <span class="text-gradient">Практична робота №9</span></h2>
+          <p class="section-subtitle">
+            Якщо ви опрацьовуєте урок самостійно вдома — виконайте 4 прості кроки у власному редакторі коду (VS Code, Sublime Text або Notepad++) і відмітьте кожен пункт у чек-лісті нижче.
+          </p>
+        </div>
+
+        <div class="self-study-steps-grid">
+          <article class="study-step-card">
+            <span class="study-step-num">1</span>
+            <h3 style="margin:0; font-size:1.05rem;">Створіть структуру папок</h3>
+            <p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">
+              У папці вашого сайту (<code>site/</code>) створіть окрему підпапку <code>video</code> і покладіть туди короткий ролик <code>movie.mp4</code> (бажано до 10 МБ). Для звуку створіть підпапку <code>audio</code> з файлом <code>track.mp3</code>.
+            </p>
+          </article>
+
+          <article class="study-step-card">
+            <span class="study-step-num">2</span>
+            <h3 style="margin:0; font-size:1.05rem;">Додайте відеогалерею в HTML</h3>
+            <p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">
+              У файлі <code>gallery.html</code> перед футером створіть контейнер <code>&lt;div class="multimedia"&gt;</code> і вкладіть всередину 3 блоки <code>&lt;div class="multimedia-video"&gt;</code> із тегом <code>&lt;video controls&gt;</code> та <code>&lt;source&gt;</code>.
+            </p>
+          </article>
+
+          <article class="study-step-card">
+            <span class="study-step-num">3</span>
+            <h3 style="margin:0; font-size:1.05rem;">Оформіть ряд у style.css</h3>
+            <p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">
+              Скопіюйте CSS-код із вкладки <strong>«2. Відеогалерея»</strong> вище (можна використати сучасний <code>display: grid; grid-template-columns: repeat(3, 1fr);</code> або класичний <code>float: left; width: 33.33%;</code> з підручника).
+            </p>
+          </article>
+
+          <article class="study-step-card">
+            <span class="study-step-num">4</span>
+            <h3 style="margin:0; font-size:1.05rem;">Дослідження (2 і 4 відео)</h3>
+            <p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">
+              Спробуйте змінити кількість відео в рядку спочатку на <strong>2</strong> (<code>width: 50%</code> або <code>repeat(2, 1fr)</code>), а потім на <strong>4</strong> (<code>width: 25%</code> або <code>repeat(4, 1fr)</code>). Під галереєю додайте один аудіоплеєр <code>&lt;audio controls&gt;</code>.
+            </p>
+          </article>
+        </div>
+
+        <!-- Готовий стартовий шаблон коду -->
+        <div class="accordion-item">
+          <button type="button" class="accordion-header">
+            <span>📄 Відкрити готовий зразок HTML-коду для Практичної роботи №9 (якщо потрібна підказка)</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <pre style="margin:0;"><code>&lt;section class="multimedia"&gt;
+  &lt;div class="multimedia-video"&gt;
+    &lt;video controls preload="metadata" poster="img/preview-1.jpg"&gt;
+      &lt;source src="video/movie.webm" type="video/webm"&gt;
+      &lt;source src="video/movie.mp4" type="video/mp4"&gt;
+      Ваш браузер не підтримує HTML5 відео.
+    &lt;/video&gt;
+  &lt;/div&gt;
+  &lt;div class="multimedia-video"&gt;
+    &lt;video controls preload="metadata" poster="img/preview-2.jpg"&gt;
+      &lt;source src="video/movie.mp4" type="video/mp4"&gt;
+    &lt;/video&gt;
+  &lt;/div&gt;
+  &lt;div class="multimedia-video"&gt;
+    &lt;video controls preload="metadata" poster="img/preview-3.jpg"&gt;
+      &lt;source src="video/movie.mp4" type="video/mp4"&gt;
+    &lt;/video&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Інтерактивний чек-ліст самоперевірки -->
+        <div class="self-check-box" id="selfStudyChecklist">
+          <div class="self-check-header">
+            <div>
+              <h3 style="margin:0; font-size:1.15rem;">✅ Чек-ліст самоперевірки перед здачею роботи</h3>
+              <p style="margin:0.25rem 0 0; font-size:0.88rem; color:var(--text-secondary);">Відмітьте пункти, які ви вже перевірили у своєму браузері:</p>
+            </div>
+            <span class="badge badge-yellow" id="selfCheckProgressBadge">Виконано: 0 / 5</span>
+          </div>
+
+          <div class="self-check-list">
+            <label class="self-check-item">
+              <input type="checkbox" class="self-check-checkbox">
+              <span>У файлі вказано <code>&lt;!DOCTYPE html&gt;</code>, а відео лежить у підпапці <code>video/</code> без кирилиці та пробілів у назві.</span>
+            </label>
+            <label class="self-check-item">
+              <input type="checkbox" class="self-check-checkbox">
+              <span>У кожного тегу <code>&lt;video&gt;</code> та <code>&lt;audio&gt;</code> є атрибут <code>controls</code> (видно кнопку Play та гучність).</span>
+            </label>
+            <label class="self-check-item">
+              <input type="checkbox" class="self-check-checkbox">
+              <span>Джерело задано через <code>&lt;source src="..." type="video/mp4"&gt;</code> із правильним MIME-типом.</span>
+            </label>
+            <label class="self-check-item">
+              <input type="checkbox" class="self-check-checkbox">
+              <span>Три відео стоять рівно в один ряд (а при зміні CSS коректно перебудовуються у 2 або 4 колонки без горизонтального скролу).</span>
+            </label>
+            <label class="self-check-item">
+              <input type="checkbox" class="self-check-checkbox">
+              <span>Додано <code>preload="metadata"</code> (і за можливості <code>poster</code>), щоб сторінка відкривалася миттєво.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Акордеон: Типові помилки новачків -->
+        <div class="accordion-item">
+          <button type="button" class="accordion-header">
+            <span>🛟 Самодопомога: 4 найпоширеніші причини, чому відео не відтворюється</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <ul class="anatomy-list">
+              <li><strong>1. Неправильний шлях до файлу:</strong> Якщо HTML-файл лежить у корені <code>site/</code>, а відео в <code>site/video/</code>, шлях має бути <code>src="video/movie.mp4"</code> (без початкового слеша <code>/</code> і без <code>C:\Users\...</code>).</li>
+              <li><strong>2. Забули атрибут <code>controls</code>:</strong> Без нього відео виглядає як нерухома картинка, і натиснути Play неможливо.</li>
+              <li><strong>3. Формат <code>.avi</code> або <code>.wmv</code>:</strong> Браузери їх не розуміють. Переконвертуйте файл у <strong>MP4 (H.264)</strong> або <strong>WebM</strong> (наприклад, через CloudConvert або HandBrake).</li>
+              <li><strong>4. Автозапуск не спрацьовує:</strong> Якщо ви написали <code>autoplay</code> без <code>muted</code>, браузер заблокував його автоматично. Додайте <code>muted playsinline</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         НИЖНЯ НАВІГАЦІЯ МІЖ УРОКАМИ (PAGER)
+         ===================================================================== -->
+    <section class="lesson-pager-section" aria-label="Навігація між уроками">
+      <div class="container">
+        <div class="lesson-pager">
+          <!-- Попередній урок -->
+          <a href="web-graphics.html" class="lesson-pager-card prev" title="Перейти до Уроку 7">
+            <span class="lesson-pager-direction">← Попередній урок</span>
+            <span class="lesson-pager-title">Урок 7: Графіка для веб-середовища</span>
+            <span class="lesson-pager-sub">Растр vs Вектор, JPEG, PNG, SVG, WebP, AVIF та ліцензії Creative Commons</span>
+          </a>
+
+          <!-- Центральна кнопка всіх уроків -->
+          <button type="button" class="lesson-pager-all-btn" id="pagerAllLessonsBtn" title="Відкрити список усіх уроків курсу">
+            <span>📚 Усі уроки</span>
+            <span style="font-size: 0.72rem; opacity: 0.8;">(Програма курсу)</span>
+          </button>
+
+          <!-- Наступний урок -->
+          <a href="css-animations.html" class="lesson-pager-card next" title="Перейти до Уроку 9">
+            <span class="lesson-pager-direction">Наступний урок →</span>
+            <span class="lesson-pager-title">Урок 9: Анімаційні ефекти та переходи</span>
+            <span class="lesson-pager-sub">CSS-переходи (transition), трансформації (transform), @keyframes та Практична №8</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Підвал сайту -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-badge">&lt;/&gt;</span>
+            <span>Вебтехнології 10–11 класи</span>
+          </div>
+          <p class="footer-text">
+            Інтерактивний навчальний онлайн-курс зі створення сучасних веб-сайтів для старшокласників за програмою підручника Н. В. Речич (Видавництво «Ранок»).
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Корисні ресурси до Уроку 8</h4>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video" target="_blank" rel="noopener noreferrer">MDN: Повний довідник елемента &lt;video&gt;</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio" target="_blank" rel="noopener noreferrer">MDN: Повний довідник елемента &lt;audio&gt;</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API" target="_blank" rel="noopener noreferrer">MDN: Формат субтитрів WebVTT (&lt;track&gt;)</a></li>
+            <li><a href="https://handbrake.fr" target="_blank" rel="noopener noreferrer">HandBrake: Безкоштовний конвертер відео у MP4 / WebM</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Інтерактивний веб-курс «Вебтехнології». Урок 8: Мультимедіа на веб-сторінках.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Підключення скриптів (core.js обов'язково перед уроковим скриптом) -->
+  <script src="js/core.js?v=9"></script>
+  <script src="js/multimedia-lesson.js?v=2"></script>
+</body>
+</html>

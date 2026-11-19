@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="480" height="270">
+  <defs>
+    <pattern id="grid9" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#d6d1c4" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="480" height="270" fill="#fbf9f4" />
+  <rect width="480" height="270" fill="url(#grid9)" />
+
+  <!-- Left Card: Transform & Transition Stage -->
+  <g transform="translate(24, 24)">
+    <rect x="5" y="5" width="210" height="164" rx="8" fill="#111318" />
+    <rect width="210" height="164" rx="8" fill="#0f172a" stroke="#111318" stroke-width="3" />
+    <!-- Top Chrome -->
+    <rect width="210" height="28" rx="8" fill="#ff4732" stroke="#111318" stroke-width="3" />
+    <circle cx="15" cy="14" r="4" fill="#facc15" stroke="#111318" stroke-width="1.5" />
+    <circle cx="29" cy="14" r="4" fill="#10b981" stroke="#111318" stroke-width="1.5" />
+    <text x="122" y="18" font-family="monospace" font-weight="900" font-size="10" text-anchor="middle" fill="#ffffff">TRANSFORM + :HOVER</text>
+
+    <!-- Ghost original square -->
+    <rect x="34" y="54" width="56" height="56" rx="6" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4 3" />
+    <text x="62" y="86" font-family="monospace" font-size="9" text-anchor="middle" fill="#94a3b8">0%</text>
+
+    <!-- Motion trail arrow -->
+    <path d="M 96 82 L 122 82" stroke="#facc15" stroke-width="3" stroke-linecap="round" />
+    <polygon points="120,76 130,82 120,88" fill="#facc15" />
+
+    <!-- Rotated & scaled target card -->
+    <g transform="translate(158, 82) rotate(18) scale(1.12)">
+      <rect x="-26" y="-26" width="52" height="52" rx="14" fill="#2563eb" stroke="#facc15" stroke-width="2.5" />
+      <text x="0" y="4" font-family="monospace" font-weight="900" font-size="9" text-anchor="middle" fill="#ffffff">90°</text>
+    </g>
+
+    <!-- Bottom snippet -->
+    <rect x="14" y="130" width="182" height="22" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+    <text x="105" y="145" font-family="monospace" font-weight="700" font-size="9" text-anchor="middle" fill="#38bdf8">transition: 0.35s ease-out;</text>
+  </g>
+
+  <!-- Right Card: @keyframes Timeline & Easing Curve -->
+  <g transform="translate(252, 24)">
+    <rect x="5" y="5" width="204" height="164" rx="8" fill="#111318" />
+    <rect width="204" height="164" rx="8" fill="#ffffff" stroke="#111318" stroke-width="3" />
+    <rect width="204" height="28" rx="8" fill="#facc15" stroke="#111318" stroke-width="3" />
+    <text x="102" y="18" font-family="monospace" font-weight="900" font-size="10" text-anchor="middle" fill="#111318">@KEYFRAMES TIMELINE</text>
+
+    <!-- Bezier Easing Curve Graph -->
+    <rect x="16" y="40" width="172" height="68" rx="4" fill="#f1ede2" stroke="#111318" stroke-width="2" />
+    <line x1="26" y1="98" x2="178" y2="98" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3" />
+    <line x1="26" y1="50" x2="178" y2="50" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3" />
+    <path d="M 28 96 C 68 96, 86 50, 174 50" fill="none" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" />
+    <circle cx="28" cy="96" r="4.5" fill="#ff4732" stroke="#111318" stroke-width="1.5" />
+    <circle cx="102" cy="70" r="4.5" fill="#facc15" stroke="#111318" stroke-width="1.5" />
+    <circle cx="174" cy="50" r="4.5" fill="#10b981" stroke="#111318" stroke-width="1.5" />
+
+    <!-- Keyframe Stops -->
+    <g transform="translate(16, 118)">
+      <rect x="0" y="0" width="48" height="22" rx="4" fill="#fee2e2" stroke="#111318" stroke-width="2" />
+      <text x="24" y="15" font-family="monospace" font-weight="800" font-size="10" text-anchor="middle" fill="#b91c1c">0%</text>
+
+      <rect x="62" y="0" width="48" height="22" rx="4" fill="#fef3c7" stroke="#111318" stroke-width="2" />
+      <text x="86" y="15" font-family="monospace" font-weight="800" font-size="10" text-anchor="middle" fill="#92400e">50%</text>
+
+      <rect x="124" y="0" width="48" height="22" rx="4" fill="#d1fae5" stroke="#111318" stroke-width="2" />
+      <text x="148" y="15" font-family="monospace" font-weight="800" font-size="10" text-anchor="middle" fill="#065f46">100%</text>
+    </g>
+    <text x="102" y="155" font-family="monospace" font-weight="700" font-size="9" text-anchor="middle" fill="#334155">60 FPS · GPU COMPOSITOR</text>
+  </g>
+
+  <!-- Bottom Banner -->
+  <g transform="translate(24, 206)">
+    <rect x="4" y="4" width="432" height="42" rx="6" fill="#111318" />
+    <rect width="432" height="42" rx="6" fill="#7c3aed" stroke="#111318" stroke-width="3" />
+    <text x="216" y="26" font-family="monospace" font-weight="900" font-size="13" text-anchor="middle" fill="#ffffff">TRANSITION · TRANSFORM · @KEYFRAMES · 60 FPS</text>
+  </g>
+</svg>

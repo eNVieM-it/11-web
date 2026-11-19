@@ -13,7 +13,10 @@
 | 4 | `box-model.html` | Проектування та блочна модель верстки (Box Model) | Доступно |
 | 5 | `responsive-design.html` | Адаптивна верстка, viewport, медіазапити, flex-direction | Доступно |
 | 6 | `cross-browser-optimization.html` | Кросбраузерність та оптимізація: рушії (Blink, WebKit, Gecko), префікси, @supports, WebP/AVIF, lazy loading, defer, мініфікація | Доступно |
-| 7–15 | *В розробці* | Графіка, мультимедіа, анімації, JS/DOM, форми, клієнт-сервер, юзабіліті, SEO, захист проєктів | Заплановано |
+| 7 | `web-graphics.html` | Графіка для веб-середовища: растр vs вектор, JPEG, PNG, GIF, SVG, WebP, AVIF, авторське право та ліцензії Creative Commons | Доступно |
+| 8 | `web-multimedia.html` | Мультимедіа на веб-сторінках: класифікація, MIME-типи, контейнери й кодеки, теги `<video>`, `<audio>`, `<source>`, `<track>` (WebVTT), Autoplay Policy та відеогалерея | Доступно |
+| 9 | `css-animations.html` | Анімаційні ефекти та переходи: CSS `transition`, `transform`, криві часу, `@keyframes`, `animation`, інтерактивна студія та Практична №8 | Доступно |
+| 10–15 | *В розробці* | JS/DOM, форми, клієнт-сервер, юзабіліті, SEO, захист проєктів | Заплановано |
 
 ## Структура
 
@@ -24,6 +27,8 @@
 ├── box-model.html                Урок 4: Блочна модель
 ├── responsive-design.html        Урок 5: Адаптивна верстка
 ├── cross-browser-optimization.html Урок 6: Кросбраузерність та оптимізація
+├── web-graphics.html             Урок 7: Графіка для веб-середовища
+├── web-multimedia.html           Урок 8: Мультимедіа на веб-сторінках
 ├── favicon.svg
 ├── img/
 │   ├── preview-lesson-*.png      прев'ю уроків 1–5

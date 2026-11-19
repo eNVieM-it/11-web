@@ -3,59 +3,71 @@
    ========================================================================== */
 
 .hero-section {
-  padding: 6rem 0;
+  padding: 5.5rem 0;
   background-color: var(--bg-primary);
   border-bottom: var(--border-width) solid var(--border-color);
+  position: relative;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 3.5rem;
   align-items: center;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .hero-title {
-  font-size: clamp(2.6rem, 5vw, 4.5rem);
-  line-height: 1.15;
+  font-size: clamp(2.45rem, 4.6vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
 }
 
 .hero-description {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .hero-cta-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .hero-highlight-boxes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
 }
 
 .highlight-box {
   background: var(--accent-warning);
-  border: var(--border-width) solid var(--border-color);
-  padding: 1.5rem 1rem;
+  border: var(--border-width) solid #111318;
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1rem;
   text-align: center;
   box-shadow: var(--shadow-sm);
-  color: #111;
+  color: #111318;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.highlight-box:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
 }
 
 [data-theme="dark"] .highlight-box {
-  box-shadow: 3px 3px 0px var(--border-color);
+  box-shadow: 3px 3px 0px var(--shadow-color);
 }
 
 .highlight-box .box-value {
@@ -77,6 +89,7 @@
 .hero-interactive-card {
   background: var(--bg-card);
   border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-lg);
   padding: 2rem;
   box-shadow: var(--shadow-lg);
 }
@@ -84,6 +97,7 @@
 .interactive-card-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 2px dashed var(--border-color);
   padding-bottom: 1rem;
   margin-bottom: 1.5rem;
@@ -97,6 +111,7 @@
   justify-content: space-between;
   background: var(--bg-secondary);
   border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: inset 4px 4px 0px rgba(0,0,0,0.05);

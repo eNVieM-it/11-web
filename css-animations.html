@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 9: Анімаційні ефекти та переходи — CSS transition, transform та @keyframes</title>
+  <meta name="description" content="Інтерактивний урок для 10–11 класів: CSS-переходи (transition), трансформації (transform), ключові кадри (@keyframes), криві швидкості, інтерактивна студія анімацій та Практична робота №8.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Google Fonts: Space Grotesk, Work Sans, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Space+Grotesk:wght@700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Таблиці стилів -->
+  <link rel="stylesheet" href="styles/main.css?v=9">
+  <link rel="stylesheet" href="styles/hero.css?v=9">
+  <link rel="stylesheet" href="styles/modules.css?v=9">
+  <link rel="stylesheet" href="styles/animations-lesson.css?v=1">
+  <link rel="stylesheet" href="styles/responsive.css?v=9">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Stats Ribbon -->
+  <div class="stats-ribbon">
+    <div class="container stats-ribbon-content">
+      <div>
+        <span class="pulse-dot"></span>
+        Урок №9 · Тема «Анімаційні ефекти та переходи: CSS transition, transform і @keyframes»
+      </div>
+      <div>
+        Інформатика 10–11 класи · Модуль 3 «Графіка та мультимедіа» (§ 3.2 + Практична №8)
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <div class="header-brand-group">
+        <a href="index.html" class="header-logo" title="На головну сторінку курсу">
+          <span class="logo-badge">&lt;/&gt;</span>
+          <span>ВЕБТЕХНОЛОГІЇ</span>
+        </a>
+
+        <!-- Випадаюче меню всіх уроків курсу -->
+        <div class="course-dropdown" id="courseDropdown">
+          <button class="course-dropdown-btn" id="courseDropdownBtn" type="button" aria-expanded="false" title="Переглянути всі уроки курсу (15 тем)">
+            <span class="course-btn-icon" aria-hidden="true">📚</span>
+            <span class="course-btn-text">Уроки курсу</span>
+            <span class="course-btn-badge" aria-label="15 уроків">15</span>
+            <span class="dropdown-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="course-dropdown-menu" id="courseDropdownMenu" role="dialog" aria-modal="true" aria-label="Навчальна програма курсу">
+            <div class="marquee-menu-topbar">
+              <div class="marquee-menu-title-group">
+                <h2 class="marquee-menu-main-title">📚 Навчальна програма курсу «Вебтехнології»</h2>
+                <span class="marquee-menu-badge">10–11 класи · 15 уроків</span>
+              </div>
+              <button class="marquee-menu-close-btn" id="courseDropdownCloseBtn" type="button" aria-label="Закрити меню">
+                <span>ЗАКРИТИ</span>
+                <span>✕</span>
+              </button>
+            </div>
+
+            <div class="marquee-menu-body">
+              <div class="marquee-menu-items-scroll">
+                <a href="index.html" class="course-dropdown-item" data-num="01" data-title="Урок 1: Тренди вебдизайну та структура сайту" data-topics="Основні тренди у веб-дизайні. Види сайтів та цільова аудиторія. Інструменти веб-розробника." data-icon="🎨" data-img="img/preview-lesson-1.png" data-badge="Розділ 1 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">01</span><span class="item-title">1. Тренди вебдизайну та структура</span></div>
+                  <span class="lesson-tag">Розділ 1</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span><span>УРОК 1 · ТРЕНДИ ВЕБДИЗАЙНУ · СТРУКТУРА САЙТУ · </span></div></div>
+                </a>
+                <a href="html-basics.html" class="course-dropdown-item" data-num="02" data-title="Урок 2: Основи мови HTML5" data-topics="Мова гіпертекстової розмітки. Структура HTML-документа, розмітка тексту та гіперпосилання." data-icon="📄" data-img="img/preview-lesson-2.png" data-badge="Розділ 2 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">02</span><span class="item-title">2. Основи мови HTML5</span></div>
+                  <span class="lesson-tag">Розділ 2</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span><span>УРОК 2 · ОСНОВИ HTML5 · СТРУКТУРА ДОКУМЕНТА · </span></div></div>
+                </a>
+                <a href="css-basics.html" class="course-dropdown-item" data-num="03" data-title="Урок 3: Каскадні таблиці стилів CSS" data-topics="Каскадні таблиці стилів. Підключення CSS, базові селектори та стилі тексту." data-icon="🎯" data-img="img/preview-lesson-3.png" data-badge="Розділ 3 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">03</span><span class="item-title">3. Каскадні таблиці стилів CSS</span></div>
+                  <span class="lesson-tag">Розділ 3</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span><span>УРОК 3 · ТАБЛИЦІ СТИЛІВ CSS · СЕЛЕКТОРИ · </span></div></div>
+                </a>
+                <a href="box-model.html" class="course-dropdown-item" data-num="04" data-title="Урок 4: Блочна модель верстки" data-topics="Проектування та верстка веб-сторінок. Блочна модель верстки (Box Model)." data-icon="📦" data-img="img/preview-lesson-4.png" data-badge="Розділ 4 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">04</span><span class="item-title">4. Блочна модель верстки</span></div>
+                  <span class="lesson-tag">Розділ 4</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span><span>УРОК 4 · БЛОЧНА МОДЕЛЬ ВЕРСТКИ · BOX MODEL · </span></div></div>
+                </a>
+                <a href="responsive-design.html" class="course-dropdown-item" data-num="05" data-title="Урок 5: Адаптивна верстка" data-topics="Адаптивна верстка. Viewport, медіазапити @media та flex-direction." data-icon="📱" data-img="img/preview-lesson-5.png" data-badge="Розділ 5 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">05</span><span class="item-title">5. Адаптивна верстка</span></div>
+                  <span class="lesson-tag">Розділ 5</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span><span>УРОК 5 · АДАПТИВНА ВЕРСТКА · VIEWPORT · @MEDIA · </span></div></div>
+                </a>
+                <a href="cross-browser-optimization.html" class="course-dropdown-item" data-num="06" data-title="Урок 6: Кросбраузерність та оптимізація" data-topics="Кросбраузерність. Рушії браузерів, вендорні префікси, @supports, формати WebP/AVIF, lazy loading та мініфікація." data-icon="🌐" data-img="img/preview-lesson-6.svg" data-badge="Розділ 6 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">06</span><span class="item-title">6. Кросбраузерність та оптимізація</span></div>
+                  <span class="lesson-tag">Розділ 6</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · </span><span>УРОК 6 · КРОСБРАУЗЕРНІСТЬ · ПРЕФІКСИ · ОПТИМІЗАЦІЯ · </span></div></div>
+                </a>
+                <a href="web-graphics.html" class="course-dropdown-item" data-num="07" data-title="Урок 7: Графіка для веб-середовища" data-topics="Графіка для веб-середовища. Формати зображень, SVG, WebP, AVIF, оптимізація та авторські права." data-icon="🖼️" data-img="img/preview-lesson-7.svg" data-badge="Розділ 7 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">07</span><span class="item-title">7. Графіка для веб-середовища</span></div>
+                  <span class="lesson-tag">Розділ 7</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · WEBP · AVIF · ЛІЦЕНЗІЇ CC · </span><span>УРОК 7 · ГРАФІКА ДЛЯ ВЕБ · SVG · WEBP · AVIF · ЛІЦЕНЗІЇ CC · </span></div></div>
+                </a>
+                <a href="web-multimedia.html" class="course-dropdown-item" data-num="08" data-title="Урок 8: Мультимедіа на веб-сторінках" data-topics="Аудіо та відео в HTML5 (теги audio, video, source, track), MIME-типи, кодеки та інтерактивна медіа-студія." data-icon="🎬" data-img="img/preview-lesson-8.svg" data-badge="Розділ 8 · Доступно" data-status="available">
+                  <div class="item-left"><span class="item-num">08</span><span class="item-title">8. Мультимедіа на веб-сторінках</span></div>
+                  <span class="lesson-tag">Розділ 8</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · MIME · WEBVTT · </span><span>УРОК 8 · МУЛЬТИМЕДІА · AUDIO · VIDEO · MIME · WEBVTT · </span></div></div>
+                </a>
+                <a href="css-animations.html" class="course-dropdown-item active" data-num="09" data-title="Урок 9: Анімаційні ефекти та переходи" data-topics="Анімаційні ефекти. CSS-переходи (transition), трансформації (transform), ключові кадри (@keyframes) та Практична №8." data-icon="✨" data-img="img/preview-lesson-9.svg" data-badge="Поточний урок" data-status="current">
+                  <div class="item-left"><span class="item-num">09</span><span class="item-title">9. Анімаційні ефекти та переходи</span></div>
+                  <span class="lesson-tag current">Поточний</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · </span><span>УРОК 9 · АНІМАЦІЙНІ ЕФЕКТИ · TRANSITION · TRANSFORM · KEYFRAMES · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="10" data-title="Урок 10: Веб-програмування та інтерактивні сторінки" data-topics="Веб-програмування та інтерактивні сторінки. Об’єктна модель документа (DOM)." data-icon="⚡" data-img="" data-badge="Розділ 10 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">10</span><span class="item-title">10. Веб-програмування та DOM</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ПОДІЇ · </span><span>УРОК 10 · ВЕБ-ПРОГРАМУВАННЯ · JAVASCRIPT · DOM · ПОДІЇ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="11" data-title="Урок 11: Валідація та збереження даних форм" data-topics="Валідація та збереження даних форм. Елементи інтерактивних веб-форм." data-icon="📋" data-img="" data-badge="Розділ 11 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">11</span><span class="item-title">11. Інтерактивні веб-форми</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ · </span><span>УРОК 11 · ІНТЕРАКТИВНІ ВЕБ-ФОРМИ · INPUT · ВАЛІДАЦІЯ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="12" data-title="Урок 12: Клієнт-сервер, бази даних та API" data-topics="Веб-сервер та база даних. Взаємодія клієнт-сервер. Прикладний програмний інтерфейс (API)." data-icon="🗄️" data-img="" data-badge="Розділ 12 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">12</span><span class="item-title">12. Веб-сервер, бази даних та API</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 12 · ВЕБ-СЕРВЕР · БАЗИ ДАНИХ · HTTP · API · FETCH · </span><span>УРОК 12 · ВЕБ-СЕРВЕР · БАЗИ ДАНИХ · HTTP · API · FETCH · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="13" data-title="Урок 13: Ергономіка, юзабіліті та доступність" data-topics="Правила ергономічного розміщення відомостей на веб-сторінці. Оцінка юзабіліті та доступності." data-icon="👁️" data-img="" data-badge="Розділ 13 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">13</span><span class="item-title">13. Юзабіліті та доступність</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · A11Y · ДОСТУПНІСТЬ · </span><span>УРОК 13 · ЮЗАБІЛІТІ ТА ЕРГОНОМІКА · A11Y · ДОСТУПНІСТЬ · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="14" data-title="Урок 14: Пошукова оптимізація та хостинг" data-topics="Пошукова оптимізація та просування веб-сайтів. Хостинг сайту, публікація в мережі Інтернет." data-icon="🚀" data-img="" data-badge="Розділ 14 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">14</span><span class="item-title">14. SEO-оптимізація та хостинг</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 14 · SEO-ОПТИМІЗАЦІЯ · ХОСТИНГ · GITHUB PAGES · </span><span>УРОК 14 · SEO-ОПТИМІЗАЦІЯ · ХОСТИНГ · GITHUB PAGES · </span></div></div>
+                </a>
+                <a href="#" class="course-dropdown-item upcoming" data-num="15" data-title="Урок 15: Захист учнівських проєктів" data-topics="Захист учнівських проектів. Повторення і систематизація знань. Тематичне та семестрове оцінювання." data-icon="🏆" data-img="" data-badge="Розділ 15 · Скоро" data-status="upcoming">
+                  <div class="item-left"><span class="item-num">15</span><span class="item-title">15. Захист учнівських проєктів</span></div>
+                  <span class="lesson-tag upcoming">Скоро</span>
+                  <div class="marquee" aria-hidden="true"><div class="marquee__inner"><span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · ОЦІНЮВАННЯ · </span><span>УРОК 15 · ЗАХИСТ ПРОЄКТІВ · ПРЕЗЕНТАЦІЯ · ОЦІНЮВАННЯ · </span></div></div>
+                </a>
+              </div>
+
+              <div class="marquee-menu-preview-panel">
+                <div class="preview-card-box" id="menuPreviewBox">
+                  <div class="preview-card-visual" id="previewLessonVisual">
+                    <img src="img/preview-lesson-9.svg" alt="Урок 9: Анімаційні ефекти та переходи" class="preview-card-img" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                    <span id="previewLessonBadge" class="lesson-tag current">Поточний урок</span>
+                    <span id="previewLessonNum" style="font-family: var(--font-mono); font-weight: 800;">УРОК #09</span>
+                  </div>
+                  <h3 id="previewLessonTitle" style="margin: 0; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.3;">Урок 9: Анімаційні ефекти та переходи</h3>
+                  <p id="previewLessonTopics" style="margin: 0; font-size: 0.92rem; line-height: 1.5;">Анімаційні ефекти. CSS-переходи (transition), трансформації (transform), ключові кадри (@keyframes) та Практична №8.</p>
+                  <a id="previewLessonBtn" href="css-animations.html" class="btn btn-primary" style="margin-top: 0.5rem; text-align: center; justify-content: center; width: 100%;">Перейти до уроку →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зміст поточного уроку (десктоп) та мобільне меню -->
+      <nav class="header-nav" aria-label="Зміст уроку">
+        <ul class="nav-links" id="navLinks">
+          <li class="mobile-only-section">
+            <div class="mobile-nav-group-title">📚 Усі уроки курсу</div>
+            <ul class="mobile-nav-list">
+              <li><a href="index.html" class="mobile-nav-item">Урок 1: Вебдизайн та структура</a></li>
+              <li><a href="html-basics.html" class="mobile-nav-item">Урок 2: Основи мови HTML5</a></li>
+              <li><a href="css-basics.html" class="mobile-nav-item">Урок 3: Каскадні таблиці стилів CSS</a></li>
+              <li><a href="box-model.html" class="mobile-nav-item">Урок 4: Блочна модель верстки</a></li>
+              <li><a href="responsive-design.html" class="mobile-nav-item">Урок 5: Адаптивна верстка</a></li>
+              <li><a href="cross-browser-optimization.html" class="mobile-nav-item">Урок 6: Кросбраузерність та оптимізація</a></li>
+              <li><a href="web-graphics.html" class="mobile-nav-item">Урок 7: Графіка для веб-середовища</a></li>
+              <li><a href="web-multimedia.html" class="mobile-nav-item">Урок 8: Мультимедіа на веб-сторінках</a></li>
+              <li><a href="css-animations.html" class="mobile-nav-item active">Урок 9: Анімаційні ефекти та переходи ★</a></li>
+            </ul>
+          </li>
+
+          <li class="mobile-nav-group-title">📌 Зміст цього уроку</li>
+          <li><a href="#hero" class="nav-link active">Вступ</a></li>
+          <li><a href="#transitions-transforms" class="nav-link">1. Transition &amp; Transform</a></li>
+          <li><a href="#keyframes-animation" class="nav-link">2. @keyframes</a></li>
+          <li><a href="#animation-studio" class="nav-link">3. Студія</a></li>
+          <li><a href="#practical-work" class="nav-link nav-link-highlight">🛠️ Практикум</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#practical-work" class="header-quick-prac-btn" title="Перейти до живого практикуму">🛠️ Практикум</a>
+        <button id="themeToggleBtn" class="theme-toggle-btn" type="button" title="Перемкнути тему">НІЧ 🌙</button>
+        <button id="burgerMenuBtn" class="burger-menu-btn" type="button" aria-label="Відкрити меню навігації">МЕНЮ ☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         HERO SECTION: АНІМАЦІЙНІ ЕФЕКТИ ТА ПЕРЕХОДИ
+         ===================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-pulse"></span>
+            <span>Урок 9 · CSS transition, transform та @keyframes (§ 3.2 + Практична №8)</span>
+          </div>
+
+          <h1 class="hero-title">
+            Анімаційні ефекти та <span class="text-gradient">переходи</span> в CSS
+          </h1>
+
+          <p class="hero-description">
+            Анімація оживляє веб-сторінку: кнопки м’яко реагують на курсор, картки плавно підіймаються, а індикатори показують, що сайт працює. І найголовніше — усе це можна створити <strong>на чистому CSS без жодного рядка JavaScript</strong>! Урок побудовано так, щоб ви могли легко розібратися самостійно: на кожне правило є живий приклад і тренажер.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#transitions-transforms" class="btn btn-primary btn-lg">
+              <span>Почати вивчення</span>
+              <span class="btn-arrow">↓</span>
+            </a>
+            <a href="#animation-studio" class="btn btn-secondary btn-lg">
+              <span>✨ Студія анімацій</span>
+            </a>
+            <a href="#practical-work" class="btn btn-practical-highlight btn-lg">
+              <span>🛠️ Практикум (Пісочниця)</span>
+            </a>
+          </div>
+
+          <div class="hero-highlight-boxes">
+            <div class="highlight-box">
+              <span class="box-value">transition</span>
+              <span class="box-label">Плавний перехід A → B (наприклад, :hover)</span>
+            </div>
+            <div class="highlight-box">
+              <span class="box-value">transform</span>
+              <span class="box-label">Зсув, масштаб, поворот, нахил</span>
+            </div>
+            <div class="highlight-box">
+              <span class="box-value">@keyframes</span>
+              <span class="box-label">Сценарій руху по кадрах 0% → 100%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Права колонка: Живий демонстратор CSS без JavaScript -->
+        <div class="anim-hero-card">
+          <div class="anim-hero-topbar">
+            <div class="anim-hero-dots">
+              <span style="background: #ff4732;"></span>
+              <span style="background: #facc15;"></span>
+              <span style="background: #10b981;"></span>
+            </div>
+            <span>CSS MOTION ENGINE · LIVE DEMO</span>
+          </div>
+
+          <div class="anim-hero-body">
+            <div class="hero-demo-pills" role="group" aria-label="Режими демонстрації">
+              <button type="button" class="hero-demo-btn active" data-demo="hover">1. transition</button>
+              <button type="button" class="hero-demo-btn" data-demo="pulse">2. opacity</button>
+              <button type="button" class="hero-demo-btn" data-demo="spin">3. @keyframes</button>
+            </div>
+
+            <div class="hero-stage-box">
+              <div class="hero-demo-target demo-hover" id="heroDemoTarget" title="Наведіть курсор або клікніть">
+                НАВЕДИ / КЛІК
+              </div>
+              <span id="heroDemoHint" style="font-size:0.8rem; color:#cbd5e1; text-align:center;">
+                Наведіть курсор на блок або клікніть по ньому, щоб побачити плавний transition:
+              </span>
+            </div>
+
+            <pre style="margin:0;"><code id="heroDemoCode" style="font-size:0.8rem;"></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Інформаційна стрічка фактів -->
+    <div class="stats-ribbon">
+      <div class="container stats-ribbon-grid">
+        <div class="stat-item">
+          <span class="stat-num">60 FPS</span>
+          <span class="stat-text">плавність анімації, коли ми рухаємо елементи через <code>transform</code> і <code>opacity</code> (працює відеокарта)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">0 рядків JS</span>
+          <span class="stat-text">потрібно для кнопок, карток, галерей та циклічних індикаторів — усе робить браузер силами CSS</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">0.2–0.4 с</span>
+          <span class="stat-text">золота тривалість для hover-ефектів інтерфейсу: швидше — різко, повільніше — здається «гальмом»</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================================
+         РОЗДІЛ 1: ПЕРЕХОДИ (TRANSITION) ТА ТРАНСФОРМАЦІЇ (TRANSFORM)
+         ===================================================================== -->
+    <section class="section" id="transitions-transforms">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 1 · Основи плавного руху</span>
+          <h2 class="section-title">Як працюють <span class="text-gradient">transition</span> та <span class="text-gradient">transform</span>?</h2>
+          <p class="section-subtitle">
+            Найпростіший спосіб додати динаміку на сайт — змінювати вигляд елемента при наведенні курсора (<code>:hover</code>). Щоб зміна була не різким «стрибком», а плавним перетіканням, використовують властивість <strong>transition</strong>.
+          </p>
+        </div>
+
+        <div class="callout callout-definition">
+          <div class="callout-header">💡 Проста аналогія для розуміння</div>
+          <p style="margin-bottom:0;">
+            Уявіть лампу в кімнаті. <strong>Без <code>transition</code></strong> вона працює як звичайний вимикач: клац — і колір чи розмір кнопки миттєво «перескочив». <strong>Із <code>transition</code></strong> вона працює як плавний регулятор яскравості (димер): браузер сам домальовує всі проміжні кадри між старим і новим станом!
+          </p>
+        </div>
+
+        <!-- Порівняння: БЕЗ transition vs З transition -->
+        <div class="compare-switch-grid">
+          <div class="compare-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h3 style="margin:0;">❌ БЕЗ transition (різкий стрибок)</h3>
+              <span class="badge badge-red">0 секунд</span>
+            </div>
+            <p style="margin:0; font-size:0.92rem; color:var(--text-secondary);">
+              Наведіть курсор на кнопку — вона змінює колір, форму і позицію миттєво, за один кадр:
+            </p>
+            <div class="compare-demo-zone">
+              <button type="button" class="demo-btn-abrupt">НАВЕДИ НА МЕНЕ (РІЗКО)</button>
+            </div>
+            <pre style="margin:0;"><code>.btn:hover {
+  background: #ff4732;
+  transform: translateY(-6px) scale(1.06);
+  border-radius: 999px;
+}</code></pre>
+          </div>
+
+          <div class="compare-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <h3 style="margin:0;">✅ ІЗ transition (плавний перехід)</h3>
+              <span class="badge badge-green">0.35s ease</span>
+            </div>
+            <p style="margin:0; font-size:0.92rem; color:var(--text-secondary);">
+              Додаємо <strong>лише 1 рядок</strong> у базовий клас кнопки — і той самий ефект стає м’яким і приємним:
+            </p>
+            <div class="compare-demo-zone">
+              <button type="button" class="demo-btn-smooth">НАВЕДИ НА МЕНЕ (ПЛАВНО)</button>
+            </div>
+            <pre style="margin:0;"><code>.btn {
+  transition: transform 0.35s ease,
+              background-color 0.35s ease,
+              border-radius 0.35s ease;
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Формула синтаксису transition -->
+        <div class="syntax-anatomy-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <h3 style="margin:0; color:#ffffff;">🧩 Шпаргалка: з чого складається запис <code>transition</code></h3>
+            <span class="badge badge-yellow">Формула 4 частин</span>
+          </div>
+          <p style="margin:0.5rem 0 0; color:#cbd5e1; font-size:0.94rem;">
+            Повний короткий запис: <code style="background:#1e293b; color:#fde047; border-color:#475569;">transition: transform 0.35s ease-out 0.1s;</code>
+          </p>
+
+          <div class="syntax-tokens-row">
+            <div class="syntax-token">
+              <code style="color:#38bdf8;">1. transform</code>
+              <span><strong>Що анімуємо?</strong> Назва властивості (або <code>all</code> — усі змінені властивості, хоча краще вказувати точно).</span>
+            </div>
+            <div class="syntax-token">
+              <code style="color:#fde047;">2. 0.35s</code>
+              <span><strong>Як довго?</strong> Тривалість переходу у секундах (<code>0.35s</code>) або мілісекундах (<code>350ms</code>). Обов’язковий параметр!</span>
+            </div>
+            <div class="syntax-token">
+              <code style="color:#34d399;">3. ease-out</code>
+              <span><strong>Як прискорюється?</strong> Функція часу (динаміка): <code>linear</code>, <code>ease</code>, <code>ease-in</code>, <code>ease-out</code>.</span>
+            </div>
+            <div class="syntax-token">
+              <code style="color:#c084fc;">4. 0.1s</code>
+              <span><strong>Пауза перед стартом</strong> (необов’язково). За замовчуванням <code>0s</code> — старт одразу.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 головні функції transform -->
+        <div style="margin-top: 2.5rem;">
+          <h3 style="font-size:1.55rem; margin-bottom:0.4rem;">🔄 4 головні трансформації (<code>transform</code>)</h3>
+          <p style="color:var(--text-secondary); margin-bottom:1rem;">
+            Властивість <code>transform</code> змінює положення, розмір або кут елемента, <strong>не зсуваючи сусідні блоки</strong> на сторінці. Наведіть курсор (або натисніть на смартфоні) на кожну картку, щоб побачити трансформацію в дії:
+          </p>
+
+          <div class="transform-cards-grid">
+            <article class="transform-card" title="Наведіть або натисніть">
+              <div class="transform-stage">
+                <div class="transform-ghost"></div>
+                <div class="transform-box tf-translate" style="background:#38bdf8;">MOVE</div>
+              </div>
+              <h4 style="margin:0;">1. Зсув — <code>translate()</code></h4>
+              <p style="margin:0; font-size:0.88rem; color:var(--text-secondary);">Зсуває елемент по осях X (вправо/вліво) та Y (вниз/вгору).</p>
+              <code style="font-size:0.8rem;">transform: translate(28px, -14px);</code>
+            </article>
+
+            <article class="transform-card" title="Наведіть або натисніть">
+              <div class="transform-stage">
+                <div class="transform-ghost"></div>
+                <div class="transform-box tf-scale" style="background:#34d399;">ZOOM</div>
+              </div>
+              <h4 style="margin:0;">2. Масштаб — <code>scale()</code></h4>
+              <p style="margin:0; font-size:0.88rem; color:var(--text-secondary);"><code>1</code> = 100%, <code>1.35</code> = збільшити на 35%, <code>0.9</code> = зменшити.</p>
+              <code style="font-size:0.8rem;">transform: scale(1.35);</code>
+            </article>
+
+            <article class="transform-card" title="Наведіть або натисніть">
+              <div class="transform-stage">
+                <div class="transform-ghost"></div>
+                <div class="transform-box tf-rotate" style="background:#facc15;">TURN</div>
+              </div>
+              <h4 style="margin:0;">3. Поворот — <code>rotate()</code></h4>
+              <p style="margin:0; font-size:0.88rem; color:var(--text-secondary);">Обертає елемент за годинниковою (<code>+deg</code>) або проти (<code>-deg</code>).</p>
+              <code style="font-size:0.8rem;">transform: rotate(45deg);</code>
+            </article>
+
+            <article class="transform-card" title="Наведіть або натисніть">
+              <div class="transform-stage">
+                <div class="transform-ghost"></div>
+                <div class="transform-box tf-skew" style="background:#f472b6;">SKEW</div>
+              </div>
+              <h4 style="margin:0;">4. Нахил — <code>skew()</code></h4>
+              <p style="margin:0; font-size:0.88rem; color:var(--text-secondary);">Нахиляє фігуру вздовж горизонтальної чи вертикальної осі.</p>
+              <code style="font-size:0.8rem;">transform: skewX(-18deg);</code>
+            </article>
+          </div>
+        </div>
+
+        <!-- ІНТЕРАКТИВ: Забіг функцій часу (Timing Functions Race) -->
+        <div class="easing-race-card">
+          <div class="easing-race-header">
+            <div>
+              <span class="badge badge-yellow" style="margin-bottom:0.4rem;">Інтерактивний експеримент · с. 94 підручника</span>
+              <h3 style="margin:0; font-size:1.35rem;">🏁 Забіг функцій часу (<code>timing-function</code>)</h3>
+              <p id="easingRaceStatus" style="margin:0.3rem 0 0; font-size:0.9rem; color:var(--text-secondary);">
+                Готові до старту! Натисніть кнопку, щоб порівняти 5 кривих швидкості за однакові 2 секунди:
+              </p>
+            </div>
+            <button type="button" class="btn btn-primary" id="easingRaceStartBtn">🏁 СТАРТ ЗАБІГУ (2 СЕК)</button>
+          </div>
+
+          <div class="easing-tracks" id="easingRaceTracks">
+            <div class="easing-track-row">
+              <div class="easing-track-label">
+                <code>linear</code>
+                <small>Рівномірно, без прискорення</small>
+              </div>
+              <div class="easing-lane"><div class="easing-runner runner-linear"></div></div>
+            </div>
+
+            <div class="easing-track-row">
+              <div class="easing-track-label">
+                <code>ease</code>
+                <small>Плавний старт → швидше → м’який фініш</small>
+              </div>
+              <div class="easing-lane"><div class="easing-runner runner-ease"></div></div>
+            </div>
+
+            <div class="easing-track-row">
+              <div class="easing-track-label">
+                <code>ease-in</code>
+                <small>Повільний старт, розгін у кінці</small>
+              </div>
+              <div class="easing-lane"><div class="easing-runner runner-ease-in"></div></div>
+            </div>
+
+            <div class="easing-track-row">
+              <div class="easing-track-label">
+                <code>ease-out</code>
+                <small>Швидкий старт, м’яке гальмування</small>
+              </div>
+              <div class="easing-lane"><div class="easing-runner runner-ease-out"></div></div>
+            </div>
+
+            <div class="easing-track-row">
+              <div class="easing-track-label">
+                <code>ease-in-out</code>
+                <small>Повільно на початку і в кінці</small>
+              </div>
+              <div class="easing-lane"><div class="easing-runner runner-ease-in-out"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         РОЗДІЛ 2: КЛЮЧОВІ КАДРИ (@KEYFRAMES) ТА ВЛАСТИВІСТЬ ANIMATION
+         ===================================================================== -->
+    <section class="section" id="keyframes-animation">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 2 · § 3.2 Підручника (с. 90–93)</span>
+          <h2 class="section-title">Ключові кадри <span class="text-gradient">@keyframes</span> та <span class="text-gradient">animation</span></h2>
+          <p class="section-subtitle">
+            Якщо <code>transition</code> вміє лише плавно переходити з точки А в точку Б при наведенні, то <code>@keyframes</code> дозволяє написати цілий міні-мультфільм із проміжними кадрами, який запускається сам і може повторюватися нескінченно.
+          </p>
+        </div>
+
+        <!-- Порівняльна таблиця transition vs animation -->
+        <div class="vs-table-wrap">
+          <table class="vs-table">
+            <thead>
+              <tr>
+                <th>Критерій порівняння</th>
+                <th><code>transition</code> (Перехід)</th>
+                <th><code>animation</code> + <code>@keyframes</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Кількість станів</strong></td>
+                <td>Лише 2 стани: початковий (А) → кінцевий (Б)</td>
+                <td>Будь-яка кількість кадрів: <code>0%</code>, <code>25%</code>, <code>50%</code>, <code>75%</code>, <code>100%</code></td>
+              </tr>
+              <tr>
+                <td><strong>Як запускається?</strong></td>
+                <td>Потрібна подія (наприклад, наведення <code>:hover</code> або фокус)</td>
+                <td>Може запускатися автоматично одразу після відкриття сторінки</td>
+              </tr>
+              <tr>
+                <td><strong>Повторення (цикл)</strong></td>
+                <td>Спрацьовує 1 раз на кожну дію</td>
+                <td>Можна повторювати N разів або нескінченно (<code>infinite</code>)</td>
+              </tr>
+              <tr>
+                <td><strong>Типове застосування</strong></td>
+                <td>Кнопки, посилання, збільшення фото в галереї, картки</td>
+                <td>Індикатори завантаження, пульсація банерів, обертання, біжучий рядок</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Алгоритм із підручника за 3 кроки -->
+        <h3 style="font-size:1.45rem; margin-top:2.25rem; margin-bottom:0.5rem;">📋 Алгоритм створення CSS-анімації за 3 кроки (с. 90 підручника)</h3>
+        <div class="algo-steps-grid">
+          <article class="algo-step-card">
+            <span class="algo-step-badge">КРОК 1</span>
+            <h4 style="margin:0;">Оголошуємо @keyframes і назву</h4>
+            <p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">
+              Придумуємо зрозумілу англійську назву без пробілів (наприклад, <code>simpleAnimation</code> або <code>spin</code>) і пишемо правило <code>@keyframes назва { ... }</code>.
+            </p>
+          </article>
+
+          <article class="algo-step-card">
+            <span class="algo-step-badge">КРОК 2</span>
+            <h4 style="margin:0;">Прописуємо ключові кадри (0% → 100%)</h4>
+            <p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">
+              Усередині фігурних дужок задаємо стилі для старту (<code>0%</code>), фінішу (<code>100%</code>) та скільки завгодно проміжних точок (<code>25%</code>, <code>50%</code>, <code>75%</code>).
+            </p>
+          </article>
+
+          <article class="algo-step-card">
+            <span class="algo-step-badge">КРОК 3</span>
+            <h4 style="margin:0;">Підключаємо через <code>animation</code></h4>
+            <p style="margin:0; font-size:0.9rem; color:var(--text-secondary);">
+              У CSS-класі елемента вказуємо назву анімації, її тривалість та параметри повторення, наприклад: <code>animation: spin 4s linear infinite;</code>.
+            </p>
+          </article>
+        </div>
+
+        <!-- Приклад із підручника (рис. 3.4, с. 91) + живий рендер поруч -->
+        <div class="textbook-example-grid">
+          <div style="background:var(--bg-card); border:var(--border-width) solid var(--border-color); border-radius:var(--radius-md); padding:1.4rem; box-shadow:var(--shadow-md);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+              <h4 style="margin:0;">📖 Приклад із підручника (с. 91): плавне мерехтіння через <code>opacity</code></h4>
+              <span class="badge badge-blue">Рис. 3.4</span>
+            </div>
+            <pre style="margin:0;"><code>.element {
+  animation: simpleAnimation 5s infinite;
+}
+
+@keyframes simpleAnimation {
+  0%   { opacity: 0;   } /* Повністю прозорий */
+  25%  { opacity: 0.4; }
+  50%  { opacity: 0.8; } /* Майже непрозорий */
+  75%  { opacity: 0.4; }
+  100% { opacity: 0;   } /* Знову зникає */
+}</code></pre>
+            <p style="margin:0.85rem 0 0; font-size:0.88rem; color:var(--text-secondary);">
+              <strong>Властивість <code>opacity</code></strong> змінює прозорість елемента (і всього, що всередині нього) від <code>0</code> (невидимий) до <code>1</code> (100% непрозорий).
+            </p>
+          </div>
+
+          <div class="textbook-live-preview">
+            <span class="badge badge-yellow">Живий результат (цикл 5 сек)</span>
+            <div class="simple-opacity-demo">OPACITY</div>
+            <p style="margin:0; font-size:0.82rem; color:#cbd5e1; text-align:center;">
+              Блок плавно з’являється до <code>0.8</code> і знову розчиняється до <code>0</code> без жодного кліку!
+            </p>
+          </div>
+        </div>
+
+        <!-- Інтерактивний довідник усіх 8 властивостей animation-* -->
+        <div class="anim-props-explorer">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+            <h3 style="margin:0;">🔍 Інтерактивний довідник 8 властивостей <code>animation-*</code></h3>
+            <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">Натисніть на властивість, щоб побачити пояснення й приклад:</span>
+          </div>
+
+          <div class="anim-chips-row" role="tablist" aria-label="Властивості CSS animation">
+            <button type="button" class="anim-prop-chip active" data-prop="animation-name">animation-name</button>
+            <button type="button" class="anim-prop-chip" data-prop="animation-duration">animation-duration</button>
+            <button type="button" class="anim-prop-chip" data-prop="animation-timing-function">animation-timing-function</button>
+            <button type="button" class="anim-prop-chip" data-prop="animation-delay">animation-delay</button>
+            <button type="button" class="anim-prop-chip" data-prop="animation-iteration-count">animation-iteration-count</button>
+            <button type="button" class="anim-prop-chip" data-prop="animation-direction">animation-direction</button>
+            <button type="button" class="anim-prop-chip" data-prop="animation-fill-mode">animation-fill-mode</button>
+            <button type="button" class="anim-prop-chip" data-prop="animation-play-state">animation-play-state</button>
+          </div>
+
+          <div class="anim-prop-detail" id="animPropDetailPanel">
+            <div>
+              <span class="badge badge-yellow" id="animPropBadge" style="margin-bottom:0.6rem;">Обов’язкова властивість №1</span>
+              <h4 id="animPropTitle" style="font-size:1.2rem; margin-bottom:0.5rem;">animation-name — Ім’я сценарію @keyframes</h4>
+              <p id="animPropDesc" style="margin:0; color:var(--text-secondary);">
+                Пов’язує HTML-елемент із конкретним правилом @keyframes. Назва має точно збігатися (регістр літер важливий, без пробілів — наприклад, spin або fadeIn).
+              </p>
+            </div>
+            <div>
+              <pre style="margin:0;"><code id="animPropCode">animation-name: spin;
+/* Має відповідати @keyframes spin { ... } */</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Короткий запис animation (shorthand) -->
+        <div class="syntax-anatomy-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <h3 style="margin:0; color:#ffffff;">⚡ Короткий запис <code>animation</code> в один рядок (с. 92 підручника)</h3>
+            <span class="badge badge-green">Так пишуть профі</span>
+          </div>
+          <p style="margin:0.5rem 0 0; color:#cbd5e1; font-size:0.94rem;">
+            Замість 6 окремих рядків можна записати все разом: <code style="background:#1e293b; color:#fde047; border-color:#475569;">animation: spin 4s linear 0s infinite alternate;</code>
+          </p>
+          <div class="syntax-tokens-row">
+            <div class="syntax-token"><code style="color:#38bdf8;">spin</code><span>1. Назва <code>@keyframes</code></span></div>
+            <div class="syntax-token"><code style="color:#fde047;">4s</code><span>2. Тривалість (duration)</span></div>
+            <div class="syntax-token"><code style="color:#34d399;">linear</code><span>3. Динаміка (timing)</span></div>
+            <div class="syntax-token"><code style="color:#c084fc;">0s</code><span>4. Пауза (delay)</span></div>
+            <div class="syntax-token"><code style="color:#fb7185;">infinite</code><span>5. Повтори (iteration)</span></div>
+            <div class="syntax-token"><code style="color:#fbbf24;">alternate</code><span>6. Напрямок (direction)</span></div>
+          </div>
+        </div>
+
+        <!-- Корисні поради профі: 60 FPS, доступність, бібліотеки -->
+        <div class="callout callout-attention">
+          <div class="callout-header">🚀 Золоте правило 60 FPS та доступність (a11y)</div>
+          <p style="margin-bottom:0.5rem;">
+            <strong>1. Анімуйте <code>transform</code> та <code>opacity</code>:</strong> Вони обробляються графічним процесором (GPU) і не змушують браузер перераховувати верстку всієї сторінки — анімація завжди буде плавною навіть на недорогому смартфоні.
+          </p>
+          <p style="margin-bottom:0.5rem;">
+            <strong>2. Поважайте комфорт користувача:</strong> Для людей, у яких швидкий рух на екрані викликає втому очей, у CSS існує медіазапит <code>@media (prefers-reduced-motion: reduce)</code>, який вимикає або уповільнює декоративні анімації.
+          </p>
+          <p style="margin-bottom:0;">
+            <strong>3. Готові бібліотеки (с. 92 підручника):</strong> У великих проєктах часто підключають <strong>Animate.css</strong> (готові класи підстрибування та появи), <strong>Anime.js</strong> (складна синхронізація на JS) або візуальні генератори ключів <strong>CSS-Animate</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         РОЗДІЛ 3: CSS ANIMATION STUDIO — ІНТЕРАКТИВНА ЛАБОРАТОРІЯ (3 ВКЛАДКИ)
+         ===================================================================== -->
+    <section class="section" id="animation-studio">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 3 · Інтерактивна лабораторія</span>
+          <h2 class="section-title">Студія: <span class="text-gradient">CSS Animation Studio</span></h2>
+          <p class="section-subtitle">
+            Покрутіть повзунки й одразу побачте, як змінюється рух на сцені та готовий CSS-код! Усі пресети відповідають вправам із Практичної роботи №8.
+          </p>
+        </div>
+
+        <div class="anim-studio-box" id="animStudioBox">
+          <div class="astudio-header-bar">
+            <div class="astudio-tabs-nav" role="tablist" aria-label="Вкладки студії анімацій">
+              <button type="button" class="astudio-tab-btn active" data-tab="panelTransitionStudio" role="tab" aria-selected="true">
+                1. 🎛️ Конструктор transition
+              </button>
+              <button type="button" class="astudio-tab-btn" data-tab="panelKeyframesStudio" role="tab" aria-selected="false">
+                2. 🎬 Студія @keyframes
+              </button>
+              <button type="button" class="astudio-tab-btn" data-tab="panelHoverGallery" role="tab" aria-selected="false">
+                3. 🖼️ Hover-галерея
+              </button>
+            </div>
+
+            <button type="button" class="astudio-fullscreen-btn" id="studioFullscreenBtn" aria-pressed="false" title="Розгорнути студію на весь екран (Esc для виходу)">
+              <span>⛶</span>
+              <span id="studioFullscreenLabel">На весь екран</span>
+            </button>
+          </div>
+
+          <!-- ВКЛАДКА 1: Конструктор transform + transition -->
+          <div class="astudio-panel active" id="panelTransitionStudio" role="tabpanel">
+            <div class="studio-split-grid">
+              <div>
+                <div class="studio-stage-canvas">
+                  <span class="studio-stage-hint">Наведіть курсор на блок або увімкніть перемикач :hover</span>
+                  <div class="studio-transform-box" id="studioTransformBox">
+                    <span>.one</span>
+                    <small style="font-size:0.7rem; opacity:0.85;">НАВЕДИ</small>
+                  </div>
+                </div>
+
+                <div style="margin-top:1rem;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; flex-wrap:wrap; gap:0.5rem;">
+                    <span style="font-family:var(--font-mono); font-size:0.8rem; font-weight:700;">Згенерований CSS-код:</span>
+                    <button type="button" class="btn btn-sm btn-secondary" id="copyTransitionCssBtn">📋 Копіювати CSS</button>
+                  </div>
+                  <pre style="margin:0;"><code id="transitionLiveCss"></code></pre>
+                </div>
+              </div>
+
+              <div class="studio-controls-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+                  <h3 style="margin:0; font-size:1.1rem;">Налаштування стану <code>:hover</code></h3>
+                  <label style="display:inline-flex; align-items:center; gap:0.4rem; font-family:var(--font-mono); font-size:0.8rem; font-weight:700; cursor:pointer;">
+                    <input type="checkbox" id="studioSimulateHover"> Зафіксувати :hover
+                  </label>
+                </div>
+
+                <div class="studio-preset-bar">
+                  <button type="button" class="studio-preset-btn tr-preset-btn active" data-preset="textbook">📖 Вправа .one (с. 95)</button>
+                  <button type="button" class="studio-preset-btn tr-preset-btn" data-preset="lift">⬆️ Картка-підйом</button>
+                  <button type="button" class="studio-preset-btn tr-preset-btn" data-preset="zoom">🔍 Zoom-ефект</button>
+                </div>
+
+                <div class="studio-slider-row">
+                  <div class="studio-slider-top">
+                    <label for="trRotate">Поворот <code>rotate</code></label>
+                    <strong id="trRotateVal">90deg</strong>
+                  </div>
+                  <input type="range" id="trRotate" min="-180" max="180" step="5" value="90">
+                </div>
+
+                <div class="studio-slider-row">
+                  <div class="studio-slider-top">
+                    <label for="trScale">Масштаб <code>scale</code></label>
+                    <strong id="trScaleVal">1.00</strong>
+                  </div>
+                  <input type="range" id="trScale" min="0.5" max="1.6" step="0.05" value="1">
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+                  <div class="studio-slider-row">
+                    <div class="studio-slider-top">
+                      <label for="trTranslateX">Зсув X</label>
+                      <strong id="trTranslateXVal">0px</strong>
+                    </div>
+                    <input type="range" id="trTranslateX" min="-60" max="60" step="2" value="0">
+                  </div>
+                  <div class="studio-slider-row">
+                    <div class="studio-slider-top">
+                      <label for="trTranslateY">Зсув Y</label>
+                      <strong id="trTranslateYVal">0px</strong>
+                    </div>
+                    <input type="range" id="trTranslateY" min="-50" max="50" step="2" value="0">
+                  </div>
+                </div>
+
+                <div class="studio-slider-row">
+                  <div class="studio-slider-top">
+                    <label for="trRadius">Скруглення <code>border-radius</code></label>
+                    <strong id="trRadiusVal">50%</strong>
+                  </div>
+                  <input type="range" id="trRadius" min="0" max="50" step="2" value="50">
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+                  <div class="studio-slider-row">
+                    <div class="studio-slider-top">
+                      <label for="trDuration">Тривалість</label>
+                      <strong id="trDurationVal">1.00s</strong>
+                    </div>
+                    <input type="range" id="trDuration" min="0.1" max="2.5" step="0.05" value="1">
+                  </div>
+
+                  <div class="studio-slider-row">
+                    <div class="studio-slider-top">
+                      <label for="trTiming">Крива часу</label>
+                    </div>
+                    <select id="trTiming" style="font-family:var(--font-mono); font-weight:700; padding:0.25rem; border:1.5px solid var(--border-color); border-radius:4px;">
+                      <option value="ease" selected>ease</option>
+                      <option value="linear">linear</option>
+                      <option value="ease-in">ease-in</option>
+                      <option value="ease-out">ease-out</option>
+                      <option value="ease-in-out">ease-in-out</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ВКЛАДКА 2: Студія @keyframes та animation -->
+          <div class="astudio-panel" id="panelKeyframesStudio" role="tabpanel">
+            <div class="studio-split-grid">
+              <div>
+                <div class="studio-stage-canvas">
+                  <span class="studio-stage-hint">Анімація працює в реальному часі</span>
+                  <div class="kf-actor" id="kfStudioActor">.square</div>
+                </div>
+
+                <div style="display:flex; gap:0.6rem; margin-top:0.85rem; flex-wrap:wrap;">
+                  <button type="button" class="btn btn-primary btn-sm" id="kfPlayPauseBtn">⏸ Пауза</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="kfRestartBtn">↻ Перезапустити</button>
+                </div>
+
+                <div style="margin-top:1rem;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; flex-wrap:wrap; gap:0.5rem;">
+                    <span style="font-family:var(--font-mono); font-size:0.8rem; font-weight:700;">Повний CSS-код анімації:</span>
+                    <button type="button" class="btn btn-sm btn-secondary" id="copyKfCssBtn">📋 Копіювати CSS</button>
+                  </div>
+                  <pre style="margin:0;"><code id="kfLiveCssCode"></code></pre>
+                </div>
+              </div>
+
+              <div class="studio-controls-card">
+                <h3 style="margin:0; font-size:1.1rem;">Пульт керування <code>animation</code></h3>
+
+                <div class="studio-slider-row">
+                  <div class="studio-slider-top">
+                    <label for="kfPresetSelect">Сценарій <code>@keyframes</code>:</label>
+                  </div>
+                  <select id="kfPresetSelect" style="font-family:var(--font-mono); font-weight:700; padding:0.4rem; border:1.5px solid var(--border-color); border-radius:4px;">
+                    <option value="spin" selected>spin — Обертання .square (Практична №8)</option>
+                    <option value="pulse">simpleAnimation — Мерехтіння opacity (с. 91)</option>
+                    <option value="bounce">bounceBall — Стрибок м’яча</option>
+                    <option value="float">floatCard — Плавне ширяння картки</option>
+                  </select>
+                </div>
+
+                <div class="studio-slider-row">
+                  <div class="studio-slider-top">
+                    <label for="kfDurationRange"><code>animation-duration</code> (тривалість)</label>
+                    <strong id="kfDurationVal">4.0s</strong>
+                  </div>
+                  <input type="range" id="kfDurationRange" min="0.5" max="6" step="0.5" value="4">
+                </div>
+
+                <div class="studio-slider-row">
+                  <div class="studio-slider-top">
+                    <label for="kfTimingSelect"><code>animation-timing-function</code></label>
+                  </div>
+                  <select id="kfTimingSelect" style="font-family:var(--font-mono); font-weight:700; padding:0.35rem; border:1.5px solid var(--border-color); border-radius:4px;">
+                    <option value="linear" selected>linear (рівномірно)</option>
+                    <option value="ease">ease (плавно)</option>
+                    <option value="ease-in">ease-in (прискорення)</option>
+                    <option value="ease-out">ease-out (гальмування)</option>
+                    <option value="ease-in-out">ease-in-out (м’які краї)</option>
+                  </select>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+                  <div class="studio-slider-row">
+                    <div class="studio-slider-top">
+                      <label for="kfIterationSelect">Повтори (<code>iteration</code>)</label>
+                    </div>
+                    <select id="kfIterationSelect" style="font-family:var(--font-mono); font-weight:700; padding:0.35rem; border:1.5px solid var(--border-color); border-radius:4px;">
+                      <option value="infinite" selected>infinite (завжди)</option>
+                      <option value="1">1 раз</option>
+                      <option value="2">2 рази</option>
+                      <option value="3">3 рази</option>
+                    </select>
+                  </div>
+
+                  <div class="studio-slider-row">
+                    <div class="studio-slider-top">
+                      <label for="kfDirectionSelect">Напрямок (<code>direction</code>)</label>
+                    </div>
+                    <select id="kfDirectionSelect" style="font-family:var(--font-mono); font-weight:700; padding:0.35rem; border:1.5px solid var(--border-color); border-radius:4px;">
+                      <option value="alternate" selected>alternate (туди-назад)</option>
+                      <option value="normal">normal (вперед)</option>
+                      <option value="reverse">reverse (назад)</option>
+                      <option value="alternate-reverse">alternate-reverse</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="studio-slider-row">
+                  <div class="studio-slider-top">
+                    <label for="kfDelayRange"><code>animation-delay</code> (пауза перед стартом)</label>
+                    <strong id="kfDelayVal">0.0s</strong>
+                  </div>
+                  <input type="range" id="kfDelayRange" min="0" max="2" step="0.2" value="0">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ВКЛАДКА 3: Жива галерея hover-ефектів (Практична №8) -->
+          <div class="astudio-panel" id="panelHoverGallery" role="tabpanel">
+            <div class="callout callout-practice" style="margin-top:0;">
+              <div class="callout-header">🖼️ Анімація фотографій у галереї при наведенні миші (с. 96 підручника)</div>
+              <p style="margin-bottom:0;">
+                Наведіть курсор на кожну з 3 карток нижче, щоб порівняти класичний прийом із підручника та сучасні UI-ефекти. Спробуйте вимкнути <code>overflow: hidden</code>, щоб побачити, чому ця властивість важлива для zoom-ефекту!
+              </p>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center; background:var(--bg-secondary); border:2px solid var(--border-color); border-radius:var(--radius-md); padding:1rem 1.25rem;">
+              <div style="flex:1 1 220px;">
+                <label for="galleryHoverDur" style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.82rem; font-weight:700; margin-bottom:0.25rem;">
+                  <span>Тривалість переходу (<code>transition</code>):</span>
+                  <strong id="galleryHoverDurVal" style="color:var(--accent-vermilion);">0.35s</strong>
+                </label>
+                <input type="range" id="galleryHoverDur" min="0.1" max="1.2" step="0.05" value="0.35" style="width:100%;">
+              </div>
+
+              <label style="display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--font-mono); font-size:0.84rem; font-weight:700; cursor:pointer; background:var(--bg-card); padding:0.55rem 0.9rem; border:2px solid var(--border-color); border-radius:var(--radius-sm);">
+                <input type="checkbox" id="galleryOverflowClip" checked>
+                <span><code>overflow: hidden</code> на рамці фото</span>
+              </label>
+            </div>
+
+            <div class="hover-gallery-grid" id="hoverGalleryGrid">
+              <article class="hover-gallery-card hg-effect-textbook">
+                <div class="hover-gallery-frame">
+                  <div class="hover-gallery-img" style="background: linear-gradient(135deg, #2563eb, #7c3aed);">
+                    <span style="font-size:2rem;">🏔️</span>
+                    <span>Карпати · Ранок</span>
+                  </div>
+                </div>
+                <h4 style="margin:0;">1. Спосіб із підручника (с. 96)</h4>
+                <code style="font-size:0.78rem;">img { transform: scale(0.92); }<br>img:hover { transform: scale(1); }</code>
+              </article>
+
+              <article class="hover-gallery-card hg-effect-zoom">
+                <div class="hover-gallery-frame">
+                  <div class="hover-gallery-img" style="background: linear-gradient(135deg, #047857, #0ea5e9);">
+                    <span style="font-size:2rem;">🌊</span>
+                    <span>Океан · Штиль</span>
+                  </div>
+                </div>
+                <h4 style="margin:0;">2. Zoom усередині рамки</h4>
+                <code style="font-size:0.78rem;">.frame { overflow: hidden; }<br>.frame:hover img { scale(1.16); }</code>
+              </article>
+
+              <article class="hover-gallery-card hg-effect-lift">
+                <div class="hover-gallery-frame">
+                  <div class="hover-gallery-img" style="background: linear-gradient(135deg, #b91c1c, #f59e0b);">
+                    <span style="font-size:2rem;">🚀</span>
+                    <span>Космос · Старт</span>
+                  </div>
+                </div>
+                <h4 style="margin:0;">3. Підйом картки + тінь</h4>
+                <code style="font-size:0.78rem;">.card:hover { translateY(-10px);<br>  box-shadow: 8px 14px 0 #111; }</code>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         РОЗДІЛ 4: ПРАКТИКУМ — ЖИВА ПІСОЧНИЦЯ ТА ПРАКТИЧНА РОБОТА №8
+         ===================================================================== -->
+    <section class="section" id="practical-work">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Розділ 4 · Практична робота №8 (с. 93–96)</span>
+          <h2 class="section-title">Практикум: <span class="text-gradient">Жива CSS-пісочниця</span></h2>
+          <p class="section-subtitle">
+            Закріпіть тему на практиці прямо в браузері — без встановлення програм! Змінюйте CSS-код у редакторі зліва, дивіться миттєвий результат справа та перевіряйте себе за автоматичним чек-лістом.
+          </p>
+        </div>
+
+        <!-- 3 кроки практичної роботи з кнопками-підказками -->
+        <div class="prac-tasks-grid">
+          <article class="prac-task-card">
+            <span class="badge badge-blue" style="align-self:flex-start;">Завдання 1 · Тренувальна вправа</span>
+            <h3 style="margin:0; font-size:1.05rem;">Квадрат <code>.one</code> → синє коло</h3>
+            <p>
+              Додайте перехід <code>transition-duration</code> і правило <code>.one:hover</code>, щоб при наведенні блок повертався на <code>90deg</code>, змінював фон на синій та ставав круглим (<code>border-radius: 50%</code>).
+            </p>
+            <button type="button" class="btn btn-sm btn-secondary prac-hint-btn" data-hint="task1">💡 Завантажити зразок №1</button>
+          </article>
+
+          <article class="prac-task-card">
+            <span class="badge badge-yellow" style="align-self:flex-start;">Завдання 2 · @keyframes spin</span>
+            <h3 style="margin:0; font-size:1.05rem;">Нескінченне обертання <code>.square</code></h3>
+            <p>
+              Створіть <code>@keyframes spin</code> (0%: <code>rotate(0deg)</code>, 25%: жовтий колір, 100%: <code>rotate(360deg)</code>) і підключіть до <code>.square</code> із <code>4s linear infinite alternate</code>.
+            </p>
+            <button type="button" class="btn btn-sm btn-secondary prac-hint-btn" data-hint="task2">💡 Завантажити зразок №2</button>
+          </article>
+
+          <article class="prac-task-card">
+            <span class="badge badge-green" style="align-self:flex-start;">Завдання 3 · Фотогалерея</span>
+            <h3 style="margin:0; font-size:1.05rem;">Плавний zoom <code>.photo-card</code></h3>
+            <p>
+              Задайте картці <code>transform: scale(0.95)</code> та <code>transition: transform 0.3s ease</code>, а при наведенні збільшуйте масштаб до <code>scale(1.08)</code> або <code>scale(1.1)</code>.
+            </p>
+            <button type="button" class="btn btn-sm btn-secondary prac-hint-btn" data-hint="task3">💡 Завантажити зразок №3</button>
+          </article>
+        </div>
+
+        <!-- Жива пісочниця HTML + CSS -->
+        <div class="anim-sandbox-shell" id="animSandboxContainer">
+          <div class="anim-sandbox-topbar">
+            <div class="anim-sandbox-tabs">
+              <button type="button" class="sb-tab-btn active" id="animTabCssBtn">style.css</button>
+              <button type="button" class="sb-tab-btn" id="animTabHtmlBtn">index.html</button>
+            </div>
+
+            <div class="anim-sandbox-actions">
+              <button type="button" class="btn btn-sm btn-primary" id="animSandboxRunBtn">▶ Запустити</button>
+              <button type="button" class="btn btn-sm btn-secondary" id="animSandboxCopyBtn">📋 Копіювати</button>
+              <button type="button" class="btn btn-sm btn-secondary" id="animSandboxResetBtn">↺ Скинути все</button>
+              <button type="button" class="astudio-fullscreen-btn" id="animSandboxFullscreenBtn" title="Відкрити практикум на весь екран">
+                <span class="fs-icon">⛶</span> <span class="fs-label">На всю сторінку</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="anim-sandbox-workspace">
+            <div class="anim-sandbox-editor-pane">
+              <textarea id="animSandboxCodeArea" class="anim-sandbox-textarea" spellcheck="false" aria-label="Редактор коду CSS та HTML"></textarea>
+            </div>
+            <div class="anim-sandbox-preview-pane">
+              <iframe id="animSandboxIframe" class="anim-sandbox-iframe" title="Живий результат практичної роботи №8"></iframe>
+            </div>
+          </div>
+
+          <!-- Автоматичний чек-ліст перевірки CSS -->
+          <div class="prac-checklist-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <strong style="font-size:0.95rem;">🤖 Автоматична самоперевірка вашого CSS-коду:</strong>
+              <span class="badge badge-green" id="pracValidatorBadge">Перевірка коду: 5/5</span>
+            </div>
+            <ul class="prac-checklist-items">
+              <li class="prac-chk-item" id="chkTransition"><span class="chk-icon">⬜</span><span>Задано плавний перехід <code>transition</code> / <code>transition-duration</code></span></li>
+              <li class="prac-chk-item" id="chkHoverTransform"><span class="chk-icon">⬜</span><span>Є реакція <code>:hover</code> із трансформацією <code>transform</code></span></li>
+              <li class="prac-chk-item" id="chkKeyframes"><span class="chk-icon">⬜</span><span>Оголошено сценарій ключових кадрів <code>@keyframes</code></span></li>
+              <li class="prac-chk-item" id="chkAnimationProp"><span class="chk-icon">⬜</span><span>Підключено <code>animation</code> (назва + тривалість)</span></li>
+              <li class="prac-chk-item" id="chkLoopOrDir"><span class="chk-icon">⬜</span><span>Налаштовано повтор або напрямок (<code>infinite</code> / <code>alternate</code>)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Акордеон самодопомоги: Типові помилки новачків -->
+        <div class="accordion-item" style="margin-top: 2rem;">
+          <button type="button" class="accordion-header">
+            <span>🛟 Самодопомога: 3 типові помилки початківців із CSS-анімаціями</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <ul style="margin-left:1.35rem; line-height:1.85; font-size:0.95rem;">
+              <li><strong>Помилка 1 — написали <code>transition</code> тільки всередині <code>:hover</code>:</strong> Тоді при наведенні кнопка зміниться плавно, а коли приберете мишу — різко «стрибне» назад. Завжди додавайте <code>transition</code> у базовий клас елемента!</li>
+              <li><strong>Помилка 2 — забули вказати час (<code>animation-duration</code>):</strong> Якщо написати лише <code>animation-name: spin;</code> без секунд, тривалість дорівнюватиме <code>0s</code> і елемент не зрушить із місця.</li>
+              <li><strong>Помилка 3 — не збігається назва в <code>@keyframes</code>:</strong> <code>Spin</code> і <code>spin</code> — це різні назви для браузера. Перевіряйте регістр літер!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         НИЖНЯ НАВІГАЦІЯ МІЖ УРОКАМИ (PAGER)
+         ===================================================================== -->
+    <section class="lesson-pager-section" aria-label="Навігація між уроками">
+      <div class="container">
+        <div class="lesson-pager">
+          <a href="web-multimedia.html" class="lesson-pager-card prev" title="Перейти до Уроку 8">
+            <span class="lesson-pager-direction">← Попередній урок</span>
+            <span class="lesson-pager-title">Урок 8: Мультимедіа на веб-сторінках</span>
+            <span class="lesson-pager-sub">Аудіо та відео HTML5, MIME-типи, кодеки, Autoplay Policy та відеогалерея</span>
+          </a>
+
+          <button type="button" class="lesson-pager-all-btn" id="pagerAllLessonsBtn" title="Відкрити список усіх уроків курсу">
+            <span>📚 Усі уроки</span>
+            <span style="font-size: 0.72rem; opacity: 0.8;">(Програма курсу)</span>
+          </button>
+
+          <div class="lesson-pager-card next upcoming-next" id="upcomingLessonCard" role="button" tabindex="0" title="Урок 10 у розробці — натисніть, щоб переглянути програму курсу">
+            <span class="lesson-pager-direction">Наступний урок (У розробці) →</span>
+            <span class="lesson-pager-title">Урок 10: Веб-програмування та DOM</span>
+            <span class="lesson-pager-sub">Основи JavaScript, об’єктна модель документа, події та інтерактивні сторінки</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Підвал сайту -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-badge">&lt;/&gt;</span>
+            <span>Вебтехнології 10–11 класи</span>
+          </div>
+          <p class="footer-text">
+            Інтерактивний навчальний онлайн-курс зі створення сучасних веб-сайтів для старшокласників за програмою підручника Н. В. Речич (Видавництво «Ранок»).
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Корисні ресурси до Уроку 9</h4>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions" target="_blank" rel="noopener noreferrer">MDN: Повний гід із CSS Transitions</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations" target="_blank" rel="noopener noreferrer">MDN: Створення CSS Animations та @keyframes</a></li>
+            <li><a href="https://cubic-bezier.com" target="_blank" rel="noopener noreferrer">Cubic-Bezier.com: Візуальний конструктор кривих часу</a></li>
+            <li><a href="https://animate.style" target="_blank" rel="noopener noreferrer">Animate.css: Бібліотека готових CSS-анімацій</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Інтерактивний веб-курс «Вебтехнології». Урок 9: Анімаційні ефекти та переходи.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Скрипти: core.js -> sandbox.js -> animations-lesson.js -->
+  <script src="js/core.js?v=9"></script>
+  <script src="js/sandbox.js?v=2"></script>
+  <script src="js/animations-lesson.js?v=1"></script>
+</body>
+</html>

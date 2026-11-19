@@ -1,0 +1,1115 @@
+/* ==========================================================================
+   УРОК 9: АНІМАЦІЙНІ ЕФЕКТИ ТА ПЕРЕХОДИ — СТИЛІ МОДУЛІВ, СТУДІЇ ТА ПРАКТИКУМУ
+   Підручник: Н. В. Речич "Вебтехнології", § 3.2 + Практична робота №8 (с. 90–96)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   HERO SHOWCASE CARD: ЖИВІ CSS-ЕФЕКТИ БЕЗ JAVASCRIPT
+   -------------------------------------------------------------------------- */
+.anim-hero-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.anim-hero-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: var(--border-width) solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.anim-hero-dots {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.anim-hero-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid #000;
+  display: inline-block;
+}
+
+.anim-hero-body {
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-stage-box {
+  background: radial-gradient(circle at 25% 25%, #1e1b4b 0%, #0f172a 65%, #020617 100%);
+  border: 2.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-demo-target {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff4732 0%, #facc15 100%);
+  border: 3px solid #ffffff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #111318;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-radius 0.35s ease, background 0.35s ease;
+}
+
+.hero-demo-target.demo-hover:hover,
+.hero-demo-target.demo-hover.is-demo-active {
+  transform: translateY(-10px) scale(1.14) rotate(8deg);
+  border-radius: 26px;
+  background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+  color: #ffffff;
+}
+
+.hero-demo-target.demo-pulse {
+  animation: heroPulseDemo 2s ease-in-out infinite;
+}
+
+.hero-demo-target.demo-spin {
+  animation: heroSpinDemo 3s linear infinite alternate;
+}
+
+@keyframes heroPulseDemo {
+  0% { transform: scale(0.92); opacity: 0.45; }
+  50% { transform: scale(1.12); opacity: 1; box-shadow: 0 0 28px rgba(250, 204, 21, 0.75); }
+  100% { transform: scale(0.92); opacity: 0.45; }
+}
+
+@keyframes heroSpinDemo {
+  0% { transform: rotate(0deg); border-radius: 14px; }
+  50% { background: linear-gradient(135deg, #facc15 0%, #10b981 100%); border-radius: 50%; }
+  100% { transform: rotate(360deg); border-radius: 14px; }
+}
+
+.hero-demo-pills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.hero-demo-btn {
+  padding: 0.55rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--shadow-color);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.hero-demo-btn:hover {
+  transform: translate(-1px, -1px);
+}
+
+.hero-demo-btn.active {
+  background: var(--accent-yellow);
+  color: #111318;
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   РОЗДІЛ 1: ПОРІВНЯННЯ БЕЗ TRANSITION VS З TRANSITION + 4 ФУНКЦІЇ TRANSFORM
+   -------------------------------------------------------------------------- */
+.compare-switch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.compare-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.compare-demo-zone {
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+}
+
+.demo-btn-abrupt {
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: var(--accent-blue);
+  color: #ffffff;
+  border: 2.5px solid #111318;
+  border-radius: 6px;
+  box-shadow: 4px 4px 0 #111318;
+  cursor: pointer;
+}
+
+.demo-btn-abrupt:hover {
+  background: var(--accent-vermilion);
+  transform: translateY(-6px) scale(1.06);
+  border-radius: 999px;
+}
+
+.demo-btn-smooth {
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: var(--accent-green);
+  color: #111318;
+  border: 2.5px solid #111318;
+  border-radius: 6px;
+  box-shadow: 4px 4px 0 #111318;
+  cursor: pointer;
+  transition: transform 0.35s ease, background-color 0.35s ease, border-radius 0.35s ease, color 0.35s ease;
+}
+
+.demo-btn-smooth:hover {
+  background: var(--accent-purple);
+  color: #ffffff;
+  transform: translateY(-6px) scale(1.06);
+  border-radius: 999px;
+}
+
+/* 4 картки функцій transform */
+.transform-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.transform-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.transform-stage {
+  height: 112px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.transform-ghost {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px dashed var(--text-muted);
+  border-radius: 8px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.transform-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: 2.5px solid #111318;
+  box-shadow: 3px 3px 0 #111318;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.78rem;
+  color: #111318;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+.transform-card:hover .tf-translate,
+.transform-card.is-active .tf-translate {
+  transform: translate(28px, -14px);
+}
+
+.transform-card:hover .tf-scale,
+.transform-card.is-active .tf-scale {
+  transform: scale(1.35);
+}
+
+.transform-card:hover .tf-rotate,
+.transform-card.is-active .tf-rotate {
+  transform: rotate(45deg);
+}
+
+.transform-card:hover .tf-skew,
+.transform-card.is-active .tf-skew {
+  transform: skewX(-18deg);
+}
+
+/* Формула синтаксису transition / animation */
+.syntax-anatomy-card {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  margin: 2rem 0;
+}
+
+.syntax-tokens-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+
+.syntax-token {
+  flex: 1 1 150px;
+  background: #1e293b;
+  border: 2px solid #475569;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.syntax-token code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.syntax-token span {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   ЗАБІГ ФУНКЦІЙ ЧАСУ (TIMING FUNCTIONS RACE)
+   -------------------------------------------------------------------------- */
+.easing-race-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  box-shadow: var(--shadow-md);
+  margin: 2rem 0;
+}
+
+.easing-race-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.easing-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.easing-track-row {
+  display: grid;
+  grid-template-columns: 165px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.easing-track-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.easing-track-label code {
+  align-self: flex-start;
+  font-size: 0.84rem;
+}
+
+.easing-track-label small {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+.easing-lane {
+  position: relative;
+  height: 40px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.easing-lane::after {
+  content: '🏁';
+  position: absolute;
+  right: 10px;
+  font-size: 0.9rem;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.easing-runner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #111318;
+  box-shadow: 2px 2px 0 #111318;
+  position: relative;
+  left: 0;
+  transition-property: left;
+  transition-duration: 2s;
+  z-index: 2;
+}
+
+.easing-tracks.is-racing .easing-runner {
+  left: calc(100% - 30px);
+}
+
+.runner-linear { background: #3b82f6; transition-timing-function: linear; }
+.runner-ease { background: #10b981; transition-timing-function: ease; }
+.runner-ease-in { background: #facc15; transition-timing-function: ease-in; }
+.runner-ease-out { background: #ff4732; transition-timing-function: ease-out; }
+.runner-ease-in-out { background: #a855f7; transition-timing-function: ease-in-out; }
+
+/* --------------------------------------------------------------------------
+   РОЗДІЛ 2: @KEYFRAMES, АЛГОРИТМ З ПІДРУЧНИКА ТА ДОВІДНИК 8 ВЛАСТИВОСТЕЙ
+   -------------------------------------------------------------------------- */
+.vs-table-wrap {
+  overflow-x: auto;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-card);
+  margin: 1.75rem 0;
+}
+
+.vs-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.vs-table th,
+.vs-table td {
+  padding: 0.9rem 1.05rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+  font-size: 0.94rem;
+}
+
+.vs-table th {
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.vs-table tr:last-child td {
+  border-bottom: none;
+}
+
+.algo-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.algo-step-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.algo-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 0.25rem 0.7rem;
+  background: var(--accent-yellow);
+  color: #111318;
+  border: 2px solid #111318;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+
+.textbook-example-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin: 2rem 0;
+}
+
+.textbook-live-preview {
+  background: #0f172a;
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #f8fafc;
+  box-shadow: var(--shadow-md);
+}
+
+.simple-opacity-demo {
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  border: 3px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #0f172a;
+  animation: simpleTextbookAnim 5s infinite;
+}
+
+@keyframes simpleTextbookAnim {
+  0% { opacity: 0; }
+  25% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.4; }
+  100% { opacity: 0; }
+}
+
+/* Інтерактивний довідник 8 властивостей animation-* */
+.anim-props-explorer {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  margin: 2rem 0;
+}
+
+.anim-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1.35rem;
+}
+
+.anim-prop-chip {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.48rem 0.85rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--shadow-color);
+  transition: all var(--transition-fast);
+}
+
+.anim-prop-chip:hover {
+  background: var(--accent-yellow);
+  color: #111318;
+}
+
+.anim-prop-chip.active {
+  background: var(--accent-vermilion);
+  color: #ffffff;
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+.anim-prop-detail {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1.35rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   РОЗДІЛ 3: CSS ANIMATION STUDIO (3 ВКЛАДКИ + FULLSCREEN)
+   -------------------------------------------------------------------------- */
+.anim-studio-box {
+  background: var(--bg-card);
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.anim-studio-box.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  z-index: 9999;
+  border-radius: 0;
+  border: none;
+  overflow-y: auto;
+  background: var(--bg-primary);
+}
+
+.astudio-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid var(--border-color);
+}
+
+.astudio-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.astudio-tab-btn {
+  padding: 0.6rem 1.05rem;
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 2px solid #475569;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.astudio-tab-btn:hover {
+  background: #334155;
+  color: #ffffff;
+}
+
+.astudio-tab-btn.active {
+  background: var(--accent-yellow);
+  color: #111318;
+  border-color: #111318;
+  box-shadow: 2px 2px 0 #000000;
+}
+
+.astudio-fullscreen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--accent-green);
+  color: #111318;
+  border: 2px solid #111318;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #000000;
+}
+
+.astudio-panel {
+  display: none;
+  padding: 1.75rem;
+}
+
+.astudio-panel.active {
+  display: block;
+}
+
+.studio-split-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.studio-stage-canvas {
+  background: radial-gradient(circle at 30% 30%, #1e1b4b 0%, #0f172a 65%, #020617 100%);
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-md);
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.studio-stage-hint {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.8);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #334155;
+}
+
+.studio-transform-box {
+  width: 120px;
+  height: 120px;
+  background: #820202;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  user-select: none;
+}
+
+.studio-controls-card {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.studio-slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.studio-slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.studio-slider-top strong {
+  font-family: var(--font-mono);
+  color: var(--accent-vermilion);
+}
+
+.studio-preset-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.studio-preset-btn {
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--shadow-color);
+}
+
+.studio-preset-btn:hover,
+.studio-preset-btn.active {
+  background: var(--accent-yellow);
+  color: #111318;
+}
+
+/* Вкладка 2: Keyframes Studio Actors */
+.kf-actor {
+  width: 100px;
+  height: 100px;
+  background: #123456;
+  border: 3px solid #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes kfSpinTextbook {
+  0% { transform: rotate(0deg); background-color: #123456; }
+  25% { background-color: #facc15; color: #111318; }
+  100% { transform: rotate(360deg); background-color: #2563eb; }
+}
+
+@keyframes kfPulseOpacity {
+  0% { opacity: 0.15; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.12); background-color: #10b981; }
+  100% { opacity: 0.15; transform: scale(0.9); }
+}
+
+@keyframes kfBounceBall {
+  0%, 100% { transform: translateY(34px) scaleY(0.88); border-radius: 50%; background-color: #ff4732; }
+  50% { transform: translateY(-48px) scaleY(1.06); border-radius: 50%; background-color: #facc15; color: #111318; }
+}
+
+@keyframes kfFloatCard {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); background-color: #7c3aed; }
+  50% { transform: translateY(-24px) rotate(2deg); background-color: #ec4899; }
+}
+
+/* Вкладка 3: Жива галерея hover-ефектів */
+.hover-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.hover-gallery-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform var(--gallery-dur, 0.35s) ease, box-shadow var(--gallery-dur, 0.35s) ease;
+}
+
+.hover-gallery-frame {
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+  overflow: hidden;
+}
+
+.hover-gallery-frame.no-clip {
+  overflow: visible;
+}
+
+.hover-gallery-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  transition: transform var(--gallery-dur, 0.35s) ease, filter var(--gallery-dur, 0.35s) ease;
+}
+
+.hg-effect-textbook .hover-gallery-img {
+  transform: scale(0.92);
+}
+.hg-effect-textbook:hover .hover-gallery-img {
+  transform: scale(1);
+}
+
+.hg-effect-zoom:hover .hover-gallery-img {
+  transform: scale(1.16);
+}
+
+.hg-effect-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 8px 14px 0 var(--shadow-color);
+}
+
+/* --------------------------------------------------------------------------
+   РОЗДІЛ 4: ПРАКТИКУМ — ЖИВА ПІСОЧНИЦЯ + АВТОЧЕК-ЛІСТ
+   -------------------------------------------------------------------------- */
+.prac-tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 1.75rem 0;
+}
+
+.prac-task-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.prac-task-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
+.anim-sandbox-shell {
+  background: var(--bg-card);
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+
+.anim-sandbox-shell.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  z-index: 9999;
+  border-radius: 0;
+  border: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.anim-sandbox-shell.is-fullscreen .anim-sandbox-workspace {
+  flex: 1;
+  min-height: 0;
+}
+
+.anim-sandbox-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: #0f172a;
+  color: #f8fafc;
+  border-bottom: 3px solid var(--border-color);
+}
+
+.anim-sandbox-tabs,
+.anim-sandbox-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.sb-tab-btn {
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 2px solid #475569;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sb-tab-btn.active {
+  background: var(--accent-yellow);
+  color: #111318;
+  border-color: #111318;
+}
+
+.anim-sandbox-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 410px;
+}
+
+.anim-sandbox-editor-pane {
+  border-right: 3px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  background: #0b1120;
+}
+
+.anim-sandbox-textarea {
+  width: 100%;
+  flex: 1;
+  min-height: 360px;
+  padding: 1.15rem;
+  background: #0b1120;
+  color: #e2e8f0;
+  border: none;
+  resize: none;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  outline: none;
+}
+
+.anim-sandbox-preview-pane {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.anim-sandbox-iframe {
+  width: 100%;
+  flex: 1;
+  min-height: 360px;
+  border: none;
+  background: #ffffff;
+}
+
+.prac-checklist-card {
+  background: var(--bg-secondary);
+  border-top: 3px solid var(--border-color);
+  padding: 1.25rem 1.5rem;
+}
+
+.prac-checklist-items {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+.prac-chk-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-left: 5px solid var(--accent-vermilion);
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.prac-chk-item.passed {
+  border-left-color: var(--accent-green);
+  background: #ecfdf5;
+}
+
+[data-theme="dark"] .prac-chk-item.passed {
+  background: #132820;
+}
+
+/* Повага до налаштування системи зменшити рух */
+@media (prefers-reduced-motion: reduce) {
+  .hero-demo-target.demo-pulse,
+  .hero-demo-target.demo-spin,
+  .simple-opacity-demo {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .compare-switch-grid,
+  .algo-steps-grid,
+  .textbook-example-grid,
+  .anim-prop-detail,
+  .studio-split-grid,
+  .hover-gallery-grid,
+  .prac-tasks-grid,
+  .anim-sandbox-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .anim-sandbox-editor-pane {
+    border-right: none;
+    border-bottom: 3px solid var(--border-color);
+  }
+
+  .easing-track-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}

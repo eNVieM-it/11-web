@@ -348,14 +348,14 @@ var COURSE_LESSONS = [
   { num: '04', title: 'Урок 4: Блочна модель верстки', file: 'box-model.html', available: true },
   { num: '05', title: 'Урок 5: Адаптивна верстка', file: 'responsive-design.html', available: true },
   { num: '06', title: 'Урок 6: Кросбраузерність та оптимізація', file: 'cross-browser-optimization.html', available: true },
-  { num: '07', title: 'Урок 7: Графіка для веб-середовища', file: '', available: false },
-  { num: '08', title: 'Урок 8: Мультимедіа на веб-сторінках', file: '', available: false },
-  { num: '09', title: 'Урок 9: Інтерактивні форми', file: '', available: false },
-  { num: '10', title: 'Урок 10: CSS-анімації та мікровзаємодії', file: '', available: false },
-  { num: '11', title: 'Урок 11: Основи JavaScript та маніпуляції з DOM', file: '', available: false },
-  { num: '12', title: 'Урок 12: Клієнт-серверна взаємодія та API', file: '', available: false },
+  { num: '07', title: 'Урок 7: Графіка для веб-середовища', file: 'web-graphics.html', available: true },
+  { num: '08', title: 'Урок 8: Мультимедіа на веб-сторінках', file: 'web-multimedia.html', available: true },
+  { num: '09', title: 'Урок 9: Анімаційні ефекти та переходи', file: 'css-animations.html', available: true },
+  { num: '10', title: 'Урок 10: Веб-програмування та DOM', file: '', available: false },
+  { num: '11', title: 'Урок 11: Інтерактивні веб-форми та валідація', file: '', available: false },
+  { num: '12', title: 'Урок 12: Веб-сервер, бази даних та API', file: '', available: false },
   { num: '13', title: 'Урок 13: Юзабіліті та доступність (a11y)', file: '', available: false },
-  { num: '14', title: 'Урок 14: Базове SEO та публікація сайту', file: '', available: false },
+  { num: '14', title: 'Урок 14: SEO-оптимізація та хостинг', file: '', available: false },
   { num: '15', title: 'Урок 15: Захист учнівських проєктів', file: '', available: false }
 ];
 

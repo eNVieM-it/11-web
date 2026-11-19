@@ -11,6 +11,8 @@
 .split-screen-wrapper {
   margin: 2.5rem 0;
   border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
   background: var(--bg-card);
 }
@@ -32,7 +34,7 @@
 [data-theme="dark"] .split-panel.panel-right { color: #121212; }
 .split-screen-container:hover .split-panel { flex: 0.8; opacity: 0.5; filter: grayscale(0.8); }
 .split-screen-container .split-panel:hover { flex: 1.25; opacity: 1; filter: grayscale(0); }
-.split-badge { font-family: var(--font-mono); font-weight: 700; padding: 0.25rem 0.5rem; border: 2px solid currentColor; display: inline-block; margin-bottom: 1rem; }
+.split-badge { font-family: var(--font-mono); font-weight: 700; padding: 0.25rem 0.5rem; border: 2px solid currentColor; border-radius: var(--radius-sm); display: inline-block; margin-bottom: 1rem; }
 .split-title { font-size: 1.75rem; margin-bottom: 0.75rem; }
 
 /* 1.2 Cinemagraph Grid & Art Elements */
@@ -46,11 +48,12 @@
 .cinema-card {
   background: var(--bg-card);
   border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 .cinema-card:hover {
   transform: translate(-2px, -2px);

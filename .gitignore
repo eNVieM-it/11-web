@@ -18,6 +18,14 @@ build/
 .cache/
 *.log
 
+# Google OAuth — секрети й токени (ніколи не комітити!)
+credentials.json
+token.json
+google-form-test/credentials.json
+google-form-test/token.json
+__pycache__/
+*.pyc
+
 # Тести / покриття
 coverage/
 .nyc_output/
