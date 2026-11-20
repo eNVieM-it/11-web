@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles/main.css?v=9">
   <link rel="stylesheet" href="styles/hero.css?v=9">
   <link rel="stylesheet" href="styles/modules.css?v=9">
-  <link rel="stylesheet" href="styles/animations-lesson.css?v=1">
+  <link rel="stylesheet" href="styles/animations-lesson.css?v=2">
   <link rel="stylesheet" href="styles/responsive.css?v=9">
 </head>
 <body>
@@ -330,12 +330,20 @@
               <span class="badge badge-red">0 секунд</span>
             </div>
             <p style="margin:0; font-size:0.92rem; color:var(--text-secondary);">
-              Наведіть курсор на кнопку — вона змінює колір, форму і позицію миттєво, за один кадр:
+              Є базовий клас <code>.btn</code> і псевдоклас <code>.btn:hover</code> (як у 3-му уроці CSS). Без <code>transition</code> зміна відбувається миттєво, за один кадр:
             </p>
             <div class="compare-demo-zone">
               <button type="button" class="demo-btn-abrupt">НАВЕДИ НА МЕНЕ (РІЗКО)</button>
             </div>
-            <pre style="margin:0;"><code>.btn:hover {
+            <pre style="margin:0;"><code><span class="code-comment">/* 1. Базовий клас (початковий стан) */</span>
+.btn {
+  background: #2563eb;
+  border-radius: 6px;
+  <span class="code-comment">/* transition немає → зміна миттєва */</span>
+}
+
+<span class="code-comment">/* 2. Псевдоклас :hover (ціль при наведенні) */</span>
+.btn:hover {
   background: #ff4732;
   transform: translateY(-6px) scale(1.06);
   border-radius: 999px;
@@ -348,17 +356,37 @@
               <span class="badge badge-green">0.35s ease</span>
             </div>
             <p style="margin:0; font-size:0.92rem; color:var(--text-secondary);">
-              Додаємо <strong>лише 1 рядок</strong> у базовий клас кнопки — і той самий ефект стає м’яким і приємним:
+              Структура <strong>та сама</strong> — і базовий клас <code>.btn</code>, і псевдоклас <code>.btn:hover</code>. Додаємо <code>transition</code> у базовий <code>.btn</code>, і перехід до <code>:hover</code> стає плавним:
             </p>
             <div class="compare-demo-zone">
               <button type="button" class="demo-btn-smooth">НАВЕДИ НА МЕНЕ (ПЛАВНО)</button>
             </div>
-            <pre style="margin:0;"><code>.btn {
-  transition: transform 0.35s ease,
+            <pre style="margin:0;"><code><span class="code-comment">/* 1. Базовий клас (початковий стан + інструкція) */</span>
+.btn {
+  background: #10b981;
+  border-radius: 6px;
+<span class="code-highlight-line">  transition: transform 0.35s ease,
               background-color 0.35s ease,
-              border-radius 0.35s ease;
+              border-radius 0.35s ease;</span>
+}
+
+<span class="code-comment">/* 2. Той самий псевдоклас :hover (ціль при наведенні) */</span>
+.btn:hover {
+  background: #7c3aed;
+  transform: translateY(-6px) scale(1.06);
+  border-radius: 999px;
 }</code></pre>
           </div>
+        </div>
+
+        <div class="callout callout-fact" style="margin-top: 0;">
+          <div class="callout-header">🔑 Головне правило зв’язки: базовий клас + псевдоклас :hover</div>
+          <p style="margin-bottom: 0.5rem;">
+            В обох варіантах потрібні <strong>обидва блоки</strong>: базовий клас <code>.btn</code> описує початковий вигляд кнопки, а псевдоклас <code>.btn:hover</code> (із 3-го уроку CSS) задає <strong>нову ціль</strong> при наведенні курсора — куди саме змістити чи як трансформувати елемент через <code>transform</code>.
+          </p>
+          <p style="margin-bottom: 0;">
+            Властивість <code>transition</code> завжди додаємо саме в <strong>базовий клас <code>.btn</code></strong> (а не в <code>:hover</code>) — тоді браузер плавно анімує перехід <strong>в обидва боки</strong>: і коли курсор наводиш, і коли прибираєш.
+          </p>
         </div>
 
         <!-- Формула синтаксису transition -->

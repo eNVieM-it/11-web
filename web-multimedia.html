@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles/main.css?v=9">
   <link rel="stylesheet" href="styles/hero.css?v=9">
   <link rel="stylesheet" href="styles/modules.css?v=9">
-  <link rel="stylesheet" href="styles/multimedia-lesson.css?v=2">
+  <link rel="stylesheet" href="styles/multimedia-lesson.css?v=3">
   <link rel="stylesheet" href="styles/responsive.css?v=9">
 </head>
 <body>
@@ -340,9 +340,9 @@
         </div>
 
         <div class="callout callout-definition">
-          <div class="callout-header">📖 Означення з підручника</div>
+          <div class="callout-header">📖 Означення мультимедіа</div>
           <p style="margin-bottom: 0;">
-            <strong>Мультимедіа</strong> — це поєднання різних видів мультимедійних даних на одній сторінці. Мультимедіа об’єднує в одному об’єкті-контейнері дані різних типів: текстову, графічну, аудіо-, відеоінформацію та анімацію, а також засоби інтерактивної взаємодії з ними.
+            <strong>Мультимедіа на веб-сторінці</strong> — це поєднання різних типів даних в одному інтерфейсі: тексту, статичної графіки (зображень), анімації, звуку (аудіо) та відео, а також засобів інтерактивної взаємодії з ними.
           </p>
         </div>
 
@@ -400,6 +400,35 @@
               <span class="media-type-tag">Canvas 2D / WebGL</span>
             </div>
           </article>
+        </div>
+
+        <!-- Еволюція веб-мультимедіа: минуле (плагіни до HTML5) vs сьогодення (нативний HTML5) -->
+        <div class="container-codec-grid media-evolution-grid">
+          <div class="cc-box media-era-past">
+            <div class="cc-box-header">
+              <h3 style="margin:0;">❌ Минуле (до HTML5)</h3>
+              <span class="badge badge-red">До 2014 · Плагіни</span>
+            </div>
+            <p>
+              <strong>Головна проблема минулого (до HTML5):</strong> До 2014 року браузери самі по собі вміли показувати лише текст і прості картинки. Щоб увімкнути музику або відео на сайті, користувачу доводилося встановлювати сторонні програми-плагіни — найчастіше <strong>Adobe Flash Player</strong> (або QuickTime, Silverlight).
+            </p>
+            <div class="era-note-box era-note-danger">
+              <strong>Чому від цього відмовилися:</strong> плагіни сильно гальмували комп’ютер, швидко розряджали батареї смартфонів (Apple першою заблокувала Flash на iPhone) і мали критичні діри в безпеці, через які віруси легко потрапляли на ПК.
+            </div>
+          </div>
+
+          <div class="cc-box media-era-now">
+            <div class="cc-box-header">
+              <h3 style="margin:0;">✅ Нативний підхід HTML5</h3>
+              <span class="badge badge-green">Зараз · З коробки</span>
+            </div>
+            <p>
+              <strong>Як це працює зараз:</strong> Сучасні браузери (<strong>Chrome, Safari, Firefox, Edge</strong>) мають вбудований «рушій» для відтворення звуку й відео прямо з коробки — без жодних сторонніх програм.
+            </p>
+            <div class="era-note-box era-note-success">
+              <strong>Як це виглядає в коді:</strong> Розробнику достатньо написати стандартний тег <code>&lt;video&gt;</code> або <code>&lt;audio&gt;</code>, і браузер сам намалює плеєр, кнопки «Play/Pause», регулятор гучності та шкалу часу.
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -200,6 +200,46 @@
   border-bottom: 2px dashed var(--border-color);
 }
 
+.media-evolution-grid {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.media-era-past {
+  border-top: 6px solid var(--accent-vermilion);
+}
+
+.media-era-now {
+  border-top: 6px solid var(--accent-green);
+}
+
+.era-note-box {
+  margin-top: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-color);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.era-note-danger {
+  background: #fef2f2;
+  border-left: 5px solid var(--accent-vermilion);
+}
+
+[data-theme="dark"] .era-note-danger {
+  background: #2b181a;
+}
+
+.era-note-success {
+  background: #ecfdf5;
+  border-left: 5px solid var(--accent-green);
+}
+
+[data-theme="dark"] .era-note-success {
+  background: #132820;
+}
+
 .mime-filter-bar {
   display: flex;
   flex-wrap: wrap;
